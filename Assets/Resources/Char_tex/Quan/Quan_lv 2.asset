@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a71ccc9f5ae3ad4dadfb11a0ceb4b1b, type: 3}
+  m_Name: Quan_lv 2
+  m_EditorClassIdentifier: 
+  imgLeg:
+  - {fileID: 2800000, guid: 4fb85923ff87d7d4fbe5f90c2038c5fa, type: 3}
+  - {fileID: 2800000, guid: 3090e66c05e90df429308705da132942, type: 3}
+  - {fileID: 2800000, guid: 4e1535374dcd1bf4fac1a0af5d3d6b89, type: 3}
+  - {fileID: 2800000, guid: 42f2a4533210c5c4381e3560f9b26b97, type: 3}
+  - {fileID: 2800000, guid: 7ad455db385638d4390526c422efe4fb, type: 3}
+  - {fileID: 2800000, guid: 0a85d0150eac60146b6d09b997a85c40, type: 3}
+  - {fileID: 2800000, guid: f8a65b5a876c04e4eaaa66b3f8c9c9de, type: 3}
+  - {fileID: 2800000, guid: 1f622c4bf12401d4983a5a9fb60950b8, type: 3}
+  - {fileID: 2800000, guid: 32b36ede838bf6d4fb2ca7dd9b4bb276, type: 3}
