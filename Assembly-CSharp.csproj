@@ -36,7 +36,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\test_gui.cs" />
      <Compile Include="Assets\Scripts\Load_SO\TexAo_SO.cs" />
      <Compile Include="Assets\Scripts\Anime_char\CharCtrl.cs" />
      <Compile Include="Assets\Scripts\Animation.cs" />
@@ -45,8 +44,8 @@
      <Compile Include="Assets\Scripts\Load_SO\TexQuan_SO.cs" />
      <Compile Include="Assets\Scripts\Load_SO\TexHead_SO.cs" />
      <Compile Include="Assets\Scripts\Anime_char\toa_do_sprite.cs" />
+     <Compile Include="Assets\Scripts\Test_Animation.cs" />
      <Compile Include="Assets\Scripts\Test_renderer.cs" />
-     <Compile Include="Assets\Scripts\Anime_char\CharCtrlv2.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -770,8 +769,14 @@
     <Reference Include="Unity.2D.IK.Runtime">
         <HintPath>E:\Lam_Game\Ninja_school_unity\CM_01\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+        <HintPath>E:\Lam_Game\Ninja_school_unity\CM_01\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst">
         <HintPath>E:\Lam_Game\Ninja_school_unity\CM_01\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+        <HintPath>E:\Lam_Game\Ninja_school_unity\CM_01\Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Shared.Editor">
         <HintPath>E:\Lam_Game\Ninja_school_unity\CM_01\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>

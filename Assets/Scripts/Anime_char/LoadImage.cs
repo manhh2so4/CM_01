@@ -11,21 +11,18 @@ public class LoadImage : MonoBehaviour
     public Sprite[] spriteHead = new Sprite[8];
     public Sprite[] spriteLeg = new Sprite[10];
     [Header("Body-------")]
-    public  Texture2D[] imgBody ;
-    public  Texture2D[] imgBodyImp ;
-    public  Texture2D[] rootBody = new Texture2D[1];
+      Texture2D[] imgBody ;
+      Texture2D[] imgBodyImp ;
+      Texture2D[] rootBody = new Texture2D[1];
     [Header("Head------")]
-    public  Texture2D[] imgHead;
-    public  Texture2D[] rootImageHead;
+      Texture2D[] imgHead;
+      Texture2D[] rootImageHead;
     [Header("Leg-------")]
-    public  Texture2D[] imgLeg;
-    public  Texture2D[] rootLeg = new Texture2D[1];
+      Texture2D[] imgLeg;
+      Texture2D[] rootLeg = new Texture2D[1];
     [SerializeField] protected TexAo_SO mTexAo;
     [SerializeField] protected TexQuan_SO mQuan;
     [SerializeField] protected TexHead_SO mHead;
-    public int[] Run = new int[]{2,3,4,5,6,7};
-    public int[] Idle = new int[]{1,2};
-    public int[] Jump = new int[]{};
     public int lvAo = 0;
     int lvAoCurrent = -1;
     public int lvHead = 0;
@@ -60,7 +57,8 @@ public class LoadImage : MonoBehaviour
     }
      public void LoadTexAo_SO()
     {
-        if (lvAoCurrent == lvAo && mTexAo != null) return;
+        if (lvAoCurrent == lvAo ) return;
+        //if ( mTexAo != null ) return;
         string resPath = "Char_tex/Ao/Ao_lv " + lvAo;
         this.mTexAo = Resources.Load<TexAo_SO>(resPath);
         Debug.Log(": Char_texture " + resPath);
@@ -71,7 +69,8 @@ public class LoadImage : MonoBehaviour
     }
      public void LoadTexQuan_SO()
     {
-        if (lvQuanCurrent == lvQuan && mQuan != null) return;
+        if (lvQuanCurrent == lvQuan ) return;
+        //if ( mQuan != null ) return;
         string resPath = "Char_tex/Quan/Quan_lv " + lvQuan;
         this.mQuan = Resources.Load<TexQuan_SO>(resPath);
         Debug.Log(": Char_texture " + resPath);
@@ -82,7 +81,8 @@ public class LoadImage : MonoBehaviour
     }
     public void LoadTexHead_SO()
     {
-        if (lvHeadCurrent == lvHead && mHead != null) return;
+        if (lvHeadCurrent == lvHead ) return;
+        //if ( mHead != null ) return;
         string resPath = "Char_tex/Head/Head_lv " + lvHead;
         this.mHead = Resources.Load<TexHead_SO>(resPath);
 
@@ -91,24 +91,6 @@ public class LoadImage : MonoBehaviour
         CvtSprite2(spriteHead,imgHead);
         lvHeadCurrent = lvHead;
     }
-
-    void CvtSprite(){
-        for (int i = 0; i < 18; i++)
-        {
-            spriteBody[i] = Sprite.Create(imgBody[i], new Rect(0, 0, imgBody[i].width, imgBody[i].height), new Vector2(0f,1f));
-            spriteBody[i].name = "Body" + i.ToString();
-        }
-        for (int i = 0; i < spriteHead.Length; i++)
-        {
-            spriteHead[i] = Sprite.Create(imgHead[i], new Rect(0, 0, imgHead[i].width, imgHead[i].height), new Vector2(0f,1f));
-            spriteHead[i].name = "Head" + i.ToString();
-        }
-        for (int i = 0; i < spriteLeg.Length; i++)
-        {
-            spriteLeg[i] = Sprite.Create(imgLeg[i], new Rect(0, 0, imgLeg[i].width, imgLeg[i].height), new Vector2(0f,1f));
-            spriteLeg[i].name = "Leg" + i.ToString();
-        }
-    }
     void CvtSprite2(Sprite[] sprite,Texture2D[] text){
        for (int i = 0; i < sprite.Length; i++)
         {
@@ -116,5 +98,4 @@ public class LoadImage : MonoBehaviour
             sprite[i].name = i.ToString();
         } 
     }
-
 }

@@ -13,9 +13,14 @@ public class CharCtrl : MonoBehaviour
 
 
     public int cf = 0;
-    public int nextFrame = -1;
-    public int zoomlv = 1;
-    public int Frame2 = 24;
+    int nextFrame = -1;
+    public int zoomlv = 4;
+    public int Frame = 25;
+	int FrameStart = 0;
+	public int State = 1;
+
+	int stagejump = 0;
+	float frameTimer = 0;
     public static readonly int[][][] CharInfo = new int[30][][]
     
 	{
@@ -234,33 +239,24 @@ public class CharCtrl : MonoBehaviour
 	private void Start() {   
         loadImage = GetComponent<LoadImage>();
 		player = GetComponent<PlayerMovement>();
-		CharStage(player.indexStage);
-        StartCoroutine(MyCoroutine());
+		
     }
+	private void Update() {
+		stagejump = player.velocityView;
+	}
     private void FixedUpdate() {
+		
 		CharStage(player.indexStage);
         LoadImage2();
-    }
-
-    IEnumerator MyCoroutine()
-    {
-		for (int i = 0; i < FrameAnim.Length; i++)
-		 {
-		 if(i == FrameAnim.Length-1){
-               i=0;
-		 }
-		 	cf = FrameAnim[i];
-            yield return new WaitForSeconds((float)Frame2/60f);
-		 }
     }
     void LoadImage2(){
         if(nextFrame == cf) return;
         nextFrame = cf;
-        DrawImage(loadImage.spriteBody[CharInfo[cf][2][0]],CharInfo[cf][2][1],CharInfo[cf][2][2],Body,cf);
-        DrawImage(loadImage.spriteLeg[CharInfo[cf][1][0]],CharInfo[cf][1][1],CharInfo[cf][1][2],Leg,cf);
-        DrawImage(loadImage.spriteHead[CharInfo[cf][0][0]],CharInfo[cf][0][1],CharInfo[cf][0][2],Head,cf);
+        DrawImage(loadImage.spriteBody[CharInfo[cf][2][0]],CharInfo[cf][2][1],CharInfo[cf][2][2],Body);
+        DrawImage(loadImage.spriteLeg[CharInfo[cf][1][0]],CharInfo[cf][1][1],CharInfo[cf][1][2],Leg);
+        DrawImage(loadImage.spriteHead[CharInfo[cf][0][0]],CharInfo[cf][0][1],CharInfo[cf][0][2],Head);
     }
-    private void DrawImage(Sprite sprite, int x, int y,GameObject gameObject,int mCf)
+    private void DrawImage(Sprite sprite, int x, int y,GameObject gameObject)
     {
         float x0 = x*zoomlv;
         float y0 = y*zoomlv;
@@ -270,26 +266,74 @@ public class CharCtrl : MonoBehaviour
     } 
 	void CharStage(int a){
 		switch(a){
-
-			case 1:
+			case 0:
 				charIdle();
 				break;
-			case 2:
+			case 1:
 				charRun();
 				break;
-			case 3:
-				charRun();
-
+			case 2:
+				charJump();
 				break;	
+			case 3:
+				charFall();
+				break;
 			default:
        		 	charIdle();
         	break;					
 		}
 	}
 	void charRun(){
-		FrameAnim = loadImage.Run;
+		frameTimer += Time.fixedDeltaTime;
+        if(frameTimer >= (1f/3)/Frame){
+            frameTimer = 0;
+            FrameStart = ((FrameStart + 1)%5) + 2;
+			cf = FrameStart;
+        }
+	}
+	void charRun2(){
+		int [] run = new int[]{2,3,4,5,6};
+		frameTimer += Time.fixedDeltaTime;
+        if(frameTimer >= (float)1/Frame){
+            frameTimer = 0;
+            FrameStart = (FrameStart + 1) % 5;
+			cf = run[FrameStart];
+        }
 	}
 	void charIdle(){
-		FrameAnim = loadImage.Idle;
+		frameTimer += Time.fixedDeltaTime;
+        if(frameTimer >= (float)1/Frame){
+            frameTimer = 0; 
+			FrameStart = (FrameStart + 1) % 2;  
+			cf = FrameStart;      
+        }		
 	}
+	void charJump(){
+			if 	(stagejump > 3 || stagejump ==0)
+			{
+				cf = 7;
+			}
+			else if ( stagejump >= 3 && stagejump <= 10)
+			{
+				cf = 8;
+			}
+			else if (stagejump >= 1 && stagejump <= 2)
+			{
+				cf = 9;
+			}
+			else if (stagejump >= -1 && stagejump <= 0)
+			{
+				cf = 10;
+			}
+			else if (stagejump >= -3 && stagejump <= -2)
+			{
+				cf = 11;
+			} else
+			{
+			cf = 12;
+			}
+	}
+	void charFall(){
+		cf = 12;
+	}	
 }
