@@ -10,6 +10,7 @@ public class LoadImage : MonoBehaviour
     public Sprite[] spriteBody = new Sprite[18];
     public Sprite[] spriteHead = new Sprite[8];
     public Sprite[] spriteLeg = new Sprite[10];
+    public Sprite[] spriteWepon = new Sprite[2];
     [Header("Body-------")]
       Texture2D[] imgBody ;
       Texture2D[] imgBodyImp ;
@@ -20,6 +21,8 @@ public class LoadImage : MonoBehaviour
     [Header("Leg-------")]
       Texture2D[] imgLeg;
       Texture2D[] rootLeg = new Texture2D[1];
+    [Header("Wp-------")]
+    [SerializeField] Texture2D[] imgWp = new Texture2D[6];
     [SerializeField] protected TexAo_SO mTexAo;
     [SerializeField] protected TexQuan_SO mQuan;
     [SerializeField] protected TexHead_SO mHead;
@@ -29,6 +32,8 @@ public class LoadImage : MonoBehaviour
     int lvHeadCurrent = -1;
     public int lvQuan = 0;
     int lvQuanCurrent = -1;
+    public int wpType = 0;
+    int wpTypeCurrent = -1;
     private void Reset() {
         rootLeg[0] = new Texture2D(1,1);
         rootBody[0] = new Texture2D(1,1);
@@ -43,10 +48,12 @@ public class LoadImage : MonoBehaviour
         LoadrootImageHead();
         LoadTexAo_SO();
         LoadTexQuan_SO();
-        LoadTexHead_SO();    
+        LoadTexHead_SO();
+        LoadTexWp(); 
     }
     private void FixedUpdate()  
     {
+        LoadTexWp();
         LoadTexAo_SO();
         LoadTexQuan_SO();
         LoadTexHead_SO();   
@@ -55,7 +62,14 @@ public class LoadImage : MonoBehaviour
         string resPath = "Char_tex/Head/rootHead";
         this.rootImageHead = Resources.Load<TexHead_SO>(resPath).imgHead;
     }
-     public void LoadTexAo_SO()
+    public void LoadTexWp()
+    {
+        if (wpTypeCurrent == wpType ) return;
+        this.spriteWepon[1] =  Sprite.Create(imgWp[wpType], new Rect(0, 0, imgWp[wpType].width, imgWp[wpType].height), new Vector2(0f,1f));
+        wpTypeCurrent = wpType;
+
+    }
+    public void LoadTexAo_SO()
     {
         if (lvAoCurrent == lvAo ) return;
         //if ( mTexAo != null ) return;

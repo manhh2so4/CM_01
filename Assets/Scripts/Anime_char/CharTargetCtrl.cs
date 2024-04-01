@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class CharCtrl : MonoBehaviour
+public class CharTargetCtrl : MonoBehaviour
 {
     LoadImage loadImage;
-	PlayerMovement player;
+	PlayerTarget player;
     [SerializeField] GameObject Body;
     [SerializeField] GameObject Leg;
     [SerializeField] GameObject Head;
@@ -239,7 +239,7 @@ public class CharCtrl : MonoBehaviour
 	int[] FrameAnim ;
 	private void Start() {   
         loadImage = GetComponent<LoadImage>();
-		player = GetComponent<PlayerMovement>();
+		player = GetComponent<PlayerTarget>();
 		
     }
 	private void Update() {
@@ -253,10 +253,10 @@ public class CharCtrl : MonoBehaviour
     void LoadImage2(){
         if(nextFrame == cf) return;
         nextFrame = cf;
-        DrawImage(loadImage.spriteBody[CharInfo[cf][2][0]],CharInfo[cf][2][1],CharInfo[cf][2][2],Body);
+        DrawImage(loadImage.spriteBody[CharInfo[cf][2][0]],CharInfo[cf][2][1],CharInfo[cf][2][2]-2,Body);
         DrawImage(loadImage.spriteLeg[CharInfo[cf][1][0]],CharInfo[cf][1][1],CharInfo[cf][1][2],Leg);
-        DrawImage(loadImage.spriteHead[CharInfo[cf][0][0]],CharInfo[cf][0][1],CharInfo[cf][0][2],Head);
-		DrawImage(loadImage.spriteWepon[CharInfo[cf][3][0]],CharInfo[cf][3][1]-4,CharInfo[cf][3][2]-28,Wp);
+        DrawImage(loadImage.spriteHead[CharInfo[cf][0][0]],CharInfo[cf][0][1],CharInfo[cf][0][2]-2,Head);
+		DrawImage(loadImage.spriteWepon[CharInfo[cf][3][0]],CharInfo[cf][3][1] -2,CharInfo[cf][3][2]-3,Wp);
     }
     private void DrawImage(Sprite sprite, int x, int y,GameObject gameObject)
     {

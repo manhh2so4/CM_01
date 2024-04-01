@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerTarget : MonoBehaviour
 {
     public float speedRun = 5f;
     [SerializeField] float speedPlayerAir = .5f;
@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public int amountOfJumps = 1;
     public int indexStage  = 0;
     public Transform groundCheck;
+    public Transform target;
     public LayerMask whatIsGround;
     Rigidbody2D myRigibody;
     BoxCollider2D myfeedColider;
@@ -40,11 +41,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {          
-        CheckInput();
-        
-        
+              
     }
     private void FixedUpdate() {  
+        CheckInput(); 
         velocityView = (int)myRigibody.velocity.y;                
         CheckGround();
         ChecIfCanJump();
@@ -53,12 +53,18 @@ public class PlayerMovement : MonoBehaviour
         ChangeStage();            
     }
     void Move(){
-        myRigibody.velocity = new Vector2 (MoveInput*speedRun,myRigibody.velocity.y);       
+        myRigibody.velocity = new Vector2(MoveInput*speedRun,myRigibody.velocity.y);       
     }
     void CheckInput(){
-        MoveInput = Input.GetAxisRaw("Horizontal");
-        if(Input.GetButtonDown("Jump")){
-            Jump(); 
+        if (this.target == null) return;
+        Vector3 normal = (target.position - this.transform.position);
+        if(normal.magnitude > 2){
+        this.MoveInput = normal.normalized.x;
+            if(normal.normalized.y > 0.5){
+                Jump();
+            }
+        }else{
+            this.MoveInput = 0;
         }
     }
     void ChecIfCanJump(){
@@ -75,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
     void Jump(){
         if(canJump){
             jumping = true;
-            myRigibody.velocity  = new Vector2(myRigibody.velocity.x ,speedJump);
+            myRigibody.velocity  = new Vector2(myRigibody.velocity.x,speedJump);
             amountOfJumpsLeft--;
         }
         // if(!myfeedColider.IsTouchingLayers(LayerMask.GetMask("Ground"))){    
