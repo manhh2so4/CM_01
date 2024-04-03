@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -9,12 +10,17 @@ public class Test_Sprite : MonoBehaviour
     public sbyte[] buffer2;
     public byte[] bufferByte;
     private int posRead;
+	public string string2;
     public TextAsset textAsset;
     public void myReader()
 	{
-		textAsset = (TextAsset)Resources.Load("0", typeof(TextAsset));
+		textAsset = Resources.Load<TextAsset>("nj_part");;
 		buffer = convertToSbyte2(textAsset);
-        buffer2 = convertToSbyte(textAsset.bytes);
+		Debug.Log(textAsset.ToString());
+		string2 = textAsset.ToString().Substring(1, 2);
+		
+		StringToByteArray2(@textAsset.ToString());
+        //buffer2 = convertToSbyte(StringToByteArray(@textAsset.ToString()));
         //bufferByte = convertSbyteToByte(buffer2 );
         bufferByte = textAsset.bytes;        
 	}
@@ -47,8 +53,30 @@ public class Test_Sprite : MonoBehaviour
 	{
 		return Encoding.UTF8.GetBytes(scr.ToString());
 	}
+	public static byte[] StringToByteArray(string hex)
+	{
+		int length = hex.Length;
+		byte[] array = new byte[length / 2];
+		for (int i = 0; i < length; i += 2)
+		{
+			array[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+		}
+		return array;
+	}
+	public void StringToByteArray2(string hex)
+	{
+		int length = hex.Length;
+		byte[] array = new byte[length / 2];
+		for (int i = 0; i < length; i += 2)
+		{
+			array[i / 2] = Convert.ToByte("hex",16);
+			Debug.Log(array[i / 2]);
+		}
+		
+	}
     private void Reset() {
         myReader();
+
     }
     void Start()
     {        

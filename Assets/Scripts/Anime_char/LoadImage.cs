@@ -77,7 +77,7 @@ public class LoadImage : MonoBehaviour
         this.mTexAo = Resources.Load<TexAo_SO>(resPath);
         Debug.Log(": Char_texture " + resPath);
         this.imgBody = rootBody.Concat(mTexAo.imgBody).ToArray();
-        CvtSprite2(spriteBody,imgBody);
+        CvtSprite2(ref spriteBody,ref imgBody);
         lvAoCurrent = lvAo;
 
     }
@@ -89,7 +89,7 @@ public class LoadImage : MonoBehaviour
         this.mQuan = Resources.Load<TexQuan_SO>(resPath);
         Debug.Log(": Char_texture " + resPath);
         this.imgLeg = rootLeg.Concat(mQuan.imgLeg).ToArray();
-        CvtSprite2(spriteLeg,imgLeg);
+        CvtSprite2(ref spriteLeg,ref imgLeg);
         lvQuanCurrent = lvQuan;
 
     }
@@ -102,10 +102,10 @@ public class LoadImage : MonoBehaviour
 
         Debug.Log(": Char_texture " + resPath);
         this.imgHead = mHead.imgHead.Concat(rootImageHead).ToArray();
-        CvtSprite2(spriteHead,imgHead);
+        CvtSprite2(ref spriteHead,ref imgHead);
         lvHeadCurrent = lvHead;
     }
-    void CvtSprite2(Sprite[] sprite,Texture2D[] text){
+    void CvtSprite2(ref Sprite[] sprite,ref Texture2D[] text){
        for (int i = 0; i < sprite.Length; i++)
         {
             sprite[i] = Sprite.Create(text[i], new Rect(0, 0, text[i].width, text[i].height), new Vector2(0f,1f));

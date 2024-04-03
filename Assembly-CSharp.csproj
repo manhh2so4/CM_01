@@ -41,11 +41,13 @@
      <Compile Include="Assets\Scripts\Anime_char\PlayerTarget.cs" />
      <Compile Include="Assets\Scripts\Anime_char\CharCtrl.cs" />
      <Compile Include="Assets\Scripts\Animation.cs" />
+     <Compile Include="Assets\Scripts\Test_SpriteFX.cs" />
      <Compile Include="Assets\Scripts\Test_Sprite.cs" />
      <Compile Include="Assets\Scripts\Anime_char\CharTargetCtrl.cs" />
      <Compile Include="Assets\Scripts\Anime_char\LoadImage.cs" />
      <Compile Include="Assets\Scripts\Anime_char\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Effect_Auto\AutoEffect.cs" />
+     <Compile Include="Assets\Scripts\Anime_char\LoadFX_skill.cs" />
      <Compile Include="Assets\Scripts\Load_SO\TexQuan_SO.cs" />
      <Compile Include="Assets\Scripts\Effect_Auto\Effect_temp.cs" />
      <Compile Include="Assets\Scripts\Load_SO\TexHead_SO.cs" />
@@ -57,6 +59,7 @@
      <None Include="Assets\Resources\textasset.txt" />
      <None Include="Assets\Resources\1.txt" />
      <None Include="Assets\Resources\0.txt" />
+     <None Include="Assets\Resources\nj_part.txt" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

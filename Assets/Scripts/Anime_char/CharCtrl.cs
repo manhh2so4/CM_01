@@ -12,13 +12,12 @@ public class CharCtrl : MonoBehaviour
     [SerializeField] GameObject Head;
 	[SerializeField] GameObject Wp;
 
-
     public int cf = 0;
     int nextFrame = -1;
     public int zoomlv = 4;
     public int Frame = 25;
-	int FrameStart = 0;
-	public int State = 1;
+	[SerializeField] int FrameStart = 0;
+	public int State = 4;
 
 	int stagejump = 0;
 	float frameTimer = 0;
@@ -236,18 +235,19 @@ public class CharCtrl : MonoBehaviour
 			new int[3]
 		}
 	};
-	int[] FrameAnim ;
+	
 	private void Start() {   
         loadImage = GetComponent<LoadImage>();
-		player = GetComponent<PlayerMovement>();
-		
+		player = GetComponent<PlayerMovement>();		
     }
+	
 	private void Update() {
 		stagejump = player.velocityView;
 	}
     private void FixedUpdate() {
 		
-		CharStage(player.indexStage);
+		//CharStage(player.indexStage);
+		CharStage(State);
         LoadImage2();
     }
     void LoadImage2(){
@@ -280,6 +280,22 @@ public class CharCtrl : MonoBehaviour
 			case 3:
 				charFall();
 				break;
+			case 4:
+				//FrameStart = 0;
+				charAttack1();
+				break;
+			case 5:
+				//FrameStart = 0;
+				charAttack2();
+				break;
+			case 6:
+				//FrameStart = 0;
+				charAttack3();
+				break;
+			case 7:
+				//FrameStart = 0;
+				charRun2();
+				break;
 			default:
        		 	charIdle();
         	break;					
@@ -294,11 +310,11 @@ public class CharCtrl : MonoBehaviour
         }
 	}
 	void charRun2(){
-		int [] run = new int[]{2,3,4,5,6};
+		int [] run = new int[]{13,14,15,16,16,13};
 		frameTimer += Time.fixedDeltaTime;
         if(frameTimer >= (float)1/Frame){
             frameTimer = 0;
-            FrameStart = (FrameStart + 1) % 5;
+            FrameStart = (FrameStart + 1) % 6;
 			cf = run[FrameStart];
         }
 	}
@@ -337,5 +353,29 @@ public class CharCtrl : MonoBehaviour
 	}
 	void charFall(){
 		cf = 12;
-	}	
+	}
+	void charAttack1(){
+		frameTimer += Time.fixedDeltaTime;
+        if(frameTimer >= (float)1/Frame){
+            frameTimer = 0; 
+			FrameStart = (FrameStart + 1) % 4;  
+			cf = FrameStart+13;      
+        }	
+	}
+	void charAttack2(){		
+		frameTimer += Time.fixedDeltaTime;
+        if(frameTimer >= (float)1/Frame){
+            frameTimer = 0; 
+			FrameStart = ((FrameStart+1)%4);  
+			cf = FrameStart+17;      
+        }		
+	}
+	void charAttack3(){		
+		frameTimer += Time.fixedDeltaTime;
+        if(frameTimer >= (float)1/Frame){
+            frameTimer = 0; 
+			FrameStart = ((FrameStart+1)%2);  
+			cf = FrameStart+17;      
+        }		
+	}
 }
