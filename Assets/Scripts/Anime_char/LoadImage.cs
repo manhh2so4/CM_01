@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UIElements;
-public class LoadImage : MonoBehaviour
+public class LoadImage : LoadSprite
 {
     [Header("Sprite------")]
     private static LoadImage instance;
@@ -13,7 +13,6 @@ public class LoadImage : MonoBehaviour
     public Sprite[] spriteWepon = new Sprite[2];
     [Header("Body-------")]
       Texture2D[] imgBody ;
-      Texture2D[] imgBodyImp ;
       Texture2D[] rootBody = new Texture2D[1];
     [Header("Head------")]
       Texture2D[] imgHead;
@@ -65,51 +64,40 @@ public class LoadImage : MonoBehaviour
     public void LoadTexWp()
     {
         if (wpTypeCurrent == wpType ) return;
-        this.spriteWepon[1] =  Sprite.Create(imgWp[wpType], new Rect(0, 0, imgWp[wpType].width, imgWp[wpType].height), new Vector2(0f,1f));
+        this.spriteWepon[1] =  Sprite.Create(imgWp[wpType], new Rect(0, 0, imgWp[wpType].width, imgWp[wpType].height), new Vector2(0f,.5f));
         wpTypeCurrent = wpType;
 
     }
     public void LoadTexAo_SO()
     {
         if (lvAoCurrent == lvAo ) return;
-        //if ( mTexAo != null ) return;
         string resPath = "Char_tex/Ao/Ao_lv " + lvAo;
         this.mTexAo = Resources.Load<TexAo_SO>(resPath);
         Debug.Log(": Char_texture " + resPath);
         this.imgBody = rootBody.Concat(mTexAo.imgBody).ToArray();
-        CvtSprite2(ref spriteBody,ref imgBody);
+        CvtSprite(ref spriteBody,ref imgBody,0);
         lvAoCurrent = lvAo;
 
     }
      public void LoadTexQuan_SO()
     {
         if (lvQuanCurrent == lvQuan ) return;
-        //if ( mQuan != null ) return;
         string resPath = "Char_tex/Quan/Quan_lv " + lvQuan;
         this.mQuan = Resources.Load<TexQuan_SO>(resPath);
         Debug.Log(": Char_texture " + resPath);
         this.imgLeg = rootLeg.Concat(mQuan.imgLeg).ToArray();
-        CvtSprite2(ref spriteLeg,ref imgLeg);
+        CvtSprite(ref spriteLeg,ref imgLeg,0);
         lvQuanCurrent = lvQuan;
 
     }
     public void LoadTexHead_SO()
     {
         if (lvHeadCurrent == lvHead ) return;
-        //if ( mHead != null ) return;
         string resPath = "Char_tex/Head/Head_lv " + lvHead;
         this.mHead = Resources.Load<TexHead_SO>(resPath);
-
         Debug.Log(": Char_texture " + resPath);
         this.imgHead = mHead.imgHead.Concat(rootImageHead).ToArray();
-        CvtSprite2(ref spriteHead,ref imgHead);
+        CvtSprite(ref spriteHead,ref imgHead,0);
         lvHeadCurrent = lvHead;
-    }
-    void CvtSprite2(ref Sprite[] sprite,ref Texture2D[] text){
-       for (int i = 0; i < sprite.Length; i++)
-        {
-            sprite[i] = Sprite.Create(text[i], new Rect(0, 0, text[i].width, text[i].height), new Vector2(0f,1f));
-            sprite[i].name = i.ToString();
-        } 
     }
 }

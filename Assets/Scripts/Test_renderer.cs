@@ -45,7 +45,7 @@ public class Test_renderer : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        //StartCoroutine(MyCoroutine());
+        StartCoroutine(MyCoroutine());
         
     }
         IEnumerator MyCoroutine()
@@ -87,6 +87,6 @@ public class Test_renderer : MonoBehaviour
             float x0 = cx+x*4;
             float y0 = cy-y*4;
             x0 +=w/2;
-        GUI.DrawTexture(new Rect(x0+w, y0+w/2, w, h), image);
+        GUI.DrawTexture(new Rect(x0-w/2, y0-w/2, w, h), image);
     }
 }

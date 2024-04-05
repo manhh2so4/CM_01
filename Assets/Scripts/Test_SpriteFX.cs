@@ -56,8 +56,8 @@ public class Test_SpriteFX : MonoBehaviour
     private void DrawImage(Texture2D tex, int x, int y)
     {
         float x0 = x*4;
-        float y0 = y*4;
-        SR.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0f,1f));;
+        float y0 = -y*4;
+        SR.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(.5f,0.5f));;
 		Vector3 move = new Vector3(x0/SR.sprite.pixelsPerUnit,y0/SR.sprite.pixelsPerUnit,0);
 		transform.localPosition = move;
     } 

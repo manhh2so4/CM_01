@@ -256,7 +256,7 @@ public class CharCtrl : MonoBehaviour
         DrawImage(loadImage.spriteBody[CharInfo[cf][2][0]],CharInfo[cf][2][1],CharInfo[cf][2][2],Body);
         DrawImage(loadImage.spriteLeg[CharInfo[cf][1][0]],CharInfo[cf][1][1],CharInfo[cf][1][2],Leg);
         DrawImage(loadImage.spriteHead[CharInfo[cf][0][0]],CharInfo[cf][0][1],CharInfo[cf][0][2],Head);
-		DrawImage(loadImage.spriteWepon[CharInfo[cf][3][0]],CharInfo[cf][3][1]-4,CharInfo[cf][3][2]-28,Wp);
+		DrawImage(loadImage.spriteWepon[CharInfo[cf][3][0]],CharInfo[cf][3][1]-5,CharInfo[cf][3][2]-35,Wp);
     }
     private void DrawImage(Sprite sprite, int x, int y,GameObject gameObject)
     {
