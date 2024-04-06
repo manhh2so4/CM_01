@@ -9,8 +9,8 @@ using UnityEngine;
 public class PlayerTarget : MonoBehaviour
 {
     public float speedRun = 5f;
-    [SerializeField] float speedPlayerAir = .5f;
-    [SerializeField] float speedPlayerGroud = 5f;
+    //[SerializeField] float speedPlayerAir = .5f;
+    //[SerializeField] float speedPlayerGroud = 5f;
     [SerializeField] float speedJump = 5f;
     [SerializeField] float groundCheckRadius = 5f; 
 

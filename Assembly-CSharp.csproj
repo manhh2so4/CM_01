@@ -43,25 +43,29 @@
      <Compile Include="Assets\Scripts\Anime_char\CharCtrl.cs" />
      <Compile Include="Assets\Scripts\Animation.cs" />
      <Compile Include="Assets\Scripts\Test_SpriteFX.cs" />
+     <Compile Include="Assets\Scripts\FormImg.cs" />
+     <Compile Include="Assets\Scripts\FX_skill\SkillInfoPaint.cs" />
      <Compile Include="Assets\Scripts\Test_Sprite.cs" />
      <Compile Include="Assets\Scripts\Anime_char\CharTargetCtrl.cs" />
      <Compile Include="Assets\Scripts\Anime_char\LoadImage.cs" />
      <Compile Include="Assets\Scripts\Anime_char\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Effect_Auto\AutoEffect.cs" />
+     <Compile Include="Assets\Scripts\FX_skill\SkillPaint.cs" />
      <Compile Include="Assets\Scripts\Anime_char\LoadFX_skill.cs" />
+     <Compile Include="Assets\Scripts\FX_skill\Animation_skill.cs" />
+     <Compile Include="Assets\Scripts\FX_skill\Read_anim_skill.cs" />
      <Compile Include="Assets\Scripts\Load_SO\TexQuan_SO.cs" />
      <Compile Include="Assets\Scripts\Effect_Auto\Effect_temp.cs" />
+     <Compile Include="Assets\Scripts\Load_SO\SpriteFX_SO.cs" />
+     <Compile Include="Assets\Scripts\FX_skill\Read_FX_Skill.cs" />
      <Compile Include="Assets\Scripts\Load_SO\TexHead_SO.cs" />
      <Compile Include="Assets\Scripts\Anime_char\toa_do_sprite.cs" />
+     <Compile Include="Assets\Scripts\Test_Json.cs" />
+     <Compile Include="Assets\Scripts\SkillInfor.cs" />
      <Compile Include="Assets\Scripts\Test_Animation.cs" />
      <Compile Include="Assets\Scripts\Test_renderer.cs" />
      <Compile Include="Assets\Scripts\Effect_Auto\ImageInfor.cs" />
-     <Compile Include="Assets\Scripts\Test_Json.cs" />
-     <Compile Include="Assets\Scripts\FormImg.cs" />
-     <Compile Include="Assets\Scripts\SkillInfor.cs" />
-     <Compile Include="Assets\Scripts\FX_skill\Read_FX_Skill.cs" />
-     <Compile Include="Assets\Scripts\FX_skill\Animation_skill.cs" />
-     <Compile Include="Assets\Scripts\Load_SO\SpriteFX_SO.cs" />
+     <Compile Include="Assets\Scripts\Anime_char\Draw_char.cs" />
      <None Include="Assets\Resources\textasset.txt" />
      <None Include="Assets\Resources\1.txt" />
      <None Include="Assets\Resources\0.txt" />
@@ -318,6 +322,9 @@
     <Reference Include="Unity.Burst.Cecil.Mdb">
         <HintPath>E:\Lam_Game\Ninja_school_unity\CM_01\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
     </Reference>
+    <Reference Include="LitJSON">
+        <HintPath>E:\Lam_Game\Ninja_school_unity\CM_01\Assets\LitJSON.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Cecil.Pdb">
         <HintPath>E:\Lam_Game\Ninja_school_unity\CM_01\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
     </Reference>
@@ -329,9 +336,6 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
         <HintPath>E:\Lam_Game\Ninja_school_unity\CM_01\Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="LitJSON">
-        <HintPath>E:\Lam_Game\Ninja_school_unity\CM_01\Assets\LitJSON.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>

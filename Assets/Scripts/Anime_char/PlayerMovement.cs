@@ -9,12 +9,12 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public float speedRun = 5f;
-    [SerializeField] float speedPlayerAir = .5f;
-    [SerializeField] float speedPlayerGroud = 5f;
+    //[SerializeField] float speedPlayerAir = .5f;
+    //[SerializeField] float speedPlayerGroud = 5f;
     [SerializeField] float speedJump = 5f;
     [SerializeField] float groundCheckRadius = 5f; 
 
-    public int velocityView = 0; 
+    public static int velocityView = 0; 
 
     float MoveInput = 0f;  
 
@@ -22,44 +22,53 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool canJump;
     [SerializeField] bool jumping;
     [SerializeField] bool isGrounded ;
+    [SerializeField] bool atking = false;
 
     [SerializeField] int amountOfJumpsLeft;
     public int amountOfJumps = 1;
-    public int indexStage  = 0;
+    public static int indexStage  = 0;
+    public static int stagejump  = 0;
+    public int viewStage;
     public Transform groundCheck;
     public LayerMask whatIsGround;
     Rigidbody2D myRigibody;
-    BoxCollider2D myfeedColider;
     
     void Start()
     {
         myRigibody = GetComponent<Rigidbody2D>();
-        myfeedColider = GetComponent<BoxCollider2D>();
-        amountOfJumpsLeft = amountOfJumps; 
-        velocityView = (int)myRigibody.velocity.y;       
+        amountOfJumpsLeft = amountOfJumps;        
     }
     void Update()
     {          
         CheckInput();
-        
+        velocityView = (int)myRigibody.velocity.y; 
         
     }
-    private void FixedUpdate() {  
-        velocityView = (int)myRigibody.velocity.y;                
+    private void FixedUpdate() {            
         CheckGround();
         ChecIfCanJump();
         Move();
         CheckMoveDir();
-        ChangeStage();            
+        ChangeStage();
+        viewStage = indexStage;           
     }
     void Move(){
         myRigibody.velocity = new Vector2 (MoveInput*speedRun,myRigibody.velocity.y);       
     }
     void CheckInput(){
+        
         MoveInput = Input.GetAxisRaw("Horizontal");
         if(Input.GetButtonDown("Jump")){
             Jump(); 
         }
+        if(Input.GetButtonDown("Fire1")){
+            Attack(); 
+        }
+    }
+    void Attack(){
+        indexStage = 4;
+        Debug.Log("atk");
+        atking = true;
     }
     void ChecIfCanJump(){
         if( isGrounded && myRigibody.velocity.y <=0){
@@ -76,13 +85,9 @@ public class PlayerMovement : MonoBehaviour
         if(canJump){
             jumping = true;
             myRigibody.velocity  = new Vector2(myRigibody.velocity.x ,speedJump);
+
             amountOfJumpsLeft--;
         }
-        // if(!myfeedColider.IsTouchingLayers(LayerMask.GetMask("Ground"))){    
-        //     speedRun = speedPlayerAir;
-        // }else{
-        //      speedRun = speedPlayerGroud;
-        // }
     }
     void CheckGround(){
         isGrounded = Physics2D.OverlapCircle(groundCheck.position,groundCheckRadius, whatIsGround);
