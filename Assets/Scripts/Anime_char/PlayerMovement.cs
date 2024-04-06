@@ -62,12 +62,11 @@ public class PlayerMovement : MonoBehaviour
             Jump(); 
         }
         if(Input.GetButtonDown("Fire1")){
-            Attack(); 
+           // Attack(); 
         }
     }
     void Attack(){
         indexStage = 4;
-        Debug.Log("atk");
         atking = true;
     }
     void ChecIfCanJump(){

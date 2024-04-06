@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
 using Unity.VisualScripting;
+using System.IO;
 public class Read_FX_Skill : MonoBehaviour
 {
     //public string textJson;
     public TextAsset textJson;
     private JsonData data; 
-    public SkillInfor[] skillInfors;
-    int[][] inforSkill;
-    public List<int> uniqueList = new List<int>();
-    private void Start() { 
+    public static SkillInfor[] skillInfors;
+    private void Awake() {
+        LoadData();
     }
     private void Reset() {
-        LoadData();
-        //getNondouble(ref skillInfors);
-        string jsonkeke = JsonUtility.ToJson(this.skillInfors);
-        Debug.Log(jsonkeke);
+                
     }
     void LoadData(){
         textJson = Resources.Load<TextAsset>("nj_effect");
@@ -44,36 +41,41 @@ public class Read_FX_Skill : MonoBehaviour
     JsonData GetItem(string data3){
         return JsonMapper.ToObject(data3);
     }
-    void getNondouble(ref SkillInfor[] arr){
-        
-        for (int i = 0; i < arr.Length; i++)
-        {
-            for (int j = 0; j < arr[i].info.Length ; j++)
-            {
-                if (!uniqueList.Contains(arr[i].info[j].imgId))
-                {
-                uniqueList.Add(arr[i].info[j].imgId);
-                }
-            }
-        }
-        uniqueList.Sort();
-    }
-    void BubbleSort(ref SkillInfor[] arr)
+    
+    public string filePath = "Assets/Output.txt";
+    void WriteToFile(string path, string text)
     {
-        
-        int n = arr.Length;
-        for (int i = 0; i < n - 1; i++)
+        // Kiểm tra xem file có tồn tại không
+        if (!File.Exists(path))
         {
-            for (int j = 0; j < arr[i].info.Length ; j++)
+            // Nếu không tồn tại, tạo mới file
+            using (StreamWriter writer = File.CreateText(path))
             {
-                for (int z = 0; z < uniqueList.Count; z++)
-                {
-                    if (arr[i].info[j].imgId == uniqueList[z])
-                    {
-                        //arr[i].info[j].imgId
-                    }
-                }
+                // Viết chuỗi vào file
+                writer.WriteLine(text);
             }
         }
+        else
+        {
+            // Nếu file đã tồn tại, ghi đè nội dung cũ bằng nội dung mới
+            File.WriteAllText(path, text);
+        }
+
+        Debug.Log("Successfully wrote to file: " + path);
+    }
+    
+    void show(){
+        string a =null;
+        for (int i = 0; i < skillInfors.Length; i++)
+        {   
+            a += "[" + i + "]-" + skillInfors[i].info.Length +"-: ";
+            for (int j = 0; j < skillInfors[i].info.Length; j++)
+            {
+                a += skillInfors[i].info[j].imgId.ToString()+" | ";
+            }
+            a +="\n";
+        }
+        Debug.Log(a);
+        WriteToFile(filePath, a);
     }
 }

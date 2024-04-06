@@ -5,23 +5,47 @@ using UnityEngine;
 using System.Threading;
 
 public class CharCtrl : MonoBehaviour
-{
-
-    public static int cf = 0;
+{   
+	bool canChangeStage = true;
+	bool atking = true;
     public int Frame = 25;
-	[SerializeField] int FrameStart = 0;
 	public int State = 0;
-    private bool atking = true;
-    int stagejump = 0;
+	public int skillId = 0;
+	public int skillCurrent = -1;
+	public int[] FrameSkillStand;
+	public int[] FrameSkillFly;
+	public static int cf = 0;
+	int stagejump = 0;
+	int FrameStart = 0;	        
 	float frameTimer = 0;
-	bool canChangeStage = true;	
-	private void Start() { 	
+	private Coroutine loopingCoroutine;	
+	void changeSkill(){
+		if(skillId == skillCurrent) return;
+		SkillPaint[] a = Read_anim_skill.skillPaints;
+		int[] temp1 = new int[a[skillId].skillStand.Length];
+		for (int i = 0; i < a[skillId].skillStand.Length; i++)
+		{
+			temp1[i] = a[skillId].skillStand[i].status;
+			
+		}
+		FrameSkillStand = temp1;
+		int[] temp2 = new int[a[skillId].skillfly.Length];
+		for (int i = 0; i < a[skillId].skillfly.Length; i++)
+		{
+			temp2[i] = a[skillId].skillfly[i].status;
+		}
+		FrameSkillFly = temp2;
+		skillCurrent = skillId;
+	}
+	private void Reset() {
+		
+	}
+	private void Start() {
+		changeSkill();
+		loopingCoroutine = StartCoroutine(charAttackStand());		
     }
-	private void Update() {
+	private void Update() {	
 		stagejump = PlayerMovement.velocityView;
-		if(Input.GetButtonDown("Fire1")){
-            Attack(); 
-        }
 	}
 	void Attack(){
 		if(!atking) return;
@@ -29,9 +53,10 @@ public class CharCtrl : MonoBehaviour
         atking = false;
     }
     private void FixedUpdate() {
+		changeSkill();
 		if(canChangeStage){	
 		//State = PlayerMovement.indexStage;	
-		CharStage(State);
+		//CharStage(4);
 		}	
     }
 	        
@@ -50,17 +75,7 @@ public class CharCtrl : MonoBehaviour
 				charFall();
 				break;
 			case 4:
-				//FrameStart = 0;
-				Debug.Log("attack");
-				charAttack1();
-				break;
-			case 5:
-				//FrameStart = 0;
-				charAttack2();
-				break;
-			case 6:
-				//FrameStart = 0;
-				charAttack3();
+				loopingCoroutine = StartCoroutine(charAttackStand());
 				break;
 			case 7:
 				//FrameStart = 0;
@@ -125,32 +140,15 @@ public class CharCtrl : MonoBehaviour
 	void charFall(){
 		cf = 12;
 	}
-	void charAttack1(){
+	IEnumerator charAttackStand(){
 		canChangeStage = false;
-		int [] run = new int[]{13,14,15,16,16,13};
-        for (int i = 0; i < run.Length; i++)
+        for (int i = 0; i < FrameSkillStand.Length; i++)
 		{
-			cf = run[i];
-			Thread.Sleep(5000);
+			cf = FrameSkillStand[i];
+			yield return new WaitForSeconds(0.1f);
 		}
 		State = 0;
-		atking = true;
 		canChangeStage = true;
-	}
-	void charAttack2(){		
-		frameTimer += Time.fixedDeltaTime;
-        if(frameTimer >= (float)1/Frame){
-            frameTimer = 0; 
-			FrameStart = ((FrameStart+1)%4);  
-			cf = FrameStart+17;      
-        }		
-	}
-	void charAttack3(){		
-		frameTimer += Time.fixedDeltaTime;
-        if(frameTimer >= (float)1/Frame){
-            frameTimer = 0; 
-			FrameStart = ((FrameStart+1)%2);  
-			cf = FrameStart+17;      
-        }		
-	}
+		//StopCoroutine(loopingCoroutine);
+	}	
 }

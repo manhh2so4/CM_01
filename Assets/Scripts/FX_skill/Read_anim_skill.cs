@@ -11,6 +11,9 @@ public class Read_anim_skill : MonoBehaviour
     private void Reset() {
         LoadData();
     }
+    private void Awake() {
+        LoadData();
+    }
     void LoadData(){
         textJson = Resources.Load<TextAsset>("nj_skill");
         data = JsonMapper.ToObject(textJson.ToString());

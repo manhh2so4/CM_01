@@ -14,7 +14,7 @@ public class Draw_char : MonoBehaviour
     int nextFrame = -1;
     public int zoomlv = 4;
     public int Frame = 25;
-    public static readonly int[][][] CharInfo = new int[30][][]
+    public readonly int[][][] CharInfo = new int[30][][]
     
 	{
 		new int[4][]

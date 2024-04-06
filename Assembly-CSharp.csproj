@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\Anime_char\Draw_char.cs" />
      <None Include="Assets\Resources\textasset.txt" />
      <None Include="Assets\Resources\1.txt" />
+     <None Include="Assets\Output.txt" />
      <None Include="Assets\Resources\0.txt" />
      <None Include="Assets\Resources\nj_part.txt" />
     <Reference Include="UnityEngine">
