@@ -6,20 +6,20 @@ using UnityEngine.UIElements;
 public class LoadImage : LoadSprite
 {
     [Header("Sprite------")]
-    private static LoadImage instance;
+    
     public Sprite[] spriteBody = new Sprite[18];
     public Sprite[] spriteHead = new Sprite[8];
     public Sprite[] spriteLeg = new Sprite[10];
     public Sprite[] spriteWepon = new Sprite[2];
     [Header("Body-------")]
-      Texture2D[] imgBody ;
-      Texture2D[] rootBody = new Texture2D[1];
+    Texture2D[] imgBody ;
+    Texture2D[] rootBody = new Texture2D[1];
     [Header("Head------")]
-      Texture2D[] imgHead;
-      Texture2D[] rootImageHead;
+    Texture2D[] imgHead;
+    Texture2D[] rootImageHead;
     [Header("Leg-------")]
-      Texture2D[] imgLeg;
-      Texture2D[] rootLeg = new Texture2D[1];
+    Texture2D[] imgLeg;
+    Texture2D[] rootLeg = new Texture2D[1];
     [Header("Wp-------")]
     [SerializeField] Texture2D[] imgWp = new Texture2D[6];
     [SerializeField] protected TexAo_SO mTexAo;
@@ -77,7 +77,6 @@ public class LoadImage : LoadSprite
         this.imgBody = rootBody.Concat(mTexAo.imgBody).ToArray();
         CvtSprite(ref spriteBody,ref imgBody,0);
         lvAoCurrent = lvAo;
-
     }
      public void LoadTexQuan_SO()
     {

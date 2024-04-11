@@ -9,11 +9,9 @@ public class Draw_char : MonoBehaviour
     [SerializeField] GameObject Head;
 	[SerializeField] GameObject Wp;
     LoadImage loadImage;
-    public int State = 4;
     public int cf = 0;
     int nextFrame = -1;
     public int zoomlv = 4;
-    public int Frame = 25;
     public readonly int[][][] CharInfo = new int[30][][]
     
 	{

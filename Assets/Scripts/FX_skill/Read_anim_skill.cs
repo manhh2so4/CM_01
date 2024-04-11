@@ -8,8 +8,12 @@ public class Read_anim_skill : MonoBehaviour
     public static SkillPaint[] skillPaints;
     public TextAsset textJson;
     private JsonData data; 
+    public List<SkillPaint> FindFX = new List<SkillPaint>();
+    public int idFxFind = 1;
+    
     private void Reset() {
         LoadData();
+        FindIdSkill();
     }
     private void Awake() {
         LoadData();
@@ -21,7 +25,8 @@ public class Read_anim_skill : MonoBehaviour
         SkillPaint[] temp = new SkillPaint[data.Count];
         for (int i = 0; i < data.Count ; i++)
         {   
-            SkillPaint skilId = new SkillPaint();  
+            SkillPaint skilId = new SkillPaint();
+            skilId.idSkill =  int.Parse(data[i][0].ToString())-1; 
             JsonData data2 = GetItem(data[i][4].ToString());
             skilId.skillStand = new SkillInfoPaint[data2.Count];
             for (int j = 0; j < skilId.skillStand.Length; j++)
@@ -70,5 +75,17 @@ public class Read_anim_skill : MonoBehaviour
     }
     JsonData GetItem(string data3){
         return JsonMapper.ToObject(data3);
+    }
+    void FindIdSkill(){
+        
+        for (int i = 0; i < skillPaints.Length; i++)
+        {
+            for (int j = 0; j < skillPaints[i].skillStand.Length; j++)
+            {
+                if(idFxFind == skillPaints[i].skillStand[j].effS0Id){
+                    FindFX.Add(skillPaints[i]);
+                }
+            }
+        }
     }
 }

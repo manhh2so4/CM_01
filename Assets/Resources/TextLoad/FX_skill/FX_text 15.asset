@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebd6319269e40e4e8404fdfae930e8a, type: 3}
   m_Name: FX_text 15
   m_EditorClassIdentifier: 
-  fxTex: []
+  fxTex:
+  - {fileID: 2800000, guid: 07ad60f798a6a1d43b895e1b3df625ca, type: 3}
+  - {fileID: 2800000, guid: 77419c41cc0984b48b49606327a89389, type: 3}
+  - {fileID: 2800000, guid: 44309bc87bf07514fb535f2a8efd0780, type: 3}
+  - {fileID: 2800000, guid: 3950379e0949f0341b4d09529f6bf47c, type: 3}
+  - {fileID: 2800000, guid: 2bcb0939418e0934f85716d66a558ff8, type: 3}

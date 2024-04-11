@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool jumping;
     [SerializeField] bool isGrounded ;
     [SerializeField] bool atking = false;
-
+    [SerializeField] bool canFlip = true;
     [SerializeField] int amountOfJumpsLeft;
     public int amountOfJumps = 1;
     public static int indexStage  = 0;
@@ -91,10 +91,21 @@ public class PlayerMovement : MonoBehaviour
     void CheckGround(){
         isGrounded = Physics2D.OverlapCircle(groundCheck.position,groundCheckRadius, whatIsGround);
     }
+    void DisableFlip(){
+        canFlip = false;
+    }
+    void EnableFlip(){
+        canFlip = true;
+    }
+    void Flip(){
+        if(canFlip){
+             transform.localScale = new Vector3(Mathf.Sign(MoveInput),1f,1f);
+        }
+    }
     void CheckMoveDir(){
-        if(MoveInput != 0){
+        if(Mathf.Abs(myRigibody.velocity.x) >= 0.01f){
             isRun = true;
-            transform.localScale = new Vector3(Mathf.Sign(MoveInput),1f,1f);
+            Flip();       
         }else{
             isRun = false;
         }

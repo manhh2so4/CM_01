@@ -42,7 +42,7 @@
      <Compile Include="Assets\Scripts\Anime_char\PlayerTarget.cs" />
      <Compile Include="Assets\Scripts\Anime_char\CharCtrl.cs" />
      <Compile Include="Assets\Scripts\Animation.cs" />
-     <Compile Include="Assets\Scripts\Test_SpriteFX.cs" />
+     <Compile Include="Assets\Scripts\FX_skill\Test_SpriteFX.cs" />
      <Compile Include="Assets\Scripts\FormImg.cs" />
      <Compile Include="Assets\Scripts\FX_skill\SkillInfoPaint.cs" />
      <Compile Include="Assets\Scripts\Test_Sprite.cs" />
@@ -63,9 +63,10 @@
      <Compile Include="Assets\Scripts\Test_Json.cs" />
      <Compile Include="Assets\Scripts\SkillInfor.cs" />
      <Compile Include="Assets\Scripts\Test_Animation.cs" />
+     <Compile Include="Assets\Scripts\Anime_char\Draw_char.cs" />
      <Compile Include="Assets\Scripts\Test_renderer.cs" />
      <Compile Include="Assets\Scripts\Effect_Auto\ImageInfor.cs" />
-     <Compile Include="Assets\Scripts\Anime_char\Draw_char.cs" />
+     <Compile Include="Assets\Scripts\Anime_char\PlayerComBat.cs" />
      <None Include="Assets\Resources\textasset.txt" />
      <None Include="Assets\Resources\1.txt" />
      <None Include="Assets\Output.txt" />

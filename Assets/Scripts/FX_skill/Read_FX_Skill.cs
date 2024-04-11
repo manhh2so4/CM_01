@@ -14,7 +14,7 @@ public class Read_FX_Skill : MonoBehaviour
         LoadData();
     }
     private void Reset() {
-                
+        LoadData();      
     }
     void LoadData(){
         textJson = Resources.Load<TextAsset>("nj_effect");

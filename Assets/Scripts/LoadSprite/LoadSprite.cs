@@ -12,15 +12,19 @@ public class LoadSprite : MonoBehaviour
         if ((type & HCENTER) == HCENTER)
 		{
 			anchorX = 0.5f;
+            Debug.Log("okx");
 		}
 		if ((type & VCENTER) == VCENTER)
 		{
+            Debug.Log("oky");
 			anchorY = 0.5f;
         }
-       for (int i = 0; i < sprite.Length; i++)
+        Sprite[] temp = new Sprite[text.Length];
+       for (int i = 0; i < text.Length; i++)
         {            
-            sprite[i] = Sprite.Create(text[i], new Rect(0, 0, text[i].width, text[i].height), new Vector2(anchorX,anchorY));
-            sprite[i].name = i.ToString();
+            temp[i] = Sprite.Create(text[i], new Rect(0, 0, text[i].width, text[i].height), new Vector2(anchorX,anchorY));
+            temp[i].name = i.ToString();
         }
+        sprite = temp;
     }
 }
