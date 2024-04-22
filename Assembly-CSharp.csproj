@@ -52,8 +52,10 @@
      <Compile Include="Assets\Scripts\Effect_Auto\AutoEffect.cs" />
      <Compile Include="Assets\Scripts\FX_skill\SkillPaint.cs" />
      <Compile Include="Assets\Scripts\Anime_char\LoadFX_skill.cs" />
+     <Compile Include="Assets\Scripts\Anime_char\PlayerComBat.cs" />
      <Compile Include="Assets\Scripts\FX_skill\Animation_skill.cs" />
      <Compile Include="Assets\Scripts\FX_skill\Read_anim_skill.cs" />
+     <Compile Include="Assets\Scripts\Anime_char\Skill_Ctrl.cs" />
      <Compile Include="Assets\Scripts\Load_SO\TexQuan_SO.cs" />
      <Compile Include="Assets\Scripts\Effect_Auto\Effect_temp.cs" />
      <Compile Include="Assets\Scripts\Load_SO\SpriteFX_SO.cs" />
@@ -66,7 +68,7 @@
      <Compile Include="Assets\Scripts\Anime_char\Draw_char.cs" />
      <Compile Include="Assets\Scripts\Test_renderer.cs" />
      <Compile Include="Assets\Scripts\Effect_Auto\ImageInfor.cs" />
-     <Compile Include="Assets\Scripts\Anime_char\PlayerComBat.cs" />
+     <Compile Include="Assets\Scripts\New_animation\SpriteAnimator.cs" />
      <None Include="Assets\Resources\textasset.txt" />
      <None Include="Assets\Resources\1.txt" />
      <None Include="Assets\Output.txt" />

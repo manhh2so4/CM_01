@@ -11,65 +11,27 @@ public class CharCtrl : MonoBehaviour
     public int Frame = 25;
 	public int State = 0;
 	public int skillId = 0;
-	public int skillCurrent = -1;
-	public int[] FrameSkillStand;
-	public int[] FrameSkillFly;
 	public static int cf = 0;
 	int stagejump = 0;
 	int FrameStart = 0;	        
 	float frameTimer = 0;
 	[SerializeField] float speedAttack = .5f;
-	public SkillInfoPaint[] skillStand;
-	public SkillInfoPaint[] skillfly;
 	private Coroutine loopingCoroutine;
-	Test_SpriteFX SpriteSkill;
-	[SerializeField] GameObject skill0;
-    [SerializeField] GameObject skill1;
-    [SerializeField] GameObject skill2;
 	SkillInfor eff0;
 	int i0;
 	SkillInfor eff1;
 	int i1;
-	SkillInfor eff2;
-	int i2;	
-	void LoadObjSkill(){
-		skill0 = transform.GetChild(1).gameObject.transform.GetChild(0).gameObject;
-		skill1 = transform.GetChild(1).gameObject.transform.GetChild(1).gameObject;
-		skill2 = transform.GetChild(1).gameObject.transform.GetChild(2).gameObject;
-		SpriteSkill = gameObject.GetComponent<Test_SpriteFX>();
-	}
-	void changeSkill(){
-		if(skillId == skillCurrent) return;
-		SkillPaint[] a = Read_anim_skill.skillPaints;
-		SkillInfoPaint[] temp1 = new SkillInfoPaint[a[skillId].skillStand.Length];
-		for (int i = 0; i < a[skillId].skillStand.Length; i++)
-		{
-			temp1[i] = a[skillId].skillStand[i];			
-		}
-		skillStand = temp1;
-		SkillInfoPaint[] temp2 = new SkillInfoPaint[a[skillId].skillfly.Length];
-		for (int i = 0; i < a[skillId].skillfly.Length; i++)
-		{
-			temp2[i] = a[skillId].skillfly[i];
-		}
-		skillfly = temp2;
-		skillCurrent = skillId;
-	}
 
+	[SerializeField] Skill_Ctrl skill_Ctrl;
 	private void Awake() {
-		LoadObjSkill();
+		skill_Ctrl = transform.GetChild(1).gameObject.GetComponent<Skill_Ctrl>();
 	}
-	private void Start() {		
-		changeSkill();		
-    }
     private void FixedUpdate() {
-		changeSkill();
 		if(canChangeStage){	
 		State = PlayerMovement.indexStage;	
 		CharStage(State);
 		}	
-    }
-	        
+    }        
 	void CharStage(int a){
 		switch(a){
 			case 0:
@@ -85,7 +47,7 @@ public class CharCtrl : MonoBehaviour
 				charFall();
 				break;
 			case 4:
-				loopingCoroutine = StartCoroutine(charAttackStand());
+				//loopingCoroutine = StartCoroutine(charAttackStand());
 				break;
 			case 7:
 				//FrameStart = 0;
@@ -151,52 +113,41 @@ public class CharCtrl : MonoBehaviour
 	void charFall(){
 		cf = 12;
 	}
-	IEnumerator charAttackStand(){
-		
+	IEnumerator charAttackStand(){	
+		skill_Ctrl.changeSkill();
 		canChangeStage = false;
-        for (int i = 0; i < skillStand.Length; i++)
+        for (int i = 0; i < skill_Ctrl.skillStand.Length; i++)
 		{
-			cf = skillStand[i].status;
-			if(skillStand[i].effS0Id != 0){
-				SpriteSkill.idSkill = skillStand[i].effS0Id - 1;
-				SpriteSkill.LoadTexAo_SO();
-				Debug.Log(skillStand[i].effS0Id);
-				eff0 = Read_FX_Skill.skillInfors[skillStand[i].effS0Id-1];
+			cf = skill_Ctrl.skillStand[i].status;
+			if(skill_Ctrl.skillStand[i].effS0Id != 0){
+				skill_Ctrl.SpriteSkill.idSkill = skill_Ctrl.skillStand[i].effS0Id - 1;
+				skill_Ctrl.SpriteSkill.LoadTexAo_SO();
+				eff0 = Read_FX_Skill.skillInfors[skill_Ctrl.skillStand[i].effS0Id-1];
 				i0=0;
 			}
-			if(skillStand[i].effS1Id != 0){
+			if(skill_Ctrl.skillStand[i].effS1Id != 0){
 				
-				SkillInfor eff1 = Read_FX_Skill.skillInfors[skillStand[i].effS1Id];
+				SkillInfor eff1 = Read_FX_Skill.skillInfors[skill_Ctrl.skillStand[i].effS1Id];
 				i1=0;
 			}
 			if(eff0!=null){
 				Debug.Log(i0);
 				//Debug.Log("i0["+i0+"] : { "+eff0.info[i0].dx + " ; " + eff0.info[i0].dy + " }");
-				skill0.SetActive(true);
-				DrawSkill(SpriteSkill.spriteFxs[i0],eff0.info[i0].dx,eff0.info[i0].dy,skill0);
-				
+				skill_Ctrl.skill0.SetActive(true);
+				skill_Ctrl.DrawSkill(skill_Ctrl.SpriteSkill.spriteFxs[i0],eff0.info[i0].dx,eff0.info[i0].dy,skill_Ctrl.skill0);				
 				i0++;
 				if (i0 >= eff0.info.Length)
 					{	
-						skill0.SetActive(false);
+						skill_Ctrl.skill0.SetActive(false);
 						eff0 = null;
 						i0 = 0;
 					}
 			}			
 			yield return new WaitForSeconds(speedAttack);
 		}
-		State = 0;
-		canChangeStage = true;
 		StopCoroutine(loopingCoroutine);
+		State = 0;
+		canChangeStage = true;		
 		}
-	private void DrawSkill(Sprite sprite, int x, int y,GameObject _gameObject)
-    {
-		
-        float x0 = x*4;
-        float y0 = -y*4;
-		
-        _gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
-		Vector3 move = new Vector3(x0/100,y0/100,0);
-		_gameObject.transform.localPosition = move;
-    } 
+	
 }
