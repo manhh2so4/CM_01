@@ -9,22 +9,30 @@ public class Read_FX_Skill : MonoBehaviour
     //public string textJson;
     public TextAsset textJson;
     private JsonData data; 
-    public static SkillInfor[] skillInfors;
+    [SerializeField]
+    public static SkillInfor1[] skillInfors;
+    public SkillInfor1[] viewSkillInfors;
+    public EffSkillInfo[] effSkillInfos;
+    public List<SkillInfor1> FindInfor = new List<SkillInfor1>();
+    public int idFxFind = 1;
     private void Awake() {
         LoadData();
+        FindIdSkill();   
     }
     private void Reset() {
-        LoadData();      
+        LoadData(); 
+        FindIdSkill();    
     }
     void LoadData(){
         textJson = Resources.Load<TextAsset>("nj_effect");
         data = JsonMapper.ToObject(textJson.ToString());
         Debug.Log(data.Count);
-        SkillInfor[] temp = new SkillInfor[data.Count];
+        SkillInfor1[] temp = new SkillInfor1[data.Count];
         for (int i = 0; i < data.Count ; i++)
         {   
-            SkillInfor skilId = new SkillInfor();  
+            SkillInfor1 skilId = new SkillInfor1();  
             JsonData data2 = GetItem(data[i][1].ToString());
+            skilId.idSkillFx = i;
             skilId.info = new FormImg[data2.Count];
             for (int j = 0; j < skilId.info.Length; j++)
             {   
@@ -37,6 +45,19 @@ public class Read_FX_Skill : MonoBehaviour
             temp[i] = skilId;                            
         }
         skillInfors = temp;
+        viewSkillInfors = skillInfors;
+    }
+    void FindIdSkill(){
+        
+        for (int i = 0; i < skillInfors.Length; i++)
+        {
+            for (int j = 0; j < skillInfors[i].info.Length; j++)
+            {
+                if(idFxFind == skillInfors[i].info[j].imgId){
+                    FindInfor.Add(skillInfors[i]);
+                }
+            }
+        }
     }
     JsonData GetItem(string data3){
         return JsonMapper.ToObject(data3);
@@ -78,4 +99,11 @@ public class Read_FX_Skill : MonoBehaviour
         Debug.Log(a);
         WriteToFile(filePath, a);
     }
+    void LoadEffInfo(){
+        effSkillInfos = new EffSkillInfo[skillInfors.Length];
+        for (int i = 0; i < skillInfors.Length; i++)
+        {
+            effSkillInfos[i].dx = skillInfors[i]
+        }
+    } 
 }

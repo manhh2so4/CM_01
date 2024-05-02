@@ -2,48 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerComBat : MonoBehaviour
+public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] bool comBatEnable;
-    [SerializeField] float inputTimer,attackRadius,attack1Damage;
-    [SerializeField] Transform attack1HitBoxPos;
-    LayerMask whatIsDamageable;
-    bool gotInput,isAttacking,isFirstAttack;
-    float lastInputTime = Mathf.NegativeInfinity;
+    [SerializeField] bool combatEnabled = true;
+    float inputTimer;
+    [SerializeField] float lastInputTime;
+    
+    bool gotInput,isAtacking,isFristAttack;
+    Char_anim char_Anim;
+    private void Awake() {
+        LoadCompnents();
+    }
+    private void Reset() {
+        LoadCompnents();
+    }
+    void LoadCompnents(){
+		if(char_Anim == null) char_Anim = GetComponent<Char_anim>();
+    }
     private void Update() {
-        CheckCombatInput();
-        CheckAttack();
+        
+        checkCombatInput();
+        checkAttack();
+
     }
-    void CheckCombatInput(){
+    void checkCombatInput(){
         if(Input.GetMouseButtonDown(0)){
-            gotInput = true;
-            lastInputTime = Time.time;
+            if(combatEnabled){
+                gotInput = true;
+            }
         }
     }
-    private void CheckAttack(){
+    void checkAttack(){
         if(gotInput){
-            gotInput = false;
-            isAttacking = true;
-            isFirstAttack = !isFirstAttack;
-
-        }
-        if(Time.time >= (lastInputTime + inputTimer)){
+            char_Anim.stage = 4;
             gotInput = false;
         }
-    }
-    void CheckAttackHitBox(){
-        Collider2D[] detectedObjecs = Physics2D.OverlapCircleAll(attack1HitBoxPos.position,attackRadius,whatIsDamageable);
-        foreach (Collider2D collider in detectedObjecs)
-        {
-            collider.transform.parent.SendMessage("Damage",attack1Damage );
-        }
-    }
-     
-    void FinishAttack1(){
-        isAttacking = false;
-
-    }
-    void OnDrawGizmos() {
-        Gizmos.DrawWireSphere(attack1HitBoxPos.position,attackRadius);
     }
 }

@@ -5,11 +5,11 @@ using LitJson;
 
 public class Read_anim_skill : MonoBehaviour
 {
-    public static SkillPaint[] skillPaints;
+    [SerializeField] public Skill[] skillPaints;
     public TextAsset textJson;
     private JsonData data; 
-    public List<SkillPaint> FindFX = new List<SkillPaint>();
-    public int idFxFind = 1;
+    public List<Skill> FindFX = new List<Skill>();
+    public int idFxFind = 161;
     
     private void Reset() {
         LoadData();
@@ -17,21 +17,22 @@ public class Read_anim_skill : MonoBehaviour
     }
     private void Awake() {
         LoadData();
+        FindIdSkill();
     }
     void LoadData(){
         textJson = Resources.Load<TextAsset>("nj_skill");
         data = JsonMapper.ToObject(textJson.ToString());
         Debug.Log(data.Count);
-        SkillPaint[] temp = new SkillPaint[data.Count];
+        Skill[] temp = new Skill[data.Count];
         for (int i = 0; i < data.Count ; i++)
         {   
-            SkillPaint skilId = new SkillPaint();
+            Skill skilId = new Skill();
             skilId.idSkill =  int.Parse(data[i][0].ToString())-1; 
             JsonData data2 = GetItem(data[i][4].ToString());
-            skilId.skillStand = new SkillInfoPaint[data2.Count];
+            skilId.skillStand = new SkillInfo[data2.Count];
             for (int j = 0; j < skilId.skillStand.Length; j++)
             {   
-                SkillInfoPaint skillInfo = new SkillInfoPaint();
+                SkillInfo skillInfo = new SkillInfo();
                 skillInfo.status = int.Parse(data2[j]["status"].ToString());
                 skillInfo.effS0Id = int.Parse(data2[j]["effS0Id"].ToString());
                 skillInfo.e0dx = int.Parse(data2[j]["e0dx"].ToString());
@@ -49,10 +50,10 @@ public class Read_anim_skill : MonoBehaviour
                 skilId.skillStand[j] = skillInfo;        
             }
             JsonData data3 = GetItem(data[i][5].ToString());
-            skilId.skillfly = new SkillInfoPaint[data2.Count];
-            for (int j = 0; j < skilId.skillfly.Length; j++)
+            skilId.skillFly = new SkillInfo[data2.Count];
+            for (int j = 0; j < skilId.skillFly.Length; j++)
             {   
-                SkillInfoPaint skillInfo = new SkillInfoPaint();
+                SkillInfo skillInfo = new SkillInfo();
                 skillInfo.status = int.Parse(data2[j]["status"].ToString());
                 skillInfo.effS0Id = int.Parse(data2[j]["effS0Id"].ToString());
                 skillInfo.e0dx = int.Parse(data2[j]["e0dx"].ToString());
@@ -67,7 +68,7 @@ public class Read_anim_skill : MonoBehaviour
                 skillInfo.adx = int.Parse(data2[j]["adx"].ToString());
                 skillInfo.ady = int.Parse(data2[j]["ady"].ToString());
                 
-                skilId.skillfly[j] = skillInfo;        
+                skilId.skillFly[j] = skillInfo;        
             }            
             temp[i] = skilId;                            
         }
@@ -83,6 +84,12 @@ public class Read_anim_skill : MonoBehaviour
             for (int j = 0; j < skillPaints[i].skillStand.Length; j++)
             {
                 if(idFxFind == skillPaints[i].skillStand[j].effS0Id){
+                    FindFX.Add(skillPaints[i]);
+                }
+                if(idFxFind == skillPaints[i].skillStand[j].effS1Id){
+                    FindFX.Add(skillPaints[i]);
+                }
+                if(idFxFind == skillPaints[i].skillStand[j].effS2Id){
                     FindFX.Add(skillPaints[i]);
                 }
             }

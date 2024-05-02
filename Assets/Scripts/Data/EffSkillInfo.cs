@@ -1,0 +1,10 @@
+using System.Numerics;
+using UnityEngine;
+
+[System.Serializable]
+public class EffSkillInfo
+{
+	public Texture2D texture2D;
+	public int dx;
+	public int dy; 
+}

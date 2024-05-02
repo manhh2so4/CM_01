@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Draw_char : MonoBehaviour
+public class Draw_Char : MonoBehaviour
 {
-    [SerializeField] GameObject Body;
+    public int cf = 0;
+	private int current = -1;
+	LoadChar loadChar;
     [SerializeField] GameObject Leg;
     [SerializeField] GameObject Head;
-	[SerializeField] GameObject Wp;
-    LoadImage loadImage;
-    public int cf = 0;
-    int nextFrame = -1;
-    public int zoomlv = 4;
-    public readonly int[][][] CharInfo = new int[30][][]
+    [SerializeField] GameObject Body;
+    
+   private readonly int[][][] CharInfo = new int[30][][]
     
 	{
 		new int[4][]
@@ -226,27 +225,27 @@ public class Draw_char : MonoBehaviour
 			new int[3]
 		}
 	};
-    private void Start() {   
-        loadImage = GetComponent<LoadImage>();
+    private void Awake() {
+		LoadCompnents();
+	}
+	
+	private void Reset() {
+		LoadCompnents();
+	}
+	void LoadCompnents(){
+		Leg = transform.Find("Leg").gameObject;
+		Head = transform.Find("Head").gameObject;
+		Body = transform.Find("Body").gameObject;
+		loadChar = GetComponent<LoadChar>();
+	}
+	private void Update() {
+        PaintChar();
     }
-    private void FixedUpdate() {
-        this.cf = CharCtrl.cf;
-		LoadImage();
+    private void PaintChar(){
+		if(cf == current) return;
+        anim_sprite.Paint(ref Body,loadChar.imgBody[CharInfo[cf][2][0]],CharInfo[cf][2][1],CharInfo[cf][2][2],0);
+        anim_sprite.Paint(ref Head,loadChar.imgHead[CharInfo[cf][0][0]],CharInfo[cf][0][1],CharInfo[cf][0][2],0);
+        anim_sprite.Paint(ref Leg,loadChar.imgLeg[CharInfo[cf][1][0]],CharInfo[cf][1][1],CharInfo[cf][1][2],0);
+		current = cf;
     }
-    void LoadImage(){
-        if(nextFrame == cf) return;
-        nextFrame = cf;
-        DrawImage(loadImage.spriteBody[CharInfo[cf][2][0]],CharInfo[cf][2][1],CharInfo[cf][2][2],Body);
-        DrawImage(loadImage.spriteLeg[CharInfo[cf][1][0]],CharInfo[cf][1][1],CharInfo[cf][1][2],Leg);
-        DrawImage(loadImage.spriteHead[CharInfo[cf][0][0]],CharInfo[cf][0][1],CharInfo[cf][0][2],Head);
-		DrawImage(loadImage.spriteWepon[CharInfo[cf][3][0]],CharInfo[cf][3][1]-5,CharInfo[cf][3][2]-35,Wp);
-    }
-    private void DrawImage(Sprite sprite, int x, int y,GameObject gameObject)
-    {
-        float x0 = x*zoomlv;
-        float y0 = y*zoomlv;
-        gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
-		Vector3 move = new Vector3(x0/sprite.pixelsPerUnit,y0/sprite.pixelsPerUnit,0);
-		gameObject.transform.localPosition = move;
-    } 
 }
