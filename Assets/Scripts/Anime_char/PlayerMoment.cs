@@ -1,28 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
+
 using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
+
 using UnityEngine;
 
 public class PlayerMoment : MonoBehaviour
 {
+    [SerializeField] bool isRun,canJump,jumping,isGrounded,canFlip = true;
+    [Header("Player_Property")]
     public float speedRun = 5f;
-    //[SerializeField] float speedPlayerAir = .5f;
-    //[SerializeField] float speedPlayerGroud = 5f;
     [SerializeField] float speedJump = 12f;
-    [SerializeField] float groundCheckRadius = 0.3f; 
-
     public int velocityView = 0; 
-
-    float MoveInput = 0f;  
-
-    [SerializeField] bool isRun;
-    [SerializeField] bool canJump;
-    [SerializeField] bool jumping;
-    [SerializeField] bool isGrounded ;
-    [SerializeField] bool canFlip = true;
+    float MoveInput = 0f;
     [SerializeField] int amountOfJumpsLeft; 
     public int amountOfJumps = 1;
     public int viewStage;
@@ -30,10 +21,11 @@ public class PlayerMoment : MonoBehaviour
     public LayerMask whatIsGround;
     public Char_anim char_Anim;
     Rigidbody2D myRigibody;
-    
+    CapsuleCollider2D myColider;
     void Start()
     {
         myRigibody = GetComponent<Rigidbody2D>();
+        myColider = GetComponent<CapsuleCollider2D>();
         char_Anim = GetComponent<Char_anim>();
         amountOfJumpsLeft = amountOfJumps;        
     }
@@ -41,49 +33,50 @@ public class PlayerMoment : MonoBehaviour
     {          
         CheckInput();
         char_Anim.stagejump = Mathf.RoundToInt(myRigibody.velocity.y); 
-        CheckGround();
         ChecIfCanJump();
         Move();
-        CheckMoveDir();
         ChangeStage();
-        viewStage = char_Anim.stage;
-        if(char_Anim.stage == 4){
-            Debug.Log("stage");
-        } 
-        
+        viewStage = char_Anim.stage;       
     }
     private void FixedUpdate() {            
                
     }
     void Move(){
-        myRigibody.velocity = new Vector2 (MoveInput*speedRun,myRigibody.velocity.y);       
+        
+        if(char_Anim.isAtacking){
+            MoveInput = 0;
+        }
+        myRigibody.velocity = new Vector2 (MoveInput*speedRun, myRigibody.velocity.y);
+        if(Mathf.Abs(myRigibody.velocity.x) >= 0.01f){
+            isRun = true;
+            Flip();       
+        }else{
+            isRun = false;
+        }       
     }
     void CheckInput(){
-        
+        if(char_Anim.isAtacking) return;
         MoveInput = Input.GetAxisRaw("Horizontal");
-        if(Input.GetButtonDown("Jump")){
-            
+        if(Input.GetButtonDown("Jump")){            
             Jump(); 
         }
-        if(Input.GetButtonDown("Fire1")){
-            Attack(); 
-        }
-    }
-    void Attack(){
-        //atking = true;
-       
-        
     }
     void ChecIfCanJump(){
+        //isGrounded = Physics2D.OverlapCircle(groundCheck.position,groundCheckRadius, whatIsGround);
+        isGrounded = myColider.IsTouchingLayers(LayerMask.GetMask("Ground"));
         if( isGrounded && myRigibody.velocity.y <=0){
             amountOfJumpsLeft = amountOfJumps;
             jumping = false;
         }
+
         if(amountOfJumpsLeft <= 0){
             canJump = false;
         }else{
             canJump = true;
         }
+    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        
     }
     void Jump(){
         if(canJump){
@@ -92,30 +85,16 @@ public class PlayerMoment : MonoBehaviour
             amountOfJumpsLeft--;
         }
     }
-
-    void CheckGround(){
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position,groundCheckRadius, whatIsGround);
-    }
-
-    void DisableFlip(){
+    public void DisableFlip(){
         canFlip = false;
     }
-
-    void EnableFlip(){
+    public void EnableFlip(){
         canFlip = true;
     }
-
     void Flip(){
+        if(char_Anim.isAtacking) return;
         if(canFlip){
              transform.localScale = new Vector3(Mathf.Sign(MoveInput),1f,1f);
-        }
-    }
-    void CheckMoveDir(){
-        if(Mathf.Abs(myRigibody.velocity.x) >= 0.01f){
-            isRun = true;
-            Flip();       
-        }else{
-            isRun = false;
         }
     }
     void ChangeStage(){
@@ -131,6 +110,5 @@ public class PlayerMoment : MonoBehaviour
                 char_Anim.stage = 3;
             }
         }
-
     }
 }

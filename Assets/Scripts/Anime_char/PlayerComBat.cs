@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] bool combatEnabled = true;
-    float inputTimer;
-    [SerializeField] float lastInputTime;
+    [SerializeField]float inputTimer;
+    float Timer = 0;
+    public int Dame = 10;
     
     bool gotInput,isAtacking,isFristAttack;
     Char_anim char_Anim;
@@ -26,7 +27,7 @@ public class PlayerCombat : MonoBehaviour
 
     }
     void checkCombatInput(){
-        if(Input.GetMouseButtonDown(0)){
+        if(Input.GetMouseButtonDown(0)|| Input.GetKeyDown(KeyCode.Return)){
             if(combatEnabled){
                 gotInput = true;
             }
@@ -35,7 +36,9 @@ public class PlayerCombat : MonoBehaviour
     void checkAttack(){
         if(gotInput){
             char_Anim.stage = 4;
-            gotInput = false;
         }
+        Timer += Time.deltaTime;
+        if(Timer >= inputTimer) gotInput = false; 
+
     }
 }

@@ -1,16 +1,88 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Draw_Char : MonoBehaviour
 {
     public int cf = 0;
 	private int current = -1;
-	LoadChar loadChar;
     [SerializeField] GameObject Leg;
     [SerializeField] GameObject Head;
     [SerializeField] GameObject Body;
-    
+    [Header("Body-------")]
+    Texture2D[] imgBody ;
+    public Sprite[] spriteBody;
+    Texture2D[] rootBody = new Texture2D[1];
+    [Header("Head------")]
+	public Sprite[] spriteHead;
+    Texture2D[] imgHead;
+    Texture2D[] rootImageHead;
+    [Header("Leg-------")]
+	public Sprite[] spriteLeg;
+    Texture2D[] imgLeg;
+    Texture2D[] rootLeg = new Texture2D[1];
+    [Header("Wp-------")]
+    [SerializeField] Texture2D[] imgWp = new Texture2D[6];
+    [SerializeField] protected TexAo_SO mTexAo;
+    [SerializeField] protected TexQuan_SO mQuan;
+    [SerializeField] protected TexHead_SO mHead;
+    public int lvAo = 0;
+    int lvAoCurrent = -1;
+    public int lvHead = 0;
+    int lvHeadCurrent = -1;
+    public int lvQuan = 0;
+    int lvQuanCurrent = -1;
+    public int wpType = 0;
+    int wpTypeCurrent = -1;
+    private void FixedUpdate()  
+    {
+        LoadTexWp();
+        LoadTexAo_SO();
+        LoadTexQuan_SO();
+        LoadTexHead_SO();   
+    }
+    void LoadrootImageHead(){
+        string resPath = "Char_tex/Head/rootHead";
+        this.rootImageHead = Resources.Load<TexHead_SO>(resPath).imgHead;
+    }
+    public void LoadTexWp()
+    {
+        if (wpTypeCurrent == wpType ) return;
+        
+        wpTypeCurrent = wpType;
+
+    }
+    public void LoadTexAo_SO()
+    {
+        if (lvAoCurrent == lvAo ) return;
+        string resPath = "Char_tex/Ao/Ao_lv " + lvAo;
+        mTexAo = Resources.Load<TexAo_SO>(resPath);
+        imgBody = rootBody.Concat(mTexAo.imgBody).ToArray();
+		mPaint.LoadSprite(ref spriteBody,imgBody,0);
+        lvAoCurrent = lvAo;
+    }
+    public void LoadTexQuan_SO()
+    {
+        if (lvQuanCurrent == lvQuan ) return;
+        string resPath = "Char_tex/Quan/Quan_lv " + lvQuan;
+        this.mQuan = Resources.Load<TexQuan_SO>(resPath);
+        //Debug.Log(": Char_texture " + resPath);
+        this.imgLeg = rootLeg.Concat(mQuan.imgLeg).ToArray();
+		mPaint.LoadSprite(ref spriteLeg,imgLeg,0);
+        lvQuanCurrent = lvQuan;
+
+    }
+    public void LoadTexHead_SO()
+    {
+        if (lvHeadCurrent == lvHead ) return;
+        string resPath = "Char_tex/Head/Head_lv " + lvHead;
+        this.mHead = Resources.Load<TexHead_SO>(resPath);
+        //Debug.Log(": Char_texture " + resPath);
+        this.imgHead = mHead.imgHead.Concat(rootImageHead).ToArray();
+		mPaint.LoadSprite(ref spriteHead,imgHead,0);
+        lvHeadCurrent = lvHead;
+    }
    private readonly int[][][] CharInfo = new int[30][][]
     
 	{
@@ -226,26 +298,33 @@ public class Draw_Char : MonoBehaviour
 		}
 	};
     private void Awake() {
-		LoadCompnents();
+		LoadCompnents();		        
+        LoadTexAo_SO();
+        LoadTexQuan_SO();
+        LoadTexHead_SO();   				
 	}
-	
 	private void Reset() {
 		LoadCompnents();
+        LoadTexAo_SO();
+        LoadTexQuan_SO();
+        LoadTexHead_SO();        
 	}
 	void LoadCompnents(){
+		rootLeg[0] = new Texture2D(1,1);
+        rootBody[0] = new Texture2D(1,1);
+		LoadrootImageHead();
 		Leg = transform.Find("Leg").gameObject;
 		Head = transform.Find("Head").gameObject;
 		Body = transform.Find("Body").gameObject;
-		loadChar = GetComponent<LoadChar>();
 	}
 	private void Update() {
         PaintChar();
     }
     private void PaintChar(){
 		if(cf == current) return;
-        anim_sprite.Paint(ref Body,loadChar.imgBody[CharInfo[cf][2][0]],CharInfo[cf][2][1],CharInfo[cf][2][2],0);
-        anim_sprite.Paint(ref Head,loadChar.imgHead[CharInfo[cf][0][0]],CharInfo[cf][0][1],CharInfo[cf][0][2],0);
-        anim_sprite.Paint(ref Leg,loadChar.imgLeg[CharInfo[cf][1][0]],CharInfo[cf][1][1],CharInfo[cf][1][2],0);
+        mPaint.Paint(Body,spriteBody[CharInfo[cf][2][0]],CharInfo[cf][2][1],CharInfo[cf][2][2]);
+        mPaint.Paint(Head,spriteHead[CharInfo[cf][0][0]],CharInfo[cf][0][1],CharInfo[cf][0][2]);
+        mPaint.Paint(Leg,spriteLeg[CharInfo[cf][1][0]],CharInfo[cf][1][1],CharInfo[cf][1][2]);
 		current = cf;
     }
 }

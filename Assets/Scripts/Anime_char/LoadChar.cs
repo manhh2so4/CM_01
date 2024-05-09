@@ -7,6 +7,7 @@ public class LoadChar : MonoBehaviour
 {
     [Header("Body-------")]
     public Texture2D[] imgBody ;
+    public Sprite[] spriteBody;
     Texture2D[] rootBody = new Texture2D[1];
     [Header("Head------")]
     public Texture2D[] imgHead;
@@ -33,7 +34,8 @@ public class LoadChar : MonoBehaviour
         LoadrootImageHead();
         LoadTexAo_SO();
         LoadTexQuan_SO();
-        LoadTexHead_SO();        
+        LoadTexHead_SO();
+        mPaint.LoadSprite(ref spriteBody,imgBody,0);        
     }
     private void Start() {
         rootLeg[0] = new Texture2D(1,1);

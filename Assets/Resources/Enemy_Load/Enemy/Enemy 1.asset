@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db150e60046b5ee4898d6c624c8d0121, type: 3}
+  m_Name: Enemy 1
+  m_EditorClassIdentifier: 
+  textures:
+  - {fileID: 2800000, guid: ae72e65f202bbea4d80e0ba3c95f3699, type: 3}
+  - {fileID: 2800000, guid: ea1791f8f6e2c17409bb1300208fd04c, type: 3}
+  - {fileID: 2800000, guid: 53ef3bf024c3d6f439f8d3bc2b85b1b8, type: 3}
+  Id: 1
+  type: 1
+  Name: 
+  speedMove: 1
+  speedAtk: 1
+  Hp: 100

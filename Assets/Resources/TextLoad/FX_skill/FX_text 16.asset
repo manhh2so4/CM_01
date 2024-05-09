@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b813bf2508741ad4a8c08c4f9082d432, type: 3}
+  m_Name: FX_text 16
+  m_EditorClassIdentifier: 
+  effSkillInfo_SO:
+  - texture2D: {fileID: 2800000, guid: f3a839855e2cdfb48979ff9b1a257e2d, type: 3}
+    dx: 6
+    dy: -6
+  - texture2D: {fileID: 2800000, guid: ec5168514100b2e449a827cb2d6a1f14, type: 3}
+    dx: 14
+    dy: -10
+  - texture2D: {fileID: 2800000, guid: d0b3a538fe19e8443af3f108541093d0, type: 3}
+    dx: 2
+    dy: -17
+  - texture2D: {fileID: 2800000, guid: 6055f3f13f50bee4587f8c5ab2635fa4, type: 3}
+    dx: -15
+    dy: -16
+  - texture2D: {fileID: 2800000, guid: 2bcb0939418e0934f85716d66a558ff8, type: 3}
+    dx: 9
+    dy: -12

@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6d232f7cbe38443a841aeb0a878321, type: 3}
+  m_Name: EnemyBig 114
+  m_EditorClassIdentifier: 
+  TEXTURE2D: {fileID: 2800000, guid: fc00578b59389c3449327b73cee70275, type: 3}
+  imageInfors:
+  - ID: 0
+    x0: 76
+    y0: 0
+    w: 19
+    h: 28
+  - ID: 1
+    x0: 19
+    y0: 56
+    w: 24
+    h: 28
+  - ID: 2
+    x0: 71
+    y0: 69
+    w: 22
+    h: 24
+  - ID: 3
+    x0: 67
+    y0: 54
+    w: 27
+    h: 15
+  - ID: 4
+    x0: 0
+    y0: 33
+    w: 29
+    h: 23
+  - ID: 5
+    x0: 0
+    y0: 0
+    w: 35
+    h: 33
+  - ID: 6
+    x0: 35
+    y0: 0
+    w: 40
+    h: 33
+  - ID: 7
+    x0: 47
+    y0: 33
+    w: 18
+    h: 23
+  - ID: 8
+    x0: 43
+    y0: 80
+    w: 28
+    h: 19
+  - ID: 9
+    x0: 0
+    y0: 56
+    w: 19
+    h: 32
+  - ID: 10
+    x0: 19
+    y0: 84
+    w: 22
+    h: 13
+  - ID: 11
+    x0: 29
+    y0: 33
+    w: 18
+    h: 23
+  - ID: 12
+    x0: 43
+    y0: 56
+    w: 24
+    h: 24
+  - ID: 13
+    x0: 65
+    y0: 33
+    w: 21
+    h: 21
+  - ID: 14
+    x0: 86
+    y0: 28
+    w: 12
+    h: 21
+  - ID: 15
+    x0: 0
+    y0: 88
+    w: 8
+    h: 8
+  - ID: 16
+    x0: 9
+    y0: 88
+    w: 8
+    h: 10
+  frameBoss:
+  - idImg: 0e0000000d00000004000000030000000700000000000000
+    dx: 04000000eefffffff5fffffff5ffffff03000000f2ffffff
+    dy: d0ffffffceffffffe2fffffff3ffffffdcffffffdfffffff
+  - idImg: 0e0000000d00000004000000030000000000000007000000
+    dx: 04000000eefffffff5fffffff5fffffff2ffffff03000000
+    dy: d1ffffffd0ffffffe3fffffff3ffffffe1ffffffdeffffff
+  - idImg: 0e0000000d000000050000000100000007000000
+    dx: 05000000effffffff4ffffffeeffffff03000000
+    dy: ceffffffcdffffffe1ffffffdeffffffdcffffff
+  - idImg: 0e0000000d000000060000000200000007000000
+    dx: 05000000effffffff3fffffff0ffffff04000000
+    dy: cfffffffceffffffe1ffffffe0ffffffdcffffff
+  - idImg: 0e0000000a0000000400000003000000010000000b0000000d000000
+    dx: 0300000003000000f5fffffff6fffffff0ffffff05000000edffffff
+    dy: cfffffffdfffffffe1fffffff3ffffffe5ffffffdeffffffd1ffffff
+  - idImg: 0e0000000d0000000400000003000000090000000b0000000c00000002000000
+    dx: 04000000effffffff7fffffff6ffffff0c000000040000000b000000f0ffffff
+    dy: d1ffffffd1ffffffe2fffffff3ffffffdeffffffe0fffffff0ffffffe2ffffff
+  - idImg: 0e0000000d0000000400000003000000090000000800000007000000
+    dx: 05000000f0fffffff7fffffff6ffffff07000000ebffffff04000000
+    dy: d2ffffffd0ffffffe2fffffff3ffffffe3ffffffdeffffffe0ffffff
+  - idImg: 0e0000000d00000006000000080000000b0000000f000000
+    dx: 06000000f1fffffff2ffffffebffffff0300000010000000
+    dy: cfffffffccffffffe1ffffffdbffffffdcffffffe8ffffff
+  - idImg: 0e0000000d000000050000000b000000020000000c000000
+    dx: 08000000f2fffffff6ffffff05000000f0ffffff0f000000
+    dy: cfffffffcdffffffe1ffffffdcffffffdfffffffdfffffff
+  - idImg: 0e0000000d000000050000000b00000002000000
+    dx: 08000000f2fffffff6ffffff05000000f0ffffff
+    dy: cfffffffcdffffffe1ffffffdcffffffdfffffff
+  - idImg: 040000000e0000000d00000006000000000000000b0000001000000010000000
+    dx: faffffff0e000000ebfffffff5fffffff0ffffffffffffff0d00000005000000
+    dy: deffffffd8ffffffccffffffe1ffffffe0ffffffd4ffffffd6ffffffd6ffffff
+  frameBossMove: 01000000020000000300000002000000
+  frameBossAttack: 0400000005000000060000000300000007000000080000000900000003000000
