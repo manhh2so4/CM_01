@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1803108d358974ab4fcbe64d107680, type: 3}
+  m_Name: WaterSplash
+  m_EditorClassIdentifier: 
+  textures:
+  - {fileID: 2800000, guid: 5229d1a73e0f2f847b0bdf6f7fdd2f1d, type: 3}
+  - {fileID: 2800000, guid: 9b83bb349168b0249b991df83e59521f, type: 3}
+  - {fileID: 2800000, guid: d74ec3b1348aa5340aa7e16964c20020, type: 3}
