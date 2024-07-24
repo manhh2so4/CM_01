@@ -6,6 +6,11 @@ public enum mState
 {
     Idle,
 	Moving,
+    Jump,
+    InAir,
+    Climb,
+    Slide,
+    Grab,
     Dash,
     Follow_Player,
     Attack,

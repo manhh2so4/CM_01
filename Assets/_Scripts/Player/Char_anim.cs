@@ -7,8 +7,8 @@ public class Char_anim : MonoBehaviour
     [SerializeField] Draw_Char drawChar;
 	[SerializeField] Draw_skill draw_Skill;
 	[Header("ID_Stage")]
-	public int stage;
-	int currentStage = -1;
+	public mState state;
+	mState currentStage;
 	public bool canChangStage = true;
 	public int FrameCurrent = 0;	        
 	float frameTimer = 0;
@@ -36,36 +36,42 @@ public class Char_anim : MonoBehaviour
         if(drawChar == null) drawChar = transform.GetChild(0).gameObject.GetComponent<Draw_Char>();
     }
     private void Update() {
-        CharStage(stage);
+        CharStage(state);
     }
-    void CharStage(int stage){
-		if(currentStage != stage){
+    void CharStage(mState mStage){
+		if(currentStage != mStage){
 			if( canChangStage ){
 			drawChar.OffDust();
 			frameTimer = 99f;
 			FrameCurrent = 0;
-			currentStage = stage;
+			currentStage = mStage;
 			}
 		}
 		switch(currentStage){
-			case 0:
+			case mState.Idle:
 				charIdle();
 				break;
-			case 1:
+			case mState.Moving:
 				charRun();
 				break;
-			case 2:
+			case mState.Jump:
 				charJump();
 				break;	
-			case 3:
+			case mState.InAir:
 				charFall();
 				break;
-			case 4:
+			case mState.Slide:
+				drawChar.cf = 30;
+				break;
+			case mState.Climb:
+				charClimb();
+				break;
+			case mState.Attack:
 				canChangStage = false;
 				isAtacking= true;
 				charAttack();
 				break;
-			case 7:
+			case mState.Dead:
 				break;
 			default:
        		 	charIdle();
@@ -90,14 +96,23 @@ public class Char_anim : MonoBehaviour
 			drawChar.cf = FrameCurrent; 
 			FrameCurrent = (FrameCurrent + 1) % 2; 						     
         }
+	}
+	void charClimb(){
 		
+		frameTimer += Time.deltaTime;
+        if(frameTimer >= 1f/(5)){
+            frameTimer = 0;
+			drawChar.cf = FrameCurrent; 
+			FrameCurrent = (FrameCurrent + 1) % 2+30; 						     
+        }
 	}
 	void charJump(){
-			if 	(stagejump > 5 )
+			
+			if 	(stagejump > 4 )
 			{					
 				drawChar.cf = 7;
 			}
-			else if ( stagejump >= 2 && stagejump <= 3)
+			else if (stagejump >= 2 && stagejump <= 4)
 			{
 				drawChar.cf = 8;
 			}
@@ -112,13 +127,18 @@ public class Char_anim : MonoBehaviour
 			else if (stagejump >= -4 && stagejump <= -3)
 			{
 				drawChar.cf = 11;
-			} else			
+			} else if(stagejump <= -5)		
 			{
 			drawChar.cf = 12;
 			}
 	}
 	void charFall(){
-		drawChar.cf = 12;
+		if(stagejump > 0 )
+		{					
+			drawChar.cf = 33;
+		}else{
+			drawChar.cf = 12;
+		}
 	}
 	void charAttack(){
 		if(curIdSkill != idSkill){
@@ -133,7 +153,7 @@ public class Char_anim : MonoBehaviour
 				draw_Skill.SetSkillOff();
 				canChangStage = true;
 				isAtacking = false;
-				currentStage = -1;
+				currentStage = 0;
 				return;
 			}
 			if(FrameCurrent == 0){

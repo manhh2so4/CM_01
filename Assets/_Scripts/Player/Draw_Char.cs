@@ -101,7 +101,7 @@ public class Draw_Char : MonoBehaviour
 		mPaint.LoadSprite(ref spriteHead,imgHead,0);
         lvHeadCurrent = lvHead;
     }
-   private readonly int[][][] CharInfo = new int[30][][]
+   private readonly int[][][] CharInfo = new int[34][][]
     
 	{
 		new int[4][]
@@ -313,7 +313,36 @@ public class Draw_Char : MonoBehaviour
 			new int[3] { 7, -5, 9 },
 			new int[3] { 17, -11, 19 },
 			new int[3]
+		},
+		new int[4][]
+		{
+			new int[3] { 0, -5, 34},
+			new int[3] { 8, -0, 10 },
+			new int[3] { 9, -5, 21 },
+			new int[3]
+		},
+		new int[4][]
+		{
+			new int[3] { 0, -4, 34 },
+			new int[3] { 7, -0, 10 },
+			new int[3] { 11, -5, 18 },
+			new int[3]
+		},
+		new int[4][]
+		{
+			new int[3] { 1, -10, 36 },
+			new int[3] { 2, -8, 10 },
+			new int[3] { 9, -10, 21 },
+			new int[3]
+		},
+		new int[4][]
+		{
+			new int[3] { 1, -9, 36 },
+			new int[3] { 3, -8, 10 },
+			new int[3] { 9, -8, 21 },
+			new int[3]
 		}
+		
 	};
     private void Awake() {
 		LoadCompnents();		        

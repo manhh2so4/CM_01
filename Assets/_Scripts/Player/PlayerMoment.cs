@@ -36,7 +36,7 @@ public class PlayerMoment : MonoBehaviour
         ChecIfCanJump();
         Move();
         ChangeStage();
-        viewStage = char_Anim.stage;       
+        //viewStage = char_Anim.stage;       
     }
     private void FixedUpdate() {            
         
@@ -98,15 +98,15 @@ public class PlayerMoment : MonoBehaviour
     }
     void ChangeStage(){
         if(isGrounded){
-            char_Anim.stage = 0;
+            //char_Anim.stage = 0;
             if(isRun){
-            char_Anim.stage = 1;
+            //char_Anim.stage = 1;
             }
         }else{
             if(jumping){
-                char_Anim.stage = 2;
+                //char_Anim.stage = 2;
             }else{
-                char_Anim.stage = 3;
+                //char_Anim.stage = 3;
             }
         }
     }

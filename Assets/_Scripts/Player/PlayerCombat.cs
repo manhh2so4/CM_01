@@ -35,7 +35,7 @@ public class PlayerCombat : MonoBehaviour
     }
     void checkAttack(){
         if(gotInput){
-            char_Anim.stage = 4;
+           
         }
         Timer += Time.deltaTime;
         if(Timer >= inputTimer) gotInput = false; 
