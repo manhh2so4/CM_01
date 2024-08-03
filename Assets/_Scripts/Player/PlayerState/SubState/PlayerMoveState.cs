@@ -13,15 +13,15 @@ public class PlayerMoveState : PlayerGroundedState
     }
     public override void Enter(){
         base.Enter();
-        player.SetVeclocityX(0f);
+        core.Movement.SetVelocityX(0f);
     }
     public override void Exit(){
         base.Exit();
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
-        player.SetVeclocityX(playerData.movementSpeed * inputX);
-        player.CheckIfShouldFlip(inputX);
+        core.Movement.SetVelocityX(playerData.movementSpeed * inputX);
+        core.Movement.CheckIfShouldFlip(inputX);
         if(inputX == 0 && !isExitingState){
             stateMachine.ChangeState(player.idleState);
         }

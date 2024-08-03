@@ -20,12 +20,16 @@ public class PlayerDashState : PlayerAbilityState
         canDash = false;
         player.inputPlayer.UseDashInpur();
         isHolding =true;
-        dashDirection = Vector2.right*player.facingDirection;
+        dashDirection = Vector2.right*core.Movement.facingDirection;
         Time.timeScale = playerData.holdTimeScale;
         startTime = Time.unscaledTime;
+        player.dashDirImgae.gameObject.SetActive(true);
     }
     public override void Exit(){
         base.Exit();
+        if(core.Movement.CurrentVelocity.y >0){
+           core.Movement.SetVelocityY(core.Movement.CurrentVelocity.y*playerData.dashEndYMultiplier);
+        }
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
@@ -43,14 +47,15 @@ public class PlayerDashState : PlayerAbilityState
                     isHolding = false;
                     Time.timeScale =1f;
                     startTime = Time.time;
-                    player.CheckIfShouldFlip(Mathf.RoundToInt(dashDirection.x));
-                    player.mRB.drag = playerData.drag;
-                    player.SetVeclocity(playerData.dashVelocity,dashDirection);
+                    core.Movement.CheckIfShouldFlip(Mathf.RoundToInt(dashDirection.x));
+                    core.Movement.mRB.drag = playerData.drag;
+                    core.Movement.SetVelocity(playerData.dashVelocity,dashDirection);
+                    player.dashDirImgae.gameObject.SetActive(false);
                 }
             }else{
-                player.SetVeclocity(playerData.dashVelocity,dashDirection);
+                core.Movement.SetVelocity(playerData.dashVelocity,dashDirection);
                 if(Time.time >= startTime + playerData.dashTime){
-                    player.mRB.drag = 0f;
+                    core.Movement.mRB.drag = 0f;
                     isAbilityDone = true;
                     lastDashTime = Time.time;
                 }

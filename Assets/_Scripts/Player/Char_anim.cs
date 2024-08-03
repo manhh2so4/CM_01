@@ -200,8 +200,7 @@ public class Char_anim : MonoBehaviour
 				i2++;
 			}else eff2Lenth =-1;
 			// ----------------------------------------
-            FrameCurrent ++;
-			
+            FrameCurrent ++;	
         }		
 	}
 }

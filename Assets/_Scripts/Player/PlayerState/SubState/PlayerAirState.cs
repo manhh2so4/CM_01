@@ -36,22 +36,26 @@ public class PlayerAirState : PlayerState
         inputX = player.inputPlayer.MoveInput;
         jumpInput = player.inputPlayer.jumpInput;
         dashInput = player.inputPlayer.dashInput;
-        if(isGrounded && player.currentVeclocity.y < 1f){
+        if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack1]){
+
+            stateMachine.ChangeState(player.Attack1);
+            
+        }else if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack2]){
+
+            stateMachine.ChangeState(player.Attack2);
+
+        }else if(isGrounded && core.Movement.CurrentVelocity.y < 1f){
+
             isFall = true;            
             stateMachine.ChangeState(player.landState); 
-        }
-        // else if(jumpInput &&  (isWall||isWallBack) ){
-        //     player.inputPlayer.UseJumpInput();
-        //     player.wallJumpState.DetermineWallJumpDir(isWall);
-        //     stateMachine.ChangeState(player.wallJumpState);
-        
+        }   
         else if(jumpInput && player.jumpState.CanJump()){
 
             player.inputPlayer.UseJumpInput(); 
             stateMachine.ChangeState(player.jumpState);
 
         
-        }else if(isWall && inputX == player.facingDirection && !isExitingState){
+        }else if(isWall && inputX == core.Movement.facingDirection && !isExitingState){
 
             isFall = true; 
             stateMachine.ChangeState(player.wallSlideState);
@@ -62,19 +66,19 @@ public class PlayerAirState : PlayerState
         else if(isFall){
             CheckDir();
             player.Anim.state = mState.InAir;
-            player.Anim.stagejump = (int)System.Math.Round(player.currentVeclocity.y, System.MidpointRounding.AwayFromZero);
+            player.Anim.stagejump = (int)System.Math.Round(core.Movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);
         }
         else{
             CheckDir();
             player.Anim.state = mState.Jump;
-            player.Anim.stagejump = (int)System.Math.Round(player.currentVeclocity.y, System.MidpointRounding.AwayFromZero);         
+            player.Anim.stagejump = (int)System.Math.Round(core.Movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);         
         }
     }
     public override void PhysicsUpdate(){
         base.PhysicsUpdate();
     }
     private void CheckDir(){
-        player.CheckIfShouldFlip(inputX );
-        player.SetVeclocityX(playerData.movementSpeed * inputX);
+        core.Movement.CheckIfShouldFlip(inputX );
+        core.Movement.SetVelocityX(playerData.movementSpeed * inputX);
     }
 }

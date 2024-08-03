@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerState
 {
+    protected Core core;
     protected Player player;
     protected PlayerStateMachine stateMachine;
     protected PlayerData playerData;
@@ -18,6 +19,7 @@ public class PlayerState
         this.stateMachine = _stateMachine;
         this.playerData = _playerData;
         this.mState = _state;
+        core = player.Core;
     }
     public virtual void Enter(){
         DoCheck();

@@ -22,8 +22,9 @@ public class PlayerAbilityState : PlayerState
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
+        Debug.Log(isAbilityDone + "ability done");
         if(isAbilityDone){          
-                stateMachine.ChangeState(player.airState);
+            stateMachine.ChangeState(player.airState);
         }
     }
     public override void PhysicsUpdate(){

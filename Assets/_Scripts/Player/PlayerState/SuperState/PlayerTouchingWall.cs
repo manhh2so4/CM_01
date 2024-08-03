@@ -32,7 +32,7 @@ public class PlayerTouchingWall : PlayerState
         }else
         if(isGrounded){
             stateMachine.ChangeState(player.idleState);
-        }else if(!isWall || inputX != player.facingDirection){
+        }else if(!isWall || inputX != core.Movement.facingDirection){
             stateMachine.ChangeState(player.airState);
         }
     }

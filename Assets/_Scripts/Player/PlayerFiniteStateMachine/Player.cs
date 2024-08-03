@@ -14,32 +14,30 @@ public class Player : MonoBehaviour
     public PlayerLandState landState {get;private set;}
     public PlayerClimbState climbState {get;private set;}
     public PlayerWallSlideState wallSlideState {get;private set;}
-    public PlayerWallGrabState wallGrabState {get;private set;}
     public PlayerWallJumpState wallJumpState {get;private set;}
     public PlayerDashState dashState {get;private set;}
+    public PlayerAttackState Attack1 {get;private set;}
+    public PlayerAttackState Attack2 {get;private set;}
 
     #endregion
     
     #region Component
     public Char_anim Anim {get;private set;}
     public inputPlayer inputPlayer {get;private set;}
-    public Rigidbody2D mRB {get;private set;}
     [SerializeField] public Transform dashDirImgae;
     [SerializeField] private PlayerData playerData;
     #endregion
     //------------------------------------------
     #region Other Variable
-    public Vector2 currentVeclocity;
-    private Vector2 workspace;
+    public Core Core { get; private set; }
     [SerializeField] private BoxCollider2D mGroundCheck;
     [SerializeField] private BoxCollider2D mWallCheck;
     [SerializeField] private BoxCollider2D mWallBackCheck;
-    public int facingDirection = 1;
     #endregion
     
     #region Unity Callback Function
     private void Awake() {
-        facingDirection = 1;
+        Core = GetComponentInChildren<Core>();
         StateMachine = new PlayerStateMachine();
         idleState = new PlayerIdleState(this,StateMachine,playerData,mState.Idle);
         moveState = new PlayerMoveState(this,StateMachine,playerData,mState.Moving);
@@ -47,10 +45,11 @@ public class Player : MonoBehaviour
         landState = new PlayerLandState(this,StateMachine,playerData,mState.InAir);
         airState = new PlayerAirState(this,StateMachine,playerData,mState.InAir);
         climbState = new PlayerClimbState(this,StateMachine,playerData,mState.Climb);
-        wallSlideState = new PlayerWallSlideState(this,StateMachine,playerData,mState.Slide);
-        wallGrabState = new PlayerWallGrabState(this,StateMachine,playerData,mState.Grab);    
+        wallSlideState = new PlayerWallSlideState(this,StateMachine,playerData,mState.Slide);  
         wallJumpState = new PlayerWallJumpState(this,StateMachine,playerData,mState.InAir);   
-        dashState = new PlayerDashState(this,StateMachine,playerData,mState.InAir);   
+        dashState = new PlayerDashState(this,StateMachine,playerData,mState.InAir);
+        Attack1 = new PlayerAttackState(this,StateMachine,playerData,mState.Attack); 
+        Attack2 = new PlayerAttackState(this,StateMachine,playerData,mState.Attack);   
     }
     private void Start() {
         Anim = GetComponent<Char_anim>();
@@ -59,11 +58,10 @@ public class Player : MonoBehaviour
         mWallCheck = transform.Find("Wall_check").GetComponent<BoxCollider2D>();
         mWallBackCheck = transform.Find("Wall_check_Back").GetComponent<BoxCollider2D>();
         dashDirImgae = transform.Find("DashDirectionImg");
-        mRB = GetComponent<Rigidbody2D>();
         StateMachine.Initialize(idleState);
     }
     private void Update() {
-        currentVeclocity = mRB.velocity;
+        Core.LogicUpdate();
         StateMachine.CurrentState.LogicUpdate();
     }
     private void FixedUpdate() {
@@ -72,27 +70,7 @@ public class Player : MonoBehaviour
     #endregion
      //------------------------------------------
     #region Set Function
-    public void SetVeclocity(float veclocity,Vector2 angle,int dir){
-        angle.Normalize();
-        workspace.Set(angle.x*veclocity*dir,angle.y*veclocity);
-        mRB.velocity = workspace;
-        currentVeclocity = workspace;
-    }
-    public void SetVeclocity(float veclocity,Vector2 dir){
-        workspace = dir*veclocity ;
-        mRB.velocity = workspace;
-        currentVeclocity = workspace;
-    }
-    public void SetVeclocityX(float vecX){
-        workspace.Set(vecX,currentVeclocity.y);
-        mRB.velocity = workspace;
-        currentVeclocity = workspace;
-    }
-    public void SetVeclocityY(float vecY){
-        workspace.Set(currentVeclocity.x,vecY);
-        mRB.velocity = workspace;
-        currentVeclocity = workspace;
-    }
+
     #endregion
     //------------------------------------------
     #region Check Function
@@ -105,19 +83,10 @@ public class Player : MonoBehaviour
     public bool CheckTouchingGroundBack(){
         return  mWallBackCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
     }
-    public void CheckIfShouldFlip(int input){
-        if(input != 0 && input != facingDirection){
-            Flip();
-        }
-    }
     #endregion
      //------------------------------------------
     #region Other Function
-     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
-     private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
-    void Flip(){
-        facingDirection *= -1;
-        transform.Rotate(0f,180f,0f);
-    }
+    private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
+    public void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
     #endregion
 }
