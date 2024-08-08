@@ -22,9 +22,16 @@ public class PlayerAbilityState : PlayerState
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
-        Debug.Log(isAbilityDone + "ability done");
         if(isAbilityDone){          
-            stateMachine.ChangeState(player.airState);
+            if (isGrounded && core.Movement.CurrentVelocity.y < 0.1f)
+            {
+                stateMachine.ChangeState(player.idleState);
+            }
+            else
+            {
+                stateMachine.ChangeState(player.airState);
+                Debug.Log("air_stage_change");
+            }
         }
     }
     public override void PhysicsUpdate(){

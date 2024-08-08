@@ -22,8 +22,11 @@ public class PlayerMoveState : PlayerGroundedState
         base.LogicUpdate();
         core.Movement.SetVelocityX(playerData.movementSpeed * inputX);
         core.Movement.CheckIfShouldFlip(inputX);
-        if(inputX == 0 && !isExitingState){
+        if (!isExitingState)
+        {
+            if(inputX == 0 && !isExitingState){
             stateMachine.ChangeState(player.idleState);
+            }
         }
     }
     public override void PhysicsUpdate(){

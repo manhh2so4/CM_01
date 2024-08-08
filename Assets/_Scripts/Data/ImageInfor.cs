@@ -1,5 +1,5 @@
 [System.Serializable]
-public class ImageInfor
+public struct ImageInfor
 {
     public int ID;
 

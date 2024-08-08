@@ -26,7 +26,7 @@ public class Movement : CoreComponent
 
     public void SetVelocityZero()
     {
-        workspace = Vector2.zero;        
+        workspace = Vector2.zero;    
         SetFinalVelocity();
     }
 

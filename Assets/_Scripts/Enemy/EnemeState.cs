@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using DG.Tweening;
-using System.Diagnostics;
 
-public class EnemeState : Draw_Enemy
+public class EnemeState : Draw_Enemy,IDamageable
 {   
     [Header("EnemeState --------------")]
     [SerializeField] GameObject bloodSp; 
@@ -51,16 +50,9 @@ public class EnemeState : Draw_Enemy
     }
     //------------ Ohter Func ----------------
     private void OnTriggerEnter2D(Collider2D other) { 
-        if(other.tag == "Dame") {              
-        int a =  other.transform.parent.GetComponent<PlayerCombat>().Dame;
-
-        if(other.transform.parent.localPosition.x > transform.localPosition.x) dir = -1;
-        else dir = 1;
-        TakeDame(a);
-        }
+        
         if(other.tag == "Player"){
             player = other.transform;
-
             playerDetected = true;
             SwitchState(State.Follow_Player);
         }
@@ -88,6 +80,7 @@ public class EnemeState : Draw_Enemy
 		{               
 			Flip();
 			return;
+
 		}
     }
     
@@ -113,16 +106,17 @@ public class EnemeState : Draw_Enemy
     void OnFlip(){
         canFlip = true;
     }
-    void TakeDame(int dame){
+    public void Damage(int amout)
+    {
         if(Hp > 0){
-            Hp -= dame;
+            Hp -= amout;
+            Debug.Log("Take dame111111111: " + amout);
             if(attacking) return;
             SwitchState(State.Knockback);
         }else{
             SwitchState(State.Dead);
         }
-    }    
-    
+    }  
     //------------ State ----------------
     private void UpdateState() {
         switch (currentState)
@@ -472,6 +466,7 @@ public class EnemeState : Draw_Enemy
         int randomInt = Random.Range(0, 2);
         return randomInt == 0 ? false : true;
     }
+
     private enum State
 	{
 		Idle,

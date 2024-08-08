@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisionSenses : MonoBehaviour
+public class CollisionSenses : CoreComponent
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    #region Check Transforms
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    [SerializeField] private BoxCollider2D mGroundCheck;
+    [SerializeField] private BoxCollider2D mWallCheck;
+    [SerializeField] private BoxCollider2D mWallBackCheck;
+
+    #endregion
+    public bool CheckTouchingWall(){
+        return  mWallCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
+    }
+    public bool CheckTouchingGround(){
+        return  mGroundCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
+    }
+    public bool CheckTouchingGroundBack(){
+        return  mWallBackCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
     }
 }

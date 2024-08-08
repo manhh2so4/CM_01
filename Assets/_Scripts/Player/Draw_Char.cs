@@ -101,7 +101,8 @@ public class Draw_Char : MonoBehaviour
 		mPaint.LoadSprite(ref spriteHead,imgHead,0);
         lvHeadCurrent = lvHead;
     }
-   private readonly int[][][] CharInfo = new int[34][][]
+   
+   private readonly int[][][] CharInfo2 = new int[34][][]
     
 	{
 		new int[4][]
@@ -341,8 +342,7 @@ public class Draw_Char : MonoBehaviour
 			new int[3] { 3, -8, 10 },
 			new int[3] { 9, -8, 21 },
 			new int[3]
-		}
-		
+		}	
 	};
     private void Awake() {
 		LoadCompnents();		        
@@ -371,9 +371,9 @@ public class Draw_Char : MonoBehaviour
     }
     private void PaintChar(){
 		if(cf == current) return;
-        mPaint.Paint(BodyGO,spriteBody[CharInfo[cf][2][0]], CharInfo[cf][2][1],CharInfo[cf][2][2]);
-        mPaint.Paint(HeadGO,spriteHead[CharInfo[cf][0][0]], CharInfo[cf][0][1],CharInfo[cf][0][2]);
-        mPaint.Paint(LegGO,spriteLeg[CharInfo[cf][1][0]], CharInfo[cf][1][1],CharInfo[cf][1][2]);
+        mPaint.Paint(BodyGO,spriteBody[CharInfo2[cf][2][0]], CharInfo2[cf][2][1],CharInfo2[cf][2][2],3);
+        mPaint.Paint(HeadGO,spriteHead[CharInfo2[cf][0][0]], CharInfo2[cf][0][1],CharInfo2[cf][0][2],3);
+        mPaint.Paint(LegGO,spriteLeg[CharInfo2[cf][1][0]], CharInfo2[cf][1][1],CharInfo2[cf][1][2],3);
 		current = cf;
 	}
     public void PainDust(int index){
@@ -381,7 +381,7 @@ public class Draw_Char : MonoBehaviour
             x = 0;
         }
 		x +=3;
-		mPaint.Paint(DustGO,spriteDust[index],-5-x,0);
+		mPaint.Paint(DustGO,spriteDust[index],-5-x,0,3);
 	}
 	public void OffDust(){
 		DustGO.SetActive(false);

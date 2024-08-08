@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerAbilityState
 {
+    private int xInput;
     public PlayerAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
     {
 
@@ -13,12 +14,17 @@ public class PlayerAttackState : PlayerAbilityState
     }
     public override void Enter(){
         base.Enter();
+        
     }
     public override void Exit(){
         base.Exit();
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
+        core.Movement.SetVelocityX(0);
+        xInput = player.inputPlayer.MoveInput;
+        core.Movement.CheckIfShouldFlip(xInput);
+        
     }
     public override void PhysicsUpdate(){
         base.PhysicsUpdate();

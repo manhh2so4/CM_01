@@ -13,6 +13,7 @@ public class Draw_skill : MonoBehaviour
     [SerializeField]  EffSkill effSkill_1;
     [SerializeField]  EffSkill effSkill_2;
     [SerializeField]  CapsuleCollider2D mHitBox;
+    [SerializeField] int SenderDame;
     //--------- Set Collider-----------
     Vector2 rangeSet,mSize,mOffset;
     public void LoadEff0(int eff0id){
@@ -80,8 +81,19 @@ public class Draw_skill : MonoBehaviour
         if(mHitBox.size.x > mHitBox.size.y) mHitBox.direction = CapsuleDirection2D.Horizontal;
         else mHitBox.direction = CapsuleDirection2D.Vertical;
     }
-    public void OnHitBox(float SenderDame){
+    public void OnHitBox(int _SenderDame){
+        SenderDame = _SenderDame;
         mHitBox.enabled = true;
+    }
+    private void OnTriggerEnter2D(Collider2D other){
+        
+        
+            IDamageable damageable = other.GetComponent<IDamageable>();
+            if(damageable != null){
+                damageable.Damage(SenderDame);
+            
+        } 
+         
     }
     public void OffHitBox(){
         mHitBox.size = new(0,0);
@@ -99,9 +111,9 @@ public class Draw_skill : MonoBehaviour
             EffSkills = null;
         }
         else{                        
-            mPaint.Paint(obj,EffSkills.effSkillInfos[index].texture2D, x + EffSkills.effSkillInfos[index].dx,- y -EffSkills.effSkillInfos[index].dy,3);            
-            float h = EffSkills.effSkillInfos[index].texture2D.height;
-            float w = EffSkills.effSkillInfos[index].texture2D.width;
+            mPaint.Paint(obj,EffSkills.effSkillInfos[index].sprite, x + EffSkills.effSkillInfos[index].dx,- y -EffSkills.effSkillInfos[index].dy,3);            
+            float h = EffSkills.effSkillInfos[index].sprite.rect.height;
+            float w = EffSkills.effSkillInfos[index].sprite.rect.width;
             rangeSet.Set(obj.transform.localPosition.x + w/200, h/100);           
             RangeHitBox(rangeSet,obj.transform.localPosition.y);            
         } 
@@ -110,13 +122,8 @@ public class Draw_skill : MonoBehaviour
 
     void LoadEffSkill(int idSkill,EffSkill effSkill)
     {
-        string resPath = "TextLoad/FX_skill/FX_text " +  idSkill;
-        effSkill.effSkillInfos = Resources.Load<TextFXSkill_SO>(resPath).effSkillInfo_SO;       
-        //Debug.Log(" Char_texture idSkill : " + idSkill);
-    }
-    //float b = Mathf.Max(new float[] {(Skill_0.activeSelf) ? Skill_0.transform.localPosition.x : 0,
-     //                                        (Skill_1.activeSelf) ? Skill_1.transform.localPosition.x  : 0,
-     //                                        (Skill_2.activeSelf) ? Skill_2.transform.localPosition.x  : 0});
-    
+        string resPath = "TextLoad/FX_skill/FX_Sprite " +  idSkill;
+        effSkill.effSkillInfos = Resources.Load<Sprite_FXSkill_SO>(resPath).effSkillInfo_SO;
 
+    }
 }

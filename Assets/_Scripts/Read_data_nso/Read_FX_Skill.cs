@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
-using Unity.VisualScripting;
-using System.IO;
 public class Read_FX_Skill : MonoBehaviour
 {
     //public string textJson;
-    public TextAsset textJson;
-    private JsonData data; 
+    public static TextAsset textJson;
+    private static JsonData data; 
     [SerializeField]
     public static SkillInfor1[] skillInfors;
+
     public SkillInfor1[] viewSkillInfors;
     public EffSkill[] effSkills;
     public List<SkillInfor1> FindInfor = new List<SkillInfor1>();
@@ -24,7 +23,7 @@ public class Read_FX_Skill : MonoBehaviour
         FindIdSkill();
         LoadEffInfo();   
     }
-    void LoadData(){
+    public static SkillInfor1[] LoadData(){
         textJson = Resources.Load<TextAsset>("nj_effect");
         data = JsonMapper.ToObject(textJson.ToString());
         SkillInfor1[] temp = new SkillInfor1[data.Count];
@@ -45,7 +44,7 @@ public class Read_FX_Skill : MonoBehaviour
             temp[i] = skilId;                            
         }
         skillInfors = temp;
-        viewSkillInfors = skillInfors;
+        return temp;
     }
     void FindIdSkill(){
         
@@ -59,31 +58,11 @@ public class Read_FX_Skill : MonoBehaviour
             }
         }
     }
-    JsonData GetItem(string data3){
+    static JsonData GetItem(string data3){
         return JsonMapper.ToObject(data3);
     }
     
     public string filePath = "Assets/Output.txt";
-    void WriteToFile(string path, string text)
-    {
-        // Kiểm tra xem file có tồn tại không
-        if (!File.Exists(path))
-        {
-            // Nếu không tồn tại, tạo mới file
-            using (StreamWriter writer = File.CreateText(path))
-            {
-                // Viết chuỗi vào file
-                writer.WriteLine(text);
-            }
-        }
-        else
-        {
-            // Nếu file đã tồn tại, ghi đè nội dung cũ bằng nội dung mới
-            File.WriteAllText(path, text);
-        }
-
-        Debug.Log("Successfully wrote to file: " + path);
-    }
     
     void show(){
         string a =null;
@@ -97,7 +76,6 @@ public class Read_FX_Skill : MonoBehaviour
             a +="\n";
         }
         Debug.Log(a);
-        WriteToFile(filePath, a);
     }
     void LoadEffInfo(){
         EffSkill[] temp = new EffSkill[skillInfors.Length+1];
@@ -106,7 +84,7 @@ public class Read_FX_Skill : MonoBehaviour
 
             EffSkill temp1 = new EffSkill();
             temp1.idEffSkill = i+1;
-            temp1.effSkillInfos = new EffSkillInfo[skillInfors[i].info.Length];
+            ///temp1.effSkillInfos = new EffSkillInfo[skillInfors[i].info.Length];
             for (int j = 0; j < temp1.effSkillInfos.Length; j++)
             {
                 EffSkillInfo a = new EffSkillInfo();
@@ -114,7 +92,7 @@ public class Read_FX_Skill : MonoBehaviour
                 a.texture2D.name = skillInfors[i].info[j].imgId.ToString();
                 a.dx = skillInfors[i].info[j].dx;
                 a.dy = skillInfors[i].info[j].dy;
-                temp1.effSkillInfos[j] = a;
+                //temp1.effSkillInfos[j] = a;
             }
             temp[i+1] = temp1;
         }

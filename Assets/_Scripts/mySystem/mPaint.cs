@@ -19,7 +19,7 @@ public class mPaint
 		gameObject.transform.localPosition = new Vector3(x/100,y/100,0);
         gameObject.GetComponent<SpriteRenderer>().sprite = Draw_prite(text,anchor);
     }
-    public static void Paint(GameObject gameObject,Sprite sprite,float x, float y){
+    public static void Paint(GameObject gameObject,Sprite sprite,float x, float y,int anchor){
         x *= 4;
         y *= 4;
         newPosition.x = x/100;

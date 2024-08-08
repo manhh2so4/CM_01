@@ -5,10 +5,12 @@ using UnityEngine;
 public class Char_anim : MonoBehaviour
 {
     [SerializeField] Draw_Char drawChar;
+	[SerializeField] Player player;
 	[SerializeField] Draw_skill draw_Skill;
 	[Header("ID_Stage")]
 	public mState state;
-	mState currentStage;
+	mState currentState;
+	bool isFly;
 	public bool canChangStage = true;
 	public int FrameCurrent = 0;	        
 	float frameTimer = 0;
@@ -21,7 +23,6 @@ public class Char_anim : MonoBehaviour
 	int i0,dx0,dy0,eff0Lenth;
 	int i1,dx1,dy1,eff1Lenth;
 	int i2,dx2,dy2,eff2Lenth;
-	public bool isAtacking;
 	public float speedAttack1;
 	[SerializeField] public Skill[] skills;
     [SerializeField] SkillInfo[] currentSkill;
@@ -34,20 +35,21 @@ public class Char_anim : MonoBehaviour
     void LoadCompnents(){
 		if(draw_Skill == null) draw_Skill = transform.GetChild(1).gameObject.GetComponent<Draw_skill>();
         if(drawChar == null) drawChar = transform.GetChild(0).gameObject.GetComponent<Draw_Char>();
+		if(player == null) player = GetComponent<Player>();
     }
     private void Update() {
         CharStage(state);
     }
     void CharStage(mState mStage){
-		if(currentStage != mStage){
-			if( canChangStage ){
+		if(currentState != mStage){
+			if(canChangStage){
 			drawChar.OffDust();
 			frameTimer = 99f;
 			FrameCurrent = 0;
-			currentStage = mStage;
+			currentState = mStage;
 			}
 		}
-		switch(currentStage){
+		switch(currentState){
 			case mState.Idle:
 				charIdle();
 				break;
@@ -66,9 +68,14 @@ public class Char_anim : MonoBehaviour
 			case mState.Climb:
 				charClimb();
 				break;
-			case mState.Attack:
+			case mState.AttackStand:
+				isFly = false;
 				canChangStage = false;
-				isAtacking= true;
+				charAttack();
+				break;
+			case mState.AttackFly:
+				isFly = true;
+				canChangStage = false;
 				charAttack();
 				break;
 			case mState.Dead:
@@ -80,8 +87,7 @@ public class Char_anim : MonoBehaviour
 	}
 	void charRun(){
 		frameTimer += Time.deltaTime;
-        if(frameTimer >= (1f)/(5*speedRun/2)){
-            frameTimer = 0;
+        if(TimeRate((1f)/(3*speedRun/2))){
 			drawChar.PainDust(FrameCurrent);
 			drawChar.cf = FrameCurrent + 2;
             FrameCurrent = ((FrameCurrent + 1)%5);
@@ -91,17 +97,14 @@ public class Char_anim : MonoBehaviour
 	void charIdle(){
 		
 		frameTimer += Time.deltaTime;
-        if(frameTimer >= 1f/(5)){
-            frameTimer = 0;
+        if(TimeRate(1f/(3))){
 			drawChar.cf = FrameCurrent; 
 			FrameCurrent = (FrameCurrent + 1) % 2; 						     
         }
 	}
-	void charClimb(){
-		
+	void charClimb(){		
 		frameTimer += Time.deltaTime;
-        if(frameTimer >= 1f/(5)){
-            frameTimer = 0;
+        if(TimeRate(1f/(5))){
 			drawChar.cf = FrameCurrent; 
 			FrameCurrent = (FrameCurrent + 1) % 2+30; 						     
         }
@@ -146,21 +149,23 @@ public class Char_anim : MonoBehaviour
 				curIdSkill = idSkill;					
 		}
 		frameTimer += Time.deltaTime;
-        if(frameTimer >= (speedAttack1 / currentSkill.Length )){
-            frameTimer = 0;			
+        if(TimeRate( (speedAttack1 / currentSkill.Length ) )){			
 			if(FrameCurrent >= currentSkill.Length){
 				draw_Skill.OffHitBox();
 				draw_Skill.SetSkillOff();
 				canChangStage = true;
-				isAtacking = false;
-				currentStage = 0;
+				player.AnimationFinishTrigger();
 				return;
 			}
 			if(FrameCurrent == 0){
 				draw_Skill.OnHitBox(10);
 			}
+			if(!isFly){
+				drawChar.cf = currentSkill[FrameCurrent].status;
+			}else{
+				drawChar.cf = currentSkill[FrameCurrent].status + 9;
+			}
 			
-			drawChar.cf = currentSkill[FrameCurrent].status;
 			// ----------------- effS0Id -------------
 			if(currentSkill[FrameCurrent].effS0Id != 0){
 				draw_Skill.LoadEff0(currentSkill[FrameCurrent].effS0Id);
@@ -203,4 +208,12 @@ public class Char_anim : MonoBehaviour
             FrameCurrent ++;	
         }		
 	}
+	bool TimeRate(float timeWait){        
+        frameTimer += Time.deltaTime;
+        if(frameTimer >= timeWait){
+            frameTimer = 0;
+            return true;
+        }
+        return false;
+    }
 }

@@ -11,13 +11,11 @@ public class Player : MonoBehaviour
     public PlayerMoveState moveState{get;private set;}
     public PlayerJumpState jumpState{get;private set;}
     public PlayerAirState airState{get;private set;}
-    public PlayerLandState landState {get;private set;}
-    public PlayerClimbState climbState {get;private set;}
     public PlayerWallSlideState wallSlideState {get;private set;}
     public PlayerWallJumpState wallJumpState {get;private set;}
     public PlayerDashState dashState {get;private set;}
-    public PlayerAttackState Attack1 {get;private set;}
-    public PlayerAttackState Attack2 {get;private set;}
+    public PlayerAttackState AttackStand {get;private set;}
+    public PlayerAttackState AttackFly {get;private set;}
 
     #endregion
     
@@ -37,19 +35,19 @@ public class Player : MonoBehaviour
     
     #region Unity Callback Function
     private void Awake() {
+
         Core = GetComponentInChildren<Core>();
         StateMachine = new PlayerStateMachine();
+
         idleState = new PlayerIdleState(this,StateMachine,playerData,mState.Idle);
         moveState = new PlayerMoveState(this,StateMachine,playerData,mState.Moving);
         jumpState = new PlayerJumpState(this,StateMachine,playerData,mState.Jump);
-        landState = new PlayerLandState(this,StateMachine,playerData,mState.InAir);
         airState = new PlayerAirState(this,StateMachine,playerData,mState.InAir);
-        climbState = new PlayerClimbState(this,StateMachine,playerData,mState.Climb);
         wallSlideState = new PlayerWallSlideState(this,StateMachine,playerData,mState.Slide);  
         wallJumpState = new PlayerWallJumpState(this,StateMachine,playerData,mState.InAir);   
         dashState = new PlayerDashState(this,StateMachine,playerData,mState.InAir);
-        Attack1 = new PlayerAttackState(this,StateMachine,playerData,mState.Attack); 
-        Attack2 = new PlayerAttackState(this,StateMachine,playerData,mState.Attack);   
+        AttackStand = new PlayerAttackState(this,StateMachine,playerData,mState.AttackStand); 
+        AttackFly = new PlayerAttackState(this,StateMachine,playerData,mState.AttackFly);   
     }
     private void Start() {
         Anim = GetComponent<Char_anim>();
@@ -62,17 +60,13 @@ public class Player : MonoBehaviour
     }
     private void Update() {
         Core.LogicUpdate();
-        StateMachine.CurrentState.LogicUpdate();
+        StateMachine.CurrentState.LogicUpdate();  
     }
     private void FixedUpdate() {
         StateMachine.CurrentState.PhysicsUpdate();
     }
     #endregion
-     //------------------------------------------
-    #region Set Function
-
-    #endregion
-    //------------------------------------------
+     //-------------------------------------------
     #region Check Function
     public bool CheckTouchingWall(){
         return  mWallCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));

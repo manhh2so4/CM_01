@@ -30,6 +30,9 @@ public class PlayerDashState : PlayerAbilityState
         if(core.Movement.CurrentVelocity.y >0){
            core.Movement.SetVelocityY(core.Movement.CurrentVelocity.y*playerData.dashEndYMultiplier);
         }
+        if(core.Movement.CurrentVelocity.x >0){
+           core.Movement.SetVelocityY(core.Movement.CurrentVelocity.x*playerData.dashEndYMultiplier);
+        }
     }
     public override void LogicUpdate(){
         base.LogicUpdate();

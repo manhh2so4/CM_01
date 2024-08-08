@@ -37,17 +37,19 @@ public class PlayerAirState : PlayerState
         jumpInput = player.inputPlayer.jumpInput;
         dashInput = player.inputPlayer.dashInput;
         if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack1]){
-
-            stateMachine.ChangeState(player.Attack1);
+            isFall = true; 
+            core.Movement.SetVelocityY(4); 
+            stateMachine.ChangeState(player.AttackFly);
             
         }else if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack2]){
-
-            stateMachine.ChangeState(player.Attack2);
+            isFall = true;
+            core.Movement.SetVelocityY(4); 
+            stateMachine.ChangeState(player.AttackFly);
 
         }else if(isGrounded && core.Movement.CurrentVelocity.y < 1f){
 
-            isFall = true;            
-            stateMachine.ChangeState(player.landState); 
+            isFall = true;           
+            stateMachine.ChangeState(player.idleState); 
         }   
         else if(jumpInput && player.jumpState.CanJump()){
 
