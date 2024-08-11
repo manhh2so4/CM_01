@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     public PlayerAttackState AttackFly {get;private set;}
 
     #endregion
-    
     #region Component
     public Char_anim Anim {get;private set;}
     public inputPlayer inputPlayer {get;private set;}
@@ -28,9 +27,6 @@ public class Player : MonoBehaviour
     //------------------------------------------
     #region Other Variable
     public Core Core { get; private set; }
-    [SerializeField] private BoxCollider2D mGroundCheck;
-    [SerializeField] private BoxCollider2D mWallCheck;
-    [SerializeField] private BoxCollider2D mWallBackCheck;
     #endregion
     
     #region Unity Callback Function
@@ -52,9 +48,6 @@ public class Player : MonoBehaviour
     private void Start() {
         Anim = GetComponent<Char_anim>();
         inputPlayer = GetComponent<inputPlayer>();
-        mGroundCheck = transform.Find("Ground_check").GetComponent<BoxCollider2D>();
-        mWallCheck = transform.Find("Wall_check").GetComponent<BoxCollider2D>();
-        mWallBackCheck = transform.Find("Wall_check_Back").GetComponent<BoxCollider2D>();
         dashDirImgae = transform.Find("DashDirectionImg");
         StateMachine.Initialize(idleState);
     }
@@ -67,17 +60,7 @@ public class Player : MonoBehaviour
     }
     #endregion
      //-------------------------------------------
-    #region Check Function
-    public bool CheckTouchingWall(){
-        return  mWallCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
-    }
-    public bool CheckTouchingGround(){
-        return  mGroundCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
-    }
-    public bool CheckTouchingGroundBack(){
-        return  mWallBackCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
-    }
-    #endregion
+
      //------------------------------------------
     #region Other Function
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();

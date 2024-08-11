@@ -115,10 +115,6 @@ public class ParallaxBG : MonoBehaviour
         Field2Y = (float)imgBg[0].texture.height/100;
         houseY = Field2Y +  (float)imgBg[1].texture.height/100;
         mountainY = Field2Y +  (float)imgBg[1].texture.height/100 +0.4f;
-        Debug.Log("Field2Y" + Field2Y*100);
-        Debug.Log("houseY" + houseY*100);
-        Debug.Log("mountainY" + mountainY*100);
-        Debug.Log("cam.transform.position.y" +cam.transform.position.y);
         LoadBG(ref Bg0[0],24,0,0);
         LoadBG(ref Bg0[1],24,1,0);
         LoadBG(ref Bg0[2],24,2,0);

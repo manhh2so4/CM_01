@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class PlayerAirState : PlayerState
 {
+    protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+	private CollisionSenses CollisionSenses { get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses); }
+
+	private Movement movement;
+	private CollisionSenses collisionSenses;
+    
     //Input
     bool jumpInput;
     bool dashInput;
@@ -16,13 +22,13 @@ public class PlayerAirState : PlayerState
     public bool isFall = true;
     public PlayerAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
     {
-    }
 
+    }
     public override void DoCheck(){
         base.DoCheck();
-        isGrounded = player.CheckTouchingGround();
-        isWall = player.CheckTouchingWall();
-        isWallBack = player.CheckTouchingGroundBack();
+        isGrounded = CollisionSenses.isGround;
+        isWall = CollisionSenses.isWall;
+        isWallBack = CollisionSenses.isGround;
     }
     public override void Enter(){
         base.Enter();
@@ -38,15 +44,15 @@ public class PlayerAirState : PlayerState
         dashInput = player.inputPlayer.dashInput;
         if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack1]){
             isFall = true; 
-            core.Movement.SetVelocityY(4); 
+            Movement.SetVelocityY(4); 
             stateMachine.ChangeState(player.AttackFly);
             
         }else if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack2]){
             isFall = true;
-            core.Movement.SetVelocityY(4); 
+            Movement.SetVelocityY(4); 
             stateMachine.ChangeState(player.AttackFly);
 
-        }else if(isGrounded && core.Movement.CurrentVelocity.y < 1f){
+        }else if(isGrounded && Movement.CurrentVelocity.y < 1f){
 
             isFall = true;           
             stateMachine.ChangeState(player.idleState); 
@@ -57,7 +63,7 @@ public class PlayerAirState : PlayerState
             stateMachine.ChangeState(player.jumpState);
 
         
-        }else if(isWall && inputX == core.Movement.facingDirection && !isExitingState){
+        }else if(isWall && inputX == Movement.facingDirection && !isExitingState){
 
             isFall = true; 
             stateMachine.ChangeState(player.wallSlideState);
@@ -68,19 +74,19 @@ public class PlayerAirState : PlayerState
         else if(isFall){
             CheckDir();
             player.Anim.state = mState.InAir;
-            player.Anim.stagejump = (int)System.Math.Round(core.Movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);
+            player.Anim.stagejump = (int)System.Math.Round(Movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);
         }
         else{
             CheckDir();
             player.Anim.state = mState.Jump;
-            player.Anim.stagejump = (int)System.Math.Round(core.Movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);         
+            player.Anim.stagejump = (int)System.Math.Round(Movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);         
         }
     }
     public override void PhysicsUpdate(){
         base.PhysicsUpdate();
     }
     private void CheckDir(){
-        core.Movement.CheckIfShouldFlip(inputX );
-        core.Movement.SetVelocityX(playerData.movementSpeed * inputX);
+        Movement.CheckIfShouldFlip(inputX );
+        Movement.SetVelocityX(playerData.movementSpeed * inputX);
     }
 }

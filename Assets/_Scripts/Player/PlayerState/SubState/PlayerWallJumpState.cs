@@ -17,13 +17,13 @@ public class PlayerWallJumpState : PlayerAbilityState
         player.inputPlayer.UseJumpInput();
         player.jumpState.ResetAmountJunpsLeft();
         player.airState.isFall = true;
-        core.Movement.SetVelocity(playerData.wallJumpVelocity,playerData.wallJumpAngle,wallJumpDir);
-        core.Movement.CheckIfShouldFlip(wallJumpDir);
+        Movement.SetVelocity(playerData.wallJumpVelocity,playerData.wallJumpAngle,wallJumpDir);
+        Movement.CheckIfShouldFlip(wallJumpDir);
         player.jumpState.DecreaseAmountJumps();
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
-        player.Anim.stagejump = (int)System.Math.Round(core.Movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);
+        player.Anim.stagejump = (int)System.Math.Round(Movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);
         if(Time.time >= startTime + playerData.wallJumpTime){
             isAbilityDone = true;
         }
@@ -31,9 +31,9 @@ public class PlayerWallJumpState : PlayerAbilityState
     }
     public void DetermineWallJumpDir(bool isWall){
         if(isWall){
-            wallJumpDir = -core.Movement.facingDirection;
+            wallJumpDir = -Movement.facingDirection;
         }else{
-            wallJumpDir = core.Movement.facingDirection;
+            wallJumpDir = Movement.facingDirection;
         }
     }
 

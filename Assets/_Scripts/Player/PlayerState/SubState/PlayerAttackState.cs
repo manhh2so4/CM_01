@@ -14,16 +14,15 @@ public class PlayerAttackState : PlayerAbilityState
     }
     public override void Enter(){
         base.Enter();
-        
     }
     public override void Exit(){
         base.Exit();
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
-        core.Movement.SetVelocityX(0);
+        Movement.SetVelocityX(0);
         xInput = player.inputPlayer.MoveInput;
-        core.Movement.CheckIfShouldFlip(xInput);
+        Movement.CheckIfShouldFlip(xInput);
         
     }
     public override void PhysicsUpdate(){

@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using DG.Tweening;
 
-public class EnemeState : Draw_Enemy,IDamageable
+public class EnemeState : Draw_Enemy
 {   
+    public Core Core { get; private set; }
     [Header("EnemeState --------------")]
     [SerializeField] GameObject bloodSp; 
     [SerializeField] bool groundDetected,wallDetected,canFlip; 
@@ -28,6 +29,7 @@ public class EnemeState : Draw_Enemy,IDamageable
     public Ease ease,easeEnd;
     int dir;
     private void Awake() {
+        Core = GetComponentInChildren<Core>();
         groundDetected = true;
         LoadComponent();
         Load_Enemy();
@@ -39,6 +41,7 @@ public class EnemeState : Draw_Enemy,IDamageable
     }
     private void Update()
 	{
+        Core.LogicUpdate();
 		UpdateState();
         
 	}
@@ -68,9 +71,6 @@ public class EnemeState : Draw_Enemy,IDamageable
     }
 
     void EnemyDetected(){
-        
-
-
 
         if(type != 4 && type != 5) groundDetected = groundCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
 

@@ -85,15 +85,11 @@ public class Draw_skill : MonoBehaviour
         SenderDame = _SenderDame;
         mHitBox.enabled = true;
     }
-    private void OnTriggerEnter2D(Collider2D other){
-        
-        
+    private void OnTriggerEnter2D(Collider2D other){               
             IDamageable damageable = other.GetComponent<IDamageable>();
             if(damageable != null){
                 damageable.Damage(SenderDame);
-            
-        } 
-         
+            }    
     }
     public void OffHitBox(){
         mHitBox.size = new(0,0);

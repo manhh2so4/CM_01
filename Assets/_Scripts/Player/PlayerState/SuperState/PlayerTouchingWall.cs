@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerTouchingWall : PlayerState
 {   
+    protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+	private CollisionSenses CollisionSenses { get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses); }
+
+	private Movement movement;
+	private CollisionSenses collisionSenses;
+
     protected bool isGrounded;
     protected bool isWall;
     protected int inputX;
@@ -13,8 +19,8 @@ public class PlayerTouchingWall : PlayerState
     }
     public override void DoCheck(){
         base.DoCheck();
-        isGrounded = player.CheckTouchingGround();
-        isWall = player.CheckTouchingWall();
+        isGrounded = CollisionSenses.isGround;
+        isWall = CollisionSenses.isWall;
     }
     public override void Enter(){
         base.Enter();
@@ -32,7 +38,7 @@ public class PlayerTouchingWall : PlayerState
         }else
         if(isGrounded){
             stateMachine.ChangeState(player.idleState);
-        }else if(!isWall || inputX != core.Movement.facingDirection){
+        }else if(!isWall || inputX != Movement.facingDirection){
             stateMachine.ChangeState(player.airState);
         }
     }

@@ -8,7 +8,9 @@ public class Movement : CoreComponent
     public int facingDirection { get; private set; }
     public bool CanSetVelocity { get; set; }
     [SerializeField] public Vector2 CurrentVelocity { get; private set; }
+
     private Vector2 workspace;
+
     protected override void Awake()
     {
         base.Awake();
@@ -17,7 +19,7 @@ public class Movement : CoreComponent
         CanSetVelocity = true;
     }
 
-    public void LogicUpdate()
+    public override void LogicUpdate()
     {
         CurrentVelocity = mRB.velocity;
     }
@@ -71,10 +73,12 @@ public class Movement : CoreComponent
             Flip();
         }
     }
+
     public void Flip()
     {
         facingDirection *= -1;
         mRB.transform.Rotate(0.0f, 180.0f, 0.0f);
     }
     #endregion
+
 }
