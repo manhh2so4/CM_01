@@ -13,7 +13,7 @@ public class PlayerJumpState : PlayerAbilityState
         base.DoCheck();
     }
     public override void Enter(){
-        Debug.Log("Enter amountOfjumpLeft: " + amountOfjumpLeft);
+        //Debug.Log("Enter amountOfjumpLeft: " + amountOfjumpLeft);
         player.inputPlayer.UseJumpInput();
         base.Enter();
         player.airState.isFall = false;

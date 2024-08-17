@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
     #region State Variable
     public PlayerStateMachine StateMachine{get;private set;}
 
@@ -23,9 +24,12 @@ public class Player : MonoBehaviour
     public inputPlayer inputPlayer {get;private set;}
     [SerializeField] public Transform dashDirImgae;
     [SerializeField] private PlayerData playerData;
+
     #endregion
     //------------------------------------------
     #region Other Variable
+    private Weapon primaryWeapon;
+    private Weapon secondaryWeapon;
     public Core Core { get; private set; }
     #endregion
     
@@ -35,6 +39,12 @@ public class Player : MonoBehaviour
         Core = GetComponentInChildren<Core>();
         StateMachine = new PlayerStateMachine();
 
+        primaryWeapon = transform.Find("PrimaryWeapon").GetComponent<Weapon>();
+        secondaryWeapon = transform.Find("SecondaryWeapon").GetComponent<Weapon>();
+
+        primaryWeapon.SetCore(Core);
+        secondaryWeapon.SetCore(Core);
+
         idleState = new PlayerIdleState(this,StateMachine,playerData,mState.Idle);
         moveState = new PlayerMoveState(this,StateMachine,playerData,mState.Moving);
         jumpState = new PlayerJumpState(this,StateMachine,playerData,mState.Jump);
@@ -42,8 +52,8 @@ public class Player : MonoBehaviour
         wallSlideState = new PlayerWallSlideState(this,StateMachine,playerData,mState.Slide);  
         wallJumpState = new PlayerWallJumpState(this,StateMachine,playerData,mState.InAir);   
         dashState = new PlayerDashState(this,StateMachine,playerData,mState.InAir);
-        AttackStand = new PlayerAttackState(this,StateMachine,playerData,mState.AttackStand); 
-        AttackFly = new PlayerAttackState(this,StateMachine,playerData,mState.AttackFly);   
+        AttackStand = new PlayerAttackState(this,StateMachine,playerData,mState.AttackStand,primaryWeapon); 
+        AttackFly = new PlayerAttackState(this,StateMachine,playerData,mState.AttackFly,secondaryWeapon);   
     }
     private void Start() {
         Anim = GetComponent<Char_anim>();

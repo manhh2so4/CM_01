@@ -86,6 +86,7 @@
     <Compile Include="Assets\_Scripts\Effect\Effect_Trigger.cs" />
     <Compile Include="Assets\_Scripts\Core\CorComponents\Combat.cs" />
     <Compile Include="Assets\_Scripts\Read_data_nso\Read_BigImage.cs" />
+    <Compile Include="Assets\_Scripts\Player\Weapons\ArrowPaint.cs" />
     <Compile Include="Assets\_Scripts\Enemy\Draw_Enemy.cs" />
     <Compile Include="Assets\_Scripts\Effect\AutoEffect.cs" />
     <Compile Include="Assets\_Scripts\Load_SO\TextFXSkill_SO.cs" />
@@ -118,12 +119,14 @@
     <Compile Include="Assets\_Scripts\Player\PlayerState\SubState\PlayerJumpState.cs" />
     <Compile Include="Assets\_Scripts\Read_data_nso\Test.cs" />
     <Compile Include="Assets\_Scripts\Effect\Effect_temp.cs" />
+    <Compile Include="Assets\_Scripts\Core\CorComponents\Death.cs" />
     <Compile Include="Assets\_Scripts\Data\EffSkillInfo_Sprite.cs" />
     <Compile Include="Assets\_Scripts\Enemy\State_Machine\FiniteStateMachine.cs" />
     <Compile Include="Assets\_Scripts\Read_data_nso\Read_FX_Skill.cs" />
     <Compile Include="Assets\_Scripts\Effect\Effect_Instance.cs" />
     <Compile Include="Assets\_Scripts\Core\CorComponents\Movement.cs" />
     <Compile Include="Assets\_Scripts\Load_SO\TexHead_SO.cs" />
+    <Compile Include="Assets\_Scripts\Core\CorComponents\Stats.cs" />
     <Compile Include="Assets\_Scripts\Load_SO\SmallEffect_SO.cs" />
     <Compile Include="Assets\_Scripts\Core\Core.cs" />
     <Compile Include="Assets\_Scripts\Data\Skill.cs" />
@@ -134,15 +137,16 @@
     <Compile Include="Assets\_Scripts\Player\Draw_Char.cs" />
     <Compile Include="Assets\_Scripts\Data\ImageInfor.cs" />
     <Compile Include="Assets\_Scripts\Player\PlayerState\SubState\PlayerDashState.cs" />
+    <Compile Include="Assets\_Scripts\Core\CorComponents\ParticleManager.cs" />
     <Compile Include="Assets\_Scripts\Player\PlayerState\SuperState\PlayerAbilityState.cs" />
     <Compile Include="Assets\_Scripts\Core\CorComponents\CollisionSenses.cs" />
+    <Compile Include="Assets\_Scripts\Player\Weapons\Weapon.cs" />
+    <Compile Include="Assets\_Scripts\Interface\ILogicUpdate.cs" />
     <Compile Include="Assets\_Scripts\Player\PlayerFiniteStateMachine\Char_Animaton.cs" />
     <Compile Include="Assets\_Scripts\Player\PlayerState\SubState\PlayerWallGrabState.cs" />
     <Compile Include="Assets\_Scripts\Player\PlayerState\SubState\PlayerMoveState.cs" />
-    <Compile Include="Assets\_Scripts\Core\CorComponents\Stats.cs" />
-    <Compile Include="Assets\_Scripts\Interface\ILogicUpdate.cs" />
-    <Compile Include="Assets\_Scripts\Core\CorComponents\ParticleManager.cs" />
-    <Compile Include="Assets\_Scripts\Core\CorComponents\Death.cs" />
+    <Compile Include="Assets\_Scripts\CVM\mTimer.cs" />
+    <Compile Include="Assets\_Scripts\Player\Weapons\Components\WeaponComponents.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Output.txt" />

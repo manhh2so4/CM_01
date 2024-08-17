@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Dame
+  - ParticleContainer
   layers:
   - Default
   - TransparentFX

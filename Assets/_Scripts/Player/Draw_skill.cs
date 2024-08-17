@@ -16,6 +16,7 @@ public class Draw_skill : MonoBehaviour
     [SerializeField] int SenderDame;
     //--------- Set Collider-----------
     Vector2 rangeSet,mSize,mOffset;
+    
     public void LoadEff0(int eff0id){
         effSkill_0.idEffSkill = eff0id;
         LoadEffSkill(eff0id,effSkill_0);              
