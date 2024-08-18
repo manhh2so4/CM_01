@@ -15,7 +15,7 @@ public class PlayerAttackState : PlayerAbilityState
         this.weapon = weapon;
         weapon.OnExit += ExitHandler;
     }
-
+    
     public override void Enter(){
         base.Enter();
         weapon.Enter();
@@ -23,13 +23,18 @@ public class PlayerAttackState : PlayerAbilityState
 
     public override void LogicUpdate(){
         base.LogicUpdate();
-        Movement.SetVelocityX(0);    
+        Movement.SetVelocityX(0);
+        if(isGrounded ){  
+            player.Anim.isFly = false;       
+        }else{
+            player.Anim.isFly = true; 
+        }
+
     }
 
-    private void ExitHandler()
+    public void ExitHandler()
     {
         AnimationFinishTrigger();
         isAbilityDone = true;
-        //weapon.OnExit -= ExitHandler;
     }
 }

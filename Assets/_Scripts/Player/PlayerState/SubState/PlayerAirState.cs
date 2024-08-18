@@ -45,12 +45,12 @@ public class PlayerAirState : PlayerState
         if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack1]){
             isFall = true; 
             Movement.SetVelocityY(4); 
-            stateMachine.ChangeState(player.AttackFly);
+            stateMachine.ChangeState(player.PrimaryAttack);
             
         }else if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack2]){
             isFall = true;
             Movement.SetVelocityY(4); 
-            stateMachine.ChangeState(player.AttackFly);
+            stateMachine.ChangeState(player.PrimaryAttack);
 
         }else if(isGrounded && Movement.CurrentVelocity.y < 1f){
 

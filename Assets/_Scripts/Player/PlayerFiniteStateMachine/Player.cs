@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public PlayerWallSlideState wallSlideState {get;private set;}
     public PlayerWallJumpState wallJumpState {get;private set;}
     public PlayerDashState dashState {get;private set;}
-    public PlayerAttackState AttackStand {get;private set;}
+    public PlayerAttackState PrimaryAttack {get;private set;}
     public PlayerAttackState AttackFly {get;private set;}
 
     #endregion
@@ -52,8 +52,8 @@ public class Player : MonoBehaviour
         wallSlideState = new PlayerWallSlideState(this,StateMachine,playerData,mState.Slide);  
         wallJumpState = new PlayerWallJumpState(this,StateMachine,playerData,mState.InAir);   
         dashState = new PlayerDashState(this,StateMachine,playerData,mState.InAir);
-        AttackStand = new PlayerAttackState(this,StateMachine,playerData,mState.AttackStand,primaryWeapon); 
-        AttackFly = new PlayerAttackState(this,StateMachine,playerData,mState.AttackFly,secondaryWeapon);   
+        PrimaryAttack = new PlayerAttackState(this,StateMachine,playerData,mState.AttackStand,primaryWeapon); 
+        AttackFly = new PlayerAttackState(this,StateMachine,playerData,mState.AttackStand,secondaryWeapon);   
     }
     private void Start() {
         Anim = GetComponent<Char_anim>();

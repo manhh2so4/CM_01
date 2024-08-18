@@ -11,7 +11,7 @@ public class PlayerAbilityState : PlayerState
 	private CollisionSenses collisionSenses;
     
     protected bool isAbilityDone;
-    private bool isGrounded;
+    protected bool isGrounded;
     public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
     {
     }
