@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Logging;
 public class Movement : CoreComponent
 {
     [SerializeField] public Rigidbody2D mRB;
-    public int facingDirection { get; private set; }
-    public bool CanSetVelocity { get; set; }
-    [SerializeField] public Vector2 CurrentVelocity { get; private set; }
+    [field: SerializeField] public int facingDirection { get; private set; }
+    [field: SerializeField] public bool CanSetVelocity { get; set; }
+    [field: SerializeField] public Vector2 CurrentVelocity { get; private set; }
 
     private Vector2 workspace;
 
@@ -42,6 +42,11 @@ public class Movement : CoreComponent
     public void SetVelocity(float velocity, Vector2 direction)
     {
         workspace = direction * velocity;
+        SetFinalVelocity();
+    }
+    public void SetVelocity(float X,float Y)
+    {
+        workspace.Set(X,Y);
         SetFinalVelocity();
     }
 

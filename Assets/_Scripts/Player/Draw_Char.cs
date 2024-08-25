@@ -7,27 +7,23 @@ public class Draw_Char : MonoBehaviour
 {
     public int cf = 0;
 	private int current = -1;
+
     [SerializeField] GameObject LegGO;
     [SerializeField] GameObject HeadGO;
     [SerializeField] GameObject BodyGO;
 	[SerializeField] GameObject DustGO;
-    [Header("Body-------")]
-    Texture2D[] imgBody ;
-    Sprite[] spriteBody;
-    Texture2D[] rootBody = new Texture2D[1];
-    [Header("Head------")]
-	Sprite[] spriteHead;
-    Texture2D[] imgHead;
-    Texture2D[] rootImageHead;
-    [Header("Leg-------")]
-	Sprite[] spriteLeg;
-    Texture2D[] imgLeg;
-    Texture2D[] rootLeg = new Texture2D[1];
-    [Header("Wp-------")]
-    [SerializeField] Texture2D[] imgWp = new Texture2D[6];
-    [SerializeField] protected TexAo_SO mTexAo;
-    [SerializeField] protected TexQuan_SO mQuan;
-    [SerializeField] protected TexHead_SO mHead;
+	[SerializeField] GameObject WpGO;
+
+    SpriteInfo[] partBody = new SpriteInfo[18];
+	SpriteInfo[] partHead = new SpriteInfo[8];
+	SpriteInfo[] partLeg = new SpriteInfo[10];
+    SpriteInfo[] partWP = new SpriteInfo[2];
+
+	[SerializeField] protected Tex_NjPart_SO mTexAo;
+    [SerializeField] protected Tex_NjPart_SO mQuan;
+    [SerializeField] protected Tex_NjPart_SO mHead;
+	[SerializeField] private Tex_NjPart_SO mWp;
+
 	//--------- effect char --------
 	Sprite[] spriteDust;
 	SmallEffect_SO mDust;
@@ -51,10 +47,7 @@ public class Draw_Char : MonoBehaviour
         LoadTexQuan_SO();
         LoadTexHead_SO();   
     }
-    void LoadrootImageHead(){
-        string resPath = "Char_tex/Head/rootHead";
-        this.rootImageHead = Resources.Load<TexHead_SO>(resPath).imgHead;
-    }
+
 	void LoadEffect_Trigger(){
         string resPath = "Effec_Load/Small_Eff/" + "dust";
         this.mDust = Resources.Load<SmallEffect_SO>(resPath);
@@ -66,39 +59,31 @@ public class Draw_Char : MonoBehaviour
     }
     public void LoadTexWp()
     {
-        if (wpTypeCurrent == wpType ) return;
-        
-        wpTypeCurrent = wpType;
-
+        partWP = mWp.spriteInfos;
     }
     public void LoadTexAo_SO()
     {
         if (lvAoCurrent == lvAo ) return;
         string resPath = "Char_tex/Ao/Ao_lv " + lvAo;
-        mTexAo = Resources.Load<TexAo_SO>(resPath);
-        imgBody = rootBody.Concat(mTexAo.imgBody).ToArray();
-		mPaint.LoadSprite(ref spriteBody,imgBody,0);
+        this.mTexAo = Resources.Load<Tex_NjPart_SO>(resPath);
+		partBody = mTexAo.spriteInfos;
         lvAoCurrent = lvAo;
     }
     public void LoadTexQuan_SO()
     {
         if (lvQuanCurrent == lvQuan ) return;
         string resPath = "Char_tex/Quan/Quan_lv " + lvQuan;
-        this.mQuan = Resources.Load<TexQuan_SO>(resPath);
-        //Debug.Log(": Char_texture " + resPath);
-        this.imgLeg = rootLeg.Concat(mQuan.imgLeg).ToArray();
-		mPaint.LoadSprite(ref spriteLeg,imgLeg,0);
+        this.mQuan = Resources.Load<Tex_NjPart_SO>(resPath);
+		partLeg = mQuan.spriteInfos;
         lvQuanCurrent = lvQuan;
 
     }
     public void LoadTexHead_SO()
     {
         if (lvHeadCurrent == lvHead ) return;
-        string resPath = "Char_tex/Head/Head_lv " + lvHead;
-        this.mHead = Resources.Load<TexHead_SO>(resPath);
-        //Debug.Log(": Char_texture " + resPath);
-        this.imgHead = mHead.imgHead.Concat(rootImageHead).ToArray();
-		mPaint.LoadSprite(ref spriteHead,imgHead,0);
+        string resPath = "Char_tex/Head/Head_id " + lvHead;
+        this.mHead = Resources.Load<Tex_NjPart_SO>(resPath);
+		partHead = mHead.spriteInfos;
         lvHeadCurrent = lvHead;
     }
    
@@ -349,31 +334,33 @@ public class Draw_Char : MonoBehaviour
         LoadTexAo_SO();
         LoadTexQuan_SO();
         LoadTexHead_SO();
+		LoadTexWp();
 		LoadEffect_Trigger();   				
 	}
 	private void Reset() {
 		LoadCompnents();
         LoadTexAo_SO();
         LoadTexQuan_SO();
-        LoadTexHead_SO();        
+        LoadTexHead_SO(); 
+		Debug.Log(partBody[1].sprite.rect.height);
+		
+
 	}
 	void LoadCompnents(){
-		rootLeg[0] = new Texture2D(1,1);
-        rootBody[0] = new Texture2D(1,1);
-		LoadrootImageHead();
 		LegGO = transform.Find("Leg").gameObject;
 		HeadGO = transform.Find("Head").gameObject;
-		BodyGO = transform.Find("Body").gameObject;
-		DustGO = transform.Find("Dust").gameObject;
+		BodyGO = transform.Find("Body").gameObject;		
+		WpGO = transform.Find("Wp").gameObject;
 	}
 	private void Update() {
         PaintChar();
     }
     private void PaintChar(){
 		if(cf == current) return;
-        mPaint.Paint(BodyGO,spriteBody[CharInfo2[cf][2][0]], CharInfo2[cf][2][1],CharInfo2[cf][2][2],3);
-        mPaint.Paint(HeadGO,spriteHead[CharInfo2[cf][0][0]], CharInfo2[cf][0][1],CharInfo2[cf][0][2],3);
-        mPaint.Paint(LegGO,spriteLeg[CharInfo2[cf][1][0]], CharInfo2[cf][1][1],CharInfo2[cf][1][2],3);
+        mPaint.Paint(BodyGO, partBody[CharInfo2[cf][2][0]].sprite, CharInfo2[cf][2][1] + partBody[CharInfo2[cf][2][0]].dx, CharInfo2[cf][2][2] - partBody[CharInfo2[cf][2][0]].dy, 0);
+        mPaint.Paint(HeadGO, partHead[CharInfo2[cf][0][0]].sprite, CharInfo2[cf][0][1] + partHead[CharInfo2[cf][0][0]].dx, CharInfo2[cf][0][2] - partHead[CharInfo2[cf][0][0]].dy, 0);
+        mPaint.Paint(LegGO,  partLeg[CharInfo2[cf][1][0]].sprite,  CharInfo2[cf][1][1] + partLeg[CharInfo2[cf][1][0]].dx,  CharInfo2[cf][1][2] - partLeg[CharInfo2[cf][1][0]].dy, 0);
+		mPaint.Paint(WpGO,   partWP[CharInfo2[cf][3][0]].sprite,   CharInfo2[cf][3][1] + partWP[CharInfo2[cf][3][0]].dx,   CharInfo2[cf][3][2] - partWP[CharInfo2[cf][3][0]].dy, 0);
 		current = cf;
 	}
     public void PainDust(int index){

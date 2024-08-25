@@ -6,11 +6,11 @@ using DG.Tweening;
 
 public class EnemeState : Draw_Enemy
 {   
-    public Core Core { get; private set; }
+    public Core Core { get; private set;}	
     [Header("EnemeState --------------")]
     [SerializeField] GameObject bloodSp; 
     [SerializeField] bool groundDetected,wallDetected,canFlip; 
-    [SerializeField] private State currentState;
+    [SerializeField] private StateEnemy currentState;
     //--------- Enemy Moment -----------  	        
 	[SerializeField] float timeStateWait;
     public float frameTimer = 0,timeCount = 0,timeAction = 0;
@@ -28,12 +28,23 @@ public class EnemeState : Draw_Enemy
     [SerializeField] bool playerDetected, attackDetected,canAttack,attacking;
     public Ease ease,easeEnd;
     int dir;
+    private Enemy entity;
+    private FiniteStateMachine stateMachine;
+    private Enemy_SO enemyData;
+
+    public EnemeState(Enemy entity, FiniteStateMachine stateMachine, Enemy_SO enemyData)
+    {
+        this.entity = entity;
+        this.stateMachine = stateMachine;
+        this.enemyData = enemyData;
+    }
+
     private void Awake() {
         Core = GetComponentInChildren<Core>();
         groundDetected = true;
         LoadComponent();
         Load_Enemy();
-        SwitchState(State.Moving);
+        SwitchState(StateEnemy.Moving);
     }
     private void Reset() {
         LoadComponent();
@@ -57,7 +68,7 @@ public class EnemeState : Draw_Enemy
         if(other.tag == "Player"){
             player = other.transform;
             playerDetected = true;
-            SwitchState(State.Follow_Player);
+            SwitchState(StateEnemy.Follow_Player);
         }
                              
     }
@@ -108,97 +119,99 @@ public class EnemeState : Draw_Enemy
     }
     public void Damage(int amout)
     {
-        if(Hp > 0){
-            Hp -= amout;
-            Debug.Log("Take dame111111111: " + amout);
+        Hp -= amout;
+        Debug.Log("Take dame111111111: " + amout);
+        if(Hp > 0){                        
             if(attacking) return;
-            SwitchState(State.Knockback);
+            SwitchState(StateEnemy.Knockback);
         }else{
-            SwitchState(State.Dead);
+            SwitchState(StateEnemy.Dead);
         }
     }  
     //------------ State ----------------
     private void UpdateState() {
         switch (currentState)
 		{
-        case State.Respawn:
+        case StateEnemy.Respawn:
 			Respawn();
 			break;
-		case State.Dead:
+		case StateEnemy.Dead:
 			Dead();
 			break;
-		case State.Idle:
+		case StateEnemy.Idle:
 			Idle();
 			break;
-		case State.Moving:
+		case StateEnemy.Moving:
 			Moving();
 			break;
-        case State.Dash:
+        case StateEnemy.Dash:
 			Dash();
 			break;
-        case State.Follow_Player:
+        case StateEnemy.Follow_Player:
 			Follow_Player();
 			break;
-        case State.Attack:
+        case StateEnemy.Attack:
 			Attack();
 			break;
-		case State.Knockback:
+		case StateEnemy.Knockback:
 			Knockback();
 			break;
 		}
     }
-	private void SwitchState(State state)
+	private void SwitchState(StateEnemy state)
 	{
         frameTimer = 99f;
         timeCount = 0f;
 		switch (currentState)
 		{
-        case State.Respawn:
+        case StateEnemy.Respawn:
 			ExitRespawn();
 			break;
-		case State.Idle:
+		case StateEnemy.Idle:
 			ExitIdle();
 			break;
-		case State.Moving:
+		case StateEnemy.Moving:
 			ExitMoving();
 			break;
-        case State.Dash:
+        case StateEnemy.Dash:
 			ExitDash();
 			break;
-        case State.Follow_Player:
+        case StateEnemy.Follow_Player:
 			ExitFollow_Player();
 			break;
-        case State.Attack:
+        case StateEnemy.Attack:
 			ExitAttack();
 			break;
-		case State.Knockback:
+		case StateEnemy.Knockback:
 			ExitKnockback();
 			break;
 		}
+
 		switch (state)
+        
 		{
-        case State.Respawn:
+        case StateEnemy.Respawn:
 			EnterRespawn();
 			break;
-		case State.Idle:
+		case StateEnemy.Idle:
 			EnterIdle();
 			break;
-		case State.Moving:
+		case StateEnemy.Moving:
 			EnterMoving();
 			break;
-        case State.Dash:
+        case StateEnemy.Dash:
 			EnterDash();
 			break;
-        case State.Follow_Player:
+        case StateEnemy.Follow_Player:
 			EnterFollow_Player();
 			break;
-        case State.Attack:
+        case StateEnemy.Attack:
 			EnterAttack();
 			break;
-		case State.Knockback:
+		case StateEnemy.Knockback:
 			EnterKnockback();
 			break;
-		case State.Dead:
+		case StateEnemy.Dead:
 			EnterDead();
 			break;
 		}
@@ -215,7 +228,7 @@ public class EnemeState : Draw_Enemy
 
         if(CountDown(timeStateWait) && !playerDetected ){
             OnFlip();
-           SwitchState(State.Moving);
+           SwitchState(StateEnemy.Moving);
            if(GetRandomBoolean()) Flip(); 
         }
         switch(type){
@@ -241,7 +254,7 @@ public class EnemeState : Draw_Enemy
 	}
 	private void Moving(){
         if(CountDown(timeStateWait) && !playerDetected){
-            SwitchState(State.Idle);
+            SwitchState(StateEnemy.Idle);
             return;
         }       
         switch(type){			
@@ -313,7 +326,7 @@ public class EnemeState : Draw_Enemy
                 .OnComplete(()=>{;
                 attacking = false;
                 canAttack = false;
-                SwitchState(State.Follow_Player);
+                SwitchState(StateEnemy.Follow_Player);
                 });
             });
 	}
@@ -358,7 +371,7 @@ public class EnemeState : Draw_Enemy
         }
         }
         if(playerDetected == false){
-            SwitchState(State.Moving);
+            SwitchState(StateEnemy.Moving);
         }
         CheckDirTarget(player.transform.position);                        
         if(attackDetected == false){
@@ -372,7 +385,7 @@ public class EnemeState : Draw_Enemy
             } 
                       
             if(CountDown(0.5f)) {
-                SwitchState(State.Attack);                            
+                SwitchState(StateEnemy.Attack);                            
             }else{
                 
                 if(TimeRate(0.3f/speedMove)) return;
@@ -393,8 +406,8 @@ public class EnemeState : Draw_Enemy
 	private void Knockback(){
         
 		if(CountDown(0.3f)){
-        if(playerDetected && canAttack) SwitchState(State.Attack);
-        else SwitchState(State.Follow_Player);
+        if(playerDetected && canAttack) SwitchState(StateEnemy.Attack);
+        else SwitchState(StateEnemy.Follow_Player);
         } 
 	}
 	private void ExitKnockback(){
@@ -411,7 +424,7 @@ public class EnemeState : Draw_Enemy
 
 	private void Dead(){
 		if(CountDown(5f)){
-            SwitchState(State.Respawn);
+            SwitchState(StateEnemy.Respawn);
         } 
 	}
     //------------ Stage Respawn ----------------
@@ -428,7 +441,7 @@ public class EnemeState : Draw_Enemy
         
 	}
 	private void Respawn(){
-		SwitchState(State.Idle);
+		SwitchState(StateEnemy.Idle);
 	}
 	private void ExitRespawn(){
 		
@@ -467,7 +480,7 @@ public class EnemeState : Draw_Enemy
         return randomInt == 0 ? false : true;
     }
 
-    private enum State
+    private enum StateEnemy
 	{
 		Idle,
 		Moving,

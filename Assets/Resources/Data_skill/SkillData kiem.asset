@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bff999054a7070498e80d8cb4867207, type: 3}
+  m_Name: SkillData kiem
+  m_EditorClassIdentifier: 
+  <ComponentData>k__BackingField:
+  - rid: 4502466544620797964
+  - rid: 4502466544620797965
+  - rid: 4502466544620797966
+  - rid: 4502466564992008194
+  references:
+    version: 2
+    RefIds:
+    - rid: 4502466544620797964
+      type: {class: DamageData, ns: , asm: Assembly-CSharp}
+      data:
+        name: DamageData
+        <AttackData>k__BackingField:
+          <Amout>k__BackingField: 0
+    - rid: 4502466544620797965
+      type: {class: HitBoxData, ns: , asm: Assembly-CSharp}
+      data:
+        name: HitBoxData
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 0
+    - rid: 4502466544620797966
+      type: {class: MovementData, ns: , asm: Assembly-CSharp}
+      data:
+        name: MovementData
+        <AttackData>k__BackingField:
+          <Direction>k__BackingField: {x: 0, y: 0}
+          <Velocity>k__BackingField: 0
+    - rid: 4502466564992008194
+      type: {class: KnockBackData, ns: , asm: Assembly-CSharp}
+      data:
+        name: KnockBackData
+        <AttackData>k__BackingField:
+          <Angle>k__BackingField: {x: 1, y: 1}
+          <Strength>k__BackingField: 10

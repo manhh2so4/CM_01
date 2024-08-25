@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class FiniteStateMachine
 {
-    public State currentStage {get ; private set;}
-    public void Initilize(State startingState){
+    public EnemyState currentStage {get ; private set;}
+    public void Initilize(EnemyState startingState){
         currentStage = startingState;
         currentStage.Enter();
     }
-    public void changeStage(State newState){
+    public void changeStage(EnemyState newState){
         currentStage.Exit();
         currentStage = newState;
         currentStage.Enter();

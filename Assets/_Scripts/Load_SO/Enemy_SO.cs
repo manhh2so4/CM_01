@@ -10,7 +10,7 @@ public class Enemy_SO : ScriptableObject
         public int type;
         [Header("Property")]
         public string Name;
-        public int speedMove;
+        public float speedMove;
         public int speedAtk = 1;
         public int Hp = 100;
 }

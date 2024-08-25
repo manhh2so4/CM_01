@@ -11,6 +11,8 @@ public class mPaint
 	public static int RIGHT = 8;
 	public static int TOP = 16;
 	public static int BOTTOM = 32;
+    static float offsetX = 0;
+    static float offsetY = 0;
     static Vector3 newPosition;
     
     public static void Paint(GameObject gameObject,Texture2D text,float x, float y,int anchor){
@@ -20,12 +22,30 @@ public class mPaint
         gameObject.GetComponent<SpriteRenderer>().sprite = Draw_prite(text,anchor);
     }
     public static void Paint(GameObject gameObject,Sprite sprite,float x, float y,int anchor){
+
         x *= 4;
         y *= 4;
-        newPosition.x = x/100;
-        newPosition.y = y/100;
+        float h = sprite.rect.height/100;
+        float w = sprite.rect.width/100;
+        
+        switch (anchor)
+        {   
+            
+            case 0:
+                offsetX += w/2;
+                offsetY -= h/2;
+            break;
+
+        }
+
+
+
+        newPosition.x = x/100 + offsetX;
+        newPosition.y = y/100 + offsetY;
         newPosition.z = 0;
 		gameObject.transform.localPosition = newPosition;
+        offsetX = 0;
+        offsetY = 0;
         gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
     }
     public static void LoadSprite(ref Sprite[] sprites,Texture2D[] texs,int anchor){

@@ -4,6 +4,7 @@ public class Draw_Enemy : MonoBehaviour
 {
     [Header("Enemy Data")]
     //--------- Enemy Data -----------
+
     [SerializeField] Enemy_SO enemy_SO;
     Sprite[] sprites;
     [SerializeField] GameObject mSPR;
@@ -13,7 +14,9 @@ public class Draw_Enemy : MonoBehaviour
     protected Vector3 enemyPos;
     protected float enemyBotton;
     protected Vector3 centure;
+
     //--------- Enemy input Data -----------
+
     [SerializeField] protected int idEnemy;
     [SerializeField] protected int type;    
     protected int HpMax = 100;
@@ -24,11 +27,16 @@ public class Draw_Enemy : MonoBehaviour
 
     
     //--------- Enemy Stage -----------
-    public float speedMove,speedAtk;   	        
+
+    public float speedMove,speedAtk;
+
     //--------- Enemy Combat -----------
+
     [SerializeField] protected CapsuleCollider2D mCollider;
     [SerializeField] protected Rigidbody2D mRB;
+    
     //--------- Enemy Movement -----------
+
     [SerializeField] protected CapsuleCollider2D PlayerCheck;
     [SerializeField] protected BoxCollider2D AttackCheck;
     [SerializeField] protected BoxCollider2D groundCheck;
@@ -47,11 +55,17 @@ public class Draw_Enemy : MonoBehaviour
 
         //--------------------
         type = enemy_SO.type;
+
         speedMove = enemy_SO.speedMove;
+
         speedAtk = enemy_SO.speedAtk;
+
         HpMax = enemy_SO.Hp;
+
         Hp = HpMax;
+        
         enemyPos = gameObject.transform.localPosition;
+
         idEnemyCurrent = idEnemy;
 
         //--------- Set Collider-----------

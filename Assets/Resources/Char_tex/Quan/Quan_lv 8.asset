@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e633f32cb8ec445b769f2077137377, type: 3}
+  m_Name: Quan_lv 8
+  m_EditorClassIdentifier: 
+  Part: 2
+  importSprites:
+  - {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - {fileID: 21300000, guid: 51245947918289e489fe711aaa88c8e2, type: 3}
+  - {fileID: 21300000, guid: 55f5ffdeb4ecfbe45b2c67e1d7f1978a, type: 3}
+  - {fileID: 21300000, guid: 317b966a74979a341a4b537b54d1de54, type: 3}
+  - {fileID: 21300000, guid: a8acc5bcc23889844be27bc4903d1ffe, type: 3}
+  - {fileID: 21300000, guid: 2a531fd26f33caf41965391a06585b37, type: 3}
+  - {fileID: 21300000, guid: d8188ca9faccf194b89addd5556fdc1f, type: 3}
+  - {fileID: 21300000, guid: 4612e981d42c7224fa14f3f1e55b565c, type: 3}
+  - {fileID: 21300000, guid: 97c3781f4b1a1d546a800d6d9e5adf15, type: 3}
+  - {fileID: 21300000, guid: 77bb00138c1f8c24abebff22d7398820, type: 3}
+  spriteInfos:
+  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 21300000, guid: 51245947918289e489fe711aaa88c8e2, type: 3}
+    dx: 1
+    dy: 0
+  - sprite: {fileID: 21300000, guid: 55f5ffdeb4ecfbe45b2c67e1d7f1978a, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 21300000, guid: 317b966a74979a341a4b537b54d1de54, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 21300000, guid: a8acc5bcc23889844be27bc4903d1ffe, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 21300000, guid: 2a531fd26f33caf41965391a06585b37, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 21300000, guid: d8188ca9faccf194b89addd5556fdc1f, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 21300000, guid: 4612e981d42c7224fa14f3f1e55b565c, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 21300000, guid: 97c3781f4b1a1d546a800d6d9e5adf15, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 21300000, guid: 77bb00138c1f8c24abebff22d7398820, type: 3}
+    dx: 0
+    dy: 0

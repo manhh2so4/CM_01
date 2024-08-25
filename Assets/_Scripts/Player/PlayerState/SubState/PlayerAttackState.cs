@@ -17,19 +17,19 @@ public class PlayerAttackState : PlayerAbilityState
     }
     
     public override void Enter(){
+        Debug.Log("attack");
         base.Enter();
         weapon.Enter();
+        Movement.SetVelocityX(0);
     }
 
     public override void LogicUpdate(){
         base.LogicUpdate();
-        Movement.SetVelocityX(0);
         if(isGrounded ){  
             player.Anim.isFly = false;       
         }else{
             player.Anim.isFly = true; 
         }
-
     }
 
     public void ExitHandler()

@@ -2,5 +2,5 @@
 public class EffSkill
 {
 	public int idEffSkill;
-	public EffSkillInfo_Sprite[] effSkillInfos;
+	public SpriteInfo[] effSkillInfos;
 }

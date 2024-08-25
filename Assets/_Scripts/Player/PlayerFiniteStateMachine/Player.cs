@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     public PlayerWallJumpState wallJumpState {get;private set;}
     public PlayerDashState dashState {get;private set;}
     public PlayerAttackState PrimaryAttack {get;private set;}
-    public PlayerAttackState AttackFly {get;private set;}
 
     #endregion
     #region Component
@@ -40,10 +39,10 @@ public class Player : MonoBehaviour
         StateMachine = new PlayerStateMachine();
 
         primaryWeapon = transform.Find("PrimaryWeapon").GetComponent<Weapon>();
-        secondaryWeapon = transform.Find("SecondaryWeapon").GetComponent<Weapon>();
+        //secondaryWeapon = transform.Find("SecondaryWeapon").GetComponent<Weapon>();
 
         primaryWeapon.SetCore(Core);
-        secondaryWeapon.SetCore(Core);
+        //secondaryWeapon.SetCore(Core);
 
         idleState = new PlayerIdleState(this,StateMachine,playerData,mState.Idle);
         moveState = new PlayerMoveState(this,StateMachine,playerData,mState.Moving);
@@ -52,8 +51,7 @@ public class Player : MonoBehaviour
         wallSlideState = new PlayerWallSlideState(this,StateMachine,playerData,mState.Slide);  
         wallJumpState = new PlayerWallJumpState(this,StateMachine,playerData,mState.InAir);   
         dashState = new PlayerDashState(this,StateMachine,playerData,mState.InAir);
-        PrimaryAttack = new PlayerAttackState(this,StateMachine,playerData,mState.AttackStand,primaryWeapon); 
-        AttackFly = new PlayerAttackState(this,StateMachine,playerData,mState.AttackStand,secondaryWeapon);   
+        PrimaryAttack = new PlayerAttackState(this,StateMachine,playerData,mState.AttackStand,primaryWeapon);   
     }
     private void Start() {
         Anim = GetComponent<Char_anim>();

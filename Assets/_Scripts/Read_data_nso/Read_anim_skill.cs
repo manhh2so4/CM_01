@@ -22,7 +22,7 @@ public class Read_anim_skill : MonoBehaviour
     void LoadData(){
         textJson = Resources.Load<TextAsset>("nj_skill");
         data = JsonMapper.ToObject(textJson.ToString());
-        Debug.Log(data.Count);
+        //Debug.Log(data.Count);
         Skill[] temp = new Skill[data.Count];
         for (int i = 0; i < data.Count ; i++)
         {   
