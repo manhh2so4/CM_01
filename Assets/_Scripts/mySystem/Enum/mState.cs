@@ -22,4 +22,16 @@ public enum njPart
     Leg,
     Weapon    
 }
+public enum StateEnemy
+{
+    Idle,
+    Moving,
+    Dash,
+    Look,
+    Charge,
+    Attack,
+    Knockback,
+    Respawn,
+    Dead
+}
 

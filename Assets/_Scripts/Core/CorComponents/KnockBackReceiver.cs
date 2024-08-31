@@ -2,26 +2,30 @@ using UnityEngine;
 public class KnockBackReceiver : CoreComponent,IKnockBackable
 {
     private CoreComp<Movement> movement;
-    private CoreComp<CollisionSenses> collisionSenses;
-    [SerializeField] private float maxKnockbackTime = 0.2f;
+    public float maxKnockbackTime = 0.2f;
 
-    private bool isKnockbackActive;
-    private float knockbackStartTime;
+    public bool isKnockBackActive;
+    private float knockBackStartTime;
 
-    
+    public override void LogicUpdate()
+    {
+        CheckKnockBack();
+    }
 
     public void KnockBack(Vector2 angle, float strength, int direction)
     {
         movement.Comp?.SetVelocity(strength, angle, direction);
         movement.Comp.CanSetVelocity = false;
-        isKnockbackActive = true;
-        knockbackStartTime = Time.time;
+        isKnockBackActive = true;
+        knockBackStartTime = Time.time;
     }
     private void CheckKnockBack()
     {
-        if(isKnockbackActive && movement.Comp?.CurrentVelocity.y <= 0.01f && collisionSenses.Comp.isGround)
+        if(isKnockBackActive && 
+            (movement.Comp?.CurrentVelocity.y <= 0.01f)
+            || Time.time >= knockBackStartTime + maxKnockbackTime)
         {
-            isKnockbackActive = false;
+            isKnockBackActive = false;
             movement.Comp.CanSetVelocity = true;
         }
     }
@@ -29,6 +33,5 @@ public class KnockBackReceiver : CoreComponent,IKnockBackable
     {
         base.Awake();
         movement = new CoreComp<Movement>(core);
-        collisionSenses = new CoreComp<CollisionSenses>(core);
     }
 }

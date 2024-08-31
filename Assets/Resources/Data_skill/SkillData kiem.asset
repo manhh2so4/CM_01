@@ -46,4 +46,4 @@ MonoBehaviour:
         name: KnockBackData
         <AttackData>k__BackingField:
           <Angle>k__BackingField: {x: 1, y: 1}
-          <Strength>k__BackingField: 10
+          <Strength>k__BackingField: 2

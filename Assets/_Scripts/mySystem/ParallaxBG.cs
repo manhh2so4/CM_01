@@ -42,7 +42,7 @@ public class ParallaxBG : MonoBehaviour
         LoadImgBG();
     }
     private void Awake(){
-
+        gameObject.SetActive(true);
         cam = Camera.main;
         height = 2f * cam.orthographicSize;
         width = height * cam.aspect;

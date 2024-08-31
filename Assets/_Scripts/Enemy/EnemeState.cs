@@ -68,7 +68,7 @@ public class EnemeState : Draw_Enemy
         if(other.tag == "Player"){
             player = other.transform;
             playerDetected = true;
-            SwitchState(StateEnemy.Follow_Player);
+            SwitchState(StateEnemy.Charge);
         }
                              
     }
@@ -147,7 +147,7 @@ public class EnemeState : Draw_Enemy
         case StateEnemy.Dash:
 			Dash();
 			break;
-        case StateEnemy.Follow_Player:
+        case StateEnemy.Charge:
 			Follow_Player();
 			break;
         case StateEnemy.Attack:
@@ -176,7 +176,7 @@ public class EnemeState : Draw_Enemy
         case StateEnemy.Dash:
 			ExitDash();
 			break;
-        case StateEnemy.Follow_Player:
+        case StateEnemy.Charge:
 			ExitFollow_Player();
 			break;
         case StateEnemy.Attack:
@@ -202,7 +202,7 @@ public class EnemeState : Draw_Enemy
         case StateEnemy.Dash:
 			EnterDash();
 			break;
-        case StateEnemy.Follow_Player:
+        case StateEnemy.Charge:
 			EnterFollow_Player();
 			break;
         case StateEnemy.Attack:
@@ -326,7 +326,7 @@ public class EnemeState : Draw_Enemy
                 .OnComplete(()=>{;
                 attacking = false;
                 canAttack = false;
-                SwitchState(StateEnemy.Follow_Player);
+                SwitchState(StateEnemy.Charge);
                 });
             });
 	}
@@ -376,7 +376,7 @@ public class EnemeState : Draw_Enemy
         CheckDirTarget(player.transform.position);                        
         if(attackDetected == false){
 		    Moving();
-        }else{
+            }else{
             mRB.velocity = Vector3.zero;            
             
             if(canAttack == false) {
@@ -407,7 +407,7 @@ public class EnemeState : Draw_Enemy
         
 		if(CountDown(0.3f)){
         if(playerDetected && canAttack) SwitchState(StateEnemy.Attack);
-        else SwitchState(StateEnemy.Follow_Player);
+        else SwitchState(StateEnemy.Charge);
         } 
 	}
 	private void ExitKnockback(){
@@ -479,16 +479,4 @@ public class EnemeState : Draw_Enemy
         int randomInt = Random.Range(0, 2);
         return randomInt == 0 ? false : true;
     }
-
-    private enum StateEnemy
-	{
-		Idle,
-		Moving,
-        Dash,
-        Follow_Player,
-        Attack,
-		Knockback,
-        Respawn,
-		Dead
-	}
 }

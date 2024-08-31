@@ -78,6 +78,7 @@ public class Char_anim : MonoBehaviour
 			drawChar.PainDust(FrameCurrent);
 			drawChar.cf = FrameCurrent + 2;
             FrameCurrent = ((FrameCurrent + 1)%5);
+			
 			if(FrameCurrent == 4) drawChar.OnDust();				
         }		
 	}

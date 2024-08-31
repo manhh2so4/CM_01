@@ -6,7 +6,7 @@ public class Movement : CoreComponent
 {
     [SerializeField] public Rigidbody2D mRB;
     [field: SerializeField] public int facingDirection { get; private set; }
-    [field: SerializeField] public bool CanSetVelocity { get; set; }
+    [field: SerializeField] public bool CanSetVelocity;
     [field: SerializeField] public Vector2 CurrentVelocity { get; private set; }
 
     private Vector2 workspace;

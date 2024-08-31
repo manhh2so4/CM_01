@@ -9,7 +9,7 @@ public class ParticleManager : CoreComponent
         //particleContainer = GameObject.FindGameObjectWithTag("ParticleContainer").transform;
     }
     public GameObject StartParticles(GameObject particlePrefab, Vector2 position, Quaternion rotation){
-        return Instantiate(particlePrefab, position,rotation, particleContainer);
+        return Instantiate(particlePrefab, position,rotation, transform);
     }
     public GameObject StartParticles(GameObject particlePrefab){
         return StartParticles(particlePrefab,transform.position,Quaternion.identity);
@@ -17,5 +17,9 @@ public class ParticleManager : CoreComponent
     public GameObject StartParticlesRandomRotation(GameObject particlePrefab){
         var randRotation = Quaternion.Euler(0f,0f, Random.Range(0,360));
         return StartParticles(particlePrefab,transform.position,randRotation);
+    }
+    public GameObject StartParticlesRandomRotation(GameObject particlePrefab,Vector2 position){
+        var randRotation = Quaternion.Euler(0f,0f, Random.Range(0,360));
+        return StartParticles(particlePrefab, position, randRotation);
     }
 }
