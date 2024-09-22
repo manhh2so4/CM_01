@@ -1,4 +1,3 @@
-using Bardent.Weapons.Components;
 
 public class PoiseDamageData : ComponentData<AttackPoiseDamage>
 {

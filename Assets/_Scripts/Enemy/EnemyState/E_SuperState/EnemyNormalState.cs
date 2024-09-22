@@ -6,9 +6,7 @@ public class EnemyNormalState : EnemyState
     public EnemyNormalState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine)
     {
     }
-    public override void DoChecks() {
-		base.DoChecks();		
-	}
+
 
 	public override void Enter() {
 		base.Enter();
@@ -23,7 +21,7 @@ public class EnemyNormalState : EnemyState
 		base.LogicUpdate();
 		if(enemy.playerCheck){
 			if(Vector2.Distance(enemy.playerCheck.position,enemy.transform.position) < enemy.AgroDistance)
-			stateMachine.changeStage(enemy.lookState);
+			stateMachine.ChangeState(enemy.lookState);
 		}        
 	}
 

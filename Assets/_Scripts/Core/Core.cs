@@ -6,7 +6,7 @@ using UnityEngine;
 public class Core : MonoBehaviour
 {
     [SerializeField] private List<CoreComponent> CoreComponents = new List<CoreComponent>();
-
+	public int layerID = 0;
     private void Awake()
     {
 
@@ -16,13 +16,11 @@ public class Core : MonoBehaviour
 			component.LogicUpdate();
 		}
 	}
-
     public void AddComponent(CoreComponent component) {
 		if (!CoreComponents.Contains(component)) {
 			CoreComponents.Add(component);
 		}
 	}
-
     public T GetCoreComponent<T>() where T : CoreComponent {
 		var comp = CoreComponents.OfType<T>().FirstOrDefault();
 		if(comp) return comp;

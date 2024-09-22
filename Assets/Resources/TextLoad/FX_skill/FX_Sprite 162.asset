@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffId: 162
   effSkillInfo_SO:
-  - sprite: {fileID: 0}
+  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: 0}
+  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 20
     dy: 1
-  - sprite: {fileID: 0}
+  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 36
     dy: 0
-  - sprite: {fileID: 0}
+  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 45
     dy: 1

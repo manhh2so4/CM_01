@@ -8,9 +8,7 @@ public class E_MoveState : EnemyNormalState
     public E_MoveState(Enemy enemy,FiniteStateMachine stateMachine) : base(enemy, stateMachine) {
 		
 	}
-    public override void DoChecks() {
-		base.DoChecks();
-	}
+
 
 	public override void Enter() {
 		base.Enter();
@@ -25,7 +23,7 @@ public class E_MoveState : EnemyNormalState
 	public override void LogicUpdate() {
 		base.LogicUpdate();
         if (Time.time >= startTime + timeChangeState){
-			stateMachine.changeStage(enemy.idleState);
+			stateMachine.ChangeState(enemy.idleState);
 		}
         if(TimeRate(0.35f/enemyData.speedMove)) return;
         switch(enemyData.type){			
@@ -35,9 +33,9 @@ public class E_MoveState : EnemyNormalState
             case 1:                             
                 
 
-                if(isWall || !isLedge && isGround) Movement.Flip();
+                if(isWall || !isLedge && isGround) movement.Flip();
 
-                if(isGround) Movement?.SetVelocityX(enemyData.speedMove * Movement.facingDirection);
+                if(isGround) movement?.SetVelocityX(enemyData.speedMove * movement.facingDirection);
                 
                 enemy.Paint(FrameCurrent);
                 FrameCurrent = ( FrameCurrent + 1)%2; 
@@ -49,7 +47,7 @@ public class E_MoveState : EnemyNormalState
             case 4:
 
                 if( Mathf.Abs(XDirPos) > enemy.RangeMove ){                    
-                    Movement.CheckIfShouldFlip( XDirPos > 0 ? -1 : 1 );
+                    movement.CheckIfShouldFlip( XDirPos > 0 ? -1 : 1 );
                 } 
 
                 if(Mathf.Abs(enemy.transform.position.y  - enemyPos.y) > 1.5 ){
@@ -59,7 +57,7 @@ public class E_MoveState : EnemyNormalState
                 }
                 vY *= -1;
 
-                Movement?.SetVelocity( enemyData.speedMove/3 * Movement.facingDirection,  dirY - vY);
+                movement?.SetVelocity( enemyData.speedMove/3 * movement.facingDirection,  dirY - vY);
 
                 enemy.Paint(FrameCurrent);
                 FrameCurrent = ( FrameCurrent + 1)%2; 

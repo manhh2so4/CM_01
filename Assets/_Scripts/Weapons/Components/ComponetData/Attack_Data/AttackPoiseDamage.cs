@@ -1,11 +1,15 @@
 using System;
 using UnityEngine;
-
-namespace Bardent.Weapons.Components
+[Serializable]
+public class AttackPoiseDamage : AttackData
 {
-    [Serializable]
-    public class AttackPoiseDamage : AttackData
-    {
-        [field: SerializeField] public float Amount { get; private set;  }
-    }
+    [field: SerializeField] public float Amount { get; private set;}
+    [field: SerializeField] public float Rate { get; private set;}
+    [field: SerializeField] public Poisetype type { get; private set;}
+    [field: SerializeField] public GameObject prefabEff;
 }
+public enum Poisetype{
+    Stun,
+    freeze,
+}
+

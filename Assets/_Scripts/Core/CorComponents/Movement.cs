@@ -4,11 +4,11 @@ using UnityEngine;
 using Logging;
 public class Movement : CoreComponent
 {
+    public System.Action OnFlip;
     [SerializeField] public Rigidbody2D mRB;
     [field: SerializeField] public int facingDirection { get; private set; }
     [field: SerializeField] public bool CanSetVelocity;
     [field: SerializeField] public Vector2 CurrentVelocity { get; private set; }
-
     private Vector2 workspace;
 
     protected override void Awake()
@@ -81,6 +81,7 @@ public class Movement : CoreComponent
 
     public void Flip()
     {
+        OnFlip?.Invoke();
         facingDirection *= -1;
         mRB.transform.Rotate(0.0f, 180.0f, 0.0f);
     }

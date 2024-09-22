@@ -30,7 +30,6 @@ public abstract class WeaponComponents : MonoBehaviour {
     }
     protected virtual void OnDisable()
     {
-        Debug.Log("Script OnDisable name: " + this.GetType().Name);
         weapon.OnEnter -= HandleEnter;
         weapon.OnExit -= HandleExit;
     }

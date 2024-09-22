@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMoveState : PlayerGroundedState
 {
-    public PlayerMoveState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
+    public PlayerMoveState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
     {
     }
 
@@ -13,15 +13,15 @@ public class PlayerMoveState : PlayerGroundedState
     }
     public override void Enter(){
         base.Enter();
-        Movement.SetVelocityX(0f);
+        movement.SetVelocityX(0f);
     }
     public override void Exit(){
         base.Exit();
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
-        Movement.SetVelocityX(playerData.movementSpeed * inputX);
-        Movement.CheckIfShouldFlip(inputX);
+        movement.SetVelocityX(playerData.movementSpeed * inputX);
+        movement.CheckIfShouldFlip(inputX);
         if (!isExitingState)
         {
             if(inputX == 0 && !isExitingState){

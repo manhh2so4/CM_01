@@ -6,7 +6,7 @@ public class PlayerAttackState : PlayerAbilityState
 {
     private Weapon weapon;
     public PlayerAttackState(Player player,
-                            PlayerStateMachine stateMachine,
+                            FiniteStateMachine stateMachine,
                             PlayerData playerData,
                             mState state,
                             Weapon weapon)
@@ -17,10 +17,9 @@ public class PlayerAttackState : PlayerAbilityState
     }
     
     public override void Enter(){
-        Debug.Log("attack");
         base.Enter();
         weapon.Enter();
-        Movement.SetVelocityX(0);
+        movement.SetVelocityX(0);
     }
 
     public override void LogicUpdate(){
@@ -34,7 +33,6 @@ public class PlayerAttackState : PlayerAbilityState
 
     public void ExitHandler()
     {
-        AnimationFinishTrigger();
         isAbilityDone = true;
     }
 }

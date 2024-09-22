@@ -32,19 +32,14 @@ public class Draw_Char : MonoBehaviour
 	SmallEffect_SO mWaterSplash;
 
 	//--------- Data Char draw --------
-    public int lvAo = 0;
-    int lvAoCurrent = -1;
     public int lvHead = 0;
     int lvHeadCurrent = -1;
-    public int lvQuan = 0;
-    int lvQuanCurrent = -1;
+
     public int wpType = 0;
     int wpTypeCurrent = -1;
     private void FixedUpdate()  
     {
-        LoadTexWp();
-        LoadTexAo_SO();
-        LoadTexQuan_SO();
+        //LoadTexWp();
         LoadTexHead_SO();   
     }
 
@@ -61,23 +56,27 @@ public class Draw_Char : MonoBehaviour
     {
         partWP = mWp.spriteInfos;
     }
-    public void LoadTexAo_SO()
-    {
-        if (lvAoCurrent == lvAo ) return;
-        string resPath = "Char_tex/Ao/Ao_lv " + lvAo;
-        this.mTexAo = Resources.Load<Tex_NjPart_SO>(resPath);
-		partBody = mTexAo.spriteInfos;
-        lvAoCurrent = lvAo;
-    }
-    public void LoadTexQuan_SO()
-    {
-        if (lvQuanCurrent == lvQuan ) return;
-        string resPath = "Char_tex/Quan/Quan_lv " + lvQuan;
-        this.mQuan = Resources.Load<Tex_NjPart_SO>(resPath);
-		partLeg = mQuan.spriteInfos;
-        lvQuanCurrent = lvQuan;
-
-    }
+	void UpdateColth(){
+		for (int i = 0; i < Inventory.Instance.equipment.Count; i++)
+		{
+			ItemData_Equipment newEquipment = Inventory.Instance.equipment[i].data as ItemData_Equipment;
+			if(newEquipment.Type == EquipmentType.body_armor){
+				partBody = newEquipment.tex_NjPart_SO.spriteInfos;
+			}
+			if(newEquipment.Type == EquipmentType.Pan_armor){
+				partLeg = newEquipment.tex_NjPart_SO.spriteInfos;
+			}	
+		}
+	}
+	private void OnEnable() {
+		
+	}
+	private void Start() {
+		Inventory.Instance.OnChangeCloth += UpdateColth;
+	}
+	private void OnDisable() {
+		Inventory.Instance.OnChangeCloth -= UpdateColth;
+	}
     public void LoadTexHead_SO()
     {
         if (lvHeadCurrent == lvHead ) return;
@@ -331,16 +330,12 @@ public class Draw_Char : MonoBehaviour
 	};
     private void Awake() {
 		LoadCompnents();		        
-        LoadTexAo_SO();
-        LoadTexQuan_SO();
         LoadTexHead_SO();
 		LoadTexWp();
 		LoadEffect_Trigger();   				
 	}
 	private void Reset() {
 		LoadCompnents();
-        LoadTexAo_SO();
-        LoadTexQuan_SO();
         LoadTexHead_SO(); 
 		Debug.Log(partBody[1].sprite.rect.height);
 		
@@ -351,6 +346,8 @@ public class Draw_Char : MonoBehaviour
 		HeadGO = transform.Find("Head").gameObject;
 		BodyGO = transform.Find("Body").gameObject;		
 		WpGO = transform.Find("Wp").gameObject;
+		partLeg = mQuan.spriteInfos;
+		partBody = mTexAo.spriteInfos;
 	}
 	private void Update() {
         PaintChar();

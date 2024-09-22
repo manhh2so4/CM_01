@@ -23,7 +23,7 @@ public class ParallaxBG : MonoBehaviour
     imgBG_SO imgBG_SO;
     float height;
     float width;
-    float Field1Y,Field2Y,houseY,mountainY;
+    float Field2Y,houseY,mountainY;
     public Sprite[] imgBg;
     Transform[] Bg0 = new Transform[3];
     Transform[] Bg1 = new Transform[3];
@@ -111,7 +111,6 @@ public class ParallaxBG : MonoBehaviour
         string resPath = "TextLoad/imgBG/BG_type " + 0;
         imgBG_SO = Resources.Load<imgBG_SO>(resPath);
         this.imgBg = imgBG_SO.imgBGs;
-        Field1Y = 0 ;
         Field2Y = (float)imgBg[0].texture.height/100;
         houseY = Field2Y +  (float)imgBg[1].texture.height/100;
         mountainY = Field2Y +  (float)imgBg[1].texture.height/100 +0.4f;

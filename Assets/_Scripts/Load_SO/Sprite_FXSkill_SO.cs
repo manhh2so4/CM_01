@@ -16,12 +16,10 @@ public class Sprite_FXSkill_SO : ScriptableObject
                 Debug.Log("sett___" + fileName);
                 
                 #endif
-
                 EffId = int.Parse(fileName);
                 Sprite[] sprites = Resources.LoadAll<Sprite>("ToSlice/");
                 SkillInfor1[] SkillInfor = Read_FX_Skill.LoadData();
                 effSkillInfo_SO = new SpriteInfo[SkillInfor[EffId-1].info.Length];
-                //Sprite temp;
                 for (int i = 0; i < effSkillInfo_SO.Length; i++)
                 {
                         SpriteInfo inforTemp = new SpriteInfo();
@@ -33,7 +31,8 @@ public class Sprite_FXSkill_SO : ScriptableObject
                                         inforTemp.sprite = item;
                                 }else
                                 {
-                                        inforTemp.sprite = null;
+                                        inforTemp.sprite = sprites[0];
+                                        inforTemp.sprite.name = SkillInfor[EffId-1].info[i].imgId.ToString();
                                 }
                         }
                         effSkillInfo_SO[i] = inforTemp;                        

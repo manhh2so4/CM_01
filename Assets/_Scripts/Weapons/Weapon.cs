@@ -25,7 +25,6 @@ public class Weapon : MonoBehaviour {
 
     //------------------------------------
     public Core core{ get; private set;}
-
     public void AttackWeapon(int FrameCurrent){
 
         if(curIdSkill != idSkill){
@@ -84,7 +83,6 @@ public class Weapon : MonoBehaviour {
             i2++;
         }else eff2Lenth =-1;
     }
-
     public void SetCore(Core core)
     {
         this.core = core;

@@ -8,8 +8,8 @@ public class Projectile : MonoBehaviour
     public float AutoDestroyTime = 5f;
     public int Damage = 5;
     private Rigidbody2D rb;
-
-
+    private CharacterStats stats;
+    [SerializeField] GameObject PrefabHit;
 
 
     private const string DISABLE_METHOD_NAME = "remove";
@@ -22,19 +22,19 @@ public class Projectile : MonoBehaviour
     private void OnEnable() {
         //CancelInvoke(DISABLE_METHOD_NAME);
         Invoke(DISABLE_METHOD_NAME,AutoDestroyTime) ;
-        Debug.Log("setIvocke");
     } 
     private void OnTriggerEnter2D(Collider2D other) {
         IDamageable damageable;
         if(other.TryGetComponent<IDamageable>(out damageable)) {
             if(other.tag == gameObject.tag) return;
-            damageable.Damage(Damage);
+            stats.DoDamage(damageable.Target(PrefabHit));
             remove();
         }
         
     }
-    public void FireProjectile(float speed, Vector2 _dir, int damage , string tag)
+    public void FireProjectile(float speed, Vector2 _dir, int damage , string tag,CharacterStats stats)
     {
+        this.stats = stats;
         rb.velocity = (_dir) * speed;
         gameObject.tag = tag;
         this.Damage = damage;

@@ -17,15 +17,26 @@ MonoBehaviour:
   - rid: 4502466544620797965
   - rid: 4502466544620797966
   - rid: 4502466564992008194
+  - rid: 4316985181428776960
   references:
     version: 2
     RefIds:
+    - rid: 4316985181428776960
+      type: {class: PoiseDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        name: PoiseDamageData
+        <AttackData>k__BackingField:
+          <Amount>k__BackingField: 2
+          <Rate>k__BackingField: 50
+          <type>k__BackingField: 1
+          prefabEff: {fileID: 2804874706322604519, guid: 36eede3f4d1f5544287616e34e4a7dfb, type: 3}
     - rid: 4502466544620797964
       type: {class: DamageData, ns: , asm: Assembly-CSharp}
       data:
         name: DamageData
         <AttackData>k__BackingField:
-          <Amout>k__BackingField: 0
+          <Amout>k__BackingField: 10
+          prefabHit: {fileID: 2237586713126872210, guid: 4b5cfad7d29b0d34eb97e2dc0365b24c, type: 3}
     - rid: 4502466544620797965
       type: {class: HitBoxData, ns: , asm: Assembly-CSharp}
       data:

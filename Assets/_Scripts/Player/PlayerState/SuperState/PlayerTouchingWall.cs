@@ -4,23 +4,17 @@ using UnityEngine;
 
 public class PlayerTouchingWall : PlayerState
 {   
-    protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
-	private CollisionSenses CollisionSenses { get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses); }
-
-	private Movement movement;
-	private CollisionSenses collisionSenses;
-
     protected bool isGrounded;
     protected bool isWall;
     protected int inputX;
     protected bool jumpInput;
-    public PlayerTouchingWall(Player _player, PlayerStateMachine _stateMachine, PlayerData _playerData, mState _state) : base(_player, _stateMachine, _playerData, _state)
+    public PlayerTouchingWall(Player _player, FiniteStateMachine _stateMachine, PlayerData _playerData, mState _state) : base(_player, _stateMachine, _playerData, _state)
     {
     }
     public override void DoCheck(){
         base.DoCheck();
-        isGrounded = CollisionSenses.isGround;
-        isWall = CollisionSenses.isWall;
+        isGrounded = collisionSenses.isGround;
+        isWall = collisionSenses.isWall;
     }
     public override void Enter(){
         base.Enter();
@@ -38,7 +32,7 @@ public class PlayerTouchingWall : PlayerState
         }else
         if(isGrounded){
             stateMachine.ChangeState(player.idleState);
-        }else if(!isWall || inputX != Movement.facingDirection){
+        }else if(!isWall || inputX != movement.facingDirection){
             stateMachine.ChangeState(player.airState);
         }
     }

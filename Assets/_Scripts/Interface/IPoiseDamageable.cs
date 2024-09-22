@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPoiseDamageable
 {
-    void DamagePoise(float amount);
+    void DamagePoise(float amount,Poisetype poisetype,GameObject prefabEff);
 }

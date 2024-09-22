@@ -7,21 +7,19 @@ public class E_AttackState : EnemyAbilityState
 	protected GameObject projectile;
 	protected Projectile projectile_Scrip;
 	Vector3 dirAttack = new Vector3();
+	int[] attackAnim;
 
     public E_AttackState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine)
     {
 
     }
-    public override void DoChecks() {
-		base.DoChecks();
-		
-	}
 
 	public override void Enter() {
 		base.Enter();
-		Movement.SetVelocityZero();
+		setAttack();
+		movement.SetVelocityZero();
 		posCurrent = enemy.transform.position;
-		targetPosition.Set( posCurrent.x - Movement.facingDirection*0.5f,posCurrent.y,posCurrent.z); 
+		targetPosition.Set( posCurrent.x - movement.facingDirection*0.5f,posCurrent.y,posCurrent.z); 
 		enemy.transform.DOMove( targetPosition, 0.1f/enemyData.speedAtk).SetEase(enemy.ease)
 
 
@@ -32,7 +30,7 @@ public class E_AttackState : EnemyAbilityState
 				projectile_Scrip = projectile.GetComponent<Projectile>();
 
 				
-        		projectile_Scrip.FireProjectile(15 , dirAttack.normalized , 10 , enemy.gameObject.tag );
+        		projectile_Scrip.FireProjectile(15 , dirAttack.normalized , 10 , enemy.gameObject.tag,stats);
 
                 enemy.transform.DOMove(posCurrent, 0.2f/enemyData.speedAtk).SetEase(enemy.easeEnd)
                 .OnComplete(()=>{;
@@ -50,25 +48,25 @@ public class E_AttackState : EnemyAbilityState
 	public override void LogicUpdate() {
 
 		base.LogicUpdate();
-		Movement.SetVelocityZero();
+		movement.SetVelocityZero();
 		switch(enemyData.type){			
 			case 0:
 				enemy.Paint(0);
 				break;
             case 1:
                 if(TimeRate(0.2f/enemyData.speedMove)) return;
-                enemy.Paint(FrameCurrent);
-                FrameCurrent = ( FrameCurrent + 1)%2;  
+                FrameCurrent = (FrameCurrent + 1)%2;  
+				enemy.Paint( attackAnim[FrameCurrent]);
 
                 break;
             case 2:
                 break;
             case 4:
                 if(TimeRate(0.2f/enemyData.speedMove)) return;
-
-                enemy.Paint(FrameCurrent);
+               
                 FrameCurrent = ( FrameCurrent + 1)%2;
-
+				enemy.Paint( attackAnim[FrameCurrent] );
+				
                 break;
             default:
                 enemy.Paint(0);
@@ -79,5 +77,13 @@ public class E_AttackState : EnemyAbilityState
 
 	public override void PhysicsUpdate() {
 		base.PhysicsUpdate();
+	}
+	void setAttack(){
+		if( enemyData.textures.Length >= 4){
+			attackAnim = new int[] {0,3};
+		}else{
+			attackAnim = new int[] {0,1};
+		}
+
 	}
 }

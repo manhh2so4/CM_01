@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Cci;
 using UnityEngine;
-
 public class mPaint
 {
     public static int HCENTER = 1;
@@ -21,6 +19,9 @@ public class mPaint
 		gameObject.transform.localPosition = new Vector3(x/100,y/100,0);
         gameObject.GetComponent<SpriteRenderer>().sprite = Draw_prite(text,anchor);
     }
+    public static void Paint(GameObject gameObject,Sprite sprite,int anchor){
+        Paint(gameObject,sprite,0, 0, anchor);
+    }
     public static void Paint(GameObject gameObject,Sprite sprite,float x, float y,int anchor){
 
         x *= 4;
@@ -29,17 +30,15 @@ public class mPaint
         float w = sprite.rect.width/100;
         
         switch (anchor)
-        {   
-            
+        {               
             case 0:
                 offsetX += w/2;
                 offsetY -= h/2;
             break;
-
+            case 2:
+                offsetY += h/2;
+            break;
         }
-
-
-
         newPosition.x = x/100 + offsetX;
         newPosition.y = y/100 + offsetY;
         newPosition.z = 0;
@@ -81,8 +80,10 @@ public class mPaint
         if ((anchor & RIGHT) == RIGHT) anchorX = 1f;
         if ((anchor & LEFT) == LEFT) anchorX = 0f;
         if ((anchor & TOP) == TOP) anchorY = 1f;
-		if ((anchor & BOTTOM) == BOTTOM) anchorY = 0f;        
+		if ((anchor & BOTTOM) == BOTTOM) anchorY = 0f;
+
         return Sprite.Create(text, new Rect(0, 0, text.width, text.height), new Vector2(anchorX,anchorY));
-    }        
+    }
+            
 }
 

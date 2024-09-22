@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerJumpState : PlayerAbilityState
 {
     int amountOfjumpLeft;
-    public PlayerJumpState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
+    public PlayerJumpState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
     {
         amountOfjumpLeft = playerData.amountOfJumps;
     }
@@ -17,7 +17,7 @@ public class PlayerJumpState : PlayerAbilityState
         player.inputPlayer.UseJumpInput();
         base.Enter();
         player.airState.isFall = false;
-        Movement.SetVelocityY(playerData.jumpVelocity); 
+        movement.SetVelocityY(playerData.jumpVelocity); 
         isAbilityDone = true;
         amountOfjumpLeft--;
     }

@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class EnemyAbilityState : EnemyState
 {
+    protected CharacterStats stats;
     protected bool isAbilityDone;
     public EnemyAbilityState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine)
     {
+        stats = core.GetCoreComponent<CharacterStats>();
+    }
 
-    }
-    public override void DoChecks(){
-   
-    }
     public override void Enter(){
         base.Enter();
         isAbilityDone = false;
@@ -20,7 +19,7 @@ public class EnemyAbilityState : EnemyState
     public override void LogicUpdate(){
         base.LogicUpdate();
         if(isAbilityDone){          
-            stateMachine.changeStage(enemy.lookState);
+            stateMachine.ChangeState(enemy.lookState);
         }
 
     }

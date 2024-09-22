@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerWallJumpState : PlayerAbilityState
 {
     int wallJumpDir;
-    public PlayerWallJumpState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
+    public PlayerWallJumpState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
     {
     }
    public override void DoCheck(){
@@ -17,13 +17,13 @@ public class PlayerWallJumpState : PlayerAbilityState
         player.inputPlayer.UseJumpInput();
         player.jumpState.ResetAmountJunpsLeft();
         player.airState.isFall = true;
-        Movement.SetVelocity(playerData.wallJumpVelocity,playerData.wallJumpAngle,wallJumpDir);
-        Movement.CheckIfShouldFlip(wallJumpDir);
+        movement.SetVelocity(playerData.wallJumpVelocity,playerData.wallJumpAngle,wallJumpDir);
+        movement.CheckIfShouldFlip(wallJumpDir);
         player.jumpState.DecreaseAmountJumps();
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
-        player.Anim.stagejump = (int)System.Math.Round(Movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);
+        player.Anim.stagejump = (int)System.Math.Round(movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);
         if(Time.time >= startTime + playerData.wallJumpTime){
             isAbilityDone = true;
         }
@@ -31,9 +31,9 @@ public class PlayerWallJumpState : PlayerAbilityState
     }
     public void DetermineWallJumpDir(bool isWall){
         if(isWall){
-            wallJumpDir = -Movement.facingDirection;
+            wallJumpDir = -movement.facingDirection;
         }else{
-            wallJumpDir = Movement.facingDirection;
+            wallJumpDir = movement.facingDirection;
         }
     }
 

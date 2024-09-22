@@ -10,7 +10,7 @@ public class E_IdleState : EnemyNormalState
 	public override void Enter() {
 		base.Enter();
 		enemy.state = StateEnemy.Idle;		
-		Movement?.SetVelocityZero();
+		movement?.SetVelocityZero();
 		SetRandomIdleTime();
 		
 
@@ -18,15 +18,16 @@ public class E_IdleState : EnemyNormalState
 
 	public override void Exit() {
 		base.Exit();
-		if(GetRandomBoolean()) Movement.Flip();
+		if(GetRandomBoolean()) movement.Flip();
 	}
 	
 	public override void LogicUpdate() {
 		base.LogicUpdate();
 		if (Time.time >= startTime + timeChangeState) {
-			stateMachine.changeStage(enemy.moveState);
+			stateMachine.ChangeState(enemy.moveState);
 		}
 		if(TimeRate(0.4f/enemyData.speedMove)) return;
+		movement?.SetVelocityZero();
 		switch(enemyData.type){
             case 0:
 				enemy.Paint(0);

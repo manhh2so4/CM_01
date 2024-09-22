@@ -5,22 +5,16 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
 {   
-    protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
-	private Movement movement;
-
-	private CollisionSenses CollisionSenses { get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses); }
-	private CollisionSenses collisionSenses;
-
     protected int inputX;
     private bool jumpInput;
     private bool isGrounded;
     bool dashInput;
-    public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
+    public PlayerGroundedState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
     {
     }
     public override void DoCheck(){
         base.DoCheck();
-        isGrounded = CollisionSenses.isGround;
+        isGrounded = collisionSenses.isGround;
     }
     public override void Enter(){
         base.Enter();

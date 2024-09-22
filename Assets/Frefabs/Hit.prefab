@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2237586713126872210}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8085136, y: 0.4810884, z: 0.058553908}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4180835160296867723
 MonoBehaviour:
@@ -49,8 +49,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d32b62d6b6e0489429aef07c7e20bda5, type: 3}
   - {fileID: 21300000, guid: 4119a24b35a909244af353596089a3fd, type: 3}
   - {fileID: 21300000, guid: 7f7023b6bc4a6994ea95f0e27889cbf1, type: 3}
-  mSPR: {fileID: 6792073076301395042}
+  type: 0
   speedAnim: 0.1
+  life: 2
+  posEff: 1
+  anchor: 1
 --- !u!212 &6792073076301395042
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tex_NjPart_SO : ScriptableObject
 {
        public njPart Part;
+       [SpritePreview]
        [SerializeField] private Sprite[] importSprites;
        public SpriteInfo[] spriteInfos;
        public void AddData()

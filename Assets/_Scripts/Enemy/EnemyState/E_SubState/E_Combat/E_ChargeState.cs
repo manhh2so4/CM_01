@@ -7,10 +7,7 @@ public class E_ChargeState : EnemyCombatState
     public E_ChargeState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine)
     {
     }
-    public override void DoChecks() {
-		base.DoChecks();
-		
-	}
+
 	public override void Enter() {
 		base.Enter();
         enemy.state = StateEnemy.Charge;
@@ -23,12 +20,15 @@ public class E_ChargeState : EnemyCombatState
 	}
 	public override void LogicUpdate() {
 		base.LogicUpdate();
-		Movement.CheckIfShouldFlip(xDirPlayer);
+		movement.CheckIfShouldFlip(xDirPlayer);
 
-        if(canAttack) stateMachine.changeStage(enemy.attackState);
+        if(canAttack){
+            stateMachine.ChangeState(enemy.attackState);
+            return;
+        } 
 
 		if(distancePlayer < enemy.minAgroDistance){
-			enemy.stateMachine.changeStage(enemy.lookState);
+			enemy.stateMachine.ChangeState(enemy.lookState);
 		}       
 
         if(TimeRate(0.3f/enemyData.speedMove)) return; 
@@ -44,7 +44,7 @@ public class E_ChargeState : EnemyCombatState
                     return;              
                 }
 
-                if(isGround) Movement?.SetVelocityX(enemyData.speedMove * Movement.facingDirection);
+                if(isGround) movement?.SetVelocityX(enemyData.speedMove * movement.facingDirection);
                 break;
             case 2:
                 break;
@@ -61,7 +61,7 @@ public class E_ChargeState : EnemyCombatState
                 if( Mathf.Abs( XDirPos ) > enemy.RangeMove ){
 					xMove = enemyPos.x - enemy.transform.position.x;
                 }
-                Movement?.SetVelocity( enemyData.speedMove/3 * Movement.facingDirection + xMove,  dirY - vY + yMove);
+                movement?.SetVelocity( enemyData.speedMove/3 * movement.facingDirection + xMove,  dirY - vY + yMove);
                 break;
             default:
                 enemy.Paint(0);

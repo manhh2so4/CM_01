@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void Damage(int amout);
+    CharacterStats Target(GameObject prefabHit);
 }

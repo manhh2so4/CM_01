@@ -31,6 +31,7 @@ public enum StateEnemy
     Charge,
     Attack,
     Knockback,
+    Stun,
     Respawn,
     Dead
 }

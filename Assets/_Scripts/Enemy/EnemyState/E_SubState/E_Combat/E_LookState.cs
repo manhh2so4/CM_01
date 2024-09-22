@@ -7,31 +7,27 @@ public class E_LookState : EnemyCombatState
 
     }
 
-    public override void DoChecks() {
-		base.DoChecks();
-		
-	}
+
 
 	public override void Enter() {        
 		base.Enter();
         enemy.state = StateEnemy.Look;
-        Movement.SetVelocityZero();
-        
+        movement.SetVelocityZero();
 	}
 
 	public override void Exit() {
 		base.Exit();
 		
 	}
-
 	public override void LogicUpdate() {
 		base.LogicUpdate();
-
-        Movement.CheckIfShouldFlip(xDirPlayer);
-        if(canAttack) stateMachine.changeStage(enemy.attackState);  
-
+        movement.CheckIfShouldFlip(xDirPlayer);
+        if(canAttack) {
+            stateMachine.ChangeState(enemy.attackState);  
+            return;
+        }
         if(distancePlayer > enemy.minAgroDistance){                        
-			stateMachine.changeStage(enemy.chargeState);
+			stateMachine.ChangeState(enemy.chargeState);
 		} 
         
         if(TimeRate(0.4f/enemyData.speedMove)) return;

@@ -20,11 +20,10 @@ public class E_KnockBack : EnemyState
 		base.Exit();
 		
 	}
-
 	public override void LogicUpdate() {
 		base.LogicUpdate();
-        if (Time.time >= startTime + timeKnockBack){
-			stateMachine.changeStage(enemy.lookState);
+        if (enemy.knockBackReceiver.isKnockBackActive == false){
+			stateMachine.ChangeState(enemy.lookState);
 		}        
 	}
 }
