@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class E_DeadState : EnemyState
+public class E_DeadState : E_State
 {
 	ItemDrop itemDrop;
     public E_DeadState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine)

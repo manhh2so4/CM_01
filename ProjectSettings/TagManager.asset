@@ -22,7 +22,7 @@ TagManager:
   - CollisionCheck
   - DamageReceiver
   - DamageDealer
-  - 
+  - Projectile
   - 
   - 
   - 

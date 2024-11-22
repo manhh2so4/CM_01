@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyCombatState : EnemyState
+public class EnemyCombatState : E_State
 {
 	protected float distancePlayer;
 	protected int xDirPlayer;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class E_KnockBack : EnemyState
+public class E_KnockBack : E_State
 {
     public E_KnockBack(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine){}
 	public override void Enter() {

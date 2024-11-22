@@ -5,7 +5,7 @@ public class HealthBar_UI : CoreComponent
 {
     [SerializeField] private Movement movement;
     [SerializeField] private CharacterStats myStats;
-    private CapsuleCollider2D mCapsul;
+     [SerializeField] private CapsuleCollider2D mCapsul;
     Transform BarSprite;
 
     Vector3 value = Vector2.one,location = Vector3.zero;
@@ -19,8 +19,10 @@ public class HealthBar_UI : CoreComponent
     }
     private void Start() {
         UpdateHealthUI();
+
         transform.Find("Hp_Bg").GetComponent<SpriteRenderer>().sortingLayerID = core.layerID;
         BarSprite.GetComponent<SpriteRenderer>().sortingLayerID = core.layerID;
+
         location.Set(0,mCapsul.size.y + 0.2f,0);
         transform.localPosition = location;
     }

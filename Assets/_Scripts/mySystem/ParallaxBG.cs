@@ -19,7 +19,6 @@ public class ParallaxBG : MonoBehaviour
     float distX,distY;
     
     public int BG_type;
-    int BG_typeCurrent = -1;
     imgBG_SO imgBG_SO;
     float height;
     float width;
@@ -31,11 +30,11 @@ public class ParallaxBG : MonoBehaviour
     Transform[] Bg3 = new Transform[3];
     
     public Transform Sun;
-    [SerializeField] GameObject prefab;
+    [SerializeField] UnityEngine.GameObject prefab;
     private void Reset() {
         cam = Camera.main;
         string prefabName = "ObjDraw";
-        prefab = Resources.Load<GameObject>(prefabName);
+        prefab = Resources.Load<UnityEngine.GameObject>(prefabName);
         LoadComponent();
         height = 2f * cam.orthographicSize;
         width = height * cam.aspect;        
@@ -47,7 +46,7 @@ public class ParallaxBG : MonoBehaviour
         height = 2f * cam.orthographicSize;
         width = height * cam.aspect;
         string prefabName = "ObjDraw";
-        prefab = Resources.Load<GameObject>(prefabName);
+        prefab = Resources.Load<UnityEngine.GameObject>(prefabName);
         LoadComponent();           
         LoadImgBG();
         startCamX = cam.transform.position.x;
@@ -155,7 +154,7 @@ public class ParallaxBG : MonoBehaviour
         obj.transform.position = new Vector3(0,0,0);
         for (int i = 0; i < loop; i ++)
         {
-            GameObject temp;
+            UnityEngine.GameObject temp;
             try
             {
                 temp = obj.GetChild(i).gameObject;

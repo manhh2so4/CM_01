@@ -16,7 +16,7 @@ public class UI : MonoBehaviour
     {
         
     }
-    public void SwitchTo(GameObject _menu){
+    public void SwitchTo(UnityEngine.GameObject _menu){
         // for (int i = 0; i < transform.childCount; i++)
         // {
         //     transform.GetChild(i).gameObject.SetActive(false);

@@ -8,5 +8,14 @@ public class EnemyBoss_SO : ScriptableObject
         public ImageInfor[] imageInfors;
         public FrameBoss[] frameBoss;
         public int[] frameBossMove;
-        public int[] frameBossAttack;
+        public BossAttack[] BossAttacks;
+
+        public float speed_move;
+        public float RangeMove;
+
+}
+
+[System.Serializable]
+public class BossAttack{
+        public int[] attack;
 }

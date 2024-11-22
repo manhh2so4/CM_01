@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 public class PoiseReceiver : CoreReceiver, IPoiseDamageable
 {   
@@ -9,7 +10,7 @@ public class PoiseReceiver : CoreReceiver, IPoiseDamageable
         isPoise = true;
         poisetype = type;
         PrefabEff = prefabEff;
-        PrefabEff.GetComponent<Effect_Instance>().SetData(amount,core.layerID);  
+        PrefabEff.GetComponent<Effect_Instance>().SetData(amount,core.layerID,core.size);  
         SetPosEff();
         particleManager?.StartParticles(PrefabEff,this.transform.position + Location);
         Location = Vector3.zero;

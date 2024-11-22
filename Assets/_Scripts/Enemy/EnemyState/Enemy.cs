@@ -12,9 +12,8 @@ public class Enemy : Entity
     SpriteRenderer mSPR;
     #endregion  
     //--------- Enemy input Data -----------
-    int idEnemyCurrent = -1;
     [SerializeField] protected int idEnemy;
-    public GameObject projectile;
+    public UnityEngine.GameObject projectile;
     public Ease ease,easeEnd;
     public LayerMask LayerCombat;
     public float minAgroDistance = 2f;
@@ -110,9 +109,6 @@ public class Enemy : Entity
 
     #endregion
     #region ColCheck
-    public bool CheckPlayerInMaxAgroRange(){
-        return PlayerCheck.IsTouchingLayers(LayerMask.GetMask("Player"));
-    }
     public bool isledge()
     {
         return ledgeCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));

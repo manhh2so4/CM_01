@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class Core : MonoBehaviour
 {
     [SerializeField] private List<CoreComponent> CoreComponents = new List<CoreComponent>();
+	[SortingLayer]
 	public int layerID = 0;
+	public int size = 1;
     private void Awake()
     {
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyAbilityState : EnemyState
+public class EnemyAbilityState : E_State
 {
     protected CharacterStats stats;
     protected bool isAbilityDone;

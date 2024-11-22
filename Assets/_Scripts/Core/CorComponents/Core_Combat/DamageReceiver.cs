@@ -8,7 +8,7 @@ public class DamageReceiver : CoreReceiver, IDamageable
     {
         PrefabEff = prefabHit;
         SetPosEff();
-        particleManager?.StartParticlesRandomRotation(PrefabEff,this.transform.position + Location);
+        particleManager?.StartParticlesRandomRotation(PrefabEff.gameObject,this.transform.position + Location);
         Location = Vector3.zero;  
         return characterStats;
     }

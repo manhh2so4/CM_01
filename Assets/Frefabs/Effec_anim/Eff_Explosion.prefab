@@ -55,6 +55,7 @@ MonoBehaviour:
   life: 10
   posEff: 1
   anchor: 1
+  mSPR: {fileID: 2200558684753691943}
 --- !u!212 &2200558684753691943
 SpriteRenderer:
   m_ObjectHideFlags: 0

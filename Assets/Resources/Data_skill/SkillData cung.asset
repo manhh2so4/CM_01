@@ -26,6 +26,7 @@ MonoBehaviour:
         name: DamageData
         <AttackData>k__BackingField:
           <Amout>k__BackingField: 0
+          prefabHit: {fileID: 5927714945680655395, guid: 166161ba417616341ac3a279f3538b3b, type: 3}
     - rid: 4502466564992008197
       type: {class: MovementData, ns: , asm: Assembly-CSharp}
       data:

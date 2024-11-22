@@ -81,7 +81,6 @@ public class Editor_helper
                     
                 }
             }
-            ti.spritesheet = newData.ToArray();
             AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
         }
         Debug.Log("Done Slicing!");

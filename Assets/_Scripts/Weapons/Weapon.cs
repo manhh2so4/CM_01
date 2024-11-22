@@ -104,6 +104,5 @@ public class Weapon : MonoBehaviour {
 
     private void Awake() {
         wpSprite = GetComponent<WeaponSprite>();
-        Debug.Log("add Wp sprite");
     }
 }

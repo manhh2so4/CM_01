@@ -4,5 +4,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FX_text", menuName = "GameData/TexFX")]
 public class TextFXSkill_SO : ScriptableObject
 {
-        public EffSkillInfo[] effSkillInfo_SO;
+        public Texture2DInfo[] effSkillInfo_SO;
 }

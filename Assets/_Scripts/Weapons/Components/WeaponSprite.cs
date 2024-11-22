@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 
 public class WeaponSprite : MonoBehaviour {
-    [SerializeField] GameObject Skill_0;
-    [SerializeField] GameObject Skill_1;
-    [SerializeField] GameObject Skill_2;
+    [SerializeField] UnityEngine.GameObject Skill_0;
+    [SerializeField] UnityEngine.GameObject Skill_1;
+    [SerializeField] UnityEngine.GameObject Skill_2;
 
     [SerializeField] EffSkill effSkill_0;
     [SerializeField] EffSkill effSkill_1;
@@ -65,7 +65,7 @@ public class WeaponSprite : MonoBehaviour {
         Skill_1.SetActive(false);
         Skill_2.SetActive(false);
     }
-    void PaintSkill(int index, GameObject obj,EffSkill EffSkills, int x,int y){
+    void PaintSkill(int index, UnityEngine.GameObject obj,EffSkill EffSkills, int x,int y){
         if(index >= EffSkills.effSkillInfos.Length){
             obj.SetActive(false);
             EffSkills = null;

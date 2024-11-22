@@ -23,16 +23,16 @@ public class Sprite_FXSkill_SO : ScriptableObject
                 for (int i = 0; i < effSkillInfo_SO.Length; i++)
                 {
                         SpriteInfo inforTemp = new SpriteInfo();
-                        inforTemp.dx = SkillInfor[EffId-1].info[i].dx;
-                        inforTemp.dy = SkillInfor[EffId-1].info[i].dy;
+                        inforTemp.dx = SkillInfor[EffId-1].info[i].x0;
+                        inforTemp.dy = SkillInfor[EffId-1].info[i].y0;
                         foreach (Sprite item in sprites)
                         {
-                                if(SkillInfor[EffId-1].info[i].imgId == int.Parse(item.name)){
+                                if(SkillInfor[EffId-1].info[i].ID == int.Parse(item.name)){
                                         inforTemp.sprite = item;
                                 }else
                                 {
                                         inforTemp.sprite = sprites[0];
-                                        inforTemp.sprite.name = SkillInfor[EffId-1].info[i].imgId.ToString();
+                                        inforTemp.sprite.name = SkillInfor[EffId-1].info[i].ID.ToString();
                                 }
                         }
                         effSkillInfo_SO[i] = inforTemp;                        

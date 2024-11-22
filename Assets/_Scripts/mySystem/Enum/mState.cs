@@ -24,12 +24,19 @@ public enum njPart
 }
 public enum StateEnemy
 {
+    None,
     Idle,
+    Jump,
+    Hold,
+    Fall,
     Moving,
     Dash,
     Look,
     Charge,
-    Attack,
+    Attack1,
+    Attack2,
+    Skill_1,
+    Skill_2,
     Knockback,
     Stun,
     Respawn,

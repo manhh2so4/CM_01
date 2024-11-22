@@ -32,13 +32,13 @@ public class Read_FX_Skill : MonoBehaviour
             SkillInfor1 skilId = new SkillInfor1();  
             JsonData data2 = GetItem(data[i][1].ToString());
             skilId.idSkillFx = i;
-            skilId.info = new FormImg[data2.Count];
+            skilId.info = new ImageID[data2.Count];
             for (int j = 0; j < skilId.info.Length; j++)
             {   
-                FormImg formImg = new FormImg();
-                formImg.imgId = int.Parse(data2[j][0].ToString());
-                formImg.dx = int.Parse(data2[j][1].ToString());
-                formImg.dy = int.Parse(data2[j][2].ToString());
+                ImageID formImg = new ImageID();
+                formImg.ID = int.Parse(data2[j][0].ToString());
+                formImg.x0 = int.Parse(data2[j][1].ToString());
+                formImg.y0 = int.Parse(data2[j][2].ToString());
                 skilId.info[j] = formImg;        
             }            
             temp[i] = skilId;                            
@@ -52,7 +52,7 @@ public class Read_FX_Skill : MonoBehaviour
         {
             for (int j = 0; j < skillInfors[i].info.Length; j++)
             {
-                if(idFxFind == skillInfors[i].info[j].imgId){
+                if(idFxFind == skillInfors[i].info[j].ID){
                     FindInfor.Add(skillInfors[i]);
                 }
             }
@@ -71,7 +71,7 @@ public class Read_FX_Skill : MonoBehaviour
             a += "[" + i + "]-" + skillInfors[i].info.Length +"-: ";
             for (int j = 0; j < skillInfors[i].info.Length; j++)
             {
-                a += skillInfors[i].info[j].imgId.ToString()+" | ";
+                a += skillInfors[i].info[j].ID.ToString()+" | ";
             }
             a +="\n";
         }
@@ -84,15 +84,13 @@ public class Read_FX_Skill : MonoBehaviour
 
             EffSkill temp1 = new EffSkill();
             temp1.idEffSkill = i+1;
-            ///temp1.effSkillInfos = new EffSkillInfo[skillInfors[i].info.Length];
             for (int j = 0; j < temp1.effSkillInfos.Length; j++)
             {
-                EffSkillInfo a = new EffSkillInfo();
+                Texture2DInfo a = new Texture2DInfo();
                 a.texture2D = new Texture2D(1,1);
-                a.texture2D.name = skillInfors[i].info[j].imgId.ToString();
-                a.dx = skillInfors[i].info[j].dx;
-                a.dy = skillInfors[i].info[j].dy;
-                //temp1.effSkillInfos[j] = a;
+                a.texture2D.name = skillInfors[i].info[j].ID.ToString();
+                a.dx = skillInfors[i].info[j].x0;
+                a.dy = skillInfors[i].info[j].y0;
             }
             temp[i+1] = temp1;
         }

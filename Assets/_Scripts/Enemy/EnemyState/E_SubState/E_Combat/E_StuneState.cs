@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class E_StuneState : EnemyState
+public class E_StuneState : E_State
 {
     public E_StuneState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine)
     {

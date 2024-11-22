@@ -24,6 +24,7 @@ public class PlayerAttackState : PlayerAbilityState
 
     public override void LogicUpdate(){
         base.LogicUpdate();
+        movement.SetVelocityX(0);
         if(isGrounded ){  
             player.Anim.isFly = false;       
         }else{

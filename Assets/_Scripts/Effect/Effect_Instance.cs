@@ -3,20 +3,25 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class Effect_Instance : MonoBehaviour
 {
+    [SpritePreview]
     [SerializeField] Sprite[] sprites;
     [SerializeField] TypeEff type;   
     [SerializeField] float speedAnim;
     public float life = 2;
     public PosEff posEff;
     [SerializeField] Pivot anchor;
-    SpriteRenderer mSPR;
-    int FrameCurrent = 0;   
-    float startTime = 0,offsetY = 0,offsetX = 0;
-    Vector3 newPosition = Vector3.zero;
-    public void SetData(float life,int layerID){
-        if(mSPR == null) mSPR = GetComponent<SpriteRenderer>();
+     [SerializeField] SpriteRenderer mSPR;
+    int FrameCurrent = 0;  
+    int size =1; 
+    float startTime = 0,offsetY = 0;
+    public void SetData(float life,int layerID,int _size){
         this.life = life;
         mSPR.sortingLayerID = layerID;
+        if(_size != 1) {
+            transform.localScale = new Vector3(size,size,1);
+            this.size = _size;
+            Debug.Log("set_Data " + _size); 
+        }    
     }
 
     private void OnEnable() {
@@ -24,8 +29,8 @@ public class Effect_Instance : MonoBehaviour
         FrameCurrent = 0;
         frameTimer = 99;
         startTime = Time.time;
-        Paint();
-        SetPivot();              
+        SetPivot();
+        Paint();            
     }
     private void Update() {
 
@@ -82,16 +87,17 @@ public class Effect_Instance : MonoBehaviour
         switch (anchor)
         {               
             case Pivot.Top:
-                offsetY -= h/2;
+                offsetY = -h/2;
             break;
             case Pivot.Bot:
-                offsetY += h/2 - 0.02f;
+                offsetY = h/2 - 0.02f;
             break;
             case Pivot.Center:
             break;
         }
-        newPosition.Set(0,offsetY,0);
-        transform.position += newPosition;   
+        Vector3 newPosition = new Vector3(0,offsetY*this.size,0);
+        this.transform.localPosition += newPosition;
+        Debug.Log("offsetY " + offsetY + "size " + this.size);   
     }
     bool FrameRate(float speed){        
         frameTimer += Time.deltaTime;

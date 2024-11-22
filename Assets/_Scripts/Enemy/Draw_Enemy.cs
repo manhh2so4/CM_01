@@ -7,8 +7,8 @@ public class Draw_Enemy : MonoBehaviour
 
     [SerializeField] Enemy_SO enemy_SO;
     Sprite[] sprites;
-    [SerializeField] GameObject mSPR;
-    [SerializeField] GameObject fxSPR;
+    [SerializeField] UnityEngine.GameObject mSPR;
+    [SerializeField] UnityEngine.GameObject fxSPR;
     int idEnemyCurrent = -1;
     [SerializeField] protected int Hp = 0;
     protected Vector3 enemyPos;

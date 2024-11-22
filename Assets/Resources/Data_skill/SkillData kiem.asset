@@ -15,7 +15,6 @@ MonoBehaviour:
   <ComponentData>k__BackingField:
   - rid: 4502466544620797964
   - rid: 4502466544620797965
-  - rid: 4502466544620797966
   - rid: 4502466564992008194
   - rid: 4316985181428776960
   references:
@@ -36,7 +35,7 @@ MonoBehaviour:
         name: DamageData
         <AttackData>k__BackingField:
           <Amout>k__BackingField: 10
-          prefabHit: {fileID: 2237586713126872210, guid: 4b5cfad7d29b0d34eb97e2dc0365b24c, type: 3}
+          prefabHit: {fileID: 2804874706322604519, guid: 36eede3f4d1f5544287616e34e4a7dfb, type: 3}
     - rid: 4502466544620797965
       type: {class: HitBoxData, ns: , asm: Assembly-CSharp}
       data:
@@ -44,13 +43,6 @@ MonoBehaviour:
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 0
-    - rid: 4502466544620797966
-      type: {class: MovementData, ns: , asm: Assembly-CSharp}
-      data:
-        name: MovementData
-        <AttackData>k__BackingField:
-          <Direction>k__BackingField: {x: 0, y: 0}
-          <Velocity>k__BackingField: 0
     - rid: 4502466564992008194
       type: {class: KnockBackData, ns: , asm: Assembly-CSharp}
       data:

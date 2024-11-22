@@ -13,16 +13,16 @@ public class mPaint
     static float offsetY = 0;
     static Vector3 newPosition;
     
-    public static void Paint(GameObject gameObject,Texture2D text,float x, float y,int anchor){
+    public static void Paint(UnityEngine.GameObject gameObject,Texture2D text,float x, float y,int anchor){
         x *= 4;
         y *= 4;
 		gameObject.transform.localPosition = new Vector3(x/100,y/100,0);
         gameObject.GetComponent<SpriteRenderer>().sprite = Draw_prite(text,anchor);
     }
-    public static void Paint(GameObject gameObject,Sprite sprite,int anchor){
+    public static void Paint(UnityEngine.GameObject gameObject,Sprite sprite,int anchor){
         Paint(gameObject,sprite,0, 0, anchor);
     }
-    public static void Paint(GameObject gameObject,Sprite sprite,float x, float y,int anchor){
+    public static void Paint(UnityEngine.GameObject gameObject,Sprite sprite,float x, float y,int anchor){
 
         x *= 4;
         y *= 4;

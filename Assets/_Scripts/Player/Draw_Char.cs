@@ -8,11 +8,11 @@ public class Draw_Char : MonoBehaviour
     public int cf = 0;
 	private int current = -1;
 
-    [SerializeField] GameObject LegGO;
-    [SerializeField] GameObject HeadGO;
-    [SerializeField] GameObject BodyGO;
-	[SerializeField] GameObject DustGO;
-	[SerializeField] GameObject WpGO;
+    [SerializeField] UnityEngine.GameObject LegGO;
+    [SerializeField] UnityEngine.GameObject HeadGO;
+    [SerializeField] UnityEngine.GameObject BodyGO;
+	[SerializeField] UnityEngine.GameObject DustGO;
+	[SerializeField] UnityEngine.GameObject WpGO;
 
     SpriteInfo[] partBody = new SpriteInfo[18];
 	SpriteInfo[] partHead = new SpriteInfo[8];
@@ -36,7 +36,7 @@ public class Draw_Char : MonoBehaviour
     int lvHeadCurrent = -1;
 
     public int wpType = 0;
-    int wpTypeCurrent = -1;
+
     private void FixedUpdate()  
     {
         //LoadTexWp();
@@ -75,7 +75,7 @@ public class Draw_Char : MonoBehaviour
 		Inventory.Instance.OnChangeCloth += UpdateColth;
 	}
 	private void OnDisable() {
-		Inventory.Instance.OnChangeCloth -= UpdateColth;
+		//Inventory.Instance.OnChangeCloth -= UpdateColth;
 	}
     public void LoadTexHead_SO()
     {

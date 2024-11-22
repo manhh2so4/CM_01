@@ -6,7 +6,7 @@ public class ItemDrop : CoreComponent{
     [SerializeField] private int possibleItemDrop;
     [SerializeField] private DropInfo[] possibleDrop;
     private List<ItemData> dropList = new List<ItemData>();
-    [SerializeField] private GameObject dropPrefab;
+    [SerializeField] private UnityEngine.GameObject dropPrefab;
 
     public virtual void GenerateDrop()
     {
@@ -27,7 +27,7 @@ public class ItemDrop : CoreComponent{
 
     protected void DropItem(ItemData _itemData)
     {
-        GameObject newDrop = Instantiate(dropPrefab, transform.position, Quaternion.identity);
+        UnityEngine.GameObject newDrop = Instantiate(dropPrefab, transform.position, Quaternion.identity);
 
         Vector2 randomVelocity = new Vector2(Random.Range(-4, 4), Random.Range(3, 6));
         newDrop.GetComponent<ItemObject>().SetupItem(_itemData, randomVelocity);

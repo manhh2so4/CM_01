@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyNormalState : EnemyState
+public class EnemyNormalState : E_State
 {    
     protected float timeChangeState;
     public EnemyNormalState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine)

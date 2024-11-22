@@ -1,0 +1,63 @@
+using UnityEngine;
+
+public class EnemyState : State
+{
+    #region defaut 
+    protected FiniteStateMachine stateMachine;
+    protected float startTime;
+    private float frameTimer = 0,timeCount = 0,timeAction = 0;
+    protected int FrameCurrent = 0;
+    #endregion
+    //--------------------------------------- 
+    #region DataEnemy 
+    protected float vY = 1,dirY;    
+    protected bool isGround,isWall,isLedge;   
+
+    protected float XDirPos;
+    protected float YDirPos;
+    #endregion
+    public override void Enter(){
+        base.Enter();
+        startTime = Time.time;
+        
+    }
+    public override void Exit(){
+        base.Exit();
+        frameTimer = 99f;
+
+    }
+    public override void LogicUpdate(){
+        base.LogicUpdate();
+
+    }
+    public override void PhysicsUpdate(){
+        base.PhysicsUpdate();
+       
+    }
+    #region funcTimer
+    protected bool TimeRate(float speed){        
+        frameTimer += Time.deltaTime;
+        if(frameTimer >= speed){
+            frameTimer = 0;
+            return false;
+        }
+        return true;
+    }
+    protected bool CountDown(float timeWait){        
+        timeCount += Time.deltaTime;
+        if(timeCount >= timeWait){
+            timeCount = 0;
+            return true;
+        }
+        return false;
+    }
+    protected bool TimeAction(float timeWait){        
+        timeAction += Time.deltaTime;
+        if(timeAction >= timeWait){
+            timeAction = 0;
+            return true;
+        }
+        return false;
+    }
+    #endregion
+}

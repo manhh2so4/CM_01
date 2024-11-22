@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Logging;
 public class Movement : CoreComponent
 {
     public System.Action OnFlip;
@@ -77,6 +76,9 @@ public class Movement : CoreComponent
         {
             Flip();
         }
+    }
+    public void AddForce(Vector2 dir){
+        mRB.AddForce(dir,ForceMode2D.Impulse);
     }
 
     public void Flip()
