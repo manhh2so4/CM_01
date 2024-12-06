@@ -2996,6 +2996,7 @@ GameObject:
   - component: {fileID: 96930662}
   - component: {fileID: 96930661}
   - component: {fileID: 96930660}
+  - component: {fileID: 96930663}
   m_Layer: 12
   m_Name: Combat
   m_TagString: Enemy
@@ -3081,6 +3082,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PrefabEff: {fileID: 2237586713126872210, guid: 4b5cfad7d29b0d34eb97e2dc0365b24c, type: 3}
+--- !u!114 &96930663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96930658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2efdee8e0ff4ff42b36ce7606370579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxKnockbackTime: 0.2
+  isKnockBackActive: 0
 --- !u!1001 &98552891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67916,7 +67931,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &521987078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67934,7 +67949,6 @@ MonoBehaviour:
   CharStats: {fileID: 0}
   mCollider: {fileID: 0}
   mRB: {fileID: 0}
-  enemy_Data: {fileID: 11400000, guid: ffa5a5df145de4846b2ee344ded4d443, type: 2}
   idEnemy: 14
   projectile: {fileID: 6425494150331198855, guid: e832f3aea8d6bb74e90e67194a46621c, type: 3}
   ease: 26
@@ -67952,6 +67966,7 @@ MonoBehaviour:
   canChangeState: 0
   state: 0
   playerCheck: {fileID: 0}
+  enemy_Data: {fileID: 11400000, guid: ffa5a5df145de4846b2ee344ded4d443, type: 2}
 --- !u!50 &521987079
 Rigidbody2D:
   serializedVersion: 4
@@ -74411,7 +74426,6 @@ MonoBehaviour:
   CharStats: {fileID: 0}
   mCollider: {fileID: 0}
   mRB: {fileID: 0}
-  enemy_Data: {fileID: 11400000, guid: ffa5a5df145de4846b2ee344ded4d443, type: 2}
   idEnemy: 17
   projectile: {fileID: 6425494150331198855, guid: e832f3aea8d6bb74e90e67194a46621c, type: 3}
   ease: 26
@@ -74429,6 +74443,7 @@ MonoBehaviour:
   canChangeState: 0
   state: 0
   playerCheck: {fileID: 0}
+  enemy_Data: {fileID: 11400000, guid: ffa5a5df145de4846b2ee344ded4d443, type: 2}
 --- !u!50 &841359513
 Rigidbody2D:
   serializedVersion: 4
@@ -91578,8 +91593,8 @@ MonoBehaviour:
   idBoss: 218
   currentStage: 1
   state: 1
-  speedMove: 1
-  speedAtk: 1
+  speedImgMove: 1.5
+  speedImgAtk: 0.5
   FrameCurrent: 1
 --- !u!50 &1214469074
 Rigidbody2D:
@@ -91681,16 +91696,24 @@ MonoBehaviour:
   CharStats: {fileID: 0}
   mCollider: {fileID: 0}
   mRB: {fileID: 0}
-  bossData: {fileID: 0}
+  idEnemy: 0
+  projectile: {fileID: 0}
+  ease: 0
+  easeEnd: 0
+  LayerCombat:
+    serializedVersion: 2
+    m_Bits: 4096
+  minAgroDistance: 2
+  AgroDistance: 10
+  maxAgroDetect: 7
+  RangeMove: 3
+  minIdleTime: 2
+  maxIdleTime: 5
   canAttack: 0
   canChangeState: 0
   state: 0
-  minIdleTime: 2
-  maxIdleTime: 5
-  LayerCombat:
-    serializedVersion: 2
-    m_Bits: 0
   playerCheck: {fileID: 0}
+  bossData: {fileID: 0}
 --- !u!1 &1220042113
 GameObject:
   m_ObjectHideFlags: 0

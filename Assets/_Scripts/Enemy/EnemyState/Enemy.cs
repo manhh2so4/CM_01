@@ -4,36 +4,16 @@ using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 
-public class Enemy : Entity
+public class Enemy : EnemyEntity
 {
     #region Set_component
     public Enemy_SO enemy_Data;
     Sprite[] sprites;
     SpriteRenderer mSPR;
-    #endregion  
-    //--------- Enemy input Data -----------
-    [SerializeField] protected int idEnemy;
-    public UnityEngine.GameObject projectile;
-    public Ease ease,easeEnd;
-    public LayerMask LayerCombat;
-    public float minAgroDistance = 2f;
-    public float AgroDistance = 10f;
-    public float maxAgroDetect = 7f;
-    public float RangeMove = 3f;
-    public float minIdleTime;
-    public float maxIdleTime;
-    Vector3 Epos;
+    #endregion
     //----------View_data
-    public bool canAttack;
-    public bool canChangeState;
-    public StateEnemy state;
-    #region Setup_Enemy
 
-    public Transform playerCheck;
-    protected CapsuleCollider2D PlayerCheck;
-    protected BoxCollider2D ledgeCheck;
-    protected CapsuleCollider2D wallCheck;
-    public FiniteStateMachine stateMachine;  
+    #region Setup_Enemy
     //---------------- Set State----------------------------
     public E_IdleState idleState { get; private set;}
     public E_MoveState moveState { get; private set;}
@@ -109,18 +89,6 @@ public class Enemy : Entity
 
     #endregion
     #region ColCheck
-    public bool isledge()
-    {
-        return ledgeCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
-    }
-    public bool isWall()
-    {
-        return wallCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
-    }
-    public bool isGround()
-    {
-        return mCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
-    }
     private void OnTriggerEnter2D(Collider2D other) {
         
         if ( (LayerCombat.value & (1 << other.gameObject.layer)) != 0)
@@ -130,22 +98,17 @@ public class Enemy : Entity
         }
     }
     #endregion
-    
-    #region FuncLoad
-    private void LoadCore(){
-        core.layerID = mSPR.sortingLayerID;
-        stateMachine = new FiniteStateMachine();
-    }
-    private void LoadComponent(){
 
+    #region FuncLoad
+    protected override void LoadCore(){
+        base.LoadCore();
+        core.layerID = mSPR.sortingLayerID;
+    }
+    protected override void LoadComponent(){
+        base.LoadComponent();
         if(mSPR == null) mSPR = transform.Find("Draw_Enemy").GetComponent<SpriteRenderer>(); 
-        if(ledgeCheck == null) ledgeCheck = transform.Find("GroundDetected").GetComponent<BoxCollider2D>();
-        if(wallCheck == null) wallCheck = transform.Find("WallDetected").GetComponent<CapsuleCollider2D>(); 
-        if(PlayerCheck == null) PlayerCheck = transform.Find("PlayerDetected").GetComponent<CapsuleCollider2D>();
     }
     private void Load_Enemy(){
-        //if (idEnemyCurrent == idEnemy ) return;
-        //idEnemyCurrent = idEnemy;
         string resPath = "Enemy_Load/Enemy/Enemy " + idEnemy;
         this.enemy_Data = Resources.Load<Enemy_SO>(resPath);
         mPaint.LoadSprite(ref sprites,enemy_Data.textures, mPaint.BOTTOM | mPaint.HCENTER);
@@ -186,19 +149,10 @@ public class Enemy : Entity
                 PlayerCheck.offset = new Vector2(0f,(PlayerCheck.size.y-2f)/2f);
 
             break;
-
         }
     }
     public void Paint(int frameCurrent){
         mSPR.sprite = sprites[frameCurrent];
     }
     #endregion
-    public virtual void OnDrawGizmos(){
-         Gizmos.DrawLine(Epos,transform.position);
-         if(playerCheck) {
-            Gizmos.DrawLine(playerCheck.position,transform.position);
-            Handles.color = Color.red;
-            Handles.Label((playerCheck.position+transform.position)/2, Vector2.Distance(playerCheck.position,transform.position).ToString());
-         }
-    }
 }

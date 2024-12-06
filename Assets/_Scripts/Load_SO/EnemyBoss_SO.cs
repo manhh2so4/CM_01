@@ -11,6 +11,7 @@ public class EnemyBoss_SO : ScriptableObject
         public BossAttack[] BossAttacks;
 
         public float speed_move;
+        public float speed_attack;
         public float RangeMove;
 
 }

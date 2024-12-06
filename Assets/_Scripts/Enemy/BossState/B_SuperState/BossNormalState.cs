@@ -16,10 +16,10 @@ public class BossNormalState : BossState
 
 	public override void LogicUpdate() {
 		base.LogicUpdate();
-		// if(boss.playerCheck){
-		// 	if(Vector2.Distance(boss.playerCheck.position,boss.transform.position) < boss.AgroDistance)
-		// 	stateMachine.ChangeState(boss.lookState);
-		// }        
+		if(boss.playerCheck){
+			if(Vector2.Distance(boss.playerCheck.position,boss.transform.position) < boss.AgroDistance)
+			stateMachine.ChangeState(boss.lookState);
+		}        
 	}
 
 	public override void PhysicsUpdate() {

@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-public class Boss : Entity{
+public class Boss : EnemyEntity{
     #region State Variable
     public FiniteStateMachine StateMachine{get;private set;}
     #endregion
@@ -9,41 +9,36 @@ public class Boss : Entity{
     #region Component
     public Draw_boss draw_Boss {get;private set;}
     public EnemyBoss_SO bossData;
-    Vector3 Bpos;
     //----------View_data
-    public bool canAttack;
-    public bool canChangeState;
-    public StateEnemy state;
-    public float minIdleTime;
-    public float maxIdleTime;
     #endregion
     
     #region Setup_Enemy
-    public LayerMask LayerCombat;
-    public Transform playerCheck;
-    protected CapsuleCollider2D PlayerCheck;
-    protected BoxCollider2D ledgeCheck;
-    protected CapsuleCollider2D wallCheck;
-    public FiniteStateMachine stateMachine;  
     //---------------- Set State----------------------------
 
     public B_IdleState idleState { get; private set;}
     public B_MoveState moveState { get; private set;}
+    public B_ChargeState chargeState { get; private set;}
+    public B_LookState lookState { get; private set;}
+    public B_Attack_1 attack_1 { get; private set;}
+    public B_Attack_2 attack_2 { get; private set;}
+    public B_Jump jump { get; private set;}
 
     #endregion
-
-
     protected override void Awake(){
         base.Awake();
         LoadComponent();
         LoadCore();
         moveState = new B_MoveState(this, stateMachine);
         idleState = new B_IdleState(this, stateMachine);
-
+        chargeState = new B_ChargeState(this,stateMachine);
+        lookState = new B_LookState(this,stateMachine);
+        attack_1 = new B_Attack_1(this,stateMachine);
+        attack_2 = new B_Attack_2(this,stateMachine);
+        jump = new B_Jump(this,stateMachine);
     }
     private void Start() {
         stateMachine.Initialize(moveState);
-        Bpos = transform.position;
+        Epos = transform.position;
         playerCheck = null;  
     }
     public virtual void Update()
@@ -63,30 +58,10 @@ public class Boss : Entity{
     }
 
     #region FuncLoad
-    private void LoadCore(){
+    protected override void LoadCore(){
+        base.LoadCore();
         draw_Boss = GetComponent<Draw_boss>();
         bossData = draw_Boss.DataBoss_SO;
-        stateMachine = new FiniteStateMachine();
-    }
-    private void LoadComponent(){
-        
-        if(ledgeCheck == null) ledgeCheck = transform.Find("GroundDetected").GetComponent<BoxCollider2D>();
-        if(wallCheck == null) wallCheck = transform.Find("WallDetected").GetComponent<CapsuleCollider2D>(); 
-        if(PlayerCheck == null) PlayerCheck = transform.Find("PlayerDetected").GetComponent<CapsuleCollider2D>();
-    }
-    #endregion
-    #region ColCheck
-    public bool isledge()
-    {
-        return ledgeCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
-    }
-    public bool isWall()
-    {
-        return wallCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
-    }
-    public bool isGround()
-    {
-        return mCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
     }
     private void OnTriggerEnter2D(Collider2D other) {
         
@@ -97,12 +72,4 @@ public class Boss : Entity{
         }
     }
     #endregion
-    public virtual void OnDrawGizmos(){
-         Gizmos.DrawLine(Bpos,transform.position);
-         if(playerCheck) {
-            Gizmos.DrawLine(playerCheck.position,transform.position);
-            Handles.color = Color.red;
-            Handles.Label((playerCheck.position+transform.position)/2, Vector2.Distance(playerCheck.position,transform.position).ToString());
-         }
-    }
 }

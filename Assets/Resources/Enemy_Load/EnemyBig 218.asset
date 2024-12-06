@@ -224,4 +224,5 @@ MonoBehaviour:
   - attack: 0a0000000b0000000c000000
   - attack: 060000000700000008000000
   speed_move: 2
+  speed_attack: 1
   RangeMove: 2

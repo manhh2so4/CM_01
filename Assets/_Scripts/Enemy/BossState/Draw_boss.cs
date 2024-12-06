@@ -28,8 +28,8 @@ public class Draw_boss : MonoBehaviour
     public int idBoss;
     public StateEnemy currentStage = StateEnemy.None;
     public StateEnemy state;
-    public float speedMove;
-    public float speedAtk;     
+    public float speedImgMove;
+    public float speedImgAtk;     
 	public int FrameCurrent = 0;	        
 	float frameTimer = 0;
     [Button("Draw_boss")] 
@@ -104,7 +104,7 @@ public class Draw_boss : MonoBehaviour
     }
     void BossMove(){		
 		frameTimer += Time.deltaTime;
-        if(frameTimer >= 1f/ (speedMove*4) ){
+        if(frameTimer >= 1f/ (speedImgMove*4) ){
             frameTimer = 0;
             if(FrameCurrent >= frameBossMove.Length){
                 FrameCurrent = 0;               
@@ -115,7 +115,7 @@ public class Draw_boss : MonoBehaviour
 	}
     void BossAttack(int index){		
 		frameTimer += Time.deltaTime;
-        if(frameTimer >= speedAtk/bossAttacks[index].attack.Length ){
+        if(frameTimer >= speedImgAtk/bossAttacks[index].attack.Length ){
             frameTimer = 0;
             if(FrameCurrent >= bossAttacks[index].attack.Length){
                 OnAttackDone?.Invoke();

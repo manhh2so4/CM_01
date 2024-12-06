@@ -33,10 +33,12 @@ public class EnemyCombatState : E_State
 		distancePlayer = Vector2.Distance(enemy.playerCheck.position,enemy.transform.position);
 		xDirPlayer = (enemy.playerCheck.position.x > enemy.transform.position.x) ? 1 : -1;
 		yDirPlayer = (enemy.playerCheck.position.y > enemy.transform.position.y) ? 1 : -1;
+
 		if(distancePlayer >= enemy.AgroDistance){
 			movement.Flip();
 			stateMachine.ChangeState(enemy.idleState);			
 		}
+		
 		if(TimeAction(enemyData.speedAtk)){
 			canAttack = true;
 		}

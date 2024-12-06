@@ -5,7 +5,7 @@ public class Boss_Move : Boss_Action{
     public override void OnStart()
     {
         base.OnStart();
-        bossState.speedMove = speedMove;
+        bossState.speedImgMove = speedMove;
         bossState.state = StateEnemy.Moving;
     }
     public override TaskStatus OnUpdate()

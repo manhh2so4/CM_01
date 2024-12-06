@@ -14,6 +14,7 @@ using UnityEngine;
             hasLanded = false;
             isjump = false;
             buildupTween = DOVirtual.DelayedCall(buildupTime, StartJump, false);
+            
         }
 
         private void StartJump()

@@ -5,6 +5,11 @@ public class BossState : EnemyState
     #region defaut 
     protected Boss boss;
     protected EnemyBoss_SO bossData;
+    protected int xDirPlayer;
+	protected int yDirPlayer;
+
+    protected float xDisPlayer;
+    protected float distancePlayer;
 
     #endregion
     //--------------------------------------- 
@@ -34,7 +39,13 @@ public class BossState : EnemyState
 		isWall = boss.isWall();
 
         XDirPos = boss.transform.position.x  - BossPos.x;
-        YDirPos = boss.transform.position.y  - BossPos.y;     
+        YDirPos = boss.transform.position.y  - BossPos.y;
+
+        distancePlayer = Vector2.Distance(boss.playerCheck.position,boss.transform.position);
+        xDisPlayer = boss.playerCheck.position.x - boss.transform.position.x;
+
+		xDirPlayer = (boss.playerCheck.position.x > boss.transform.position.x) ? 1 : -1;
+		yDirPlayer = (boss.playerCheck.position.y > boss.transform.position.y) ? 1 : -1;     
     }
     public override void PhysicsUpdate(){
         base.PhysicsUpdate();
