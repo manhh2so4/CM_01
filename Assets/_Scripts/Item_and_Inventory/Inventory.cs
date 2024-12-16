@@ -1,167 +1,187 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
+using HStrong.Saving;
 using UnityEngine;
 
-
-public class Inventory : MonoBehaviour {
-    public Core core;
-    private CharacterStats charStats;
-    public static Inventory Instance;
-
-    public List<InventoryItem> equipment;
-    public Dictionary<ItemData_Equipment, InventoryItem> equipmentDictianory;
-
-    public List<InventoryItem> inventory;
-    public Dictionary<ItemData, InventoryItem> inventoryDictianory;
-
-    public Action OnChangeCloth;
-
-
-    [Header("Inventory UI")]
-    [SerializeField] private Transform inventorySlotParent;
-    [SerializeField] private Transform equipmentSlotParent;
-    [SerializeField] private Transform StatSlotParent;
-
-
-    private UI_ItemSlot[] iteamSlot;
-    protected UI_EquipmentSlot[] equipmentSlot;
-    protected UI_StatSlot[] statSlots;
+public class Inventory : MonoBehaviour,ISaveable
+{
+    [Tooltip("Allowed size")]
+    [SerializeField] int inventorySize = 16;
+    InventorySlot[] slots;
+    public struct InventorySlot
+    {
+        public InventoryItemSO item;
+        public int number;
+    }
+    public event Action inventoryUpdated;
+    public static Inventory GetPlayerInventory()
+    {
+        var player = GameObject.FindWithTag("Player");
+        return player.GetComponent<Inventory>();
+    }
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        slots = new InventorySlot[inventorySize];
         
     }
-    private void Start()
+
+
+    public bool HasSpaceFor(InventoryItemSO item)
     {
-        Load_Components();
-        inventory = new List<InventoryItem>();
-        inventoryDictianory = new Dictionary<ItemData, InventoryItem>();
 
-        equipment = new List<InventoryItem>();
-        equipmentDictianory = new Dictionary<ItemData_Equipment, InventoryItem>();
-
-        iteamSlot = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
-        equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
-        statSlots = StatSlotParent.GetComponentsInChildren<UI_StatSlot>();
-
+        return FindSlot(item) >= 0;
     }
-    private void UpdateSlotUI()
+
+    public int GetSize()
     {
-        for (int i = 0; i < equipmentSlot.Length; i++)
+        return slots.Length;
+    }
+
+    public bool AddToFirstEmptySlot(InventoryItemSO item, int number)
+    {
+        int i = FindSlot(item);
+
+        if (i < 0)
         {
-            foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictianory)
+            return false;
+        }
+
+        slots[i].item = item;
+        slots[i].number += number;
+
+        inventoryUpdated?.Invoke();
+        
+        return true;
+    }
+
+    public bool HasItem(InventoryItemSO item)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (object.ReferenceEquals(slots[i].item, item))
             {
-                if (item.Key.Type == equipmentSlot[i].slotType)
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public InventoryItemSO GetItemInSlot(int slot)
+    {
+        return slots[slot].item;
+    }
+    public int GetNumberInSlot(int slot)
+    {
+        return slots[slot].number;
+    }
+    
+    public void RemoveFromSlot(int slot, int number)
+    {
+        slots[slot].number -= number;
+        if (slots[slot].number <= 0)
+        {
+            slots[slot].number = 0;
+            slots[slot].item = null;
+        }
+        if (inventoryUpdated != null)
+        {
+            inventoryUpdated();
+        }
+    }
+
+    public bool AddItemToSlot(int slot, InventoryItemSO item, int number)
+    {
+        if (slots[slot].item != null)
+        {
+            return AddToFirstEmptySlot(item, number);
+        }
+        Debug.Log("add");
+        var i = FindStack(item);
+        if (i >= 0)
+        {
+            slot = i;
+        }
+
+        slots[slot].item = item;
+        slots[slot].number += number;
+
+        inventoryUpdated?.Invoke();
+        return true;
+    }
+
+
+    private int FindSlot(InventoryItemSO item)
+    {
+        
+        int i = FindStack(item);
+        if (i < 0)
+        {
+            i = FindEmptySlot();
+        }
+        return i;
+    }
+
+    private int FindEmptySlot()
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item == null)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    private int FindStack(InventoryItemSO item)
+        {
+            Debug.Log("FindStack");
+            if (!item.IsStackable())
+            {
+                return -1;
+            }
+
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (object.ReferenceEquals(slots[i].item, item))
                 {
-                    equipmentSlot[i].UpdateSlot(item.Value);
+                    return i;
                 }
             }
+            return -1;
         }
-        for (int i = 0; i < iteamSlot.Length; i++)
-        {
-            iteamSlot[i].CleanUpSlot();
-        }
-
-
-        for (int i = 0; i < inventory.Count; i++)
-        {
-            iteamSlot[i].UpdateSlot(inventory[i]);
-        }
-
-        for (int i = 0; i < statSlots.Length; i++)
-        {
-            statSlots[i].UpdateStatValue();
-        }
-
-    }
-    #region Equipment
-    public void EquipItem(ItemData _item)
+    #region Save_File
+    [System.Serializable]
+    private struct InventorySlotRecord
     {
-        ItemData_Equipment newEquipment = _item as ItemData_Equipment;
-        InventoryItem newItem = new InventoryItem(newEquipment);
-
-        ItemData_Equipment oldEquipment = null;
-
-        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictianory)
+        public string itemID;
+        public int number;
+    }
+    public object CaptureState()
+    {
+        var slotStrings = new InventorySlotRecord[inventorySize];
+        for (int i = 0; i < inventorySize; i++)
         {
-            if (item.Key.Type == newEquipment.Type)
+            if (slots[i].item != null)
             {
-                oldEquipment = item.Key;
+                slotStrings[i].itemID = slots[i].item.GetItemID();
+                slotStrings[i].number = slots[i].number;
             }
         }
-
-        if(oldEquipment != null) {
-
-            UnEquipment(oldEquipment);
-            AddItem(oldEquipment);
-        }
-
-        if(newEquipment.Type == EquipmentType.body_armor || newEquipment.Type == EquipmentType.Pan_armor)
-        {
-            OnChangeCloth?.Invoke();
-        }
-
-        equipment.Add(newItem);
-        equipmentDictianory.Add(newEquipment, newItem);
-        newEquipment.AddModifiers(charStats);
-        RemoveItem(newEquipment);
+        return slotStrings;
     }
 
-    public void UnEquipment(ItemData_Equipment itemToRemove)
+    public void RestoreState(object state)
     {
-        if (equipmentDictianory.TryGetValue(itemToRemove, out InventoryItem value))
+        var slotStrings = (InventorySlotRecord[])state;
+        for (int i = 0; i < inventorySize; i++)
         {
-            equipment.Remove(value);
-            equipmentDictianory.Remove(itemToRemove);
-            itemToRemove.RemoveModifiers(charStats);
+            slots[i].item = InventoryItemSO.GetFromID(slotStrings[i].itemID);
+            slots[i].number = slotStrings[i].number;
         }
-        UpdateSlotUI();
+
+        inventoryUpdated?.Invoke();
     }
     #endregion
-
-    #region Add and Remove
-    public void AddItem(ItemData _item)
-    {       
-        AddToInventory(_item);
-        UpdateSlotUI();
-    }
-
-    private void AddToInventory(ItemData _item)
-    {
-        if (inventoryDictianory.TryGetValue(_item, out InventoryItem value))
-        {
-            value.AddStack();
-        }
-        else
-        {
-            InventoryItem newItem = new InventoryItem(_item);
-            inventory.Add(newItem);
-            inventoryDictianory.Add(_item, newItem);
-        }
-    }
-
-    public void RemoveItem(ItemData _item)
-    {
-        if (inventoryDictianory.TryGetValue(_item, out InventoryItem value))
-        {
-            if (value.stackSize <= 1)
-            {
-                inventory.Remove(value);
-                inventoryDictianory.Remove(_item);
-            }
-            else
-                value.RemoveStack();
-        }
-        UpdateSlotUI();
-    }
-    #endregion
-    void Load_Components(){
-        core = transform.parent.Find("Core").GetComponent<Core>();
-        charStats = core.GetCoreComponent<CharacterStats>();
-    }
 }

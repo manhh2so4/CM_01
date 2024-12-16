@@ -5,7 +5,7 @@ public class HealthBar_UI : CoreComponent
 {
     [SerializeField] private Movement movement;
     [SerializeField] private CharacterStats myStats;
-     [SerializeField] private CapsuleCollider2D mCapsul;
+    [SerializeField] private CapsuleCollider2D mCapsul;
     Transform BarSprite;
 
     Vector3 value = Vector2.one,location = Vector3.zero;

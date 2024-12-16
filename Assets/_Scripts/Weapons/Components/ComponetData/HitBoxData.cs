@@ -1,8 +1,7 @@
 using UnityEngine;
-public class HitBoxData : ComponentData<AttackHitBox>
+public class HitBoxData : ComponentData<AttackData>
 {
-    [field: SerializeField] public  LayerMask DetectableLayers { get; private set; }
-
+    [field: SerializeField] public LayerMask DetectableLayers { get; private set; }
     protected override void SetComponentDependency()
     {
         ComponentDependency = typeof(WeaponHitBox);

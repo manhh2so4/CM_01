@@ -13,7 +13,6 @@ public class inputPlayer : MonoBehaviour
     [SerializeField] public Vector2Int DashDirInput {get;private set;}
     public int MoveInput {get;private set;}
     public bool jumpInput {get;private set;}
-    public bool grabInput {get;private set;}
     public bool dashInput {get;private set;}
     public bool dashInputStop {get;private set;}
     public bool[] AttackInputs {get;private set;}
@@ -22,7 +21,7 @@ public class inputPlayer : MonoBehaviour
     private float JumpInputStartTime;
     private float dashInputStartTime;
     public Vector3 direction ;
-    public float length = 5.0f;
+    private Vector2 mousePosition;
     private void Start() {
         playerInput = GetComponent<PlayerInput>();
         int Count = Enum.GetValues(typeof(CombatInput)).Length;
@@ -41,14 +40,6 @@ public class inputPlayer : MonoBehaviour
         if(context.started){
             jumpInput = true;
             JumpInputStartTime = Time.time;
-        }
-    }
-    public void OnGranInput(InputAction.CallbackContext context){
-        if(context.started){
-            grabInput = true;
-        }
-        if(context.canceled){
-            grabInput = false;
         }
     }
     public void OnDashInput(InputAction.CallbackContext context){
@@ -78,11 +69,32 @@ public class inputPlayer : MonoBehaviour
         }
     }
     public void OnDashDirectionInput(InputAction.CallbackContext context){
+        mousePosition = context.ReadValue<Vector2>();
+        if(dashInputStop) return;
         RawDashDirectionInput = context.ReadValue<Vector2>();
         if(true){
             RawDashDirectionInput = cam.ScreenToWorldPoint((Vector3)RawDashDirectionInput) - transform.position;
         }
         DashDirInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
+    }
+    public void OnLeftClick(InputAction.CallbackContext context){
+        if(context.started)
+        {
+            Debug.Log("on Click");
+            DetecObbject();
+        }
+    }
+    void DetecObbject(){
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        RaycastHit2D[] hits2DAllNonAlloc = new RaycastHit2D[1];
+        Physics2D.GetRayIntersectionNonAlloc(ray, hits2DAllNonAlloc);
+        for (int i = 0; i < hits2DAllNonAlloc.Length; i++)
+        {
+            if(hits2DAllNonAlloc[i].collider != null){
+                IClicker click = hits2DAllNonAlloc[i].collider.GetComponent<IClicker>();
+                if(click != null) click.OnClick();
+            }
+        }
     }
     public void UseJumpInput() => jumpInput = false;
     public void UseDashInpur() => dashInput = false;

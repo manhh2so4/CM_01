@@ -16,7 +16,7 @@ public class E_DeadState : E_State
 
 		movement.SetVelocity(-movement.facingDirection,10f);
 		movement.CanSetVelocity = false;
-		itemDrop.GenerateDrop();
+		//itemDrop.GenerateDrop();
 		Debug.Log("Drop" + itemDrop.transform.parent.parent.name);
 		enemy.Paint(2);
 	}

@@ -57,22 +57,22 @@ public class Draw_Char : MonoBehaviour
         partWP = mWp.spriteInfos;
     }
 	void UpdateColth(){
-		for (int i = 0; i < Inventory.Instance.equipment.Count; i++)
-		{
-			ItemData_Equipment newEquipment = Inventory.Instance.equipment[i].data as ItemData_Equipment;
-			if(newEquipment.Type == EquipmentType.body_armor){
-				partBody = newEquipment.tex_NjPart_SO.spriteInfos;
-			}
-			if(newEquipment.Type == EquipmentType.Pan_armor){
-				partLeg = newEquipment.tex_NjPart_SO.spriteInfos;
-			}	
-		}
+		// for (int i = 0; i < Inventory.Instance.equipment.Count; i++)
+		// {
+		// 	ItemData_Equipment newEquipment = Inventory.Instance.equipment[i].data as ItemData_Equipment;
+		// 	if(newEquipment.Type == EquipmentType.body_armor){
+		// 		partBody = newEquipment.tex_NjPart_SO.spriteInfos;
+		// 	}
+		// 	if(newEquipment.Type == EquipmentType.Pan_armor){
+		// 		partLeg = newEquipment.tex_NjPart_SO.spriteInfos;
+		// 	}	
+		// }
 	}
 	private void OnEnable() {
 		
 	}
 	private void Start() {
-		Inventory.Instance.OnChangeCloth += UpdateColth;
+		//Inventory.Instance.OnChangeCloth += UpdateColth;
 	}
 	private void OnDisable() {
 		//Inventory.Instance.OnChangeCloth -= UpdateColth;

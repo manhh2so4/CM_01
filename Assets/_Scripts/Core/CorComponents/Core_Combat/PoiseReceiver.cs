@@ -4,15 +4,13 @@ public class PoiseReceiver : CoreReceiver, IPoiseDamageable
 {   
     public Poisetype poisetype;
     public bool isPoise;
-    public void DamagePoise(float amount,Poisetype type,GameObject prefabEff)
+    public void DamagePoise(float time,Poisetype type,GameObject prefabEff)
     {
-        stats.Poise.IncreaseNonStack(amount);
+        stats.Poise.IncreaseNonStack(time);
         isPoise = true;
         poisetype = type;
-        PrefabEff = prefabEff;
-        PrefabEff.GetComponent<Effect_Instance>().SetData(amount,core.layerID,core.size);  
-        SetPosEff();
-        particleManager?.StartParticles(PrefabEff,this.transform.position + Location);
+        prefabEff?.GetComponent<Effect_Instance>().SetData(time,core.layerID,core.size);  
+        particleManager?.StartParticles(prefabEff,this.transform.position + SetPosEff(prefabEff));
         Location = Vector3.zero;
     }
     public bool IsPoise() => isPoise;

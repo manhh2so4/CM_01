@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using HStrong.Saving;
 using UnityEngine;
 
-public class Player : Entity
+public class Player : Entity,ISaveable
 {
 
     #region State Variable
@@ -58,6 +59,17 @@ public class Player : Entity
     }
     private void FixedUpdate() {
         StateMachine.CurrentState.PhysicsUpdate();
+    }
+
+    public object CaptureState()
+    {
+        return new SerializableVector3(transform.position);
+    }
+
+    public void RestoreState(object state)
+    {
+        SerializableVector3 position = state as SerializableVector3;
+        transform.position = position.ToVector();
     }
     #endregion
 }

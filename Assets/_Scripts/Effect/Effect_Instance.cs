@@ -17,11 +17,11 @@ public class Effect_Instance : MonoBehaviour
     public void SetData(float life,int layerID,int _size){
         this.life = life;
         mSPR.sortingLayerID = layerID;
-        if(_size != 1) {
-            transform.localScale = new Vector3(size,size,1);
-            this.size = _size;
-            Debug.Log("set_Data " + _size); 
-        }    
+        // if(_size != 1) {
+        //     transform.localScale = new Vector3(size,size,1);
+        //     this.size = _size;
+        //     Debug.Log("set_Data " + _size); 
+        // }    
     }
 
     private void OnEnable() {
@@ -96,8 +96,7 @@ public class Effect_Instance : MonoBehaviour
             break;
         }
         Vector3 newPosition = new Vector3(0,offsetY*this.size,0);
-        this.transform.localPosition += newPosition;
-        Debug.Log("offsetY " + offsetY + "size " + this.size);   
+        this.transform.localPosition += newPosition; 
     }
     bool FrameRate(float speed){        
         frameTimer += Time.deltaTime;

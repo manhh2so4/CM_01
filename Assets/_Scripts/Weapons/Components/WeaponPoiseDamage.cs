@@ -7,7 +7,7 @@ public class WeaponPoiseDamage : WeaponComponents<PoiseDamageData,AttackPoiseDam
         
         if(other.TryGetComponent(out IPoiseDamageable poiseDamageable)){
             if (Random.value > (currenAttackData.Rate/100)) return;
-            poiseDamageable.DamagePoise(currenAttackData.Amount,currenAttackData.type,currenAttackData.prefabEff);
+            poiseDamageable.DamagePoise(currenAttackData.TimeEff,currenAttackData.type,currenAttackData.prefabEff);
         }
     }
     protected override void SubscribeHandlers()

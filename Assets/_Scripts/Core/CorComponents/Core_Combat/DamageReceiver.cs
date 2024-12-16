@@ -3,12 +3,9 @@ using UnityEngine;
 
 public class DamageReceiver : CoreReceiver, IDamageable
 {
-    
-    public CharacterStats Target( GameObject prefabHit)
+    public CharacterStats Target(GameObject prefabHit)
     {
-        PrefabEff = prefabHit;
-        SetPosEff();
-        particleManager?.StartParticlesRandomRotation(PrefabEff.gameObject,this.transform.position + Location);
+        particleManager?.StartParticlesRandomRotation(prefabHit.gameObject,this.transform.position + SetPosEff(prefabHit));
         Location = Vector3.zero;  
         return characterStats;
     }

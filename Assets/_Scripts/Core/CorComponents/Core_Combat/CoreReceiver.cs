@@ -1,7 +1,6 @@
 using UnityEngine;
 
 public abstract class CoreReceiver : CoreComponent {
-    [SerializeField] protected GameObject PrefabEff;
     protected Stats stats;
     protected CharacterStats characterStats;
     protected ParticleManager particleManager;
@@ -25,20 +24,19 @@ public abstract class CoreReceiver : CoreComponent {
         Center.Set(0,mCapsul.size.y/2,0);
         Bottom.Set(0,0,0);     
     }
-    protected virtual void SetPosEff(){       
+    protected virtual Vector3 SetPosEff(GameObject PrefabEff){       
         switch (PrefabEff.GetComponent<Effect_Instance>().posEff)
         {
             case PosEff.Head:
-            Location = Top;
-
-            break;          
+            return  Top;         
             case PosEff.Body:
-            Location = Center;
+            return Center;
 
-            break;
             case PosEff.Foot:
-            Location = Bottom;
-            break;
+            return Bottom;
+
+            default:
+            return Vector3.zero;
         }
     }
 }
