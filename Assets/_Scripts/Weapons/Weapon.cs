@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 public class Weapon : MonoBehaviour {
     [field: SerializeField] public SkillData_SO Data { get; private set; }
     public event Action OnEnter;
+    public event Action OnMidd;
     public event Action OnExit;
     public event Action OnStarMove;
     public event Action OnStopMove;
@@ -37,6 +38,9 @@ public class Weapon : MonoBehaviour {
 				wpSprite.SetSkillOff();
 				Exit();
 				return;
+		}
+        if(FrameCurrent == LengthSkill/2){
+				Mid();
 		}
         cf = currentSkill[FrameCurrent].status;
         if(FrameCurrent == 2) OnStarMove?.Invoke();
@@ -100,6 +104,10 @@ public class Weapon : MonoBehaviour {
     {       
         OnStopMove?.Invoke();   
         OnExit?.Invoke();
+    }
+    private void Mid()
+    {       
+        OnMidd?.Invoke();
     }
 
     private void Awake() {

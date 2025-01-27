@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class WeaponHitBox : WeaponComponents<HitBoxData,AttackData>{
+public class WeaponHitBox : WeaponComponents<HitBoxData>{
 
     public Action<Collider2D> Action;
 

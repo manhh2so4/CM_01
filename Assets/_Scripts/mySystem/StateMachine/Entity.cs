@@ -16,5 +16,7 @@ public abstract class Entity : MonoBehaviour {
 
         if(mRB == null) mRB = GetComponent<Rigidbody2D>();
         if(mCollider == null) mCollider = GetComponent<CapsuleCollider2D>();
+
+        core.height = mCollider.size.y;
     }
 }

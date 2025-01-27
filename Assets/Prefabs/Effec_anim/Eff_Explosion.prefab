@@ -52,7 +52,7 @@ MonoBehaviour:
   - {fileID: 6320420870269799405, guid: 9a9867d8488792d428f08e287956f305, type: 3}
   type: 0
   speedAnim: 0.1
-  life: 10
+  life: 2
   posEff: 1
   anchor: 1
   mSPR: {fileID: 2200558684753691943}
@@ -94,8 +94,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1797320017
-  m_SortingLayer: 6
+  m_SortingLayerID: -1498733069
+  m_SortingLayer: 3
   m_SortingOrder: 200
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

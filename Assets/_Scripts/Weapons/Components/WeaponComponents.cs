@@ -18,11 +18,16 @@ public abstract class WeaponComponents : MonoBehaviour {
     {
         weapon.OnEnter += HandleEnter;
         weapon.OnExit += HandleExit;
+        weapon.OnMidd += HandleMiddle;
     }
 
     protected virtual void HandleEnter()
     {
         isAttackActive = true;
+    }
+    protected virtual void HandleMiddle()
+    {
+       
     }
     protected virtual void HandleExit()
     {
@@ -32,17 +37,17 @@ public abstract class WeaponComponents : MonoBehaviour {
     {
         weapon.OnEnter -= HandleEnter;
         weapon.OnExit -= HandleExit;
+        weapon.OnMidd -= HandleMiddle;
     }
 
 }
-public abstract class WeaponComponents<T1,T2> : WeaponComponents where T1 : ComponentData<T2> where T2 : AttackData
+public abstract class WeaponComponents<T1> : WeaponComponents where T1 : ComponentData
 {
     protected T1 data;
-    protected T2 currenAttackData;
+
     protected override void HandleEnter()
     {
         base.HandleEnter();
-        currenAttackData = data.AttackData;
     }
     protected override void SubscribeHandlers()
     {

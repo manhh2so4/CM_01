@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1010364262634393770}
-  - component: {fileID: 997670261872118213}
   - component: {fileID: 1962316061246277634}
   - component: {fileID: 2017376974635841721}
   m_Layer: 8
@@ -34,24 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2163121784297990269}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &997670261872118213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892043777467902015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050d745aace3ca54eb76267c34ee7e63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Health>k__BackingField:
-    <MaxValue>k__BackingField: 100
-  <Poise>k__BackingField:
-    <MaxValue>k__BackingField: 100
-  currentPoise: 0
-  currentHealth: 0
 --- !u!114 &1962316061246277634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22664,7 +22645,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860704a5fcaaaf7469a2e14ee4a2f009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabEff: {fileID: 2237586713126872210, guid: 4b5cfad7d29b0d34eb97e2dc0365b24c, type: 3}
 --- !u!70 &478745065707719183
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -22712,8 +22692,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47888fafa2d71f44f9a2af58b02bc3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabEff: {fileID: 0}
-  poisetype: 0
   isPoise: 0
 --- !u!1 &6315158919559734780
 GameObject:

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public abstract class CoreReceiver : CoreComponent {
-    protected Stats stats;
+
     protected CharacterStats characterStats;
     protected ParticleManager particleManager;
     private CapsuleCollider2D mCapsul;
@@ -9,7 +9,6 @@ public abstract class CoreReceiver : CoreComponent {
     protected override void Awake()
     {
         base.Awake();
-        stats = core.GetCoreComponent<Stats>();
         characterStats = core.GetCoreComponent<CharacterStats>();
         mCapsul = GetComponent<CapsuleCollider2D>();
         mCapsulCore = transform.parent.parent.GetComponent<CapsuleCollider2D>();

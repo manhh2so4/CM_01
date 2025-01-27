@@ -10,6 +10,7 @@ public class Core : MonoBehaviour
 	[SortingLayer]
 	public int layerID = 0;
 	public int size = 1;
+	public float height;
     private void Awake()
     {
 

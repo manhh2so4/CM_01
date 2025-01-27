@@ -16,7 +16,8 @@ MonoBehaviour:
   - rid: 4502466564992008195
   - rid: 4502466564992008197
   - rid: 4502466564992008198
-  - rid: 4502466564992008199
+  - rid: 5985543765046067215
+  - rid: 5985543765046067216
   references:
     version: 2
     RefIds:
@@ -24,27 +25,30 @@ MonoBehaviour:
       type: {class: DamageData, ns: , asm: Assembly-CSharp}
       data:
         name: DamageData
-        <AttackData>k__BackingField:
-          <Amout>k__BackingField: 0
-          prefabHit: {fileID: 5927714945680655395, guid: 166161ba417616341ac3a279f3538b3b, type: 3}
+        <Amout>k__BackingField: 0
+        prefabHit: {fileID: 5927714945680655395, guid: 166161ba417616341ac3a279f3538b3b, type: 3}
     - rid: 4502466564992008197
       type: {class: MovementData, ns: , asm: Assembly-CSharp}
       data:
         name: MovementData
-        <AttackData>k__BackingField:
-          <Direction>k__BackingField: {x: 0, y: 0}
-          <Velocity>k__BackingField: 0
+        <Direction>k__BackingField: {x: 0, y: 0}
+        <Velocity>k__BackingField: 0
     - rid: 4502466564992008198
       type: {class: KnockBackData, ns: , asm: Assembly-CSharp}
       data:
         name: KnockBackData
-        <AttackData>k__BackingField:
-          <Angle>k__BackingField: {x: 0, y: 0}
-          <Strength>k__BackingField: 0
-    - rid: 4502466564992008199
-      type: {class: HitBoxData, ns: , asm: Assembly-CSharp}
+        <Angle>k__BackingField: {x: -1, y: 0}
+        <Strength>k__BackingField: 1
+    - rid: 5985543765046067215
+      type: {class: TargeterData, ns: , asm: Assembly-CSharp}
       data:
-        name: HitBoxData
-        <DetectableLayers>k__BackingField:
+        name: TargeterData
+        <radius>k__BackingField: 8
+        <DamageableLayer>k__BackingField:
           serializedVersion: 2
-          m_Bits: 0
+          m_Bits: 4096
+    - rid: 5985543765046067216
+      type: {class: ProjecttileData, ns: , asm: Assembly-CSharp}
+      data:
+        name: ProjecttileData
+        prefabProjectile: {fileID: 2341605334703596660, guid: 97de1986570dbc9458528ca0859c2a59, type: 3}

@@ -80,7 +80,6 @@ public class inputPlayer : MonoBehaviour
     public void OnLeftClick(InputAction.CallbackContext context){
         if(context.started)
         {
-            Debug.Log("on Click");
             DetecObbject();
         }
     }

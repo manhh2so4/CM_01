@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class ParallaxBG : MonoBehaviour
 {
     public Camera cam;
+    [SortingLayer] [SerializeField] int layerId;
     [SerializeField] private float[] parallaxEffect_X = new float[4];
     [SerializeField] private float[] parallaxEffect_Y = new float[4];
     
@@ -18,10 +20,9 @@ public class ParallaxBG : MonoBehaviour
     private float startCamX, startCamY;
     float distX,distY;
     
-    public int BG_type;
     imgBG_SO imgBG_SO;
-    float height;
-    float width;
+    float heightCam;
+    float widthCam;
     float Field2Y,houseY,mountainY;
     public Sprite[] imgBg;
     Transform[] Bg0 = new Transform[3];
@@ -32,21 +33,10 @@ public class ParallaxBG : MonoBehaviour
     public Transform Sun;
     [SerializeField] UnityEngine.GameObject prefab;
     private void Reset() {
-        cam = Camera.main;
-        string prefabName = "ObjDraw";
-        prefab = Resources.Load<UnityEngine.GameObject>(prefabName);
-        LoadComponent();
-        height = 2f * cam.orthographicSize;
-        width = height * cam.aspect;        
+        LoadComponent();     
         LoadImgBG();
     }
     private void Awake(){
-        gameObject.SetActive(true);
-        cam = Camera.main;
-        height = 2f * cam.orthographicSize;
-        width = height * cam.aspect;
-        string prefabName = "ObjDraw";
-        prefab = Resources.Load<UnityEngine.GameObject>(prefabName);
         LoadComponent();           
         LoadImgBG();
         startCamX = cam.transform.position.x;
@@ -88,22 +78,17 @@ public class ParallaxBG : MonoBehaviour
             }
     }
     void LoadComponent(){
+        cam = Camera.main;
+        heightCam = 2f * cam.orthographicSize;
+        widthCam = heightCam * cam.aspect;  
         Sun = transform.Find("Sun");
-        Bg0[0] = transform.GetChild(0).GetChild(0);
-        Bg0[1] = transform.GetChild(0).GetChild(1);
-        Bg0[2] = transform.GetChild(0).GetChild(2);
-
-        Bg1[0] = transform.GetChild(1).GetChild(0);
-        Bg1[1] = transform.GetChild(1).GetChild(1);
-        Bg1[2] = transform.GetChild(1).GetChild(2);
-
-        Bg2[0] = transform.GetChild(2).GetChild(0);
-        Bg2[1] = transform.GetChild(2).GetChild(1);
-        Bg2[2] = transform.GetChild(2).GetChild(2);
-
-        Bg3[0] = transform.GetChild(3).GetChild(0);
-        Bg3[1] = transform.GetChild(3).GetChild(1);
-        Bg3[2] = transform.GetChild(3).GetChild(2);
+        for (int i = 0; i < 3; i++)
+        {
+            Bg0[i] = transform.GetChild(0).GetChild(i); 
+            Bg1[i] = transform.GetChild(1).GetChild(i); 
+            Bg2[i] = transform.GetChild(2).GetChild(i); 
+            Bg3[i] = transform.GetChild(3).GetChild(i); 
+        }               
     }
     void LoadImgBG(){
         //if (BG_typeCurrent == BG_type ) return;
@@ -113,29 +98,22 @@ public class ParallaxBG : MonoBehaviour
         Field2Y = (float)imgBg[0].texture.height/100;
         houseY = Field2Y +  (float)imgBg[1].texture.height/100;
         mountainY = Field2Y +  (float)imgBg[1].texture.height/100 +0.4f;
-        LoadBG(ref Bg0[0],24,0,0);
-        LoadBG(ref Bg0[1],24,1,0);
-        LoadBG(ref Bg0[2],24,2,0);
-
-        LoadBG(ref Bg1[0],24,0,1);
-        LoadBG(ref Bg1[1],24,1,1);
-        LoadBG(ref Bg1[2],24,2,1);
-
-        LoadBG(ref Bg2[0],192,0,2);
-        LoadBG(ref Bg2[1],192,1,2);
-        LoadBG(ref Bg2[2],192,2,2);
-
-        LoadBG(ref Bg3[0],64,0,3);
-        LoadBG(ref Bg3[1],64,1,3);
-        LoadBG(ref Bg3[2],64,2,3);
+        for (int i = 0; i < 3; i++)
+        {
+            LoadBG(ref Bg0[i],i,0);
+            LoadBG(ref Bg1[i],i,1);
+            LoadBG(ref Bg2[i],i,2);
+            LoadBG(ref Bg3[i],i,3);
+        }
     }
-    void LoadBG(ref Transform obj,int size,int index,int idImg){
-        int loop = (int)width*100/(size*4);
-        lengthX[idImg] = (loop*size*4f)/100;
+    void LoadBG(ref Transform obj,int index,int idImg){
+        int size = imgBg[idImg].texture.width;
+        int loop = (int)widthCam*100/(size);
+        lengthX[idImg] = ((float)loop*size)/100;
 
         float hSet;       
-        hSet = (cam.transform.position.y - height/2);
-        
+        hSet = (cam.transform.position.y - heightCam/2);
+        float xSet = cam.transform.position.x;
         switch (idImg)
             {
                 case 0:
@@ -152,29 +130,19 @@ public class ParallaxBG : MonoBehaviour
                 break;
             }
         obj.transform.position = new Vector3(0,0,0);
-        for (int i = 0; i < loop; i ++)
-        {
-            UnityEngine.GameObject temp;
-            try
-            {
-                temp = obj.GetChild(i).gameObject;
-            }
-            catch (System.Exception)
-            {                                
-                temp = Instantiate(prefab, obj);               
-            } 
-            temp.GetComponent<SpriteRenderer>().sprite = imgBg[idImg];
-            temp.GetComponent<SpriteRenderer>().sortingOrder = -2-idImg;
-            temp.name = imgBg[idImg].name;
-            temp.transform.position = new Vector3((cam.transform.position.x-(float)(loop*size)/50 )+((float)(i*size*4)/100),
-            hSet ,0);
-        }
-        obj.transform.position = new Vector3((float)(loop*size*(1-index))/25 , 0,0);
+        SpriteRenderer spr = obj.GetComponent<SpriteRenderer>();
+        spr.sprite = imgBg[idImg];
+        spr.sortingLayerID = layerId;
+        spr.sortingOrder = -idImg - 10;
+        spr.drawMode = SpriteDrawMode.Tiled;
+        spr.size = new Vector2(lengthX[idImg],spr.size.y);
+
+        obj.transform.position = new Vector3( (lengthX[idImg]*(1-index)) + xSet, hSet, 0 );
     }
     void PaintSun(){
-        Sun.transform.position = new Vector3(cam.transform.position.x + width/3.5f,cam.transform.position.y + height/4f);
+        Sun.transform.position = new Vector3(cam.transform.position.x + widthCam/3.5f,cam.transform.position.y + heightCam/4f);
     }
     void PaintClound(){
-        Sun.transform.position = new Vector3(cam.transform.position.x + width/3.5f,cam.transform.position.y + height/4f);
+        Sun.transform.position = new Vector3(cam.transform.position.x + widthCam/3.5f,cam.transform.position.y + heightCam/4f);
     }
 }

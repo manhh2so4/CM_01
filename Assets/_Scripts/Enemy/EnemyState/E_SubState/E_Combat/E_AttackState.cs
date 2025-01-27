@@ -1,11 +1,12 @@
 using UnityEngine;
 using DG.Tweening;
+using HStrong.ProjectileSystem;
 
 public class E_AttackState : EnemyAbilityState
 {
 	Vector3 posCurrent,targetPosition ;
-	protected UnityEngine.GameObject projectile;
-	protected Projectile_one projectile_Scrip;
+	protected GameObject projectile;
+	protected Projectile projectile_Scrip;
 	Vector3 dirAttack = new Vector3();
 	int[] attackAnim;
 
@@ -26,18 +27,18 @@ public class E_AttackState : EnemyAbilityState
             .OnComplete(()=>{
 				dirAttack = enemy.playerCheck.position - enemy.transform.position;
 
-                projectile = UnityEngine.GameObject.Instantiate(enemy.projectile, enemy.transform.position, enemy.transform.rotation);				
-				projectile_Scrip = projectile.GetComponent<Projectile_one>();
+                projectile = GameObject.Instantiate(enemy.projectile, enemy.transform.position, enemy.transform.rotation);				
+				projectile_Scrip = projectile.GetComponent<Projectile>();
 
 				
-        		projectile_Scrip.SetProjectile(15 , dirAttack.normalized , 10 , enemy.gameObject.tag,stats);
+        		projectile_Scrip.SetProjectile(15 , dirAttack.normalized, enemy.gameObject.tag,stats);
 
                 enemy.transform.DOMove(posCurrent, 0.2f/enemyData.speedAtk).SetEase(enemy.easeEnd)
                 .OnComplete(()=>{;
                 isAbilityDone = true;
 
                 });
-            });
+        });
 
 	}
 
