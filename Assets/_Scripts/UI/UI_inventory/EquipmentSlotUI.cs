@@ -10,12 +10,11 @@ public class EquipmentSlotUI : MonoBehaviour, IItemHolder, IDragContainer<Invent
     EquipableItemSO item = null;
     Equipment playerEquipment;
 
-    private void Awake() {
-        var player = GameObject.FindGameObjectWithTag("Player");
-        playerEquipment = player.GetComponent<Equipment>();
-        playerEquipment.equipmentUpdate += RedrawUI;
-    }
     private void Start() {
+        var player = PlayerManager.Instance.GetPlayer();
+
+        playerEquipment = player.GetComponent<Equipment>();
+        playerEquipment.OnEquipmentUpdate += RedrawUI;
         RedrawUI();
     }
 

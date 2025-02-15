@@ -22001,7 +22001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea9374b509b70f4bba37e4a2ca8cf00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueIdentifier: 97378d65-ff4f-4c85-806e-2d1ee2028329
+  uniqueIdentifier: Player_main
 --- !u!114 &7580062064005770077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22599,7 +22599,7 @@ GameObject:
   - component: {fileID: 8624352236098916499}
   m_Layer: 12
   m_Name: Combat
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22960,6 +22960,7 @@ MonoBehaviour:
   CoreComponents: []
   layerID: 0
   size: 1
+  height: 0
 --- !u!1 &7410037660744079537
 GameObject:
   m_ObjectHideFlags: 0
@@ -23269,11 +23270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5370280469662493794, guid: 34b358b9ad323e340b03d93ecd35fbc9, type: 3}
       propertyPath: idSkill
-      value: 66
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 5370280469662493794, guid: 34b358b9ad323e340b03d93ecd35fbc9, type: 3}
       propertyPath: speedAttack1
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5370280469662493794, guid: 34b358b9ad323e340b03d93ecd35fbc9, type: 3}
       propertyPath: skills.Array.size
@@ -34895,6 +34896,10 @@ PrefabInstance:
       propertyPath: skills.Array.data[74].skillStand.Array.data[10].effS0Id
       value: 166
       objectReference: {fileID: 0}
+    - target: {fileID: 6607442074224927714, guid: 34b358b9ad323e340b03d93ecd35fbc9, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: a6cc0e936b50ebf41a519f4c6b7f55e9, type: 2}
     - target: {fileID: 9186731522089530202, guid: 34b358b9ad323e340b03d93ecd35fbc9, type: 3}
       propertyPath: m_RootOrder
       value: 4

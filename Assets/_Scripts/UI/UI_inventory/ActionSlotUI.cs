@@ -8,11 +8,11 @@ public class ActionSlotUI : MonoBehaviour, IItemHolder, IDragContainer<Inventory
     [SerializeField] int  index = 0;
     ActionStore store;
 
-    Equipment playerEquipment;
+    //Equipment playerEquipment;
     private void Awake() {
         var player = GameObject.FindGameObjectWithTag("Player");
         store = player.GetComponent<ActionStore>();
-        playerEquipment.equipmentUpdate += RedrawUI;
+        //playerEquipment.equipmentUpdate += RedrawUI;
     }
 
     public void AddItems(InventoryItemSO item, int number)

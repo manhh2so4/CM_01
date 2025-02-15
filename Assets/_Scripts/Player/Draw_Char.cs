@@ -7,12 +7,13 @@ public class Draw_Char : MonoBehaviour
 {
     public int cf = 0;
 	private int current = -1;
+	Equipment playerEquipment;
 
-    [SerializeField] UnityEngine.GameObject LegGO;
-    [SerializeField] UnityEngine.GameObject HeadGO;
-    [SerializeField] UnityEngine.GameObject BodyGO;
-	[SerializeField] UnityEngine.GameObject DustGO;
-	[SerializeField] UnityEngine.GameObject WpGO;
+    [SerializeField] GameObject LegGO;
+    [SerializeField] GameObject HeadGO;
+    [SerializeField] GameObject BodyGO;
+	[SerializeField] GameObject DustGO;
+	[SerializeField] GameObject WpGO;
 
     SpriteInfo[] partBody = new SpriteInfo[18];
 	SpriteInfo[] partHead = new SpriteInfo[8];
@@ -57,25 +58,33 @@ public class Draw_Char : MonoBehaviour
         partWP = mWp.spriteInfos;
     }
 	void UpdateColth(){
-		// for (int i = 0; i < Inventory.Instance.equipment.Count; i++)
-		// {
-		// 	ItemData_Equipment newEquipment = Inventory.Instance.equipment[i].data as ItemData_Equipment;
-		// 	if(newEquipment.Type == EquipmentType.body_armor){
-		// 		partBody = newEquipment.tex_NjPart_SO.spriteInfos;
-		// 	}
-		// 	if(newEquipment.Type == EquipmentType.Pan_armor){
-		// 		partLeg = newEquipment.tex_NjPart_SO.spriteInfos;
-		// 	}	
-		// }
+		//-----------------------
+		if(playerEquipment.GetItemInSlot(EquipLocation.Ao) != null) {
+			partBody = playerEquipment.GetItemInSlot(EquipLocation.Ao).GetImageDraw().spriteInfos;
+		}else{
+			partBody = mTexAo.spriteInfos;
+		}
+		//-----------------------
+		if(playerEquipment.GetItemInSlot(EquipLocation.Vukhi) != null) {
+			partWP = playerEquipment.GetItemInSlot(EquipLocation.Vukhi).GetImageDraw().spriteInfos;
+		}else{
+			partWP = mWp.spriteInfos;
+		}
+		//-----------------------
+		if(playerEquipment.GetItemInSlot(EquipLocation.Quan) != null) {
+			partLeg = playerEquipment.GetItemInSlot(EquipLocation.Quan).GetImageDraw().spriteInfos;
+		}else{
+			partLeg = mQuan.spriteInfos;
+		}
+		//-----------------------	
 	}
+	
+
 	private void OnEnable() {
-		
-	}
-	private void Start() {
-		//Inventory.Instance.OnChangeCloth += UpdateColth;
+		playerEquipment.OnEquipmentUpdate += UpdateColth;
 	}
 	private void OnDisable() {
-		//Inventory.Instance.OnChangeCloth -= UpdateColth;
+		playerEquipment.OnEquipmentUpdate -= UpdateColth;
 	}
     public void LoadTexHead_SO()
     {
@@ -85,7 +94,6 @@ public class Draw_Char : MonoBehaviour
 		partHead = mHead.spriteInfos;
         lvHeadCurrent = lvHead;
     }
-   
    private readonly int[][][] CharInfo2 = new int[34][][]
     
 	{
@@ -346,9 +354,11 @@ public class Draw_Char : MonoBehaviour
 		HeadGO = transform.Find("Head").gameObject;
 		BodyGO = transform.Find("Body").gameObject;		
 		WpGO = transform.Find("Wp").gameObject;
+        playerEquipment = transform.parent.GetComponent<Equipment>();
 		partLeg = mQuan.spriteInfos;
 		partBody = mTexAo.spriteInfos;
 	}
+	
 	private void Update() {
         PaintChar();
     }

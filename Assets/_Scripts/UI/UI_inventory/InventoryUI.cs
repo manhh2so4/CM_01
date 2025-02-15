@@ -3,13 +3,11 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour {
     [SerializeField] InventorySlotUI InventoryItemPrefab = null;
     Inventory playerInventory;
-    private void Awake() 
+
+    private void Start()
     {
         playerInventory = Inventory.GetPlayerInventory();
         playerInventory.inventoryUpdated += Redraw;
-    }
-    private void Start()
-    {
         Redraw();
     }
     private void Redraw()

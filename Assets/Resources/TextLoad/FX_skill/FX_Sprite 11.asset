@@ -12,26 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f49f30a25850f34dbcbd491163231f6, type: 3}
   m_Name: FX_Sprite 11
   m_EditorClassIdentifier: 
-  EffId: 10
+  EffId: 11
   effSkillInfo_SO:
-  - sprite: {fileID: 2439627202533997482, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+  - sprite: {fileID: -1534384529603227147, guid: 9a9867d8488792d428f08e287956f305, type: 3}
+    dx: -9
+    dy: -6
+  - sprite: {fileID: -1534384529603227147, guid: 9a9867d8488792d428f08e287956f305, type: 3}
+    dx: -1
+    dy: 1
+  - sprite: {fileID: -4504152795373331251, guid: 9a9867d8488792d428f08e287956f305, type: 3}
+    dx: -9
+    dy: -6
+  - sprite: {fileID: -4504152795373331251, guid: 9a9867d8488792d428f08e287956f305, type: 3}
     dx: 5
-    dy: -16
-  - sprite: {fileID: 2439627202533997482, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
-    dx: 5
-    dy: -16
-  - sprite: {fileID: 8369447865772916490, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
-    dx: 2
-    dy: -20
-  - sprite: {fileID: 8369447865772916490, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
-    dx: 2
-    dy: -20
-  - sprite: {fileID: 8369447865772916490, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
-    dx: 2
-    dy: -20
-  - sprite: {fileID: 7047629125559180919, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
-    dx: 2
-    dy: -20
-  - sprite: {fileID: 7047629125559180919, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
-    dx: 2
-    dy: -20
+    dy: 2

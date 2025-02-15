@@ -2,22 +2,16 @@ using UnityEngine;
 
 
 public class CharacterStats : CoreComponent{
-    [Header("Major stats")]
-    public Stat_char strength; // 1 point increase damage by 1 and crit.power by 1%
-    public Stat_char agility;  // 1 point increase evasion by 1% and crit.chance by 1%
-    public Stat_char intelligence; // 1 point increase magic damage by 1 and magic resistance by 3
-    public Stat_char vitality; // 1 point incredase health by 3 or 5 points
 
     [Header("Offensive stats")]
-    public Stat_char damage;
-    public Stat_char critChance;
-    public Stat_char critPower; 
+    public Stat damage;
+    public Stat critChance;
+    public Stat critPower; 
 
     [Header("Defensive stats")]
-    public Stat_char maxHealth;
-    public Stat_char armor;
-    public Stat_char evasion;
-    public Stat_char magicResistance;
+    public Stat maxHealth;
+    public Stat armor;
+    public Stat magicResistance;
 
     public int currentHealth;
 
@@ -39,7 +33,7 @@ public class CharacterStats : CoreComponent{
         if (TargetCanAvoidAttack(_targetStats))
             return;
 
-        int totalDamage = damage.GetValue() + strength.GetValue();
+        int totalDamage = damage.GetValue();
 
         if (CanCrit())
         {
@@ -81,12 +75,13 @@ public class CharacterStats : CoreComponent{
     private int CheckTargetArmor(CharacterStats _targetStats, int totalDamage)
     {
         totalDamage -= _targetStats.armor.GetValue();
-        totalDamage = Mathf.Clamp(totalDamage, 0, int.MaxValue);
+        totalDamage = Mathf.Clamp(totalDamage, 1, int.MaxValue);
         return totalDamage;
     }
+    
     private bool TargetCanAvoidAttack(CharacterStats _targetStats)
     {
-        int totalEvasion = _targetStats.evasion.GetValue() + _targetStats.agility.GetValue();
+        int totalEvasion = 0;
 
         if (Random.Range(0, 100) < totalEvasion)
         {
@@ -97,7 +92,7 @@ public class CharacterStats : CoreComponent{
     }
     private bool CanCrit()
     {
-        int totalCriticalChance = critChance.GetValue() + agility.GetValue();
+        int totalCriticalChance = critChance.GetValue() ;
 
         if (Random.Range(0, 100) <= totalCriticalChance)
         {
@@ -109,29 +104,24 @@ public class CharacterStats : CoreComponent{
     }
     private int CalculateCriticalDamage(int _damage)
     {
-        float totalCritPower = (critPower.GetValue() + strength.GetValue()) * .01f;
+        float totalCritPower = (critPower.GetValue()) *.01f;
         float critDamage = _damage * totalCritPower;
 
         return Mathf.RoundToInt(critDamage);
     }
     public int GetMaxHealthValue()
     {
-        return maxHealth.GetValue() + vitality.GetValue() * 5;
+        return maxHealth.GetValue();
     }
-    public Stat_char GetStatOfType(StatType statType)
+    public Stat GetStatOfType(StatType statType)
     {
         switch (statType)
         {
-            case StatType.strength: return strength;
-            case StatType.agility: return agility;
-            case StatType.intelegence: return strength;
-            case StatType.vitality: return vitality;
             case StatType.damage: return damage;
             case StatType.critChance: return critChance;
-            case StatType.critPower: return critPower;
+            case StatType.critDame: return critPower;
             case StatType.health: return maxHealth;
             case StatType.armor: return armor;
-            case StatType.evasion: return evasion;
             case StatType.magicRes: return magicResistance;
         }
         return null;
@@ -141,15 +131,10 @@ public class CharacterStats : CoreComponent{
 }
 public enum StatType
 {
-    strength,
-    agility,
-    intelegence,
-    vitality,
     damage,
     critChance,
-    critPower,
+    critDame,
     health,
     armor,
-    evasion,
     magicRes,
 }

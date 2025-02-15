@@ -6,7 +6,7 @@ public class EnemyAbilityState : E_State
     protected bool isAbilityDone;
     public EnemyAbilityState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine)
     {
-        stats = core.GetCoreComponent<CharacterStats>();
+        stats = enemy.CharStats;
     }
 
     public override void Enter(){

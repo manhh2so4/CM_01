@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2313a4248aa4b24a9cf572bf8bf80ef, type: 3}
   m_Name: NgocBoi_2x
   m_EditorClassIdentifier: 
-  itemID: d740142d-42fb-40a4-badc-33fdb369a016
+  itemID: d740142d-fgf-40a4-badc-3d
   displayName: Ngoc_boi 2x
   description: "N\xF3n m\xE0u  \u0111\u1ECF"
   icon: {fileID: 6568260479350683853, guid: e9c8dda83f5b2cf4bb0f25bd1aa3bc81, type: 3}

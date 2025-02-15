@@ -11,6 +11,7 @@ public class SavingWrapper : MonoBehaviour {
             Load();
         }
     }
+
     public void OnSave(InputAction.CallbackContext context){
         if(context.started)
         {
@@ -18,9 +19,11 @@ public class SavingWrapper : MonoBehaviour {
             Save();
         }
     }
+    
     private void Load(){
         GetComponent<SavingSystem>().Load(defaultSaveFile);
     }
+
     private void Save(){
         GetComponent<SavingSystem>().Save(defaultSaveFile);
     }

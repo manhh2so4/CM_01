@@ -1,39 +1,37 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-    public class Stat
+[System.Serializable]
+public class Stat {
+    [SerializeField] private int baseValue;
+    [SerializeField] private int MaxxValue;
+    public List<int> modifiers;
+    public int GetValue()
     {
-        public event Action OnCurrentValueZero;
-        [field: SerializeField] public float MaxValue { get; private set; }
+        int finalValue = baseValue; 
 
-        public float CurrentValue
+        foreach (int modifier in modifiers)
         {
-            get => currentValue;
-            
-            set
-            {
-                if(MaxValue == 0){
-                    currentValue = value;
-                }else{
-                    currentValue = Mathf.Clamp(value, 0f, MaxValue);
-                }
-                if (currentValue <= 0f)
-                {
-                    OnCurrentValueZero?.Invoke();
-                }
-            }
+            finalValue += modifier;
         }
-        
-        private float currentValue;
 
-        public void Init() => CurrentValue = MaxValue;
-
-        public void Increase(float amount) => CurrentValue += amount;
-        public void IncreaseNonStack(float amount){
-            if(amount > CurrentValue){
-                CurrentValue = amount;
-            }
-        } 
-        public void Decrease(float amount) => CurrentValue -= amount;
+        return finalValue;
     }
+    public void SetDefaultValue(int _value)
+    {
+        baseValue = _value;
+    }
+
+    public void AddModifier(int _modifier)
+    {
+        modifiers.Add(_modifier);
+        MaxxValue = GetValue();
+    }
+
+    public void RemoveModifier(int _modifier)
+    {
+        modifiers.Remove(_modifier);
+        MaxxValue = GetValue();
+    }
+}

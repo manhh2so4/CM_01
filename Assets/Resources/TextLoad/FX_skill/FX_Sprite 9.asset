@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffId: 9
   effSkillInfo_SO:
-  - sprite: {fileID: 0}
+  - sprite: {fileID: -5126770328913247271, guid: 9a9867d8488792d428f08e287956f305, type: 3}
     dx: 4
     dy: -4

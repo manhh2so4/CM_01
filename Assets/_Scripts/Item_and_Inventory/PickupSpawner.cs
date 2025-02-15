@@ -19,8 +19,8 @@ public class PickupSpawner : MonoBehaviour, ISaveable
     }
     private void SpawnPickup()
     {
-        var spawnedPickup = item.SpawnPickup(transform.position, number);
-        spawnedPickup.transform.SetParent(transform);
+        var pickup = item.SpawnPickup(transform.position, number);
+        //pickup.transform.SetParent(transform);
     }
     private void DestroyPickup()
     {
@@ -46,6 +46,13 @@ public class PickupSpawner : MonoBehaviour, ISaveable
         if (!shouldBeCollected && isCollected())
         {
             SpawnPickup();
+        }
+    }
+    private void OnValidate()
+    {
+        if(item != null)
+        {
+            gameObject.name = item.GetDisplayName();
         }
     }
 }

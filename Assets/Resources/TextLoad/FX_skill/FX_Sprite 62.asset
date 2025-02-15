@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f49f30a25850f34dbcbd491163231f6, type: 3}
+  m_Name: FX_Sprite 62
+  m_EditorClassIdentifier: 
+  EffId: 62
+  effSkillInfo_SO:
+  - sprite: {fileID: 4991232184503961687, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 2
+    dy: -39
+  - sprite: {fileID: -221945484465002418, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 1
+    dy: -38
+  - sprite: {fileID: 1198382338363921635, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 1
+    dy: -39
+  - sprite: {fileID: -3634081745992781219, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 2
+    dy: -36
+  - sprite: {fileID: 3964325496142457959, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 1
+    dy: -31
+  - sprite: {fileID: 3964325496142457959, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 1
+    dy: -23
+  - sprite: {fileID: 8229552812829890193, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 2
+    dy: -42
+  - sprite: {fileID: 1454603752826318235, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 2
+    dy: -42
+  - sprite: {fileID: 8229552812829890193, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 2
+    dy: -46
+  - sprite: {fileID: 1454603752826318235, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 2
+    dy: -46
+  - sprite: {fileID: 8229552812829890193, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 2
+    dy: -50
+  - sprite: {fileID: 1454603752826318235, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 2
+    dy: -50
+  - sprite: {fileID: 8229552812829890193, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 2
+    dy: -54
+  - sprite: {fileID: 1454603752826318235, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 2
+    dy: -54

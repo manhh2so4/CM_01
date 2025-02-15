@@ -30,7 +30,7 @@ public class SpritePreviewDrawer : PropertyDrawer
         else
         {
             EditorGUI.ObjectField(new Rect(position.x, position.y, position.width /3, position.height), property, typeof(Sprite), GUIContent.none);
-            EditorGUI.LabelField(position, "This is not a Sprite or null");
+            //EditorGUI.LabelField(position, "This is not a Sprite or null");
         }
         EditorGUI.indentLevel = indent;
         EditorGUI.EndProperty();

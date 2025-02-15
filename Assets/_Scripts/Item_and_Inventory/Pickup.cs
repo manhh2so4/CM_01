@@ -3,15 +3,19 @@ using UnityEngine;
 public class Pickup : MonoBehaviour,IClicker {
     InventoryItemSO item;
     int number = 1;
+
     Inventory inventory;
-    private void Awake()
+    private void Start()
     {
-        var player = GameObject.FindGameObjectWithTag("Player");
+        var player = PlayerManager.Instance.GetPlayer();
         inventory = player.GetComponent<Inventory>();
+        
     }
     public void Setup(InventoryItemSO item, int number)
     {
+        
         this.item = item;
+        GetComponent<SpriteRenderer>().sprite = this.item.GetIcon();
         if (!item.IsStackable())
         {
             number = 1;
@@ -42,5 +46,10 @@ public class Pickup : MonoBehaviour,IClicker {
     public void OnClick()
     {
         PickupItem();
+    }
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.CompareTag("Player")){
+            PickupItem();
+        }
     }
 }

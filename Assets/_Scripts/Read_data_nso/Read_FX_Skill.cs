@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
+using NaughtyAttributes;
 public class Read_FX_Skill : MonoBehaviour
 {
     //public string textJson;
@@ -23,9 +24,11 @@ public class Read_FX_Skill : MonoBehaviour
         FindIdSkill();
         LoadEffInfo();   
     }
+    [Button]
     public static SkillInfor1[] LoadData(){
         textJson = Resources.Load<TextAsset>("nj_effect");
         data = JsonMapper.ToObject(textJson.ToString());
+
         SkillInfor1[] temp = new SkillInfor1[data.Count];
         for (int i = 0; i < data.Count ; i++)
         {   
@@ -41,10 +44,16 @@ public class Read_FX_Skill : MonoBehaviour
                 formImg.y0 = int.Parse(data2[j][2].ToString());
                 skilId.info[j] = formImg;        
             }            
-            temp[i] = skilId;                            
+            temp[i] = skilId;  
+                                      
         }
         skillInfors = temp;
+        
         return temp;
+    }
+    [Button]
+    void showInfor(){
+        viewSkillInfors = LoadData();
     }
     void FindIdSkill(){
         
@@ -61,8 +70,6 @@ public class Read_FX_Skill : MonoBehaviour
     static JsonData GetItem(string data3){
         return JsonMapper.ToObject(data3);
     }
-    
-    public string filePath = "Assets/Output.txt";
     
     void show(){
         string a =null;

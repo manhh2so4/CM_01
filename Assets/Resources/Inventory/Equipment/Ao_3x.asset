@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d837d24162a901145809279e0072f579, type: 3}
+  m_Name: Ao_3x
+  m_EditorClassIdentifier: 
+  itemID: cdaecd70-5972-446d-b507-372408e99276
+  displayName: 
+  description: 
+  icon: {fileID: -554438106920706084, guid: e9c8dda83f5b2cf4bb0f25bd1aa3bc81, type: 3}
+  pickup: {fileID: 7339652577957182515, guid: 091f0a42533b59a40855d2a68d26c4db, type: 3}
+  stackable: 0
+  typeEquip: 1
+  AddtiveModifiers:
+  - statType: 7
+    _value: 10
+  percentageModifiers:
+  - statType: 0
+    _value: 0

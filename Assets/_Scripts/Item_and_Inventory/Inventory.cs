@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour,ISaveable
     public event Action inventoryUpdated;
     public static Inventory GetPlayerInventory()
     {
-        var player = GameObject.FindWithTag("Player");
+        var player = PlayerManager.Instance.GetPlayer();
         return player.GetComponent<Inventory>();
     }
 
@@ -97,7 +97,6 @@ public class Inventory : MonoBehaviour,ISaveable
         {
             return AddToFirstEmptySlot(item, number);
         }
-        Debug.Log("add");
         var i = FindStack(item);
         if (i >= 0)
         {

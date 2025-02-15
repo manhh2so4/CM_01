@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2313a4248aa4b24a9cf572bf8bf80ef, type: 3}
   m_Name: Giay_2x
   m_EditorClassIdentifier: 
-  itemID: d740142d-42fb-40a4-badc-33fdb369a016
+  itemID: ff081eba-08d7-4cf1-ae4f-c6beb64bd4c7
   displayName: Giay 2x
   description: "Gi\xE0y m\xE0u  \u0111\u1ECF"
   icon: {fileID: 2106878275237774546, guid: e9c8dda83f5b2cf4bb0f25bd1aa3bc81, type: 3}
   pickup: {fileID: 7339652577957182515, guid: 091f0a42533b59a40855d2a68d26c4db, type: 3}
   stackable: 0
   typeEquip: 4
+  AddtiveModifiers:
+  - statType: 3
+    _value: 12
+  - statType: 4
+    _value: 2
+  percentageModifiers: []

@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2313a4248aa4b24a9cf572bf8bf80ef, type: 3}
   m_Name: Ao_2x
   m_EditorClassIdentifier: 
-  itemID: d740142d-42fb-40a4-badc-33fdb369a016
+  itemID: fsfs
   displayName: Ao 2x
   description: "Ao m\xE0u  \u0111\u1ECF"
   icon: {fileID: -3493160027052846601, guid: e9c8dda83f5b2cf4bb0f25bd1aa3bc81, type: 3}
   pickup: {fileID: 7339652577957182515, guid: 091f0a42533b59a40855d2a68d26c4db, type: 3}
   stackable: 0
   typeEquip: 1
+  AddtiveModifiers:
+  - statType: 3
+    _value: 50
+  - statType: 4
+    _value: 5
+  percentageModifiers: []
+  image_Draw: {fileID: 11400000, guid: 1ec1086c466a73041a9a023e1f67d8fe, type: 2}

@@ -31,7 +31,6 @@ public class ParallaxBG : MonoBehaviour
     Transform[] Bg3 = new Transform[3];
     
     public Transform Sun;
-    [SerializeField] UnityEngine.GameObject prefab;
     private void Reset() {
         LoadComponent();     
         LoadImgBG();

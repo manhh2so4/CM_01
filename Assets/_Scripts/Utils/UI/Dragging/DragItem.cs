@@ -57,12 +57,10 @@ namespace HStrong.Core.UI.Dragging{
                destinationContainer.GetItem() == null || 
                object.ReferenceEquals(destinationContainer.GetItem(), sourceContainer.GetItem()))
             {
-                Debug.Log("AttempSimpleTransfer");
                 AttempSimpleTransfer(destination);
                 
                 return;
             }
-            Debug.Log("AttemptSwap");
             AttemptSwap(destinationContainer, sourceContainer);
             
         }
@@ -141,7 +139,6 @@ namespace HStrong.Core.UI.Dragging{
         {
             if(eventData.pointerEnter)
             {
-                Debug.Log("enter pointerEnter "+ eventData.pointerEnter.transform.name);
                 var container = eventData.pointerEnter.GetComponentInParent<IDragDestination<T>>();
                 return container;
             }

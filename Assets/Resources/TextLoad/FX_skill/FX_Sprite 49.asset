@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f49f30a25850f34dbcbd491163231f6, type: 3}
+  m_Name: FX_Sprite 49
+  m_EditorClassIdentifier: 
+  EffId: 49
+  effSkillInfo_SO:
+  - sprite: {fileID: 1856811845184403603, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: -9
+    dy: -7
+  - sprite: {fileID: -2082730412099995815, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: -7
+    dy: -7
+  - sprite: {fileID: 6930337267586869656, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: -8
+    dy: -7
+  - sprite: {fileID: -235077798706196462, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: -8
+    dy: -7
+  - sprite: {fileID: 1856811845184403603, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 11
+    dy: -6
+  - sprite: {fileID: -2082730412099995815, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 9
+    dy: -6
+  - sprite: {fileID: 6930337267586869656, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 9
+    dy: -7
+  - sprite: {fileID: -235077798706196462, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 9
+    dy: -8
+  - sprite: {fileID: 1856811845184403603, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: -14
+    dy: -20
+  - sprite: {fileID: -2082730412099995815, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: -10
+    dy: -21
+  - sprite: {fileID: 6930337267586869656, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: -9
+    dy: -20
+  - sprite: {fileID: -235077798706196462, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: -9
+    dy: -21
+  - sprite: {fileID: 1856811845184403603, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 12
+    dy: -22
+  - sprite: {fileID: -2082730412099995815, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 13
+    dy: -22
+  - sprite: {fileID: 6930337267586869656, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 11
+    dy: -24
+  - sprite: {fileID: -235077798706196462, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 12
+    dy: -18
