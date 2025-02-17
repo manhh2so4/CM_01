@@ -27,7 +27,7 @@ public class Char_anim : MonoBehaviour
         LoadCompnents();
     }
     void LoadCompnents(){
-		if(primaryWeapon == null) primaryWeapon = transform.Find("PrimaryWeapon").gameObject.GetComponent<Weapon>();
+		if(primaryWeapon == null) primaryWeapon = transform.Find("Skill_1").gameObject.GetComponent<Weapon>();
         if(drawChar == null) drawChar = transform.Find("Sprite").gameObject.GetComponent<Draw_Char>();
 		if(player == null) player = GetComponent<Player>();
     }

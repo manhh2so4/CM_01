@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UIElements;
 public class Weapon : MonoBehaviour {
@@ -16,9 +18,9 @@ public class Weapon : MonoBehaviour {
     public int cf;
     public int LengthSkill = 1;
 	int curIdSkill = -1;
-	int i0,dx0,dy0,eff0Lenth;
-	int i1,dx1,dy1,eff1Lenth;
-	int i2,dx2,dy2,eff2Lenth;
+	int i0=0,dx0,dy0,eff0Lenth =-1;
+	int i1=0,dx1,dy1,eff1Lenth =-1;
+	int i2=0,dx2,dy2,eff2Lenth =-1;
 	public float speedAttack1;
     #endregion
 	[SerializeField] public Skill[] skills;
@@ -26,13 +28,34 @@ public class Weapon : MonoBehaviour {
 
     //------------------------------------
     public Core core{ get; private set;}
-    public void AttackWeapon(int FrameCurrent){
+    private void Start() {
+        SetEffSkill();
+    }
+    [Button("SetEffSkill")]
+    public void SetEffSkill(){
+        currentSkill = skills[idSkill].skillStand;
+        LengthSkill = currentSkill.Length;
+		curIdSkill = idSkill;
+        List<int> idEffs = new List<int>();
+        for(int i = 0; i < currentSkill.Length; i++)
+        {
+            
+            if(currentSkill[i].effS0Id != 0){
 
-        if(curIdSkill != idSkill){
-				currentSkill = skills[idSkill].skillStand;
-                LengthSkill = currentSkill.Length;
-				curIdSkill = idSkill;					
-		}
+                if(!idEffs.Contains(currentSkill[i].effS0Id)) idEffs.Add(currentSkill[i].effS0Id);
+
+            }
+            if(currentSkill[i].effS1Id != 0){
+                if(!idEffs.Contains(currentSkill[i].effS1Id)) idEffs.Add(currentSkill[i].effS1Id);
+            }
+            if(currentSkill[i].effS2Id != 0){
+                if(!idEffs.Contains(currentSkill[i].effS2Id)) idEffs.Add(currentSkill[i].effS2Id);
+            }
+        }
+        wpSprite.LoadEffSkill(idEffs.ToArray());
+    }
+
+    public void AttackWeapon(int FrameCurrent){
 
         if(FrameCurrent >= LengthSkill){
 				wpSprite.SetSkillOff();
@@ -45,6 +68,7 @@ public class Weapon : MonoBehaviour {
         cf = currentSkill[FrameCurrent].status;
         if(FrameCurrent == 2) OnStarMove?.Invoke();
         else OnStopMove?.Invoke();
+
         
         // ----------------- effS0Id -------------
         if(currentSkill[FrameCurrent].effS0Id != 0){
@@ -55,9 +79,11 @@ public class Weapon : MonoBehaviour {
 
         if(i0 <= eff0Lenth) {
             if (dx0 == 0) dx0 = currentSkill[FrameCurrent].e0dx;
-            if (dy0 == 0) dy0 = currentSkill[FrameCurrent].e0dy;									
+            if (dy0 == 0) dy0 = currentSkill[FrameCurrent].e0dy;
+            
             wpSprite.PaintEff0(i0,dx0,dy0);
             i0++;
+
         }else eff0Lenth =-1;
 
         // ----------------- effS1Id -------------
@@ -86,6 +112,7 @@ public class Weapon : MonoBehaviour {
             wpSprite.PaintEff2(i2,dx2,dy2);
             i2++;
         }else eff2Lenth =-1;
+        
     }
     public void SetCore(Core core)
     {

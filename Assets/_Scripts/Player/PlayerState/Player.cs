@@ -36,7 +36,7 @@ public class Player : Entity,ISaveable
         base.Awake();
         StateMachine = new FiniteStateMachine();
         core.layerID = SortingLayer.NameToID("Player");
-        primaryWeapon = transform.Find("PrimaryWeapon").GetComponent<Weapon>();
+        primaryWeapon = transform.Find("Skill_1").GetComponent<Weapon>();
         primaryWeapon.SetCore(core);
         idleState = new PlayerIdleState(this,StateMachine,playerData,mState.Idle);
         moveState = new PlayerMoveState(this,StateMachine,playerData,mState.Moving);
