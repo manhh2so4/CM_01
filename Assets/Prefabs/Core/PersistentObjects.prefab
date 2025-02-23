@@ -725,6 +725,7 @@ PrefabInstance:
     - {fileID: 4458154764740671859, guid: b11172eaf31f4704c9a3d38ba97c6c28, type: 3}
     - {fileID: 7538125560960238239, guid: b11172eaf31f4704c9a3d38ba97c6c28, type: 3}
     - {fileID: 6590494237614141808, guid: b11172eaf31f4704c9a3d38ba97c6c28, type: 3}
+    - {fileID: 5770077355819777100, guid: b11172eaf31f4704c9a3d38ba97c6c28, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6544840767280323054, guid: b11172eaf31f4704c9a3d38ba97c6c28, type: 3}
     - {fileID: 6854731407886735249, guid: b11172eaf31f4704c9a3d38ba97c6c28, type: 3}
@@ -1173,6 +1174,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4908690693312982499, guid: acb1921cef1b5fa4c970327154966d75, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908690693312982499, guid: acb1921cef1b5fa4c970327154966d75, type: 3}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5206099445403768218, guid: acb1921cef1b5fa4c970327154966d75, type: 3}

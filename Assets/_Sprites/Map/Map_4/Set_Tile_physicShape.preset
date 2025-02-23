@@ -386,7 +386,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SpriteSheet.m_PhysicsShape.Array.data[0].Array.data[0].y
-    value: 21
+    value: 46
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SpriteSheet.m_PhysicsShape.Array.data[0].Array.data[1].x
@@ -410,7 +410,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SpriteSheet.m_PhysicsShape.Array.data[0].Array.data[3].y
-    value: 21
+    value: 46
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SpriteSheet.m_Bones.Array.size

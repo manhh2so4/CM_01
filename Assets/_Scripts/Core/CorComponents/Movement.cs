@@ -4,7 +4,8 @@ using UnityEngine;
 public class Movement : CoreComponent
 {
     public System.Action OnFlip;
-    [SerializeField] public Rigidbody2D mRB;
+    [SerializeField] Rigidbody2D mRB;
+    [SerializeField] mPhysics mphysics;
     [field: SerializeField] public int facingDirection { get; private set; }
     [field: SerializeField] public bool CanSetVelocity;
     [field: SerializeField] public Vector2 CurrentVelocity { get; private set; }
@@ -13,14 +14,14 @@ public class Movement : CoreComponent
     protected override void Awake()
     {
         base.Awake();
-        mRB = GetComponentInParent<Rigidbody2D>();
+        mphysics = GetComponentInParent<mPhysics>();
         facingDirection = 1;
         CanSetVelocity = true;
     }
 
     public override void LogicUpdate()
     {
-        CurrentVelocity = mRB.velocity;
+        CurrentVelocity = mphysics.velocity;
     }
 
     #region Set Functions
@@ -49,15 +50,15 @@ public class Movement : CoreComponent
         SetFinalVelocity();
     }
 
-    public void SetVelocityX(float velocity)
+    public void SetVelocityX(float vX)
     {
-        workspace.Set(velocity, CurrentVelocity.y);
+        workspace.Set(vX, CurrentVelocity.y);
         SetFinalVelocity();
     }
 
-    public void SetVelocityY(float velocity)
+    public void SetVelocityY(float vY)
     {
-        workspace.Set(CurrentVelocity.x, velocity);
+        workspace.Set(CurrentVelocity.x, vY);
         SetFinalVelocity();
     }
 
@@ -65,7 +66,8 @@ public class Movement : CoreComponent
     {
         if (CanSetVelocity)
         {
-            mRB.velocity = workspace;
+
+            //mphysics.SetVelocity(workspace);
             CurrentVelocity = workspace;
         }        
     }
@@ -78,14 +80,13 @@ public class Movement : CoreComponent
         }
     }
     public void AddForce(Vector2 dir){
-        mRB.AddForce(dir,ForceMode2D.Impulse);
+        //mRB.AddForce(dir,ForceMode2D.Impulse);
     }
-
     public void Flip()
     {
         OnFlip?.Invoke();
         facingDirection *= -1;
-        mRB.transform.Rotate(0.0f, 180.0f, 0.0f);
+        mphysics.transform.Rotate(0.0f, 180.0f, 0.0f);
     }
     #endregion
 

@@ -51,14 +51,14 @@ public class PlayerDashState : PlayerAbilityState
                     Time.timeScale =1f;
                     startTime = Time.time;
                     movement.CheckIfShouldFlip(Mathf.RoundToInt(dashDirection.x));
-                    movement.mRB.drag = playerData.drag;
+                    //movement.mRB.drag = playerData.drag;
                     movement.SetVelocity(playerData.dashVelocity,dashDirection);
                     player.dashDirImgae.gameObject.SetActive(false);
                 }
             }else{
                 movement.SetVelocity(playerData.dashVelocity,dashDirection);
                 if(Time.time >= startTime + playerData.dashTime){
-                    movement.mRB.drag = 0f;
+                    //movement.mRB.drag = 0f;
                     isAbilityDone = true;
                     lastDashTime = Time.time;
                 }
