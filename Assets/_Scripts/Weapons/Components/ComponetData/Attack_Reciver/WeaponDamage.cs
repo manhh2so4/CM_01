@@ -19,4 +19,16 @@ public class WeaponDamage : WeaponComponents<DamageData> {
         stats = Core.GetCoreComponent<CharacterStats>();
                
     }
+    protected override void HandleEnter()
+    {
+        base.HandleEnter();
+        stats.GetStatOfType(StatType.damage).AddModifier(data.Amout);
+        
+
+    }
+    protected override void HandleExit()
+    {
+        base.HandleExit();
+        stats.GetStatOfType(StatType.damage).RemoveModifier(data.Amout);
+    }
 }

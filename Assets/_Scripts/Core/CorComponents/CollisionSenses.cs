@@ -6,25 +6,32 @@ public class CollisionSenses : CoreComponent
 
 {
     #region Check Transforms
-    [SerializeField] private BoxCollider2D mGroundCheck;
-    [SerializeField] private BoxCollider2D mWallCheck;
-    [SerializeField] private BoxCollider2D mWallBackCheck;
-
+    [SerializeField] LayerMask whatIsGround;
+    [SerializeField] Transform GroundCheck;
+    [SerializeField] float groundCheckDistance;
+    [SerializeField] Transform WallCheck;
+    [SerializeField] float wallCheckDistance;
+    private Movement movement;
     protected override void Awake() {
         base.Awake();
-        mGroundCheck = transform.Find("Ground_check").GetComponent<BoxCollider2D>();
-        mWallCheck = transform.Find("Wall_check").GetComponent<BoxCollider2D>();
-        mWallBackCheck = transform.Find("Wall_check_Back").GetComponent<BoxCollider2D>();
+        movement = core.GetCoreComponent<Movement>();
     }
 
     #endregion
     public bool isWall{
-        get =>  mWallCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        get =>  Physics2D.Raycast(WallCheck.position, Vector2.right * movement.facingDirection, wallCheckDistance, whatIsGround);
+
     }
     public bool isGround{
-        get =>  mGroundCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        get =>  Physics2D.OverlapCircle(GroundCheck.position, groundCheckDistance, whatIsGround);
+
     }
-    public bool isWallBack{
-        get =>  mWallBackCheck.IsTouchingLayers(LayerMask.GetMask("Ground"));
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red; // Đặt màu cho đường ray
+        Gizmos.DrawLine(WallCheck.position, WallCheck.position + (Vector3.right*wallCheckDistance));
+
+        Gizmos.color = Color.blue; // Đặt màu cho đường ray
+        Gizmos.DrawWireSphere(GroundCheck.position, groundCheckDistance);
     }
 }

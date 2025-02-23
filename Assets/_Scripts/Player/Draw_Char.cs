@@ -57,34 +57,41 @@ public class Draw_Char : MonoBehaviour
     {
         partWP = mWp.spriteInfos;
     }
-	void UpdateColth(){
-		//-----------------------
-		if(playerEquipment.GetItemInSlot(EquipLocation.Ao) != null) {
-			partBody = playerEquipment.GetItemInSlot(EquipLocation.Ao).GetImageDraw().spriteInfos;
-		}else{
-			partBody = mTexAo.spriteInfos;
-		}
-		//-----------------------
-		if(playerEquipment.GetItemInSlot(EquipLocation.Vukhi) != null) {
-			partWP = playerEquipment.GetItemInSlot(EquipLocation.Vukhi).GetImageDraw().spriteInfos;
-		}else{
-			partWP = mWp.spriteInfos;
-		}
-		//-----------------------
-		if(playerEquipment.GetItemInSlot(EquipLocation.Quan) != null) {
-			partLeg = playerEquipment.GetItemInSlot(EquipLocation.Quan).GetImageDraw().spriteInfos;
-		}else{
-			partLeg = mQuan.spriteInfos;
-		}
-		//-----------------------	
-	}
-	
+	void UpdateTypeEquip(EquipLocation typeEquip)
+    {
+        switch (typeEquip)
+        {
+            case EquipLocation.Vukhi:
+
+				if(playerEquipment.GetItemInSlot(EquipLocation.Vukhi) != null) {
+				partWP = playerEquipment.GetItemInSlot(EquipLocation.Vukhi).GetImageDraw().spriteInfos;
+				}else partWP = mWp.spriteInfos;
+
+                break;
+            case EquipLocation.Ao:
+				if(playerEquipment.GetItemInSlot(EquipLocation.Ao) != null) {
+					partBody = playerEquipment.GetItemInSlot(EquipLocation.Ao).GetImageDraw().spriteInfos;
+				}else partBody = mTexAo.spriteInfos;
+
+                break;
+            case EquipLocation.Quan:
+
+				if(playerEquipment.GetItemInSlot(EquipLocation.Quan) != null) {
+					partLeg = playerEquipment.GetItemInSlot(EquipLocation.Quan).GetImageDraw().spriteInfos;
+				}else partLeg = mQuan.spriteInfos;
+
+                break;
+				
+            default:
+                break;
+        }
+    }
 
 	private void OnEnable() {
-		playerEquipment.OnEquipmentUpdate += UpdateColth;
+		playerEquipment.OnTypeEquipUpdate += UpdateTypeEquip;
 	}
 	private void OnDisable() {
-		playerEquipment.OnEquipmentUpdate -= UpdateColth;
+		playerEquipment.OnTypeEquipUpdate -= UpdateTypeEquip;
 	}
     public void LoadTexHead_SO()
     {

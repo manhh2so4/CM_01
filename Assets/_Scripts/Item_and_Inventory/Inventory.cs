@@ -134,8 +134,7 @@ public class Inventory : MonoBehaviour,ISaveable
         return -1;
     }
     private int FindStack(InventoryItemSO item)
-        {
-            Debug.Log("FindStack");
+    {
             if (!item.IsStackable())
             {
                 return -1;
@@ -149,7 +148,7 @@ public class Inventory : MonoBehaviour,ISaveable
                 }
             }
             return -1;
-        }
+    }
     #region Save_File
     [System.Serializable]
     private struct InventorySlotRecord

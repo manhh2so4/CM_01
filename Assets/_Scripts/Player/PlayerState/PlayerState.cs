@@ -9,6 +9,7 @@ public class PlayerState : State
     protected PlayerData playerData;
     protected bool isExitingState;
     protected float startTime;
+    protected bool isAbilityDone = true;
     private mState mState;
     protected FiniteStateMachine stateMachine;
 
@@ -41,5 +42,17 @@ public class PlayerState : State
     }
     public virtual void DoCheck(){
         
+    }
+    protected void ChangeAttack( PlayerAttackState Skill){
+        Debug.Log( "Change Attack : " + Skill.GetSkill().name);
+        if(isAbilityDone == false ) return;
+
+        if(Skill.GetSkill().Data == null){
+            Debug.Log("Player haven't weapon");
+            return;
+        }
+
+        stateMachine.ChangeState(Skill);
+        player.Anim.setSkill(Skill.GetSkill());
     }
 }

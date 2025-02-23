@@ -5,9 +5,7 @@ using UnityEngine;
 public class Char_anim : MonoBehaviour
 {
     [SerializeField] Draw_Char drawChar;
-	
-	[SerializeField] Player player;
-	[SerializeField] Weapon primaryWeapon;
+	[SerializeField] Weapon skill;
 	[Header("ID_Stage")]
 	public mState state;
 	mState currentState;
@@ -18,8 +16,6 @@ public class Char_anim : MonoBehaviour
     public int stagejump =0 ;
 	public float speedRun = 5 ;
 
-	[SerializeField] public Skill[] skills;
-    [SerializeField] SkillInfo[] currentSkill;
     private void Awake() {
         LoadCompnents();
     }
@@ -27,10 +23,12 @@ public class Char_anim : MonoBehaviour
         LoadCompnents();
     }
     void LoadCompnents(){
-		if(primaryWeapon == null) primaryWeapon = transform.Find("Skill_1").gameObject.GetComponent<Weapon>();
         if(drawChar == null) drawChar = transform.Find("Sprite").gameObject.GetComponent<Draw_Char>();
-		if(player == null) player = GetComponent<Player>();
     }
+	public void setSkill(Weapon _skill){
+		skill = _skill;
+	}
+
     private void Update() {
         CharStage(state);
     }
@@ -133,10 +131,11 @@ public class Char_anim : MonoBehaviour
 	}
 	void charAttack(){
 
+		if(skill.Data == null) return;
 		frameTimer += Time.deltaTime;
-        if(TimeRate(primaryWeapon.speedAttack1 / primaryWeapon.LengthSkill )){			
-			primaryWeapon.AttackWeapon(FrameCurrent);
-			drawChar.cf = isFly ? primaryWeapon.cf +9: primaryWeapon.cf;
+        if(TimeRate(skill.speedAttack1 / skill.LengthSkill )){			
+			skill.AttackWeapon(FrameCurrent);
+			drawChar.cf = isFly ? skill.cf +9: skill.cf;
 			FrameCurrent++;	
         }		
 	}

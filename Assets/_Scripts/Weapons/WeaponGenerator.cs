@@ -5,26 +5,17 @@ using UnityEngine;
 
 public class WeaponGenerator : MonoBehaviour {
     [SerializeField] private Weapon weapon;
-    [SerializeField] private SkillData_SO data
-;    private List<WeaponComponents> compAlreadyOnWeapon = new List<WeaponComponents>();
+    private List<WeaponComponents> compAlreadyOnWeapon = new List<WeaponComponents>();
     private List<WeaponComponents> compAddedToWeapon = new List<WeaponComponents>();
     private List<Type> componetDependencies = new List<Type>();
 
-    private void Start() {
-        GenerateWeapon(data);
-    }
-    [ContextMenu("Generate Weapon")]
-    private void TestGenerateWeapon()
-    {
-        GenerateWeapon(data);
-    }
-
     public void GenerateWeapon(SkillData_SO data){
         weapon.SetData(data);
-
         compAlreadyOnWeapon.Clear();
         compAddedToWeapon.Clear();
         componetDependencies.Clear();
+
+        if(data == null) return;
 
         compAlreadyOnWeapon = GetComponents<WeaponComponents>().ToList();
         componetDependencies = data.GetAllDependencies();
@@ -34,14 +25,21 @@ public class WeaponGenerator : MonoBehaviour {
             if(compAddedToWeapon.FirstOrDefault(component => component.GetType()== dependency))
                 continue;
 
-            var weaponComponent =
-            compAlreadyOnWeapon.FirstOrDefault(component => component.GetType() == dependency);
+            var weaponComponent = compAlreadyOnWeapon.FirstOrDefault(component => component.GetType() == dependency);
 
             if(weaponComponent == null){
+                if(dependency == typeof(WeaponComponents)){
+                    continue;
+                }
                 weaponComponent = gameObject.AddComponent(dependency) as WeaponComponents;
+                
             }
             compAddedToWeapon.Add(weaponComponent);
+
+            
         }
+
+
 
         var componentsToRemove = compAlreadyOnWeapon.Except(compAddedToWeapon);
 

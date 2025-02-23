@@ -69,6 +69,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Attack3",
+                    "type": "Button",
+                    "id": "9fcf2c7e-ce0f-4968-a0bd-24f14eb0fd59",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "LeftClick",
                     "type": "Button",
                     "id": "4b3d5f8a-4f9b-451a-b9f4-d762e7ba76c4",
@@ -296,7 +305,7 @@
                 {
                     "name": "",
                     "id": "a08e3783-54f6-4f29-a93f-38df272dc783",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Keyboard>/numpad1",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -306,8 +315,30 @@
                 },
                 {
                     "name": "",
+                    "id": "42aaff79-fce1-4965-bcbd-560cdaa23676",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "740b2aa7-6cfc-49db-b92a-4ad02a34b5a3",
-                    "path": "<Keyboard>/numpadEnter",
+                    "path": "<Keyboard>/numpad2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96605018-58f2-4df1-9c2d-9b9010b9c679",
+                    "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -356,6 +387,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Press_I",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c85e91d7-58d1-48bf-96c5-6780fd04be38",
+                    "path": "<Keyboard>/numpad3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8384435d-c239-4abe-aabd-bb5ede295c5a",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

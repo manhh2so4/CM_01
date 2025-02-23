@@ -30,20 +30,31 @@ public class PlayerGroundedState : PlayerState
         inputX = player.inputPlayer.MoveInput;
         jumpInput = player.inputPlayer.jumpInput;
         dashInput = player.inputPlayer.dashInput;
-        if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack1]){
-            stateMachine.ChangeState(player.PrimaryAttack);
-        }else if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack2]){
-            
-            stateMachine.ChangeState(player.PrimaryAttack);
 
-        }else if(jumpInput && player.jumpState.CanJump()){
+        if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack1] ){
+
+            ChangeAttack(player.Attack_1);
+            
+        }else if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack2] ){
+            
+            ChangeAttack(player.Attack_2);
+
+        }else if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack3] ){
+            
+            ChangeAttack(player.Attack_3);
+        }
+        else if(jumpInput && player.jumpState.CanJump()){
+
             player.inputPlayer.UseJumpInput();
             stateMachine.ChangeState(player.jumpState);    
 
-        }else if(!isGrounded){      
+        }else if(!isGrounded){     
+
             stateMachine.ChangeState(player.airState);
             player.jumpState.DecreaseAmountJumps();
+
         }else if(dashInput && player.dashState.CheckIfCanDash()){
+
             stateMachine.ChangeState(player.dashState);
         }
     }

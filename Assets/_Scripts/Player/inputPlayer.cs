@@ -68,6 +68,14 @@ public class inputPlayer : MonoBehaviour
             AttackInputs[(int)CombatInput.Attack2] = false;
         }
     }
+    public void OnAttack3(InputAction.CallbackContext context){
+        if(context.started){
+            AttackInputs[(int)CombatInput.Attack3] = true;
+        }
+        if(context.canceled){
+            AttackInputs[(int)CombatInput.Attack3] = false;
+        }
+    }
     public void OnDashDirectionInput(InputAction.CallbackContext context){
         mousePosition = context.ReadValue<Vector2>();
         if(dashInputStop) return;
@@ -111,5 +119,6 @@ public class inputPlayer : MonoBehaviour
 }
 public enum CombatInput{
     Attack1,
-    Attack2
+    Attack2,
+    Attack3
 }

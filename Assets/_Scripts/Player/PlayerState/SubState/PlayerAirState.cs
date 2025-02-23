@@ -40,12 +40,17 @@ public class PlayerAirState : PlayerState
         if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack1]){
             isFall = true; 
             movement.SetVelocityY(4); 
-            stateMachine.ChangeState(player.PrimaryAttack);
+            ChangeAttack(player.Attack_1);
             
         }else if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack2]){
             isFall = true;
             movement.SetVelocityY(4); 
-            stateMachine.ChangeState(player.PrimaryAttack);
+            ChangeAttack(player.Attack_2);
+
+        }else if(player.inputPlayer.AttackInputs[(int)CombatInput.Attack3]){
+            isFall = true;
+            movement.SetVelocityY(4); 
+            ChangeAttack(player.Attack_3);
 
         }else if(isGrounded && movement.CurrentVelocity.y < 1f){
 
@@ -74,7 +79,7 @@ public class PlayerAirState : PlayerState
         else{
             CheckDir();
             player.Anim.state = mState.Jump;
-            player.Anim.stagejump = (int)System.Math.Round(movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);         
+            player.Anim.stagejump = (int)Math.Round(movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);         
         }
     }
     public override void PhysicsUpdate(){

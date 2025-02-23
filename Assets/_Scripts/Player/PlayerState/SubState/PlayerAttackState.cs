@@ -15,11 +15,15 @@ public class PlayerAttackState : PlayerAbilityState
         this.weapon = weapon;
         weapon.OnExit += ExitHandler;
     }
+    public Weapon GetSkill(){
+        return weapon;
+    }
     
     public override void Enter(){
         base.Enter();
         weapon.Enter();
         movement.SetVelocityX(0);
+
     }
 
     public override void LogicUpdate(){

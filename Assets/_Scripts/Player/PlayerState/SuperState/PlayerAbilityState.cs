@@ -6,7 +6,7 @@ public class PlayerAbilityState : PlayerState
 {   
     
     
-    protected bool isAbilityDone;
+    
     protected bool isGrounded;
     public PlayerAbilityState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
     {

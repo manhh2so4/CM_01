@@ -14,13 +14,13 @@ public class Weapon : MonoBehaviour {
     #region ID_Skill
     [Header("ID_Skill")]
     [SerializeField] public WeaponSprite wpSprite;
-	public int idSkill = 0;
+
     public int cf;
     public int LengthSkill = 1;
 	int curIdSkill = -1;
-	int i0=0,dx0,dy0,eff0Lenth =-1;
-	int i1=0,dx1,dy1,eff1Lenth =-1;
-	int i2=0,dx2,dy2,eff2Lenth =-1;
+	int i0=0,dx0,dy0,eff0Lenth;
+	int i1=0,dx1,dy1,eff1Lenth;
+	int i2=0,dx2,dy2,eff2Lenth;
 	public float speedAttack1;
     #endregion
 	[SerializeField] public Skill[] skills;
@@ -28,14 +28,13 @@ public class Weapon : MonoBehaviour {
 
     //------------------------------------
     public Core core{ get; private set;}
-    private void Start() {
-        SetEffSkill();
-    }
-    [Button("SetEffSkill")]
-    public void SetEffSkill(){
+
+    public void SetEffSkill(int idSkill){
         currentSkill = skills[idSkill].skillStand;
         LengthSkill = currentSkill.Length;
 		curIdSkill = idSkill;
+        eff0Lenth = eff1Lenth = eff2Lenth = -1;
+
         List<int> idEffs = new List<int>();
         for(int i = 0; i < currentSkill.Length; i++)
         {
@@ -53,6 +52,7 @@ public class Weapon : MonoBehaviour {
             }
         }
         wpSprite.LoadEffSkill(idEffs.ToArray());
+        idEffs.Clear();
     }
 
     public void AttackWeapon(int FrameCurrent){
@@ -119,7 +119,11 @@ public class Weapon : MonoBehaviour {
         this.core = core;
     }
     public void SetData(SkillData_SO data){
+        
         this.Data = data;
+        if(data == null) return;
+        SetEffSkill( data.GetData<PassiveSkillData>().idSkill );
+        speedAttack1 = data.GetData<PassiveSkillData>().speed;
     }
 
     public void Enter(){

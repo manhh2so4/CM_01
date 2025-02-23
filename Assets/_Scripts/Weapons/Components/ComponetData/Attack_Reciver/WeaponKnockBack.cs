@@ -9,9 +9,7 @@ public class WeaponKnockBack : WeaponComponents<KnockBackData> {
             knockBackable.KnockBack(data.Angle, data.Strength, movement.Comp.facingDirection);
         }
     }
-    private void Start() {
 
-    }
 
     protected override void SubscribeHandlers()
     {
