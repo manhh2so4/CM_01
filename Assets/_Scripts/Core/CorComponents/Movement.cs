@@ -1,27 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 public class Movement : CoreComponent
 {
     public System.Action OnFlip;
-    [SerializeField] Rigidbody2D mRB;
-    [SerializeField] mPhysics mphysics;
-    [field: SerializeField] public int facingDirection { get; private set; }
-    [field: SerializeField] public bool CanSetVelocity;
-    [field: SerializeField] public Vector2 CurrentVelocity { get; private set; }
+    [SerializeField] Controller2D mController2D;
+    [SerializeField] public int facingDirection { get; private set; }
+    [SerializeField] public bool CanSetVelocity;
+    [SerializeField] public Vector2 CurrentVelocity;
     private Vector2 workspace;
 
     protected override void Awake()
     {
         base.Awake();
-        mphysics = GetComponentInParent<mPhysics>();
+        mController2D = GetComponentInParent<Controller2D>();
         facingDirection = 1;
         CanSetVelocity = true;
     }
 
     public override void LogicUpdate()
     {
-        CurrentVelocity = mphysics.velocity;
+        CurrentVelocity = mController2D.GetVelocity();
     }
 
     #region Set Functions
@@ -37,38 +37,41 @@ public class Movement : CoreComponent
         angle.Normalize();
         workspace.Set(angle.x * velocity * direction, angle.y * velocity);
         SetFinalVelocity();
+        //Debug.Log("1");
     }
 
     public void SetVelocity(float velocity, Vector2 direction)
     {
         workspace = direction * velocity;
         SetFinalVelocity();
+        //Debug.Log("2");
     }
     public void SetVelocity(float X,float Y)
     {
         workspace.Set(X,Y);
         SetFinalVelocity();
+        //Debug.Log("3");
     }
 
     public void SetVelocityX(float vX)
     {
-        workspace.Set(vX, CurrentVelocity.y);
+        workspace.Set(vX, mController2D.GetVelocity().y);
         SetFinalVelocity();
+        //Debug.Log("4");
     }
 
     public void SetVelocityY(float vY)
     {
-        workspace.Set(CurrentVelocity.x, vY);
+        workspace.Set(mController2D.GetVelocity().x, vY);
         SetFinalVelocity();
+        //Debug.Log("5");
     }
 
     private void SetFinalVelocity()
     {
         if (CanSetVelocity)
         {
-
-            //mphysics.SetVelocity(workspace);
-            CurrentVelocity = workspace;
+            mController2D.SetVelocity(workspace);
         }        
     }
 
@@ -82,11 +85,14 @@ public class Movement : CoreComponent
     public void AddForce(Vector2 dir){
         //mRB.AddForce(dir,ForceMode2D.Impulse);
     }
+    public void SetGravity(float gravity){
+        mController2D.SetGravity(gravity);
+    }
     public void Flip()
     {
         OnFlip?.Invoke();
         facingDirection *= -1;
-        mphysics.transform.Rotate(0.0f, 180.0f, 0.0f);
+        mController2D.transform.Rotate(0.0f, 180.0f, 0.0f);
     }
     #endregion
 

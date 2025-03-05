@@ -1,39 +1,35 @@
+using System.Drawing;
+using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class mPhysics : MonoBehaviour {
-    private float gravity = -9.81f;
-    public Vector2 velocity;
-    private float gravityScale = 2.5f;
-    Core core;
-    CollisionSenses collisionSenses;
-    public Vector2 logview;
+public class mPhysics : Controller2D {
+	[Header("mPhysic")]
+	float accelerationTimeAirborne = .2f;
+	float accelerationTimeGrounded = .1f;
 
-    void Awake()
+	float SetX;
+	float velocityXSmoothing;
+    void Update()
     {
-        core = GetComponentInChildren<Core>();
-        collisionSenses = core.GetCoreComponent<CollisionSenses>();
-    }
-    void FixedUpdate()
-    {
-        //UpdateGravity();
-        // if (collisionSenses.isGround && velocity.y < 0)
-        // {
-        //     //SetVelocityY(0);
-        // }
-        //transform.Translate( this.velocity * Time.fixedDeltaTime);
-    }
-    public void UpdateGravity(){
-        this.velocity.Set(velocity.x, velocity.y + gravity * gravityScale*Time.fixedDeltaTime);
+		CalculateVelocity();
+
+		Move(velocity * Time.deltaTime);
+		if ((collisionInfor.above || collisionInfor.below)){
+			velocity.y = 0;
+		}
     }
 
-    public void SetVelocityY(float vY){
-        this.velocity.Set(velocity.x, vY);    
+    public override void SetVelocity(Vector2 xy){
+        this.SetX = xy.x;
+		this.velocity.y = xy.y;
     }
-    public void SetVelocityX(float vX){
-        this.velocity.Set(vX, velocity.y);    
-    }
-    public void SetVelocity(Vector2 xy){
 
-        this.velocity.Set(Mathf.Abs(xy.x),xy.y);    
-    }
+	void CalculateVelocity(){
+
+		float smoothTime = (collisionInfor.below)? accelerationTimeGrounded : accelerationTimeAirborne;
+		velocity.x = Mathf.SmoothDamp( velocity.x, SetX, ref velocityXSmoothing,smoothTime ,Mathf.Infinity,Time.deltaTime);
+		velocity.y += gravity * Time.deltaTime;
+
+	}
 }

@@ -6,32 +6,20 @@ public class CollisionSenses : CoreComponent
 
 {
     #region Check Transforms
-    [SerializeField] LayerMask whatIsGround;
-    [SerializeField] Transform GroundCheck;
-    [SerializeField] float groundCheckDistance;
-    [SerializeField] Transform WallCheck;
-    [SerializeField] float wallCheckDistance;
-    private Movement movement;
+
+    Controller2D mController2D;
     protected override void Awake() {
         base.Awake();
-        movement = core.GetCoreComponent<Movement>();
+        mController2D = GetComponentInParent<Controller2D>();
     }
 
     #endregion
     public bool isWall{
-        get =>  Physics2D.Raycast(WallCheck.position, Vector2.right * movement.facingDirection, wallCheckDistance, whatIsGround);
+        get =>  mController2D.collisionInfor.left ||  mController2D.collisionInfor.right;
 
     }
     public bool isGround{
-        get =>  Physics2D.OverlapCircle(GroundCheck.position, groundCheckDistance, whatIsGround);
+        get =>  mController2D.collisionInfor.below;
 
-    }
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red; // Đặt màu cho đường ray
-        Gizmos.DrawLine(WallCheck.position, WallCheck.position + (Vector3.right*wallCheckDistance));
-
-        Gizmos.color = Color.blue; // Đặt màu cho đường ray
-        Gizmos.DrawWireSphere(GroundCheck.position, groundCheckDistance);
     }
 }

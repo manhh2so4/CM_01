@@ -1,8 +1,10 @@
 public enum mState
 {
+    None = 0,
     Idle,
 	Moving,
-    Jump,
+    JumpMin,
+    JumpMax,
     InAir,
     Climb,
     Slide,

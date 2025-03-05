@@ -13,7 +13,7 @@ public class Char_anim : MonoBehaviour
 	public bool canChangStage = true;
 	public int FrameCurrent = 0;	        
 	float frameTimer = 0;
-    public int stagejump =0 ;
+    public float stagejump =0 ;
 	public float speedRun = 5 ;
 
     private void Awake() {
@@ -34,11 +34,17 @@ public class Char_anim : MonoBehaviour
     }
     void CharStage(mState mStage){
 		if(currentState != mStage){
-			if(canChangStage){
-			drawChar.OffDust();
-			frameTimer = 99f;
-			FrameCurrent = 0;
-			currentState = mStage;
+			if(mStage != mState.None){
+			
+				if(canChangStage){
+
+					stagejump = 999;
+					drawChar.OffDust();
+					frameTimer = 99f;
+					FrameCurrent = 0;
+					currentState = mStage;
+
+				}
 			}
 		}
 		switch(currentState){
@@ -48,8 +54,11 @@ public class Char_anim : MonoBehaviour
 			case mState.Moving:
 				charRun();
 				break;
-			case mState.Jump:
-				charJump();
+			case mState.JumpMin:
+				charJumpMin();
+				break;
+			case mState.JumpMax:
+				charJumpMax();
 				break;	
 			case mState.InAir:
 				charFall();
@@ -95,31 +104,38 @@ public class Char_anim : MonoBehaviour
 			FrameCurrent = (FrameCurrent + 1) % 2+30; 						     
         }
 	}
-	void charJump(){
-			
-			if 	(stagejump > 4 )
+	void charJumpMax(){
+			if 	(stagejump > 8 )
 			{					
 				drawChar.cf = 7;
 			}
-			else if (stagejump >= 2 && stagejump <= 4)
+			else if (stagejump > 6 && stagejump <= 8)
 			{
 				drawChar.cf = 8;
 			}
-			else if (stagejump >= 0 && stagejump <= 1)
+			else if (stagejump > 4 && stagejump <= 6)
 			{
 				drawChar.cf = 9;
 			}
-			else if (stagejump >= -2 && stagejump <= -1)
+			else if (stagejump > 2 && stagejump <= 4 )
 			{
 				drawChar.cf = 10;
 			}
-			else if (stagejump >= -4 && stagejump <= -3)
+			else if ( stagejump > 0 && stagejump <= 2)
 			{
 				drawChar.cf = 11;
-			} else if(stagejump <= -5)		
+			} else if(stagejump < 0 )		
 			{
-			drawChar.cf = 12;
+				drawChar.cf = 12;
 			}
+	}
+	void charJumpMin(){
+		if(stagejump < 0 )
+		{					
+			drawChar.cf = 12;
+		}else{
+			drawChar.cf = 7;
+		}
 	}
 	void charFall(){
 		if(stagejump > 0 )

@@ -22,7 +22,7 @@ public class Player : Entity,ISaveable
     #endregion
     #region Component
     public Char_anim Anim {get;private set;}
-    public inputPlayer inputPlayer {get;private set;}
+    public PlayerInputHandler inputPlayer {get;private set;}
     [SerializeField] public Transform dashDirImgae;
     [SerializeField] private PlayerData playerData;
 
@@ -52,8 +52,8 @@ public class Player : Entity,ISaveable
 
         idleState = new PlayerIdleState(this,StateMachine,playerData,mState.Idle);
         moveState = new PlayerMoveState(this,StateMachine,playerData,mState.Moving);
-        jumpState = new PlayerJumpState(this,StateMachine,playerData,mState.Jump);
-        airState = new PlayerAirState(this,StateMachine,playerData,mState.InAir);
+        jumpState = new PlayerJumpState(this,StateMachine,playerData,mState.None);
+        airState = new PlayerAirState(this,StateMachine,playerData,mState.None);
         wallSlideState = new PlayerWallSlideState(this,StateMachine,playerData,mState.Slide);  
         wallJumpState = new PlayerWallJumpState(this,StateMachine,playerData,mState.InAir);   
         dashState = new PlayerDashState(this,StateMachine,playerData,mState.InAir);
@@ -62,11 +62,13 @@ public class Player : Entity,ISaveable
         Attack_2 = new PlayerAttackState(this, StateMachine, playerData, mState.AttackStand, Skill_2);  
         Attack_3 = new PlayerAttackState(this, StateMachine, playerData, mState.AttackStand, Skill_3);  
     }
-    private void Start() {
+    private void Start(){
         Anim = GetComponent<Char_anim>();
-        inputPlayer = GetComponent<inputPlayer>();
+        inputPlayer = GetComponent<PlayerInputHandler>();
         dashDirImgae = transform.Find("DashDirectionImg");
         StateMachine.Initialize(idleState);
+        core.GetCoreComponent<Movement>().SetGravity(playerData.GetGravity());
+        
     }
     private void Update() {
         core.LogicUpdate();

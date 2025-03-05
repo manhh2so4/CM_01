@@ -4,7 +4,7 @@ namespace HStrong.ProjectileSystem
     public class Projectile_FollowTarget : ProjectileComponent {
         Transform target;
         float speed;
-        float rotationSpeed = 5f;
+        //float rotationSpeed = 5f;
         Vector3 vOffset ;
         
         void Update()

@@ -25,7 +25,6 @@ public class Read_Mob : MonoBehaviour
         textJson = Resources.Load<TextAsset>("mob");
         string mystring = textJson.ToString();
         data = JsonMapper.ToObject(mystring);
-        Debug.Log(data.Count); 
         MobData[] temp = new MobData[data.Count];
         for (int i = 0; i < data.Count ; i++)
         {      

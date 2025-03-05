@@ -13,7 +13,6 @@ public class PlayerMoveState : PlayerGroundedState
     }
     public override void Enter(){
         base.Enter();
-        movement.SetVelocityX(0f);
     }
     public override void Exit(){
         base.Exit();
@@ -24,8 +23,8 @@ public class PlayerMoveState : PlayerGroundedState
         movement.CheckIfShouldFlip(inputX);
         if (!isExitingState)
         {
-            if(inputX == 0 && !isExitingState){
-            stateMachine.ChangeState(player.idleState);
+            if( Mathf.Abs(movement.CurrentVelocity.x) < .5f && inputX == 0){
+                stateMachine.ChangeState(player.idleState);
             }
         }
     }

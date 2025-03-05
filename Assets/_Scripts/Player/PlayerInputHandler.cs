@@ -5,23 +5,34 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class inputPlayer : MonoBehaviour
+public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerInput playerInput;
     private Camera cam;
-    public Vector2 RawDashDirectionInput {get;private set;}
-    [SerializeField] public Vector2Int DashDirInput {get;private set;}
+    //------------Move---------------
     public int MoveInput {get;private set;}
-    public bool jumpInput {get;private set;}
-    public bool dashInput {get;private set;}
-    public bool dashInputStop {get;private set;}
     public bool[] AttackInputs {get;private set;}
-    [SerializeField]
     private float inputHoldTime = 0.2f;
+
+    //------------Jump---------------
     private float JumpInputStartTime;
+    public bool jumpInput {get;private set;}
+    public float amountJump {get;private set;}
+
+    private float chargeTime = .3f;
+    private bool isCharging = false;
+    private float chargeStartTime;
+
+
+    //------------Dashh---------------
+    public Vector2 RawDashDirectionInput {get;private set;}
+    public Vector2Int DashDirInput {get;private set;}
+    public bool dashInputStop {get;private set;}
+    public bool dashInput {get;private set;}
     private float dashInputStartTime;
-    public Vector3 direction ;
     private Vector2 mousePosition;
+
+    //---------------------------
     private void Start() {
         playerInput = GetComponent<PlayerInput>();
         int Count = Enum.GetValues(typeof(CombatInput)).Length;
@@ -29,7 +40,7 @@ public class inputPlayer : MonoBehaviour
         cam = Camera.main;
     }
     private void Update() {
-        CheckJumpInputHoldTime();
+        CheckChargeJumpHoldTime();
         CheckDashInputHoldTime();
         
     }
@@ -38,8 +49,15 @@ public class inputPlayer : MonoBehaviour
     }
     public void OnJumpInput(InputAction.CallbackContext context){
         if(context.started){
+            isCharging = true;
+            chargeStartTime = Time.time;
+        }
+        if(context.canceled){
+            if( isCharging == false ) return; 
+            isCharging = false;
+            float chargeDuration = Time.time - chargeStartTime;
+            amountJump = Mathf.Clamp01(chargeDuration / chargeTime);
             jumpInput = true;
-            JumpInputStartTime = Time.time;
         }
     }
     public void OnDashInput(InputAction.CallbackContext context){
@@ -77,6 +95,7 @@ public class inputPlayer : MonoBehaviour
         }
     }
     public void OnDashDirectionInput(InputAction.CallbackContext context){
+        //Debug.Log("Drass");
         mousePosition = context.ReadValue<Vector2>();
         if(dashInputStop) return;
         RawDashDirectionInput = context.ReadValue<Vector2>();
@@ -92,6 +111,7 @@ public class inputPlayer : MonoBehaviour
         }
     }
     void DetecObbject(){
+        //Debug.Log("Click");
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         RaycastHit2D[] hits2DAllNonAlloc = new RaycastHit2D[1];
         Physics2D.GetRayIntersectionNonAlloc(ray, hits2DAllNonAlloc);
@@ -106,9 +126,12 @@ public class inputPlayer : MonoBehaviour
     public void UseJumpInput() => jumpInput = false;
     public void UseDashInpur() => dashInput = false;
 
-    private void CheckJumpInputHoldTime(){
-        if(Time.time >= JumpInputStartTime + inputHoldTime){
-            jumpInput = false;
+    private void CheckChargeJumpHoldTime(){
+        if(isCharging == false) return;
+        if( Time.time >= chargeStartTime + chargeTime){
+            isCharging = false;
+            jumpInput = true;
+            amountJump = 1f;
         }
     }
     private void CheckDashInputHoldTime(){

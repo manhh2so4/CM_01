@@ -25,6 +25,7 @@ public class PlayerAirState : PlayerState
         isWallBack = collisionSenses.isGround;
     }
     public override void Enter(){
+        movement.SetVelocityX(0);
         base.Enter();
 
     }
@@ -63,30 +64,34 @@ public class PlayerAirState : PlayerState
             stateMachine.ChangeState(player.jumpState);
 
         
-        }else if(isWall && inputX == movement.facingDirection && !isExitingState){
+        }else if(isWall && inputX == movement.facingDirection && !isExitingState && (movement.CurrentVelocity.y < 0) ){
 
             isFall = true; 
             stateMachine.ChangeState(player.wallSlideState);
         }
         else if(dashInput && player.dashState.CheckIfCanDash()){
+            isFall = true;
             stateMachine.ChangeState(player.dashState);
         }
         else if(isFall){
             CheckDir();
             player.Anim.state = mState.InAir;
-            player.Anim.stagejump = (int)System.Math.Round(movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);
+            player.Anim.stagejump = movement.CurrentVelocity.y;
+        }
+        else if( player.Anim.state == mState.JumpMin ){
+            CheckDir();
+            player.Anim.stagejump = movement.CurrentVelocity.y; 
         }
         else{
             CheckDir();
-            player.Anim.state = mState.Jump;
-            player.Anim.stagejump = (int)Math.Round(movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);         
+            player.Anim.stagejump = movement.CurrentVelocity.y;         
         }
     }
     public override void PhysicsUpdate(){
         base.PhysicsUpdate();
     }
     private void CheckDir(){
-        movement.CheckIfShouldFlip(inputX );
+        movement.CheckIfShouldFlip(inputX);
         movement.SetVelocityX(playerData.movementSpeed * inputX);
     }
 }

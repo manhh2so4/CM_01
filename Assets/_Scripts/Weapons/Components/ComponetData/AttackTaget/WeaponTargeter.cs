@@ -6,18 +6,16 @@ using UnityEngine;
 public class WeaponTargeter : WeaponComponents<TargeterData> {
     private List<Transform> targets = new List<Transform>();
     public Action<List<Transform>> TargeterTrigger;
-    private bool isActive;
+
     protected override void HandleEnter()
     {
         base.HandleEnter();
-        isActive = true;
         CheckForTargets();
         
     }
     protected override void HandleExit()
     {
         base.HandleExit();
-        isActive = false;
         targets.Clear();
     }
     protected override void HandleMiddle(){
