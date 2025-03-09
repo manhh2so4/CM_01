@@ -4,7 +4,6 @@ using UnityEngine;
 public class testPool : MonoBehaviour, IObjectPoolItem
 {
     private ObjectPool objectPool;
-    private Component component;
     private void OnTriggerEnter2D(Collider2D other) {
         DestroyProjectile();
     }
@@ -18,7 +17,7 @@ public class testPool : MonoBehaviour, IObjectPoolItem
         // If pool reference is set, return to pool
         if (objectPool != null)
         {
-            objectPool.ReturnObject(component);
+            objectPool.ReturnObject(this);
         }
         // Otherwise, destroy
         else
@@ -30,9 +29,8 @@ public class testPool : MonoBehaviour, IObjectPoolItem
     {
         objectPool = null;
     }
-    public void SetObjectPool<T>(ObjectPool pool, T comp) where T : Component
+    public void SetObjectPool(ObjectPool pool)
     {
         objectPool = pool;
-        component = GetComponent(comp.GetType());
     }
 }

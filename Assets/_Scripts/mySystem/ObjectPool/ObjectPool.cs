@@ -5,6 +5,7 @@ public abstract class ObjectPool {
     public abstract void Release();
     public abstract void ReturnObject(Component comp);
 }
+
 [System.Serializable]
 public class ObjectPool<T> : ObjectPool where T : Component
 {
@@ -34,7 +35,7 @@ public class ObjectPool<T> : ObjectPool where T : Component
             return obj;
         }
         // If object has the IObjectPool interface, set this ObjectPool as it's pool and store in list
-        objectPoolItem.SetObjectPool(this, obj);
+        objectPoolItem.SetObjectPool(this);
         allItems.Add(objectPoolItem);
         return obj;
     }
@@ -47,31 +48,46 @@ public class ObjectPool<T> : ObjectPool where T : Component
             obj = InstantiateNewObject();
             return obj;
         }
-
+        // If available, return
+        obj.gameObject.SetActive(true);
+        return obj;
+    }
+    public T GetObject(Transform parent)
+    {
+        // Try to get item from the queue. TryDequeue returns true if object available and false if not
+        if (!pool.TryDequeue(out var obj))
+        {
+            // If not available, instantiate a new one and return
+            obj = InstantiateNewObject();
+            return obj;
+        }
         // If available, return
         obj.gameObject.SetActive(true);
         return obj;
     }
     public override void ReturnObject(Component comp)
     {
-        if (comp is not T compObj)
+        if (comp is not T compObj) {
+            Debug.Log( "comp không phải là kiểu" + typeof(T).Name );
             return;
-        
+        }
         compObj.gameObject.SetActive(false);
         pool.Enqueue(compObj);
     }
 
     public override void Release()
     {
+        foreach (var item in allItems)
+        {
+            item.Release();
+        }
         foreach (var item in pool)
         {
             allItems.Remove(item as IObjectPoolItem);
             Object.Destroy(item.gameObject);
         }
+        pool.Clear();
 
-        foreach (var item in allItems)
-        {
-            item.Release();
-        }
+        
     }
 }

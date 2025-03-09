@@ -2,15 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
 public class ObjectPools {
+
     private readonly Dictionary< Component, ObjectPool> pools = new Dictionary<Component, ObjectPool>();
-    
-    public ObjectPool<T> GetPool<T>(T prefab, int startCount = 1) where T : Component
+    ObjectPool<T> GetPool<T> (T prefab, int startCount = 1) where T : Component
     {
+
         if (!pools.ContainsKey(prefab))
         {
             pools[prefab] = new ObjectPool<T>(prefab, startCount);
         }
-
         return (ObjectPool<T>)pools[prefab];
     }
 
@@ -18,16 +18,18 @@ public class ObjectPools {
     {
         return GetPool(prefab, startCount).GetObject();
     }
+
     public void ReturnObject<T>(T obj) where T : Component
     {
-        var objPool = GetPool(obj);
-        objPool.ReturnObject(obj);
+        GetPool(obj).ReturnObject(obj);
     }
-    public void Release()
+    public void Release<T>( T prefab) where T : Component
     {
-        foreach (var pool in pools)
+        if (pools.ContainsKey(prefab) )
         {
-            pool.Value.Release();
+            pools[prefab].Release();
+            pools.Remove(prefab);
         }
     }
+
 }

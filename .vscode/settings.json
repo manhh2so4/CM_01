@@ -53,5 +53,20 @@
     },
     "dotnet.preferCSharpExtension": true,
     "dotnet.defaultSolution": "CM_01.sln",
-    "vstuc.refreshOnSave": true
+    "vstuc.refreshOnSave": true,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Manh",
+            "database": "root",
+            "username": "manh2001"
+        }
+    ]
 }
