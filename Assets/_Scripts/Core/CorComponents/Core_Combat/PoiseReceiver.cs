@@ -8,7 +8,7 @@ public class PoiseReceiver : CoreReceiver, IPoiseDamageable
     {
         if(prefabEff == null ) return; 
         isPoise = true;
-        prefabEff?.GetComponent<Effect_Instance>().SetData(time,core.layerID,core.size);         
+        prefabEff?.GetComponent<Effect_Instance>().SetData(time, core.SortingLayerID, core.size);         
         particleManager?.StartParticles(prefabEff,this.transform.position + SetPosEff(prefabEff));
         Location = Vector3.zero;
     }
@@ -16,6 +16,5 @@ public class PoiseReceiver : CoreReceiver, IPoiseDamageable
     private void CheckPoise(){
         isPoise = false;
     }
-
     
 }

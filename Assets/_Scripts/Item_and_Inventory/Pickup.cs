@@ -7,7 +7,7 @@ public class Pickup : MonoBehaviour,IClicker {
     Inventory inventory;
     private void Start()
     {
-        var player = PlayerManager.Instance.GetPlayer();
+        var player = PlayerManager.GetPlayer();
         inventory = player.GetComponent<Inventory>();
         
     }

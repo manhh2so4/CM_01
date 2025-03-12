@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour,ISaveable
     public event Action inventoryUpdated;
     public static Inventory GetPlayerInventory()
     {
-        var player = PlayerManager.Instance.GetPlayer();
+        var player = PlayerManager.GetPlayer();
         return player.GetComponent<Inventory>();
     }
 

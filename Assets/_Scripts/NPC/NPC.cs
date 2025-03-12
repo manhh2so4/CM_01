@@ -1,5 +1,5 @@
 using UnityEngine;
-using HStrong.Dialogue;
+
 
 public class NPC : MonoBehaviour,IClicker
 {
@@ -12,11 +12,10 @@ public class NPC : MonoBehaviour,IClicker
     }
     public void OnClick()
     {
-        Debug.Log("get  Dialogue");
         if (dialogue == null) return;
-        //Debug.Log("get  Dialogue");
-        NodeParser.instance.StartDialogue(this,dialogue);
+        NodeParser.instance.StartDialogue(chat,dialogue);
     }
+
     public string GetName()
     {
         return NameNPC;

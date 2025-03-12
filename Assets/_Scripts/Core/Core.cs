@@ -8,7 +8,7 @@ public class Core : MonoBehaviour
 {
     [SerializeField] private List<CoreComponent> CoreComponents = new List<CoreComponent>();
 	[SortingLayer]
-	public int layerID = 0;
+	public int SortingLayerID = 0;
 	public int size = 1;
 	public float height;
     private void Awake()
@@ -31,7 +31,7 @@ public class Core : MonoBehaviour
 
 		comp = GetComponentInChildren<T>();
 		if(comp) return comp;
-		Debug.LogWarning($"{typeof(T)} not found on {transform.parent.name}");
+		//Debug.LogWarning($"{typeof(T)} not found on {transform.parent.name}");
 		return null;
 	}
 

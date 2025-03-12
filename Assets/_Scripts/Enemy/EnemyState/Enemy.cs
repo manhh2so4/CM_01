@@ -102,7 +102,6 @@ public class Enemy : EnemyEntity
     #region FuncLoad
     protected override void LoadCore(){
         base.LoadCore();
-        core.layerID = mSPR.sortingLayerID;
     }
     protected override void LoadComponent(){
         base.LoadComponent();

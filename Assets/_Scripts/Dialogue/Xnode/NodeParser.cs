@@ -1,4 +1,5 @@
 using System;
+using HStrong.Quests;
 using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -20,6 +21,9 @@ public class NodeParser : MonoBehaviour{
     }
 
     DialogueGraph graph; 
+    [SerializeField] bool canNextNode = true;
+    #region UI_Elemnents
+    [Header("____ UI Elements ____")]
     [SerializeField] GameObject dialogueALL;
     [SerializeField] GameObject dialogueParent;
     [SerializeField] TextMeshProUGUI speaker;
@@ -30,10 +34,16 @@ public class NodeParser : MonoBehaviour{
 
     [SerializeField] Button nextButton;
     [SerializeField] Button quitButton;
-    
-    public void StartDialogue(NPC _NPC,DialogueGraph _graph)
+    #endregion
+    #region Chat_Elemnents
+    [Header("____ Chat Elements ____")]
+    [SerializeField] Chat chatPlayer;
+    [SerializeField] Chat chatNPC;
+    #endregion 
+    public void StartDialogue(Chat _NPC,DialogueGraph _graph)
     {
         graph = _graph;
+        chatNPC = _NPC;
         graph.Start();
         dialogueALL.SetActive(true);  
         NextNode(); 
@@ -41,21 +51,25 @@ public class NodeParser : MonoBehaviour{
     }
     void Start()
     {
+        chatPlayer = PlayerManager.GetPlayer().GetComponentInChildren<Core>().GetCoreComponent<Chat>();
         dialogueParent.SetActive(false);
-        nextButton.onClick.AddListener(() => NextNode());
+        nextButton.onClick.AddListener(() =>  NextNode() );
+        quitButton.onClick.AddListener(() =>  QuitDialogue() );
     }
     public void AnswerClicked(int clickedIndex){ 
         ChoiceDialogueNode choice = (ChoiceDialogueNode)(graph.current);
         NodePort port = choice.GetPort("Answers " + clickedIndex);
         if (port.IsConnected){
             graph.current = port.Connection.node as BaseNode;
+            ResetUI();
             ParseNode();
         }else{
             Debug.LogError("ERROR: ChoiceDialogue port is not connected");
         }
     }
     void ParseNode(){
-        switch (graph.current.GetNodeType()){
+        switch(graph.current.GetNodeType()){
+
             case NodeType.StartNode:
 
                 ResetUI();
@@ -63,16 +77,51 @@ public class NodeParser : MonoBehaviour{
 
             case NodeType.ChoiceDialogueNode:
 
-                ShowChoices(true);
-                UpdateChoiceList(graph.current as ChoiceDialogueNode);
+                ChoiceDialogueNode node = (ChoiceDialogueNode)graph.current;
+                ShowChoices(false);
+                canNextNode = false;
+                GetChat(node.speaker).SetUpChat(node.DialogueText,()=>{
+                    canNextNode = true;
+                    ShowChoices(true);
+                    UpdateChoiceList(node);
+
+                });
+
+                speaker.text = GetChat(node.speaker).NameChat;
+                dialogue.text = "...";
+                //dialogue.text = node.DialogueText;      
+
                 break;
 
             case NodeType.DialogueNode:
 
-                DialogueNode b = graph.current as DialogueNode;
+                DialogueNode dialogueNode = (DialogueNode)graph.current;
                 ShowChoices(false);
-                speaker.text = b.speakerName;
-                dialogue.text = b.dialogueLine;
+                canNextNode = false;
+                GetChat(dialogueNode.speaker).SetUpChat(dialogueNode.DialogueText,()=>{
+                    canNextNode = true;
+                    Invoke("NextNode",1.5f);
+
+                });      
+
+                speaker.text = GetChat(dialogueNode.speaker).NameChat;
+                dialogue.text = "...";
+                //dialogue.text = dialogueNode.DialogueText;
+                
+                break;
+            case NodeType.EventNode:
+
+                ((EventNode)graph.current).InvokeEvent();
+                NextNode();
+                break;
+            case NodeType.GiverQuestNode:
+                QuestList questList = PlayerManager.GetPlayer().GetComponent<QuestList>();
+                foreach (Quest quest in ((GiverQuestNode)graph.current).GetQuests()){
+
+                        questList.AddQuest(quest);
+
+                }
+                NextNode();
                 break;
 
             case NodeType.ExitNode:
@@ -80,6 +129,33 @@ public class NodeParser : MonoBehaviour{
                 dialogueALL.SetActive(false);
                 graph.Start(); 
                 ResetUI();
+                break;
+        }
+    }
+    Chat GetChat(Speaker speaker){
+        switch (speaker)
+        {
+            case Speaker.Player:
+
+                return chatPlayer;
+                
+            case Speaker.NPC:
+
+                return chatNPC;
+        }
+        return null;
+    }
+    void SetBoxChat(Speaker speaker,string Text){
+        switch (speaker)
+        {
+            case Speaker.Player:
+
+                chatPlayer.SetUpChat(Text);
+                break;
+                
+            case Speaker.NPC:
+
+                chatNPC.SetUpChat(Text);
                 break;
         }
     }
@@ -93,13 +169,13 @@ public class NodeParser : MonoBehaviour{
         }
     }
     private void UpdateChoiceList(ChoiceDialogueNode newSegment){
-        dialogue.text = newSegment.DialogueText;
-        speaker.text = newSegment.speakerName;
+        speaker.text = "Player";
         int answerIndex = 0;
         foreach (Transform child in buttonParent){
             Destroy(child.gameObject);
         }
         foreach (string answer in newSegment.Answers){
+
             GameObject btn = Instantiate(buttonPrefab, buttonParent); //spawns the buttons 
             btn.GetComponentInChildren<TextMeshProUGUI>().text = answer;
             int index = answerIndex;
@@ -107,11 +183,18 @@ public class NodeParser : MonoBehaviour{
             answerIndex++;
         }
     }
+
     public void NextNode(){
+
+
+        if( canNextNode == false ){
+            ParseNode();
+            return;
+        }
         ResetUI();
-        
         NodePort exitPort = graph.current.GetOutputPort("exit");
         if (exitPort.IsConnected){
+
             graph.current = exitPort.Connection.node as BaseNode;
 
         }else{
@@ -119,13 +202,19 @@ public class NodeParser : MonoBehaviour{
         }
         ParseNode();
     }
-
+    void QuitDialogue(){
+        graph.Exit();
+        ParseNode();
+    }
     void ResetUI()
     {
+        CancelInvoke();
         speaker.text ="";
         dialogue.text = "";
         foreach (Transform child in buttonParent){
             Destroy(child.gameObject);
         }
+        chatNPC.RemoveBoxChat();
+        chatPlayer.RemoveBoxChat();
     }
 }

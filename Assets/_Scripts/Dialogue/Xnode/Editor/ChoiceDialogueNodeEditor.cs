@@ -2,18 +2,22 @@ using UnityEngine;
 using UnityEditorInternal;
 using XNode;
 using XNodeEditor;
+using UnityEditor;
 [CustomNodeEditor(typeof(ChoiceDialogueNode))]
 public class ChoiceDialogueNodeEditor : NodeEditor
 {
+
     public override void OnBodyGUI()
     {
         serializedObject.Update();
-        var segment = serializedObject.targetObject as ChoiceDialogueNode;
 
-        NodeEditorGUILayout.PortField(segment.GetPort("input"));
+        GUILayout.BeginHorizontal();
+        NodeEditorGUILayout.PortField(GUIContent.none, target.GetInputPort("input"), GUILayout.MinWidth(0));
+        GUILayout.Label("Speaker");
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("speaker"), GUIContent.none);
+        GUILayout.Label("", new GUILayoutOption[]{GUILayout.Width(20),});
+        GUILayout.EndHorizontal();
 
-        GUILayout.Label("Speaker Name");
-        NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("speakerName"), GUIContent.none);
         GUILayout.Label("Dialogue Text");
         GUILayout.Label("", new GUILayoutOption[]{GUILayout.Height(-20),}); 
         NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("DialogueText"), GUIContent.none);
@@ -49,5 +53,24 @@ public class ChoiceDialogueNodeEditor : NodeEditor
             }
         };
         
+    }
+    public override Color GetTint() {
+        
+        ChoiceDialogueNode node = target as ChoiceDialogueNode;
+        Color col;
+        switch(node.speaker){
+            case Speaker.NPC:
+                return  base.GetTint();
+            case Speaker.Player:
+
+                col =  Color.cyan;
+
+                break;
+            default:
+                return  base.GetTint();
+        }
+        col *= .3f;
+        col.a = 1f;
+        return col;       
     }
 }

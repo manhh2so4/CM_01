@@ -6,17 +6,22 @@ using UnityEngine.InputSystem;
 
 public class ShowHideUI : MonoBehaviour
 {
-
+    [SerializeField] GameObject uiContainer = null;
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(false);
+        uiContainer.SetActive(false);
     }
-    public void OnInvent(InputAction.CallbackContext context){
+    public void Toggle(InputAction.CallbackContext context){
         if(context.started)
         {
-            gameObject.SetActive(!gameObject.activeSelf);
+            uiContainer.SetActive(!uiContainer.activeSelf);
         }
+    }
+    public void ToggleUI(){
+
+        uiContainer.SetActive(!uiContainer.activeSelf); 
+
     }
 
 }

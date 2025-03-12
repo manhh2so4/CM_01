@@ -39,7 +39,6 @@ public class Player : Entity,ISaveable
     protected override void Awake(){
         base.Awake();
         StateMachine = new FiniteStateMachine();
-        core.layerID = SortingLayer.NameToID("Player");
 
         Skill_1 = transform.Find("Skill_1").GetComponent<Weapon>();
         Skill_1.SetCore(core);

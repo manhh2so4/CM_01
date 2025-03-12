@@ -5,7 +5,7 @@ public class InventoryDropTarget : MonoBehaviour, IDragDestination<InventoryItem
 {
     public void AddItems(InventoryItemSO item, int number)
     {
-        var player = PlayerManager.Instance.GetPlayer();
+        var player = PlayerManager.GetPlayer();;
         player.GetComponent<ItemDropper>().DropItem(item,number);
     }
 

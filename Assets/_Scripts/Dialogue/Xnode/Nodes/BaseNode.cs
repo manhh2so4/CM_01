@@ -14,5 +14,11 @@ public enum NodeType{
     StartNode,
     DialogueNode,
     ChoiceDialogueNode,
-    ExitNode
+    ExitNode,
+    EventNode,
+    GiverQuestNode
+}
+public enum Speaker{
+    NPC,
+    Player,
 }

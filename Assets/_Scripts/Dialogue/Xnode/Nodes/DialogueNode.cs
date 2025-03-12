@@ -5,11 +5,9 @@ public class DialogueNode : BaseNode
 {
 	[Input] public NodePort  input;
 	[Output] public NodePort  exit;
-    public string speakerName;
-    [TextArea] public string dialogueLine;
-    public override string GetString(){
-		return "DialogueNode/" + speakerName + "/" + dialogueLine; 
-	}
+    public Speaker speaker;
+    [TextArea] public string DialogueText;
+
     public override object GetValue(NodePort port){
 		return null;
 	}

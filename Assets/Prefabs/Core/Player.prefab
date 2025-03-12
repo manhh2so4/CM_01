@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 5780065432484000009}
   - component: {fileID: 2263787591997728313}
   - component: {fileID: 1701645108903042127}
+  - component: {fileID: 3923139296014327930}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -674,6 +675,18 @@ MonoBehaviour:
   HitDis: 0
   gravity: -100
   velocity: {x: 0, y: 0}
+--- !u!114 &3923139296014327930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3633490417471684995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8044ef5c4f09794f8996335f938e867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3667506408207726126
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,8 +731,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240237863f31f0548b49178bd822c334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 0}
-  chat: {fileID: 6653099427675616439, guid: cedb96357932ba74d80e6276e3e4f531, type: 3}
+  chatPrefab: {fileID: 0}
+  NameChat: 
 --- !u!1 &4084191348933711357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,7 +1468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoreComponents: []
-  layerID: 0
+  SortingLayerID: 0
   size: 1
   height: 0
 --- !u!1 &7610565784318985267

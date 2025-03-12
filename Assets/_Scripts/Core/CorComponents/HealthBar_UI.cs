@@ -23,8 +23,8 @@ public class HealthBar_UI : CoreComponent
         UpdateHealthUI();
         mCapsul = damageReceiver.GetColider();
 
-        transform.Find("Hp_Bg").GetComponent<SpriteRenderer>().sortingLayerID = core.layerID;
-        BarSprite.GetComponent<SpriteRenderer>().sortingLayerID = core.layerID;
+        transform.Find("Hp_Bg").GetComponent<SpriteRenderer>().sortingLayerID = core.SortingLayerID;
+        BarSprite.GetComponent<SpriteRenderer>().sortingLayerID = core.SortingLayerID;
 
         location.Set(0,mCapsul.size.y + 0.2f,0);
         transform.localPosition = location;

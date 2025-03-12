@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private Player player;
-    public static PlayerManager Instance { get; private set; }
+    static PlayerManager instance;
     private void Awake() {
-        Instance = this;
+        instance = this;
     }
-    public Player GetPlayer(){
-        return player;
+    public static Player GetPlayer(){
+        return instance.player;
     }
 }

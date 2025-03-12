@@ -11,7 +11,7 @@ public class EquipmentSlotUI : MonoBehaviour, IItemHolder, IDragContainer<Invent
     Equipment playerEquipment;
 
     private void Start() {
-        var player = PlayerManager.Instance.GetPlayer();
+        var player = PlayerManager.GetPlayer();
 
         playerEquipment = player.GetComponent<Equipment>();
         playerEquipment.OnEquipmentUpdate += RedrawUI;
