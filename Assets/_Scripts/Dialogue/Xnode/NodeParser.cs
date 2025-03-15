@@ -115,12 +115,12 @@ public class NodeParser : MonoBehaviour{
                 NextNode();
                 break;
             case NodeType.GiverQuestNode:
-                QuestList questList = PlayerManager.GetPlayer().GetComponent<QuestList>();
-                foreach (Quest quest in ((GiverQuestNode)graph.current).GetQuests()){
+                // QuestList questList = PlayerManager.GetPlayer().GetComponent<QuestList>();
+                // foreach (Quest quest in ((GiverQuestNode)graph.current).GetQuests()){
 
-                        questList.AddQuest(quest);
+                //         questList.AddQuest(quest);
 
-                }
+                // }
                 NextNode();
                 break;
 

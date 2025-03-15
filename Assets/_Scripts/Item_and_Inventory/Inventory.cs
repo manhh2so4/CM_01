@@ -41,6 +41,7 @@ public class Inventory : MonoBehaviour,ISaveable
 
     public bool AddToFirstEmptySlot(InventoryItemSO item, int number)
     {
+
         int i = FindSlot(item);
 
         if (i < 0)
@@ -52,7 +53,7 @@ public class Inventory : MonoBehaviour,ISaveable
         slots[i].number += number;
 
         inventoryUpdated?.Invoke();
-        
+        this.GameEvents().inventoryEvent.AddItemInv(item,number);
         return true;
     }
 

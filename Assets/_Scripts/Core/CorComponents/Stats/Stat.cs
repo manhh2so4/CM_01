@@ -5,7 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Stat {
     [SerializeField] private int baseValue;
-    [SerializeField] private int MaxxValue;
+    [SerializeField] private int MaxxValue ;
+    [SerializeField] public int currentValue = 0;
     public List<int> modifiers;
     public int GetValue()
     {

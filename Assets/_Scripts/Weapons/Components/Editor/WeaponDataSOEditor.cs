@@ -11,9 +11,9 @@ public class WeaponDataSOEditor : Editor {
     private SkillData_SO dataSO;
     private bool showAddComponentButtons;
     private void OnEnable()
-        {
-            dataSO = target as SkillData_SO;
-        }
+    {
+        dataSO = target as SkillData_SO;
+    }
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
         showAddComponentButtons = EditorGUILayout.Foldout(showAddComponentButtons, "Add Components");

@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "SkillData", menuName = "Data/Weapon Data", order = 0)]
 public class SkillData_SO : ScriptableObject {
+
     public int idSkill;
     [field: SerializeReference] public List<ComponentData> ComponentData { get; private set; }
     

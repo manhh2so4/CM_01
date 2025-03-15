@@ -45,10 +45,10 @@ public abstract class WeaponComponents<T1> : WeaponComponents where T1 : Compone
 {
     protected T1 data;
 
-    protected override void HandleEnter()
-    {
-        base.HandleEnter();
-    }
+    // protected override void HandleEnter()
+    // {
+    //     base.HandleEnter();
+    // }
     protected override void SubscribeHandlers()
     {
         base.SubscribeHandlers();

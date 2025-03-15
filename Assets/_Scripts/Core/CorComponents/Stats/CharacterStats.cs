@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 
@@ -9,24 +10,23 @@ public class CharacterStats : CoreComponent{
     public Stat critPower; 
 
     [Header("Defensive stats")]
-    public Stat maxHealth;
+    public Stat Health;
     public Stat armor;
     public Stat magicResistance;
 
-    public int currentHealth;
-
     [SerializeField] protected bool isDead;
-    public System.Action onHealthChanged;
+
     public System.Action onHealthZero;
-    protected override void Awake(){
-        base.Awake();
+    void Start()
+    {
         ResetMaxHealth();
-        
     }
     public void ResetMaxHealth(){
-        currentHealth = GetMaxHealthValue();
+        Health.currentValue = GetMaxHealthValue();
         isDead = false;
-        onHealthChanged?.Invoke();
+
+        this.PostEvent(EventID.OnHPplayerChange, Health);
+
     }
     public virtual void DoDamage(CharacterStats _targetStats)
     {
@@ -44,6 +44,10 @@ public class CharacterStats : CoreComponent{
         _targetStats.TakeDamage(totalDamage);
 
     }
+    [Button]
+    void dame(){
+        TakeDamage(100);
+    }
     public virtual void TakeDamage(int _damage)
     {
         Debug.Log(core.transform.parent.name +" take: " + _damage);
@@ -51,19 +55,21 @@ public class CharacterStats : CoreComponent{
     }
     protected virtual void DecreaseHealthBy(int _damage)
     {
-        currentHealth -= _damage;
-        onHealthChanged?.Invoke();
-        if (currentHealth < 0 && !isDead)
+        Health.currentValue -= _damage;
+        this.PostEvent(EventID.OnHPplayerChange, Health);
+
+        if (Health.currentValue < 0 && !isDead)
             Die();
     }
     public virtual void IncreaseHealthBy(int _amount)
     {
-        currentHealth += _amount;
+        Health.currentValue += _amount;
 
-        if (currentHealth > GetMaxHealthValue())
-            currentHealth = GetMaxHealthValue();
+        if (Health.currentValue > GetMaxHealthValue())
+            Health.currentValue = GetMaxHealthValue();
 
-        onHealthChanged?.Invoke();
+        this.PostEvent(EventID.OnHPplayerChange, Health);
+
     }
     protected virtual void Die()
     {
@@ -111,7 +117,7 @@ public class CharacterStats : CoreComponent{
     }
     public int GetMaxHealthValue()
     {
-        return maxHealth.GetValue();
+        return Health.GetValue();
     }
     public Stat GetStatOfType(StatType statType)
     {
@@ -120,7 +126,7 @@ public class CharacterStats : CoreComponent{
             case StatType.damage: return damage;
             case StatType.critChance: return critChance;
             case StatType.critDame: return critPower;
-            case StatType.health: return maxHealth;
+            case StatType.health: return Health;
             case StatType.armor: return armor;
             case StatType.magicRes: return magicResistance;
         }

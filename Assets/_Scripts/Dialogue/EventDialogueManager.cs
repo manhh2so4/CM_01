@@ -18,6 +18,7 @@ public struct EventDialogueType{
     public UnityEvent response;
     public void SetUpEvent()
     {
+        if(response == null) return;
         gameEvent.events = response;
     }
 

@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    private PlayerInput playerInput;
     private Camera cam;
     //------------Move---------------
     public int MoveInput {get;private set;}
@@ -34,7 +34,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     //---------------------------
     private void Start() {
-        playerInput = GetComponent<PlayerInput>();
         int Count = Enum.GetValues(typeof(CombatInput)).Length;
         AttackInputs = new bool[Count];
         cam = Camera.main;
@@ -108,6 +107,12 @@ public class PlayerInputHandler : MonoBehaviour
         if(context.started)
         {
             DetecObbject();
+        }
+    }
+    public void OnPress_Q (InputAction.CallbackContext context){
+        if(context.started)
+        {
+            this.GameEvents().inputEvent.Click_Q();
         }
     }
     void DetecObbject(){

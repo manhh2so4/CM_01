@@ -10,8 +10,8 @@ namespace HStrong.Quests {
 
         public override void UpdateTooltip(GameObject tooltip)
         {
-            QuestStatus status = GetComponent<QuestItemUI>().GetQuestStatus();
-            tooltip.GetComponent<QuestTooltipUI>().Setup(status);
+            //QuestStatus status = GetComponent<QuestItemUI>().GetQuestStatus();
+            //tooltip.GetComponent<QuestTooltipUI>().Setup(status);
         }
     }
 }

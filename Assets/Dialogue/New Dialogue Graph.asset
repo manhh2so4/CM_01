@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Exit
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1304, y: -552}
+  position: {x: 1304, y: -536}
   ports:
     keys:
     - input
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -744, y: -552}
+  position: {x: -792, y: -552}
   ports:
     keys:
     - exit
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 264, y: -552}
+  position: {x: 248, y: -552}
   ports:
     keys:
     - input
@@ -297,7 +297,7 @@ MonoBehaviour:
   - {fileID: 7641443794873129872}
   - {fileID: 1554678102500037493}
   start: {fileID: -5473820059140372183}
-  current: {fileID: -5473820059140372183}
+  current: {fileID: -1670628203141528281}
   exit: {fileID: -6942807854809663023}
 --- !u!114 &1554678102500037493
 MonoBehaviour:
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Name: Giver Quest
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1064, y: -408}
+  position: {x: 1080, y: -392}
   ports:
     keys:
     - input
@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 776, y: -552}
+  position: {x: 760, y: -536}
   ports:
     keys:
     - input
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -616, y: -552}
+  position: {x: -648, y: -552}
   ports:
     keys:
     - input
@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 776, y: -392}
+  position: {x: 760, y: -392}
   ports:
     keys:
     - input
