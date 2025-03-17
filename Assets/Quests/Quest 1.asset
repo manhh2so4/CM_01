@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71bf94d1ab8dc244cb79ddc9d7533c73, type: 3}
-  m_Name: CollectCoin
+  m_Name: Quest 1
   m_EditorClassIdentifier: 
-  <id>k__BackingField: CollectCoin
+  <id>k__BackingField: Quest 1
   displayName: Collect the Coins!
-  describle: "\u0111\xE2y l\xE0 nhi\u1EC7m v\u1EE5 nh\u1EB7t coin r\u1EA5t quan tr\u1ECDng
-    c\u1EA7n ph\u1EA3i s\u1EED l\xFD ngay\n"
+  describle: "b\u1EA1n \u0111ang tr\u1EA3 v\u1EC1 tham chi\u1EBFu \u0111\u1EBFn m\u1EA3ng
+    g\u1ED1c,"
   levelRequirement: 1
   questPrerequisites: []
   goldReward: 50
@@ -29,7 +29,6 @@ MonoBehaviour:
   - rid: 607104471093739526
   - rid: 607104482003124224
   - rid: 607104494519713792
-  - rid: 607104494519713793
   references:
     version: 2
     RefIds:
@@ -52,10 +51,3 @@ MonoBehaviour:
         name: CollectCoinData
         __description__: Collect Coint 2
         coinsToComplete: 0
-    - rid: 607104494519713793
-      type: {class: CollectItemData, ns: HStrong.Quests, asm: Assembly-CSharp}
-      data:
-        name: CollectItemData
-        __description__: pickup HP 4F4F
-        itemToCollect: {fileID: 11400000, guid: 33117899a34708940a1b19a26c55a61c, type: 2}
-        countToComplete: 0

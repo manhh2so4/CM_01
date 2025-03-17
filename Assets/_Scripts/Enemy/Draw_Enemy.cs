@@ -54,6 +54,7 @@ public class Draw_Enemy : MonoBehaviour
         enemyBotton = sprites[2].texture.height/2;
 
         //--------------------
+
         type = enemy_SO.type;
 
         speedMove = enemy_SO.speedMove;
@@ -109,6 +110,7 @@ public class Draw_Enemy : MonoBehaviour
     }
     
     protected void LoadComponent(){
+
         if(mSPR == null) mSPR = transform.Find("Draw_Enemy").gameObject;
         if(fxSPR == null) fxSPR = transform.Find("Draw_FX").gameObject;
         if(mRB == null) mRB = GetComponent<Rigidbody2D>();
@@ -116,8 +118,10 @@ public class Draw_Enemy : MonoBehaviour
         if(groundCheck == null) groundCheck = transform.Find("GroundDetected").GetComponent<BoxCollider2D>();
         if(AttackCheck == null) AttackCheck = transform.Find("PlayerDetected").GetComponent<BoxCollider2D>();
         if(wallCheck == null) wallCheck = transform.Find("WallDetected").GetComponent<CapsuleCollider2D>(); 
-        if(PlayerCheck == null) PlayerCheck = transform.Find("PlayerDetected").GetComponent<CapsuleCollider2D>();        
+        if(PlayerCheck == null) PlayerCheck = transform.Find("PlayerDetected").GetComponent<CapsuleCollider2D>();   
+             
     }
+    
     void SetRangePlayerCheck(float _maxAgroDistance){
         
     }

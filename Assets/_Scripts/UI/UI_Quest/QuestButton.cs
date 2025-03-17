@@ -11,14 +11,13 @@ public class QuestButton : MonoBehaviour, IPointerClickHandler {
     public void Initialize(string displayName, UnityAction selectAction){
 
         this.buttonText = this.GetComponentInChildren<TextMeshProUGUI>();
-
         this.buttonText.text = displayName;
         this.onSelectAction = selectAction;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        //Debug.Log("QuestButton");
+        onSelectAction?.Invoke();
     }
     public void SetState(QuestState state){
 

@@ -6,16 +6,16 @@ public abstract class Entity : MonoBehaviour {
     public PoiseReceiver poiseReceiver;
     public CharacterStats CharStats;
     //--------------------------------------------
-    public CapsuleCollider2D mCollider;
-    public Rigidbody2D mRB;
+    public BoxCollider2D mCollider;
+    public mPhysic2D mRB;
     protected virtual void Awake() {
         core = GetComponentInChildren<Core>();
         knockBackReceiver = core.GetCoreComponent<KnockBackReceiver>();
         poiseReceiver = core.GetCoreComponent<PoiseReceiver>();
         CharStats = core.GetCoreComponent<CharacterStats>();
 
-        if(mRB == null) mRB = GetComponent<Rigidbody2D>();
-        if(mCollider == null) mCollider = GetComponent<CapsuleCollider2D>();
+        if(mRB == null) mRB = GetComponent<mPhysic2D>();
+        if(mCollider == null) mCollider = GetComponent<BoxCollider2D>();
 
     }
 }

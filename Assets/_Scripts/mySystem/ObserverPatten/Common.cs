@@ -47,8 +47,6 @@ using Debug = UnityEngine.Debug;
 			Debug.LogWarning(string.Format(format, args), context);
 		}
 
-
-
 		[Conditional("DEBUG")]
 		public static void Warning(bool condition, object message)
 		{

@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace HStrong.Quests
 {
+    
     [CreateAssetMenu(fileName = "QuestInfoSO", menuName = "Quest/QuestInfoSO", order = 0)]
     public class QuestInfoSO : ScriptableObject {
         [field: SerializeField] public string id { get; private set; }
         [Header("General")]
         public string displayName ;
-        public string describle ;
+        [TextArea]public string describle ;
         
         [Header("Requirements")]
         public int levelRequirement ;
@@ -17,12 +18,17 @@ namespace HStrong.Quests
         Q_StepData[] questSteps;
         [Header("Rewards")]
         public int goldReward;
-        public int experienceReward;
-
+        public int expReward;
+        [ SerializeField] ItemAndCount[] itemRewards;
+        public ItemAndCount[] GetItemRewards()
+        {
+            return itemRewards;
+        }
         public Q_StepData[] GetStepData()
         {
             return questSteps;
         }
+        
 
 #region EDitor
         #if UNITY_EDITOR

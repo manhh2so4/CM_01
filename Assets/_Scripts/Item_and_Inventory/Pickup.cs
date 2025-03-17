@@ -1,9 +1,9 @@
 using UnityEngine;
 
 public class Pickup : MonoBehaviour,IClicker {
+    [SerializeField] LayerMask playerMask;
     InventoryItemSO item;
     int number = 1;
-
     Inventory inventory;
     private void Start()
     {
@@ -47,9 +47,26 @@ public class Pickup : MonoBehaviour,IClicker {
     {
         PickupItem();
     }
-    private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag("Player")){
+    void FixedUpdate()
+    {
+        CheckForPlayer();
+    }
+    private void CheckForPlayer()
+    {
+        Collider2D hit = Physics2D.OverlapCircle( transform.position, .26f, playerMask);
+        if (hit)
+        {
             PickupItem();
         }
+    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("OnTriggerEnter2D");
+        // if(other.gameObject.CompareTag("Player")){
+        //     PickupItem();
+        // }
+    }
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, .26f);
     }
 }

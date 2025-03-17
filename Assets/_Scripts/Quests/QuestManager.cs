@@ -20,7 +20,6 @@ namespace HStrong.Quests
         }
         void OnEnable()
         {
-            Debug.Log("ADD Quest_event");
             this.GameEvents().questEvent.onStartQuest += StartQuset;
             this.GameEvents().questEvent.onAdvanceQuest += AdvanceQuest;
             this.GameEvents().questEvent.onFinishQuest += FinishQuest;
@@ -127,10 +126,7 @@ namespace HStrong.Quests
         }
         private Dictionary<string, Quest> CreateQuestMap()
         {
-        // loads all QuestInfoSO Scriptable Objects under the Assets/Resources/Quests folder
-        //QuestInfoSO[] allQuests = Resources.LoadAll<QuestInfoSO>("Quests");
             QuestInfoSO[] allQuests = questALL;
-            // Create the quest map
             Dictionary<string, Quest> idToQuestMap = new Dictionary<string, Quest>();
             foreach (QuestInfoSO questInfo in allQuests)
             {

@@ -16,8 +16,7 @@ public class PlatformController2D : RaycastController {
 	
 	}
 
-	void MovePassengers(Vector2 velocity) {
-
+	void MovePassengers(Vector2 velocity){
 
 		float directionX = Mathf.Sign(velocity.x);
 		float directionY = Mathf.Sign(velocity.y);
@@ -63,7 +62,7 @@ public class PlatformController2D : RaycastController {
 				}
 			}
 		}
-
+		
 		// Passenger on top of a horizontally or downward moving platform
 		if (directionY == -1 || velocity.y == 0 && velocity.x != 0) {
 			float rayLength = skinWidth * 2;

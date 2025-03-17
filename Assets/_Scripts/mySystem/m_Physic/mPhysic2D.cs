@@ -2,7 +2,8 @@ using System;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
-public class Controller2D : RaycastController {
+
+public class mPhysic2D : RaycastController {
 
 
     [Header("\n--------Setting_Colision--------\n")]
@@ -12,19 +13,30 @@ public class Controller2D : RaycastController {
 
 	[Header("\n--------Setting_Physic--------\n")]
 
-	[SerializeField] protected float gravity ;
+	[SerializeField] protected float gravity = -9.8f;
 	[SerializeField] protected Vector2 velocity;
-	public virtual void SetVelocity(Vector2 xy){}
-	public virtual void SetGravity(float _gravity){
-		this.gravity = _gravity;
+	public Vector2 Velocity { get {return velocity; } set { SetVelocity(value); }}
+	[SerializeField] public float Gravity{ get {return gravity;} set{ gravity = value;} }
+
+	public virtual void SetVelocity(Vector2 _xy){
+		this.velocity = _xy;
 	}
-	public Vector2 GetVelocity(){
-		return velocity;
+	protected virtual void Update(){
+
+		velocity.y += Gravity * Time.deltaTime;
+
+		Move(velocity * Time.deltaTime);
+		if ((collisionInfor.above || collisionInfor.below)){
+			velocity.y = 0;
+		}
+
 	}
 
    	protected void Move(Vector2 velSet){
+
 		UpdateRaycastOrigins ();
 		collisionInfor.Reset ();
+
 		if (velSet.x != 0) {
 			collisionInfor.faceDir = (int)Mathf.Sign(velSet.x);
 		}
@@ -46,9 +58,9 @@ public class Controller2D : RaycastController {
 			rayOrigin.y += 1 * ( horizontalRaySpacing * i );
 			
 			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, groundMask);
-			if (hit) {
-				if(hit.transform.CompareTag("Platform")){
+			if (hit){
 
+				if(hit.transform.CompareTag("Platform")){
 					return;				
 				}
 				vel.x = (hit.distance - skinWidth/2) * directionX;
@@ -56,6 +68,7 @@ public class Controller2D : RaycastController {
 				collisionInfor.left = directionX == -1;
 				collisionInfor.right = directionX == 1;
 				return;
+
 			}
 		}
 	}

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71bf94d1ab8dc244cb79ddc9d7533c73, type: 3}
-  m_Name: CollectCoin
+  m_Name: Quest 4
   m_EditorClassIdentifier: 
-  <id>k__BackingField: CollectCoin
-  displayName: Collect the Coins!
+  <id>k__BackingField: Quest 4
+  displayName: Nhiem vu 4
   describle: "\u0111\xE2y l\xE0 nhi\u1EC7m v\u1EE5 nh\u1EB7t coin r\u1EA5t quan tr\u1ECDng
     c\u1EA7n ph\u1EA3i s\u1EED l\xFD ngay\n"
   levelRequirement: 1
@@ -24,6 +24,10 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 35bd5b23a3ed1a84a8f5e89eb83e17da, type: 2}
     count: 1
   - item: {fileID: 11400000, guid: f2389c129ad48a54d9d05e5588b5d571, type: 2}
+    count: 200
+  - item: {fileID: 11400000, guid: f2389c129ad48a54d9d05e5588b5d571, type: 2}
+    count: 200
+  - item: {fileID: 11400000, guid: 1abefe42065f5764896415e525075dfd, type: 2}
     count: 200
   ComponentData:
   - rid: 607104471093739526

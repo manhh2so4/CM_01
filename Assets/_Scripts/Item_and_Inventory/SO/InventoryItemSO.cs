@@ -90,3 +90,10 @@ public class InventoryItemSO : ScriptableObject, ISerializationCallbackReceiver
         // to do anything with it.
     }
 }
+[System.Serializable]
+public class ItemAndCount
+{
+    public InventoryItemSO item;
+    public int count;
+    
+}

@@ -12,7 +12,7 @@ public class E_DeadState : E_State
 		enemy.state = StateEnemy.Dead;
 		stateMachine.canChange = false;
 		enemy.mCollider.enabled = false;
-        enemy.mRB.gravityScale = 2;
+        enemy.mRB.Gravity = (2*-9.8f);
 
 		movement.SetVelocity(-movement.facingDirection,10f);
 		movement.CanSetVelocity = false;
@@ -36,7 +36,7 @@ public class E_DeadState : E_State
 		enemy.CharStats.ResetMaxHealth(); 
 
 		if(enemyData.type == 4 || enemyData.type == 5){
-            enemy.mRB.gravityScale = 0;
+            enemy.mRB.Gravity = (0);
         }
 	}
 }

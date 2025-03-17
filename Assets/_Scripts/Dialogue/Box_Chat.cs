@@ -56,12 +56,10 @@ public class Box_Chat : MonoBehaviour, IObjectPoolItem
 
     void ReturnItemToPool()
     {
-        
         if (objectPool != null)
         {
             objectPool.ReturnObject(this);
         }
-        // Otherwise, destroy
         else
         {
             Destroy(gameObject);
@@ -77,4 +75,6 @@ public class Box_Chat : MonoBehaviour, IObjectPoolItem
     {
         objectPool = null;
     }
+
+
 }

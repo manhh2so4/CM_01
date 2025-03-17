@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class HealthBar_UI : CoreComponent
 {
     [SerializeField] private Movement movement;
+    [SerializeField] private CharacterStats stats;
     [SerializeField] private CapsuleCollider2D mCapsul;
     [SerializeField] private DamageReceiver damageReceiver;
     Transform BarSprite;
@@ -12,6 +13,7 @@ public class HealthBar_UI : CoreComponent
     protected override void Awake()
     {
         base.Awake();
+        stats = core.GetCoreComponent<CharacterStats>();
         movement = core.GetCoreComponent<Movement>();
         damageReceiver = core.GetCoreComponent<DamageReceiver>();
         BarSprite = transform.Find("BarSprite");
@@ -28,24 +30,22 @@ public class HealthBar_UI : CoreComponent
     }
     private void OnEnable(){
 
-        this.RegisterListener(EventID.OnHPplayerChange, (param) => UpdateHealthUI(param));
+        //this.GameEvents().healthEvent.onHPplayerChange += UpdateHealthUI;
         movement.OnFlip += FlipUI;   
 
     }
     private void OnDisable(){
 
-        this.RegisterListener(EventID.OnHPplayerChange, (param) => UpdateHealthUI(param));
+        //this.GameEvents().healthEvent.onHPplayerChange -= UpdateHealthUI;
         movement.OnFlip -= FlipUI;
         
     }
     private void FlipUI() => transform.Rotate(0, 180, 0);
-    private void UpdateHealthUI( object para )
+    private void UpdateHealthUI( int hp )
     {
-        if( para is Stat){
-            Stat Health = (Stat)para;
             
-            value.Set( Mathf.Clamp( (float)(Health.currentValue) / Health.GetValue() ,0,1) , 1f,1f);
-            BarSprite.localScale = value;
-        }
+        value.Set( Mathf.Clamp( stats.Health.currentValue / stats.Health.GetValue() ,0,1) , 1f,1f);
+        BarSprite.localScale = value;
+        
     }
 }

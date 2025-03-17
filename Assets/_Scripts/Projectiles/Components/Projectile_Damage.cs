@@ -1,16 +1,23 @@
 using UnityEngine;
 namespace HStrong.ProjectileSystem
 {
-    [RequireComponent(typeof(CapsuleCollider2D))]
     public class Projectile_Damage : ProjectileComponent {
         [SerializeField] private GameObject EffecHit;
-        private void OnTriggerEnter2D(Collider2D other) {
-        IDamageable damageable;
-        if(other.TryGetComponent<IDamageable>(out damageable)) {
-            if(other.tag == gameObject.tag) return;
-            projectile.stats.DoDamage(damageable.Target(EffecHit));
-            remove();
+        [SerializeField] LayerMask layerMask;
+        private void Update() {
+            DoDamage();
+        }
+        void DoDamage() {
+            Collider2D hit = Physics2D.OverlapCircle(transform.position, .15f, layerMask);
+            if(hit){
+                IDamageable damageable;
+                if(hit.TryGetComponent<IDamageable>(out damageable)){
+                    if(hit.tag == gameObject.tag) return;
+                    projectile.stats.DoDamage(damageable.Target(EffecHit));
+                    remove();
+                }
+            }
         }
     }
-    }
+    
 }

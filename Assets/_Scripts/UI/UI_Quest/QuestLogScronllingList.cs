@@ -16,7 +16,7 @@ public class QuestLogScronllingList : MonoBehaviour {
         QuestButton questButton = null;
 
         if(!idToButtonMap.ContainsKey(quest.info.id)){
-            questButton = null;
+            questButton = InstantiateQuestLogButton(quest, selectAction);
         }else{
             questButton = idToButtonMap[quest.info.id];
         }
@@ -27,40 +27,14 @@ public class QuestLogScronllingList : MonoBehaviour {
         questButton.gameObject.name = quest.info.id + "_button";
 
         questButton.Initialize(quest.info.displayName, ()=> {
-            //UpdateScrolling(this.transform);
+
+            selectAction.Invoke();
+
         });
 
         idToButtonMap[quest.info.id] = questButton;
         return questButton;
 
     }
-
-    //  private void UpdateScrolling(RectTransform buttonRectTransform)
-    // {
-    //     // calculate the min and max for the selected button
-    //     float buttonYMin = Mathf.Abs(buttonRectTransform.anchoredPosition.y);
-    //     float buttonYMax = buttonYMin + buttonRectTransform.rect.height;
-
-    //     // calculate the min and max for the content area
-    //     float contentYMin = contentRectTransform.anchoredPosition.y;
-    //     float contentYMax = contentYMin + scrollRectTransform.rect.height;
-
-    //     // handle scrolling down
-    //     if (buttonYMax > contentYMax)
-    //     {
-    //         contentRectTransform.anchoredPosition = new Vector2(
-    //             contentRectTransform.anchoredPosition.x,
-    //             buttonYMax - scrollRectTransform.rect.height
-    //         );
-    //     }
-    //     // handle scrolling up
-    //     else if (buttonYMin < contentYMin) 
-    //     {
-    //         contentRectTransform.anchoredPosition = new Vector2(
-    //             contentRectTransform.anchoredPosition.x,
-    //             buttonYMin
-    //         );
-    //     }
-    //}
     
 }

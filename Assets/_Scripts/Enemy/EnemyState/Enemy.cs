@@ -10,6 +10,7 @@ public class Enemy : EnemyEntity
     public Enemy_SO enemy_Data;
     Sprite[] sprites;
     SpriteRenderer mSPR;
+    
     #endregion
     //----------View_data
 
@@ -52,6 +53,25 @@ public class Enemy : EnemyEntity
         stateMachine.CurrentState.LogicUpdate();
         core.LogicUpdate();
         CheckReceiver();
+        CheckPlayer();
+    }
+    void CheckPlayer(){
+
+        RaycastHit2D hit = Physics2D.CapsuleCast(
+            (Vector2)transform.position + playerCheckOffset,
+            playerCheckSize,
+            CapsuleDirection2D.Horizontal,
+            0f,
+            Vector2.right,
+            0f,
+            LayerMask.GetMask("Player")
+        );
+
+        if(hit)
+        {
+            playerCheck = hit.transform;
+        }
+        
     }
 
     public virtual void FixedUpdate()
@@ -89,14 +109,14 @@ public class Enemy : EnemyEntity
 
     #endregion
     #region ColCheck
-    private void OnTriggerEnter2D(Collider2D other) {
+    // private void OnTriggerEnter2D(Collider2D other) {
         
-        if ( (LayerCombat.value & (1 << other.gameObject.layer)) != 0)
-        {
-            if (other.tag == "Enemy") return;
-            playerCheck = other.transform;
-        }
-    }
+    //     if ( (LayerCombat.value & (1 << other.gameObject.layer)) != 0)
+    //     {
+    //         if (other.tag == "Enemy") return;
+    //         playerCheck = other.transform;
+    //     }
+    // }
     #endregion
 
     #region FuncLoad
@@ -113,39 +133,33 @@ public class Enemy : EnemyEntity
         mPaint.LoadSprite(ref sprites,enemy_Data.textures, mPaint.BOTTOM | mPaint.HCENTER);
         Paint(0);
 
-        int w = sprites[0].texture.width;
+        float w = sprites[0].texture.width;
         float height = sprites[0].texture.height/100f;
 
         //--------- Set Collider-----------
-        mCollider.size = new Vector2((float)(w - w/5)/100,(float)(height));
-        mCollider.offset = new Vector2 (0 ,(float) height/2);
+        mCollider.size = new Vector2((w - w/5)/100, height );
+        mCollider.offset = new Vector2 (0, height/2);
         
-        if(mCollider.size.x > mCollider.size.y) mCollider.direction = CapsuleDirection2D.Horizontal;
-        else mCollider.direction = CapsuleDirection2D.Vertical;
-        
-        ledgeCheck.size = new Vector2(0.1f,0.2f);
-        ledgeCheck.offset = new Vector2((float)(w + 20)/200,-0.1f);
-
-        wallCheck.size = new Vector2(0.3f,0.1f);
-        wallCheck.offset = new Vector2 ((float)(w - w/5)/200,0.2f);
+        ledgeCheck.position = new Vector3((w+20)/200 , 0.02f) + transform.position;
 
         switch (enemy_Data.type)
         {
             case 1:
-                mRB.gravityScale = 2;
-                PlayerCheck.size = new Vector2(maxAgroDetect,maxAgroDetect/2f);
-                PlayerCheck.offset = new Vector2(0f,(PlayerCheck.size.y-2f)/2f);
+                mRB.Gravity = (-9.8f *2f);
+                playerCheckSize = new Vector2(maxAgroDetect,maxAgroDetect/2f);
+                playerCheckOffset = new Vector2(0f,(playerCheckSize.y-2f)/2f);
 
 			break;
             case 4:
-                mRB.gravityScale = 0;
-                PlayerCheck.size = new Vector2(maxAgroDetect,maxAgroDetect);
+                mRB.Gravity = (0);
+                playerCheckOffset = Vector2.zero;
+                playerCheckSize = new Vector2(maxAgroDetect,maxAgroDetect);
 
 			break;
 
             default:
-                PlayerCheck.size = new Vector2(maxAgroDetect,maxAgroDetect/2f);
-                PlayerCheck.offset = new Vector2(0f,(PlayerCheck.size.y-2f)/2f);
+                playerCheckSize = new Vector2(maxAgroDetect,maxAgroDetect/2f);
+                playerCheckOffset = new Vector2(0f,(playerCheckSize.y-2f)/2f);
 
             break;
         }

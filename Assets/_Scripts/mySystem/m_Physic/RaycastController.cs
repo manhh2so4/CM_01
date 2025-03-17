@@ -1,9 +1,12 @@
+
 using NaughtyAttributes;
 using UnityEngine;
-
+using UnityEngine.UIElements;
+[RequireComponent(typeof(BoxCollider2D))] 
 public class RaycastController : MonoBehaviour {
-    [SerializeField] Vector2 Center;
-	[SerializeField] Vector2 Size ;
+	BoxCollider2D boxCollider;
+    Vector2 Center;
+	Vector2 Size ;
 	
 	protected const float skinWidth = .05f;
     [SerializeField] protected int horizontalRayCount = 4;
@@ -13,10 +16,14 @@ public class RaycastController : MonoBehaviour {
 	protected float verticalRaySpacing;
 
 	protected RaycastOrigins raycastOrigins;
-
+	[Button]
 	public virtual void Awake() {
+		boxCollider = GetComponent<BoxCollider2D>();
+		Center = boxCollider.offset;
+		Size = boxCollider.size;
 		CalculateRaySpacing ();
 	}
+
 	protected void UpdateRaycastOrigins(){
 
 		Vector2 skin = Size;
@@ -30,7 +37,7 @@ public class RaycastController : MonoBehaviour {
 		raycastOrigins.topLeft.Set(min.x , max.y );
 		raycastOrigins.topRight.Set(max.x , max.y );
 	}
-    [Button]
+	
     protected void CalculateRaySpacing(){
 
 		horizontalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);
@@ -46,7 +53,7 @@ public class RaycastController : MonoBehaviour {
 	}
     void OnDrawGizmos()
     {
-        // Gizmos.color = Color.green;
+        // Gizmos.color = Color.blue;
 		// Gizmos.DrawWireCube( (Vector2)transform.position + Center , Size);
 
 		// for (int i = 0; i < verticalRayCount; i ++) {

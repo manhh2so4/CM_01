@@ -7,10 +7,10 @@ public class CollisionSenses : CoreComponent
 {
     #region Check Transforms
 
-    Controller2D mController2D;
+    mPhysic2D mController2D;
     protected override void Awake() {
         base.Awake();
-        mController2D = GetComponentInParent<Controller2D>();
+        mController2D = GetComponentInParent<mPhysic2D>();
     }
 
     #endregion

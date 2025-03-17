@@ -22,10 +22,8 @@ public class CharacterStats : CoreComponent{
         ResetMaxHealth();
     }
     public void ResetMaxHealth(){
-        Health.currentValue = GetMaxHealthValue();
+        CalculationHP( GetMaxHealthValue() );
         isDead = false;
-
-        this.PostEvent(EventID.OnHPplayerChange, Health);
 
     }
     public virtual void DoDamage(CharacterStats _targetStats)
@@ -55,22 +53,21 @@ public class CharacterStats : CoreComponent{
     }
     protected virtual void DecreaseHealthBy(int _damage)
     {
-        Health.currentValue -= _damage;
-        this.PostEvent(EventID.OnHPplayerChange, Health);
-
-        if (Health.currentValue < 0 && !isDead)
-            Die();
+        CalculationHP( -_damage); 
     }
     public virtual void IncreaseHealthBy(int _amount)
     {
-        Health.currentValue += _amount;
-
-        if (Health.currentValue > GetMaxHealthValue())
-            Health.currentValue = GetMaxHealthValue();
-
-        this.PostEvent(EventID.OnHPplayerChange, Health);
-
+       CalculationHP(_amount);  
     }
+
+    private void CalculationHP(int _amount)
+    {
+        Health.currentValue += _amount;
+        //this.GameEvents().healthEvent.ChangeHP(_amount);
+        if ( Health.currentValue > GetMaxHealthValue() ) Health.currentValue = GetMaxHealthValue();
+        if ( Health.currentValue < 0 && !isDead ) Die();
+    }
+    
     protected virtual void Die()
     {
         isDead = true;

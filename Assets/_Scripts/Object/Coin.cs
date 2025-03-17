@@ -24,6 +24,7 @@ public class Coin : MonoBehaviour
         visual.gameObject.SetActive(false);
         this.GameEvents().goldEvents.onGoldGained?.Invoke(goldGained);
         this.GameEvents().miscEvents.CoinCollected();
+        
         StopAllCoroutines();
         Invoke("RespawnAfterTime", respawnTimeSeconds);
     }

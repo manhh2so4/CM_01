@@ -39,9 +39,10 @@ public class E_State : State
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
-        isGround = enemy.isGround();
+        isGround = movement.isGround();
+        isWall = movement.isWall();
+
         isLedge = enemy.isledge();
-		isWall = enemy.isWall();
         
         XDirPos = enemy.transform.position.x  - enemyPos.x;
         YDirPos = enemy.transform.position.y  - enemyPos.y;     

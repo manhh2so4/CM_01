@@ -36,6 +36,7 @@ public class ObjectPool<T> : ObjectPool where T : Component
         }
         // If object has the IObjectPool interface, set this ObjectPool as it's pool and store in list
         objectPoolItem.SetObjectPool(this);
+        
         allItems.Add(objectPoolItem);
         return obj;
     }
@@ -44,12 +45,10 @@ public class ObjectPool<T> : ObjectPool where T : Component
         // Try to get item from the queue. TryDequeue returns true if object available and false if not
         if (!pool.TryDequeue(out var obj))
         {
-            // If not available, instantiate a new one and return
             obj = InstantiateNewObject();
-            return obj;
+        }else{
+            obj.gameObject.SetActive(true);
         }
-        // If available, return
-        obj.gameObject.SetActive(true);
         return obj;
     }
     public T GetObject(Transform parent)

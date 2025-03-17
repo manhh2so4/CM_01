@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Ao_lv", menuName = "GameData/Tex_NjPart_SO")]
 public class Tex_NjPart_SO : ScriptableObject

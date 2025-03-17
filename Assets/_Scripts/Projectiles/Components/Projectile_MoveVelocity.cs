@@ -1,20 +1,21 @@
 using UnityEngine;
 namespace HStrong.ProjectileSystem
 {
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(mPhysic2D))]
     public class Projectile_MoveVelocity : ProjectileComponent {
-        protected Rigidbody2D rb;
+        protected mPhysic2D rb;
         protected override void Awake() {
             base.Awake();
-            rb = GetComponent<Rigidbody2D>();
+            rb = GetComponent<mPhysic2D>();
+            rb.Gravity = 0;
         }
         protected override void Init(){
             base.Init();
             SetVelocity();        
         }
         private void SetVelocity(){
-            rb.velocity = (projectile.Dir) * projectile.speed;
-            float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+            rb.Velocity = projectile.Dir * projectile.speed;
+            float angle = Mathf.Atan2(rb.Velocity.y, rb.Velocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }

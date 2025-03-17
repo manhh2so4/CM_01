@@ -34,9 +34,9 @@ public class BossState : EnemyState
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
-        isGround = boss.isGround();
+        isGround = movement.isGround();
         isLedge = boss.isledge();
-		isWall = boss.isWall();
+		isWall = movement.isWall();
 
         XDirPos = boss.transform.position.x  - BossPos.x;
         YDirPos = boss.transform.position.y  - BossPos.y;
