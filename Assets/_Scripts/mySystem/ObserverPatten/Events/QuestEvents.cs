@@ -2,6 +2,9 @@ using System;
 using HStrong.Quests;
 
 public class QuestEvents {
+    public event Action<QuestInfoSO> onAddQuestToMap;
+    public void AddQuestToMap(QuestInfoSO questInfoSO) => onAddQuestToMap?.Invoke(questInfoSO);
+    
     public event Action<string> onStartQuest;
     public void StartQuest(string id) => onStartQuest?.Invoke(id);
 

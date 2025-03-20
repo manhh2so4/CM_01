@@ -1,3 +1,4 @@
+using BehaviorDesigner.Runtime.Tasks.Unity.UnityCharacterController;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -13,18 +14,21 @@ public class CharacterStats : CoreComponent{
     public Stat Health;
     public Stat armor;
     public Stat magicResistance;
-
+    [Header("Defensive stats")]
     [SerializeField] protected bool isDead;
-
+    public event System.Action onChangeHP;
     public System.Action onHealthZero;
+    Movement movement;
+
     void Start()
     {
+        movement = core.GetCoreComponent<Movement>();
         ResetMaxHealth();
     }
     public void ResetMaxHealth(){
+
         CalculationHP( GetMaxHealthValue() );
         isDead = false;
-
     }
     public virtual void DoDamage(CharacterStats _targetStats)
     {
@@ -48,7 +52,9 @@ public class CharacterStats : CoreComponent{
     }
     public virtual void TakeDamage(int _damage)
     {
-        Debug.Log(core.transform.parent.name +" take: " + _damage);
+        PopupText textPopup = PoolsContainer.GetObject(this.GetPrefab<PopupText>(), this.transform.position );
+        textPopup.Setup(_damage, false, movement.facingDirection);
+
         DecreaseHealthBy(_damage);
     }
     protected virtual void DecreaseHealthBy(int _damage)
@@ -57,13 +63,13 @@ public class CharacterStats : CoreComponent{
     }
     public virtual void IncreaseHealthBy(int _amount)
     {
-       CalculationHP(_amount);  
+       CalculationHP( _amount );  
     }
 
-    private void CalculationHP(int _amount)
+    void CalculationHP(int _amount)
     {
         Health.currentValue += _amount;
-        //this.GameEvents().healthEvent.ChangeHP(_amount);
+        onChangeHP?.Invoke();
         if ( Health.currentValue > GetMaxHealthValue() ) Health.currentValue = GetMaxHealthValue();
         if ( Health.currentValue < 0 && !isDead ) Die();
     }

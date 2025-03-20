@@ -15,5 +15,5 @@ public class PlayerManager : MonoBehaviour
     public static Player GetPlayer(){
         return instance.player;
     }
-    
+
 }

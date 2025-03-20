@@ -15,7 +15,8 @@ namespace HStrong.Quests
         public Quest(QuestInfoSO questInfo)
         {
             this.info = questInfo;
-            this.state = QuestState.REQUIREMENTS_NOT_MET;
+            this.state = QuestState.HAS_QUEST;
+            questInfo.state = this.state;
             this.currentQuestStepIndex = 0;
             this.questSteps = questInfo.GetStepData();
             this.questStepStates = new QuestStepState[questSteps.Length];
@@ -82,7 +83,7 @@ namespace HStrong.Quests
 
 public enum QuestState
 {
-    REQUIREMENTS_NOT_MET,
+    HAS_QUEST,
     CAN_START,
     IN_PROGRESS,
     CAN_FINISH,

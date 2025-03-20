@@ -5,6 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 using XNode;
+using XNodeEditor.Internal;
 
 public class NodeParser : MonoBehaviour{
     public static NodeParser instance;
@@ -39,14 +40,17 @@ public class NodeParser : MonoBehaviour{
     [Header("____ Chat Elements ____")]
     [SerializeField] Chat chatPlayer;
     [SerializeField] Chat chatNPC;
+    [SerializeField] DialogueTrigger dialogueTrigger;
     #endregion 
-    public void StartDialogue(Chat _NPC,DialogueGraph _graph)
+    public void StartDialogue(DialogueTrigger npc,DialogueGraph _graph)
     {
+        
         graph = _graph;
-        chatNPC = _NPC;
+        dialogueTrigger = npc;
+        chatNPC = npc.chat;
+        
         graph.Start();
-        dialogueALL.SetActive(true);  
-        NextNode(); 
+        ParseNode();
           
     }
     void Start()
@@ -71,8 +75,8 @@ public class NodeParser : MonoBehaviour{
         switch(graph.current.GetNodeType()){
 
             case NodeType.StartNode:
-
-                ResetUI();
+                dialogueALL.SetActive(true);  
+                NextNode();
                 break;
 
             case NodeType.ChoiceDialogueNode:
@@ -97,16 +101,17 @@ public class NodeParser : MonoBehaviour{
 
                 DialogueNode dialogueNode = (DialogueNode)graph.current;
                 ShowChoices(false);
+
                 canNextNode = false;
-                GetChat(dialogueNode.speaker).SetUpChat(dialogueNode.DialogueText,()=>{
+
+                GetChat( dialogueNode.speaker ).SetUpChat( dialogueNode.DialogueText ,()=>{
+
                     canNextNode = true;
-                    Invoke("NextNode",1.5f);
+                    Invoke("NextNode", 1f);
 
-                });      
-
+                }); 
                 speaker.text = GetChat(dialogueNode.speaker).NameChat;
-                dialogue.text = "...";
-                //dialogue.text = dialogueNode.DialogueText;
+                dialogue.text = dialogueNode.DialogueText;
                 
                 break;
             case NodeType.EventNode:
@@ -115,21 +120,30 @@ public class NodeParser : MonoBehaviour{
                 NextNode();
                 break;
             case NodeType.GiverQuestNode:
-                // QuestList questList = PlayerManager.GetPlayer().GetComponent<QuestList>();
-                // foreach (Quest quest in ((GiverQuestNode)graph.current).GetQuests()){
 
-                //         questList.AddQuest(quest);
+                foreach (QuestInfoSO questInfo in ((GiverQuestNode)graph.current).GetQuests()){
 
-                // }
+                    this.GameEvents().questEvent.AddQuestToMap(questInfo);
+                }
                 NextNode();
                 break;
+            case NodeType.ConditionQuestNode:
+                
+                BaseNode baseNode = ((ConditionQuestNode)graph.current).Trigger();
+                NextNode(baseNode);
 
+                break;
             case NodeType.ExitNode:
 
                 dialogueALL.SetActive(false);
-                graph.Start(); 
                 ResetUI();
+                graph.Start(); 
+                dialogueTrigger.isTalking = false;
+                dialogueTrigger = null;
+                chatNPC = null;
+                graph = null;
                 break;
+
         }
     }
     Chat GetChat(Speaker speaker){
@@ -145,20 +159,7 @@ public class NodeParser : MonoBehaviour{
         }
         return null;
     }
-    void SetBoxChat(Speaker speaker,string Text){
-        switch (speaker)
-        {
-            case Speaker.Player:
 
-                chatPlayer.SetUpChat(Text);
-                break;
-                
-            case Speaker.NPC:
-
-                chatNPC.SetUpChat(Text);
-                break;
-        }
-    }
     void ShowChoices(bool show){
         if(show){
             buttonParent.gameObject.SetActive(true);
@@ -183,8 +184,12 @@ public class NodeParser : MonoBehaviour{
             answerIndex++;
         }
     }
-
-    public void NextNode(){
+    void NextNode(BaseNode node){
+        graph.current = node;
+        ResetUI();
+        ParseNode();
+    }
+    void NextNode(){
 
 
         if( canNextNode == false ){

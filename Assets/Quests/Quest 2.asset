@@ -15,6 +15,7 @@ MonoBehaviour:
   <id>k__BackingField: Quest 2
   displayName: Nhiem vu 2
   describle: "l\xE0 m\u1ED9t b\u1EA3n sao c\u1EE7a m\u1EA3ng g\u1ED1c."
+  state: 0
   levelRequirement: 1
   questPrerequisites: []
   goldReward: 50

@@ -5,48 +5,35 @@ using UnityEngine;
 using UnityEngine.Rendering;
 namespace HStrong.Quests
 {
-    public class QuestManager : MonoBehaviour
+    public class QuestManager : Singleton<QuestManager>
     {
         [Header("Config")]
-        [SerializeField] private bool loadQuestState = true;
-        [SerializeField] QuestInfoSO[] questALL;
-        [SerializeField] private Quest mQuest;
-
-        private Dictionary<string, Quest> questMap;
+        [SerializeField] List<Quest> mQuestView;
+        readonly Dictionary<string, Quest> questMap = new Dictionary<string, Quest>();
         private int currentPlayerLV=10;
-        void Awake()
-        {
-            questMap = CreateQuestMap();
-        }
         void OnEnable()
         {
+
             this.GameEvents().questEvent.onStartQuest += StartQuset;
             this.GameEvents().questEvent.onAdvanceQuest += AdvanceQuest;
             this.GameEvents().questEvent.onFinishQuest += FinishQuest;
             this.GameEvents().questEvent.onQuestStepStateChange += QuestStepStateChangre;
+            this.GameEvents().questEvent.onAddQuestToMap += GetQuestToMap;
             
         }
-
         void OnDisable()
         {
             this.GameEvents().questEvent.onStartQuest -= StartQuset;
             this.GameEvents().questEvent.onAdvanceQuest -= AdvanceQuest;
             this.GameEvents().questEvent.onFinishQuest -= FinishQuest;
             this.GameEvents().questEvent.onQuestStepStateChange -= QuestStepStateChangre;
-        }
-
-        [Button("Start Quest")]
-        public void StartQuest()
-        {
-            this.GameEvents().questEvent.StartQuest( questALL[0].id );
+            this.GameEvents().questEvent.onAddQuestToMap -= GetQuestToMap;
         }
 
         void Start()
         {
             foreach(Quest quest in questMap.Values)
             {
-                mQuest = quest;
-                
                 if(quest.state == QuestState.IN_PROGRESS)
                 {
                     quest.InstantiateCurrentQuestStep(this.transform);
@@ -80,17 +67,41 @@ namespace HStrong.Quests
         }
         void Update()
         {
-
             foreach(Quest quest in questMap.Values)
             {
                 
-                if(quest.state == QuestState.REQUIREMENTS_NOT_MET && CheckRequirements(quest)){
+                if(quest.state == QuestState.HAS_QUEST && CheckRequirements(quest)){
 
                     ChangeQuestState(quest.info.id, QuestState.CAN_START);
+                    StartQuset(quest.info.id);
 
                 }
             }
         }
+    #region Quest Func Events
+        public bool HasQuest(string id){
+            return questMap.ContainsKey(id);
+        }
+
+        public bool IsQuestState(string id, QuestState state){
+            Quest quest = GetQuestById(id);
+
+            if(quest == null){
+                Common.LogError("Quest with id " + id + " not found");
+                return false;
+            }
+            return GetQuestById(id).state == state;
+        }
+
+        private Quest GetQuestById(string id){
+            Quest quest = questMap[id];
+            if(quest == null){
+                Common.LogError("Quest with id " + id + " not found");
+            }
+            return quest;
+        }
+    #endregion
+    #region Quest State
         private void StartQuset(string id){
             
             Quest quest = GetQuestById(id);
@@ -124,9 +135,23 @@ namespace HStrong.Quests
             quest.StoreQuestStepState(questStepState, stepIndex);
             ChangeQuestState(id, quest.state);
         }
+    #endregion
+    #region Setup QuestMap
+        public void GetQuestToMap(QuestInfoSO questInfoSO){
+
+            if(questMap.ContainsKey(questInfoSO.id)) {
+                Common.LogWarning("Quest with id " + questInfoSO.id + " already exists in quest map");
+                return;
+            }
+
+            questMap.Add(questInfoSO.id, LoadQuest(questInfoSO));
+            this.GameEvents().questEvent.QuestStateChange( questMap[questInfoSO.id] );
+            mQuestView.Add( questMap[questInfoSO.id] );
+            //Common.Log("Quest with id " + questInfoSO.id + " added to quest map");
+        }
         private Dictionary<string, Quest> CreateQuestMap()
         {
-            QuestInfoSO[] allQuests = questALL;
+            QuestInfoSO[] allQuests = null;
             Dictionary<string, Quest> idToQuestMap = new Dictionary<string, Quest>();
             foreach (QuestInfoSO questInfo in allQuests)
             {
@@ -140,19 +165,13 @@ namespace HStrong.Quests
             return idToQuestMap;
         }
 
-        private Quest GetQuestById(string id){
-            Quest quest = questMap[id];
-            if(quest == null){
-                Common.LogError("Quest with id " + id + " not found");
-            }
-            return quest;
-        }
+        
         private void OnApplicationQuit()
         {
-            foreach(Quest quest in questMap.Values)
-            {
-                SaveQuest(quest);
-            }
+            // foreach(Quest quest in questMap.Values)
+            // {
+            //     SaveQuest(quest);
+            // }
         }
         private void SaveQuest(Quest quest)
         {
@@ -172,28 +191,12 @@ namespace HStrong.Quests
             }
         }
         private Quest LoadQuest(QuestInfoSO questInfo){
-            Quest quest = null;
-            try 
-            {
-                // load quest from saved data
-                if (PlayerPrefs.HasKey(questInfo.id) && loadQuestState)
-                {
-                    string serializedData = PlayerPrefs.GetString(questInfo.id);
-                    QuestData questData = JsonUtility.FromJson<QuestData>(serializedData);
-                    quest = new Quest(questInfo, questData.state, questData.questStepIndex, questData.questStepStates);
-                }
 
-                // otherwise, initialize a new quest
-                else 
-                {
-                    quest = new Quest(questInfo);
-                }
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError("Failed to load quest with id " + quest.info.id + ": " + e);
-            }
+            Quest quest = null;
+            quest = new Quest(questInfo);   
+
             return quest;
         }
+    #endregion
     }
 }

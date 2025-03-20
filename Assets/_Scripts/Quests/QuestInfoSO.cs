@@ -10,7 +10,8 @@ namespace HStrong.Quests
         [field: SerializeField] public string id { get; private set; }
         [Header("General")]
         public string displayName ;
-        [TextArea]public string describle ;
+        [TextArea]public string describle;
+        public QuestState state;
         
         [Header("Requirements")]
         public int levelRequirement ;

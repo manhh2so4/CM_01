@@ -1,10 +1,10 @@
 using UnityEngine;
 
 public class WeaponKnockBack : WeaponComponents<KnockBackData> {
-    WeaponDamage weaponDamage;
+    WeaponHitBox HitBox;
     private CoreComp<Movement> movement;
 
-     private void HandleDetectCollider2D(Collider2D collider){
+     private void HandleTrigger2D(Collider2D collider){
         if(collider.TryGetComponent(out IKnockBackable knockBackable)){
             knockBackable.KnockBack(data.Angle, data.Strength, movement.Comp.facingDirection);
         }
@@ -15,12 +15,12 @@ public class WeaponKnockBack : WeaponComponents<KnockBackData> {
     {
         base.SubscribeHandlers();
         movement = new CoreComp<Movement>(Core);
-        weaponDamage = GetComponent<WeaponDamage>();
-        weaponDamage.KnockBackTrigger += HandleDetectCollider2D;        
+        HitBox = GetComponent<WeaponHitBox>();
+        HitBox.Action += HandleTrigger2D;        
     }
     protected override void OnDisable()
     {
         base.OnDisable();
-        weaponDamage.KnockBackTrigger -= HandleDetectCollider2D;
+        HitBox.Action -= HandleTrigger2D;
     }
 }

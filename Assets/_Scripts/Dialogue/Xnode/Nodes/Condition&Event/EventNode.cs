@@ -4,8 +4,7 @@ using XNode;
 public class EventNode : BaseNode
 {
     [SerializeField] EventDialogue[] trigger;
-    [Input] public NodePort input;
-    [Output] public NodePort exit;
+    [Output(connectionType = ConnectionType.Override)] public Empty exit;
 
     public override NodeType GetNodeType()
     {

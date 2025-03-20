@@ -28,11 +28,15 @@ public class TextWriter : MonoBehaviour {
         textWriterSingleList.Add(textWriterSingle);
         return textWriterSingle;
     }
+    public static int Countt(){
+        return instance.textWriterSingleList.Count;
+    }
     public static void RemoveWriter_Static(TextMeshPro textMeshPro) {
         instance.RemoveWriter(textMeshPro);
     }
-    private void RemoveWriter(TextMeshPro textMeshPro) {
+    void RemoveWriter(TextMeshPro textMeshPro) {
         for (int i = 0; i < textWriterSingleList.Count; i++) {
+            
             if (textWriterSingleList[i].GetTextMeshPro() == textMeshPro) {
                 textWriterSingleList.RemoveAt(i);
                 i--;
@@ -40,15 +44,18 @@ public class TextWriter : MonoBehaviour {
         }
     }
 
-    private void Update() {
+    void Update() {
         for (int i = 0; i < textWriterSingleList.Count; i++) {
-            bool destroyInstance = textWriterSingleList[i].Update();
-            if (destroyInstance) {
-                textWriterSingleList.RemoveAt(i);
-                i--;
-            }
+            textWriterSingleList[i].Update();
+            // if (destroyInstance) {
+                
+            //     textWriterSingleList.RemoveAt(i);
+            //     i--;
+            //     Debug.Log("destroyInstance : " +  textWriterSingleList.Count);
+            // }
         }
     }
+
     [Button]
     void count(){
         Debug.Log(textWriterSingleList.Count);
@@ -78,7 +85,7 @@ public class TextWriterSingle{
     }
 
     // Returns true on complete
-    public bool Update() {
+    public void Update() {
         timer -= Time.deltaTime;
         while (timer <= 0f) {
             // Display next character
@@ -93,12 +100,12 @@ public class TextWriterSingle{
             
 
             if (characterIndex >= textToWrite.Length) {
-                if (onComplete != null) onComplete();
-                return true;
+                TextWriter.RemoveWriter_Static(textMeshPro);
+                onComplete?.Invoke();
+                onComplete = null;
+                return;
             }
         }
-
-        return false;
     }
 
     public TextMeshPro GetTextMeshPro() {
@@ -113,7 +120,10 @@ public class TextWriterSingle{
 
         textMeshPro.SetText(textToWrite);
         characterIndex = textToWrite.Length;
-        if (onComplete != null) onComplete();
+
         TextWriter.RemoveWriter_Static(textMeshPro);
+
+        onComplete?.Invoke();
+        onComplete = null;
     }
 }

@@ -27,7 +27,6 @@ public class E_StuneState : E_State
 	}
 	public override void LogicUpdate() {
 		base.LogicUpdate(); 
-		movement.SetVelocityZero();
 		if( enemy.poiseReceiver.IsPoise() == false ){
 			stateMachine.ChangeState(enemy.lookState);
 		}        

@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: Collect the Coins!
   describle: "b\u1EA1n \u0111ang tr\u1EA3 v\u1EC1 tham chi\u1EBFu \u0111\u1EBFn m\u1EA3ng
     g\u1ED1c,"
+  state: 0
   levelRequirement: 1
   questPrerequisites: []
   goldReward: 50
@@ -27,8 +28,6 @@ MonoBehaviour:
     count: 200
   ComponentData:
   - rid: 607104471093739526
-  - rid: 607104482003124224
-  - rid: 607104494519713792
   references:
     version: 2
     RefIds:
@@ -38,16 +37,3 @@ MonoBehaviour:
         name: CollectCoinData
         __description__: Collect Coint
         coinsToComplete: 4
-    - rid: 607104482003124224
-      type: {class: CollectItemData, ns: HStrong.Quests, asm: Assembly-CSharp}
-      data:
-        name: CollectItemData
-        __description__: pickup HP
-        itemToCollect: {fileID: 11400000, guid: f2389c129ad48a54d9d05e5588b5d571, type: 2}
-        countToComplete: 5
-    - rid: 607104494519713792
-      type: {class: CollectCoinData, ns: HStrong.Quests, asm: Assembly-CSharp}
-      data:
-        name: CollectCoinData
-        __description__: Collect Coint 2
-        coinsToComplete: 0

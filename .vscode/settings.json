@@ -1,22 +1,8 @@
 {
+    "window.zoomLevel": 0,
     "dotnet.preferCSharpExtension": true,
     "dotnet.defaultSolution": "CM_01.sln",
     "vstuc.refreshOnSave": true,
-    "sqltools.connections": [
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MySQL",
-            "name": "Manh",
-            "database": "root",
-            "username": "manh2001"
-        }
-    ],
     "material-icon-theme.folders.customClones": [
         {
             "name": "Quests-tasks",
@@ -95,11 +81,14 @@
             "folderNames": ["Effects"],
             "rootFolderNames": ["users"]
         },
+
     ],
-    "files.exclude": {
-        "**/*": false, // Ẩn tất cả các thư mục và tệp
-        "**/Assets": false // Chỉ hiển thị thư mục cụ thể
-    }
-    
-    
+    "material-icon-theme.files.customClones":[
+			{
+				"name": "csharp",
+				"base": "csharp",
+				"color": "green-800"
+			},
+	]
+      
 }

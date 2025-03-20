@@ -7,9 +7,12 @@ using UnityEngine;
 public class Enemy : EnemyEntity
 {
     #region Set_component
+    [Header("Enemy Setting")]
     public Enemy_SO enemy_Data;
     Sprite[] sprites;
     SpriteRenderer mSPR;
+
+    [SerializeField] CapsuleCollider2D CapsunCheckPlayer;
     
     #endregion
     //----------View_data
@@ -53,16 +56,13 @@ public class Enemy : EnemyEntity
         stateMachine.CurrentState.LogicUpdate();
         core.LogicUpdate();
         CheckReceiver();
-        CheckPlayer();
     }
     void CheckPlayer(){
 
-        RaycastHit2D hit = Physics2D.CapsuleCast(
+        Collider2D hit = Physics2D.OverlapCapsule(
             (Vector2)transform.position + playerCheckOffset,
             playerCheckSize,
             CapsuleDirection2D.Horizontal,
-            0f,
-            Vector2.right,
             0f,
             LayerMask.GetMask("Player")
         );
@@ -76,6 +76,7 @@ public class Enemy : EnemyEntity
 
     public virtual void FixedUpdate()
     {
+        CheckPlayer();
         stateMachine.CurrentState.PhysicsUpdate();
     }
     private void OnEnable()
@@ -109,8 +110,7 @@ public class Enemy : EnemyEntity
 
     #endregion
     #region ColCheck
-    // private void OnTriggerEnter2D(Collider2D other) {
-        
+    // void OnTriggerEnter2D(Collider2D other) {
     //     if ( (LayerCombat.value & (1 << other.gameObject.layer)) != 0)
     //     {
     //         if (other.tag == "Enemy") return;
@@ -139,6 +139,8 @@ public class Enemy : EnemyEntity
         //--------- Set Collider-----------
         mCollider.size = new Vector2((w - w/5)/100, height );
         mCollider.offset = new Vector2 (0, height/2);
+
+        core.height = height;
         
         ledgeCheck.position = new Vector3((w+20)/200 , 0.02f) + transform.position;
 
@@ -163,6 +165,9 @@ public class Enemy : EnemyEntity
 
             break;
         }
+        
+        CapsunCheckPlayer.size = playerCheckSize;
+        CapsunCheckPlayer.offset = playerCheckOffset;
     }
     public void Paint(int frameCurrent){
         mSPR.sprite = sprites[frameCurrent];

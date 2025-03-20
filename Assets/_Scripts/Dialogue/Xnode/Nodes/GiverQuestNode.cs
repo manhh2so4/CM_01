@@ -6,17 +6,16 @@ using XNode;
 [NodeTint("#4B0082")]
 public class GiverQuestNode : BaseNode
 {
-    [SerializeField] List<Quest> Quests;
-    [Input] public NodePort input;
-    [Output] public NodePort exit;
+    [SerializeField] List<QuestInfoSO> QuestInfos;
+    [Output(connectionType = ConnectionType.Override )] public Empty exit;
 
     public override NodeType GetNodeType()
     {
         return NodeType.GiverQuestNode;
     }
-    public IEnumerable<Quest> GetQuests()
+    public IEnumerable<QuestInfoSO> GetQuests()
     {
-        return Quests;
+        return QuestInfos;
     }
 
 }

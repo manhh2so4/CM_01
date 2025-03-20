@@ -6,22 +6,25 @@ using UnityEngine.InputSystem;
 
 public class ShowHideUI : MonoBehaviour
 {
-    [SerializeField] GameObject uiContainer = null;
+    [SerializeField] GameObject InventContainer = null;
+    [SerializeField] GameObject QuestContainer = null;
     // Start is called before the first frame update
     void Start()
     {
-        uiContainer.SetActive(false);
+        InventContainer.SetActive(false);
+        QuestContainer.SetActive(false);
     }
-    public void Toggle(InputAction.CallbackContext context){
+    public void ToggleInven(InputAction.CallbackContext context){
         if(context.started)
         {
-            uiContainer.SetActive(!uiContainer.activeSelf);
+            InventContainer.SetActive(!InventContainer.activeSelf);
         }
     }
-    public void ToggleUI(){
-
-        uiContainer.SetActive(!uiContainer.activeSelf); 
-
+    public void ToggleQuest(InputAction.CallbackContext context){
+        if(context.started)
+        {
+            QuestContainer.SetActive(!QuestContainer.activeSelf);
+        }
     }
 
 }

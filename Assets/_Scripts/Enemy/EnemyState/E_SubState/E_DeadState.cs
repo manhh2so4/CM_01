@@ -13,11 +13,12 @@ public class E_DeadState : E_State
 		stateMachine.canChange = false;
 		enemy.mCollider.enabled = false;
         enemy.mRB.Gravity = (2*-9.8f);
+		core.gameObject.SetActive(false);
 
 		movement.SetVelocity(-movement.facingDirection,10f);
+		movement.IsColision(false);
 		movement.CanSetVelocity = false;
 		//itemDrop.GenerateDrop();
-		Debug.Log("Drop" + itemDrop.transform.parent.parent.name);
 		enemy.Paint(2);
 	}
 	public override void LogicUpdate() {
@@ -28,15 +29,20 @@ public class E_DeadState : E_State
 	}
 	public override void Exit() {
 		base.Exit();
-		movement.CanSetVelocity = true;
-		movement.SetVelocityZero();
-        enemy.mCollider.enabled = true;       
 
+		movement.CanSetVelocity = true;
+		movement.IsColision(true);
+		movement.SetVelocityZero();
+
+        enemy.mCollider.enabled = true;  
+		core.gameObject.SetActive(true);     
 		enemy.transform.position = enemyPos;
 		enemy.CharStats.ResetMaxHealth(); 
 
 		if(enemyData.type == 4 || enemyData.type == 5){
             enemy.mRB.Gravity = (0);
-        }
+        }else{
+			enemy.mRB.Gravity = (-9.8f *2f);
+		}
 	}
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 public abstract class WeaponComponents : MonoBehaviour {
     protected Weapon weapon;
     protected Core Core => weapon.core;
+    protected Movement coreMove;
+    
 
     protected bool isAttackActive;
     protected virtual void Awake()
@@ -12,13 +14,16 @@ public abstract class WeaponComponents : MonoBehaviour {
 
     public virtual void Init()
     {
+        coreMove = Core.GetCoreComponent<Movement>();
         SubscribeHandlers();
-    }
-    protected virtual void SubscribeHandlers()
-    {
         weapon.OnEnter += HandleEnter;
         weapon.OnExit += HandleExit;
         weapon.OnMidd += HandleMiddle;
+        
+    }
+    protected virtual void SubscribeHandlers()
+    {
+
     }
 
     protected virtual void HandleEnter()

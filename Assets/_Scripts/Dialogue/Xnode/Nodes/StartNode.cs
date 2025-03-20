@@ -6,10 +6,7 @@ using XNode;
 
 public class StartNode : BaseNode {
     
-    [Output] public NodePort exit;
+    [Output(connectionType = ConnectionType.Override )] public Empty exit;
 
     public override NodeType GetNodeType() => NodeType.StartNode;
-    public override string GetString(){
-        return "Start";
-    }
 }

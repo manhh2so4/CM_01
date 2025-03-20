@@ -15,7 +15,7 @@ public class GiverQuestNodeEditor : NodeEditor
         NodeEditorGUILayout.PortField(GUIContent.none, target.GetOutputPort("exit"), GUILayout.MinWidth(0));
         GUILayout.EndHorizontal();
 
-        NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("Quests")); 
+        NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("QuestInfos")); 
 
         serializedObject.ApplyModifiedProperties();
     }

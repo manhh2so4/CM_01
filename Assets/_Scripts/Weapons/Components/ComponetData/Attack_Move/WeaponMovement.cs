@@ -1,8 +1,6 @@
 using UnityEngine;
 public class WeaponMovement : WeaponComponents<MovementData> {
 
-    private Movement  coreMove;
-
     private void StartMovement(){
 
         coreMove.SetVelocity(data.Velocity, data.Direction, coreMove.facingDirection);
@@ -13,7 +11,6 @@ public class WeaponMovement : WeaponComponents<MovementData> {
     }
     protected override void SubscribeHandlers()
     {
-        coreMove = Core.GetCoreComponent<Movement>();
         base.SubscribeHandlers();
         weapon.OnStarMove += StartMovement;
         weapon.OnStopMove += StopMovement;

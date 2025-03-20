@@ -101,6 +101,9 @@ public class Movement : CoreComponent
     public bool isWall(){
         return mController2D.collisionInfor.left || mController2D.collisionInfor.right;
     }
+    public void IsColision(bool isColision){
+        mController2D.isColision = isColision;
+    }
     #endregion
 
 }

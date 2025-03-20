@@ -1,9 +1,8 @@
 using XNode;
 public abstract class BaseNode : Node
 {
-    public virtual string GetString(){
-		return null;
-	}
+    [Input (connectionType = ConnectionType.Override ) ] public Empty input;
+
     public abstract NodeType GetNodeType();
     public override object GetValue(NodePort port){
 		return null;
@@ -16,9 +15,11 @@ public enum NodeType{
     ChoiceDialogueNode,
     ExitNode,
     EventNode,
-    GiverQuestNode
+    GiverQuestNode,
+    ConditionQuestNode
 }
 public enum Speaker{
     NPC,
     Player,
 }
+public class Empty {}

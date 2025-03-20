@@ -45,13 +45,17 @@ public abstract class EnemyEntity : Entity
     
     #region FuncLoad
     protected virtual void LoadCore(){
+
         stateMachine = new FiniteStateMachine();
+
     }
     protected virtual void LoadComponent(){
+        
         if(ledgeCheck == null) ledgeCheck = transform.Find("LedgeDetected").GetComponent<Transform>();
+
     }
     #endregion
-    public virtual void OnDrawGizmos(){
+    public void OnDrawGizmos(){
         Gizmos.DrawLine(Epos,transform.position);
 
         if(playerCheck) {
@@ -68,9 +72,6 @@ public abstract class EnemyEntity : Entity
         Gizmos.DrawRay( (Vector2)transform.position + playerCheckOffset , Vector2.left * playerCheckSize.x/2);
         Gizmos.DrawRay( (Vector2)transform.position + playerCheckOffset , Vector2.up * playerCheckSize.y/2);
         Gizmos.DrawRay( (Vector2)transform.position + playerCheckOffset , Vector2.down * playerCheckSize.y/2);
-
-
-
     }
 }
 

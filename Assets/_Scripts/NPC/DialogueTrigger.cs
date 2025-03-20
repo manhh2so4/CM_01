@@ -1,19 +1,27 @@
 using UnityEngine;
-
-
-public class NPC : MonoBehaviour,IClicker
+using System.Diagnostics;
+public class DialogueTrigger : MonoBehaviour,IClicker
 {
     [SerializeField] DialogueGraph dialogue = null;
     public Chat chat;
     [SerializeField] string NameNPC;
+    public bool isTalking = false;
     void Awake()
     {
         chat =  transform.GetComponentInChildren<Core>().GetCoreComponent<Chat>();
     }
     public void OnClick()
-    {
+    {   
+        
+        if ( isTalking ) return;
         if (dialogue == null) return;
-        NodeParser.instance.StartDialogue(chat,dialogue);
+        isTalking = true;
+
+
+        NodeParser.instance.StartDialogue(this,dialogue);
+        
+        
+
     }
 
     public string GetName()

@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class Chat : CoreComponent
 {
-    
-    [SerializeField] private Box_Chat chatPrefab;
     public string NameChat;
     Movement movement;
     Box_Chat Box_chat;
@@ -18,10 +16,15 @@ public class Chat : CoreComponent
         base.Awake();
         movement = core.GetCoreComponent<Movement>();
         
+        
+    }
+    void Start()
+    {
+        this.transform.localPosition = new Vector3(0,core.height + 0.3f,0);
     }
     [Button]
     void DrawText(){
-        SetUpChat("Sena Livestream - Bốc phét + Reaction + Tiktok + Game Gủng");
+        //SetUpChat("Sena Livestream - Bốc phét + Reaction + Tiktok + Game Gủng");
     }
 
     public bool SetUpChat(string text,Action action = null){
@@ -31,18 +34,19 @@ public class Chat : CoreComponent
             textWriter = null;
             return false;
         }
-
         Box_chat?.RemoveBoxChat();
         Box_chat = null;
 
-        Box_chat = PoolsContainer.GetObject(chatPrefab);
+        Box_chat = PoolsContainer.GetObject(PrefabManager.Instance.GetPrefab<Box_Chat>());
         Box_chat.transform.parent = this.transform;
-        textWriter = Box_chat.Setup(text,action, core.SortingLayerID); 
+        textWriter = Box_chat.Setup( text, action , core.SortingLayerID); 
         return true;
     }
     public void RemoveBoxChat(){
+        
         Box_chat?.RemoveBoxChat();
         Box_chat = null;
+        textWriter = null;
     }
 
     void OnEnable(){

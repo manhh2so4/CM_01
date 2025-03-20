@@ -48,6 +48,8 @@ public class Player : Entity,ISaveable
         
         Skill_3 = transform.Find("Skill_3").GetComponent<Weapon>();
         Skill_3.SetCore(core);
+        
+        core.height = 1.3f;
 
         idleState = new PlayerIdleState(this,StateMachine,playerData,mState.Idle);
         moveState = new PlayerMoveState(this,StateMachine,playerData,mState.Moving);

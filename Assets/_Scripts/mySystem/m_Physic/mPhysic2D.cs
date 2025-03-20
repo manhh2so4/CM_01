@@ -9,14 +9,13 @@ public class mPhysic2D : RaycastController {
     [Header("\n--------Setting_Colision--------\n")]
     public LayerMask groundMask;
     public CollisionInfor collisionInfor;
-	[SerializeField] float HitDis;
 
 	[Header("\n--------Setting_Physic--------\n")]
-
-	[SerializeField] protected float gravity = -9.8f;
-	[SerializeField] protected Vector2 velocity;
+	public bool isColision = true;
+	protected float gravity = -9.8f;
+	protected Vector2 velocity;
 	public Vector2 Velocity { get {return velocity; } set { SetVelocity(value); }}
-	[SerializeField] public float Gravity{ get {return gravity;} set{ gravity = value;} }
+	public float Gravity{ get {return gravity;} set{ gravity = value;} }
 
 	public virtual void SetVelocity(Vector2 _xy){
 		this.velocity = _xy;
@@ -37,16 +36,15 @@ public class mPhysic2D : RaycastController {
 		UpdateRaycastOrigins ();
 		collisionInfor.Reset ();
 
-		if (velSet.x != 0) {
-			collisionInfor.faceDir = (int)Mathf.Sign(velSet.x);
-		}
+		if (isColision) {
+			HorizontalCollisions (ref velSet);
 
-		HorizontalCollisions (ref velSet);
-
-		if (velSet.y != 0) {
-			
-			VerticalCollisions (ref velSet);
+			if (velSet.y != 0) {
+				
+				VerticalCollisions (ref velSet);
+			}
 		}
+		
 		transform.Translate(velSet,Space.World);
 	}
 
@@ -109,7 +107,6 @@ public class mPhysic2D : RaycastController {
     [Serializable]
     public struct CollisionInfor{
 		public bool above, below, left, right;
-		public int faceDir;
         public void Reset(){
             above = below = left = right = false;
         }  

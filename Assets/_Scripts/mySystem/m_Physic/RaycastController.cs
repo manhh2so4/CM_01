@@ -19,12 +19,16 @@ public class RaycastController : MonoBehaviour {
 	[Button]
 	public virtual void Awake() {
 		boxCollider = GetComponent<BoxCollider2D>();
-		Center = boxCollider.offset;
+		
+	}
+    void Start()
+    {
+        Center = boxCollider.offset;
 		Size = boxCollider.size;
 		CalculateRaySpacing ();
-	}
+    }
 
-	protected void UpdateRaycastOrigins(){
+    protected void UpdateRaycastOrigins(){
 
 		Vector2 skin = Size;
 		skin.Set(Size.x - skinWidth,Size.y - skinWidth);

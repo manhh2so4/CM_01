@@ -11,6 +11,7 @@ public class PoiseReceiver : CoreReceiver, IPoiseDamageable
         prefabEff?.GetComponent<Effect_Instance>().SetData(time, core.SortingLayerID, core.size);         
         particleManager?.StartParticles(prefabEff,this.transform.position + SetPosEff(prefabEff));
         Location = Vector3.zero;
+        Invoke(nameof(CheckPoise),time);
     }
     public bool IsPoise() => isPoise;
     private void CheckPoise(){

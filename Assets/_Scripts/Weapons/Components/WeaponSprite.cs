@@ -7,11 +7,10 @@ public class WeaponSprite : MonoBehaviour {
     [SerializeField] GameObject Skill_1;
     [SerializeField] GameObject Skill_2;
     int eff0id,eff1id,eff2id;
-    [SerializeField] EffSkill[] skills;
+    [SerializeField] EffSkill[] skillsView;
     [SerializeField] Dictionary<int,SpriteInfo[]> effSkills = new Dictionary<int,SpriteInfo[]>();
     Vector3 valueRage;
-    int currentId;
-    public Action<Vector3> setRange;
+    public Action<Vector2> setRange;
 
     //--------- Set Collider-----------    
     public void LoadEff0(int eff0id){
@@ -70,7 +69,9 @@ public class WeaponSprite : MonoBehaviour {
 
             float h = effSkillInfos[index].sprite.rect.height/100;
             float w = effSkillInfos[index].sprite.rect.width/100;
-            valueRage.Set( obj.transform.localPosition.x +  w/2, h, obj.transform.localPosition.y);
+
+            valueRage.Set( obj.transform.localPosition.x +  w/2, obj.transform.localPosition.y + h/2, obj.transform.localPosition.y);
+
             setRange?.Invoke(valueRage);  
                    
         } 
@@ -85,12 +86,12 @@ public class WeaponSprite : MonoBehaviour {
             SpriteInfo[] effSkillInfos = Resources.Load<Sprite_FXSkill_SO>(resPath).effSkillInfo_SO;
             effSkills.Add(id[i], effSkillInfos);    
         }
-        skills = new EffSkill[effSkills.Count];
-        for(int i = 0; i < skills.Length; i++){
+        skillsView = new EffSkill[effSkills.Count];
+        for(int i = 0; i < skillsView.Length; i++){
             EffSkill temp = new EffSkill();
             temp.idEffSkill = id[i];
             temp.effSkillInfos = effSkills[id[i]];
-            skills[i] = temp;
+            skillsView[i] = temp;
         }
     }
 }

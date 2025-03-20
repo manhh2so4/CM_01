@@ -21,10 +21,10 @@ TagManager:
   - BackGround
   - Interactables
   - CollisionCheck
-  - DamageReceiver
-  - DamageDealer
+  - Combat
   - Projectile
-  - Platform
+  - 
+  - 
   - 
   - 
   - 

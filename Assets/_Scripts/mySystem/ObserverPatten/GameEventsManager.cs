@@ -8,7 +8,7 @@ public class GameEventsManager : Singleton<GameEventsManager>
     public MiscEvents miscEvents = new MiscEvents();
     public InventoryEvent inventoryEvent =  new InventoryEvent();
     public InputEvent inputEvent = new InputEvent();
-    //public HealthEvent healthEvent = new HealthEvent();
+    public HealthEvent healthEvent = new HealthEvent();
     
 }
 public static class EventExtensionQuest

@@ -32,6 +32,7 @@ public class Pickup : MonoBehaviour,IClicker {
     }
     public void PickupItem()
     {
+
         bool foundSlot = inventory.AddToFirstEmptySlot(item, number);
         if (foundSlot)
         {
@@ -49,7 +50,7 @@ public class Pickup : MonoBehaviour,IClicker {
     }
     void FixedUpdate()
     {
-        CheckForPlayer();
+        //CheckForPlayer();
     }
     private void CheckForPlayer()
     {
@@ -60,10 +61,9 @@ public class Pickup : MonoBehaviour,IClicker {
         }
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("OnTriggerEnter2D");
-        // if(other.gameObject.CompareTag("Player")){
-        //     PickupItem();
-        // }
+        if(other.gameObject.CompareTag("Player")){
+            PickupItem();
+        }
     }
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;

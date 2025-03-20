@@ -44,14 +44,12 @@ public class PlayerState : State
         
     }
     protected void ChangeAttack( PlayerAttackState Skill){
-        Debug.Log( "Change Attack : " + Skill.GetSkill().name);
         if(isAbilityDone == false ) return;
 
         if(Skill.GetSkill().Data == null){
-            Debug.Log("Player haven't weapon");
+            Common.Log("Player haven't weapon");
             return;
         }
-
         stateMachine.ChangeState(Skill);
         player.Anim.setSkill(Skill.GetSkill());
     }

@@ -22,7 +22,7 @@ public class QuestButton : MonoBehaviour, IPointerClickHandler {
     public void SetState(QuestState state){
 
         switch(state){
-            case QuestState.REQUIREMENTS_NOT_MET:
+            case QuestState.HAS_QUEST:
 
             case QuestState.CAN_START:
                 buttonText.color = Color.red;
