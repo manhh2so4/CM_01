@@ -1,14 +1,14 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class QuestButton : MonoBehaviour, IPointerClickHandler {
 
     private TextMeshProUGUI buttonText;
-    private UnityAction onSelectAction;
-    public void Initialize(string displayName, UnityAction selectAction){
+    private Action onSelectAction;
+    public void Initialize(string displayName , Action selectAction){
 
         this.buttonText = this.GetComponentInChildren<TextMeshProUGUI>();
         this.buttonText.text = displayName;
@@ -25,13 +25,14 @@ public class QuestButton : MonoBehaviour, IPointerClickHandler {
             case QuestState.HAS_QUEST:
 
             case QuestState.CAN_START:
-                buttonText.color = Color.red;
+                buttonText.color = Color.blue;
                 break;
 
             case QuestState.IN_PROGRESS:
-
-            case QuestState.CAN_FINISH:
                 buttonText.color = Color.yellow;
+                break;
+            case QuestState.CAN_FINISH:
+                buttonText.color = Color.magenta;
                 break;
 
             case QuestState.FINISHED:

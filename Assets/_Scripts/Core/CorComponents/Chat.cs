@@ -36,10 +36,9 @@ public class Chat : CoreComponent
         }
         Box_chat?.RemoveBoxChat();
         Box_chat = null;
-
-        Box_chat = PoolsContainer.GetObject(PrefabManager.Instance.GetPrefab<Box_Chat>());
-        Box_chat.transform.parent = this.transform;
-        textWriter = Box_chat.Setup( text, action , core.SortingLayerID); 
+        
+        Box_chat = PoolsContainer.GetObject(this.GetPrefab<Box_Chat>(),this.transform);
+        textWriter = Box_chat.Setup( text, action , core.SortingLayerID);
         return true;
     }
     public void RemoveBoxChat(){

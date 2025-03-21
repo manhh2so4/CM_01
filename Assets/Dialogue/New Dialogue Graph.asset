@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Choice Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -200, y: -488}
+  position: {x: -184, y: -328}
   ports:
     keys:
     - Answers
@@ -47,10 +47,7 @@ MonoBehaviour:
       _node: {fileID: -8414989383657184570}
       _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: input
-        node: {fileID: 1554678102500037493}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -86,7 +83,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -456, y: -488}
+  position: {x: -456, y: -264}
   ports:
     keys:
     - exit
@@ -108,10 +105,7 @@ MonoBehaviour:
       _node: {fileID: -8198204890170485188}
       _typeQualifiedName: Empty, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: exit
-        node: {fileID: 2410047469109852605}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
@@ -183,7 +177,7 @@ MonoBehaviour:
   m_Name: Condition Quest
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -888, y: -600}
+  position: {x: -904, y: -504}
   ports:
     keys:
     - input
@@ -241,7 +235,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -1048, y: -600}
+  position: {x: -1048, y: -488}
   ports:
     keys:
     - exit
@@ -401,7 +395,7 @@ MonoBehaviour:
   m_Name: Giver Quest
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 56, y: -488}
+  position: {x: 120, y: -488}
   ports:
     keys:
     - exit
@@ -424,8 +418,8 @@ MonoBehaviour:
       _typeQualifiedName: Empty, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: Answers 0
-        node: {fileID: -8414989383657184570}
+      - fieldName: exit
+        node: {fileID: 2410047469109852605}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -433,6 +427,8 @@ MonoBehaviour:
       _dynamic: 0
   QuestInfos:
   - {fileID: 11400000, guid: 998ad5e93c373d64bbe7c49d1a7a16db, type: 2}
+  - {fileID: 11400000, guid: 911e9380bf790f44ebeaccd34a9b3bd6, type: 2}
+  - {fileID: 11400000, guid: b02735fd534704f4ea797c65313c621b, type: 2}
 --- !u!114 &2410047469109852605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +454,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: -8198204890170485188}
+        node: {fileID: 1554678102500037493}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -491,7 +487,7 @@ MonoBehaviour:
   m_Name: Condition Quest
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -408, y: -680}
+  position: {x: -440, y: -648}
   ports:
     keys:
     - pass
@@ -687,7 +683,7 @@ MonoBehaviour:
   m_Name: Condition Quest
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -696, y: -712}
+  position: {x: -664, y: -712}
   ports:
     keys:
     - pass

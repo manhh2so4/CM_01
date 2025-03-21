@@ -19,9 +19,11 @@ public class NodeParser : MonoBehaviour{
         {
             Destroy(this);
         }
+        dialogueALL.SetActive(true);
+        dialogueALL.SetActive(false);
     }
 
-    DialogueGraph graph; 
+    [SerializeField] DialogueGraph graph; 
     [SerializeField] bool canNextNode = true;
     #region UI_Elemnents
     [Header("____ UI Elements ____")]
@@ -48,10 +50,11 @@ public class NodeParser : MonoBehaviour{
         graph = _graph;
         dialogueTrigger = npc;
         chatNPC = npc.chat;
-        
         graph.Start();
+        
         ParseNode();
-          
+        
+        
     }
     void Start()
     {
@@ -68,19 +71,24 @@ public class NodeParser : MonoBehaviour{
             ResetUI();
             ParseNode();
         }else{
-            Debug.LogError("ERROR: ChoiceDialogue port is not connected");
+            Common.LogError("ERROR: ChoiceDialogue port is not connected");
         }
     }
     void ParseNode(){
         switch(graph.current.GetNodeType()){
 
             case NodeType.StartNode:
-                dialogueALL.SetActive(true);  
+
+                
+                dialogueALL.SetActive(true);
+
+                
                 NextNode();
+                
+                
                 break;
 
             case NodeType.ChoiceDialogueNode:
-
                 ChoiceDialogueNode node = (ChoiceDialogueNode)graph.current;
                 ShowChoices(false);
                 canNextNode = false;
@@ -101,17 +109,20 @@ public class NodeParser : MonoBehaviour{
 
                 DialogueNode dialogueNode = (DialogueNode)graph.current;
                 ShowChoices(false);
-
                 canNextNode = false;
 
-                GetChat( dialogueNode.speaker ).SetUpChat( dialogueNode.DialogueText ,()=>{
+                GetChat(dialogueNode.speaker).SetUpChat( dialogueNode.DialogueText ,()=>{
 
                     canNextNode = true;
                     Invoke("NextNode", 1f);
 
                 }); 
+
+
                 speaker.text = GetChat(dialogueNode.speaker).NameChat;
                 dialogue.text = dialogueNode.DialogueText;
+                
+                
                 
                 break;
             case NodeType.EventNode:
@@ -125,23 +136,26 @@ public class NodeParser : MonoBehaviour{
 
                     this.GameEvents().questEvent.AddQuestToMap(questInfo);
                 }
+
                 NextNode();
                 break;
             case NodeType.ConditionQuestNode:
-                
+            
                 BaseNode baseNode = ((ConditionQuestNode)graph.current).Trigger();
-                NextNode(baseNode);
 
+                NextNode(baseNode);
                 break;
+
             case NodeType.ExitNode:
 
                 dialogueALL.SetActive(false);
-                ResetUI();
-                graph.Start(); 
+                graph.Start();
+
                 dialogueTrigger.isTalking = false;
                 dialogueTrigger = null;
                 chatNPC = null;
                 graph = null;
+
                 break;
 
         }
@@ -191,20 +205,24 @@ public class NodeParser : MonoBehaviour{
     }
     void NextNode(){
 
-
+         
         if( canNextNode == false ){
             ParseNode();
             return;
         }
+
         ResetUI();
+
         NodePort exitPort = graph.current.GetOutputPort("exit");
+
         if (exitPort.IsConnected){
 
             graph.current = exitPort.Connection.node as BaseNode;
 
         }else{
-            Debug.LogError("ERROR: No exit port connected");
+            Common.LogError("ERROR: No exit port connected");
         }
+
         ParseNode();
     }
     void QuitDialogue(){
@@ -219,7 +237,7 @@ public class NodeParser : MonoBehaviour{
         foreach (Transform child in buttonParent){
             Destroy(child.gameObject);
         }
-        chatNPC.RemoveBoxChat();
-        chatPlayer.RemoveBoxChat();
+        chatNPC?.RemoveBoxChat();
+        chatPlayer?.RemoveBoxChat();
     }
 }

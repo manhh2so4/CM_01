@@ -18,7 +18,7 @@ namespace HStrong.Quests
             this.GameEvents().questEvent.onAdvanceQuest += AdvanceQuest;
             this.GameEvents().questEvent.onFinishQuest += FinishQuest;
             this.GameEvents().questEvent.onQuestStepStateChange += QuestStepStateChangre;
-            this.GameEvents().questEvent.onAddQuestToMap += GetQuestToMap;
+            this.GameEvents().questEvent.onAddQuestToMap += AddQuestToMap;
             
         }
         void OnDisable()
@@ -27,7 +27,7 @@ namespace HStrong.Quests
             this.GameEvents().questEvent.onAdvanceQuest -= AdvanceQuest;
             this.GameEvents().questEvent.onFinishQuest -= FinishQuest;
             this.GameEvents().questEvent.onQuestStepStateChange -= QuestStepStateChangre;
-            this.GameEvents().questEvent.onAddQuestToMap -= GetQuestToMap;
+            this.GameEvents().questEvent.onAddQuestToMap -= AddQuestToMap;
         }
 
         void Start()
@@ -130,14 +130,14 @@ namespace HStrong.Quests
             Common.Log("Claiming rewards for quest " + quest.info.displayName);
         }
 
-        void QuestStepStateChangre(string id,int stepIndex,QuestStepState questStepState){
+        void QuestStepStateChangre(string id, int stepIndex, QuestStepState questStepState){
             Quest quest = GetQuestById(id);
             quest.StoreQuestStepState(questStepState, stepIndex);
             ChangeQuestState(id, quest.state);
         }
     #endregion
     #region Setup QuestMap
-        public void GetQuestToMap(QuestInfoSO questInfoSO){
+        public void AddQuestToMap(QuestInfoSO questInfoSO){
 
             if(questMap.ContainsKey(questInfoSO.id)) {
                 Common.LogWarning("Quest with id " + questInfoSO.id + " already exists in quest map");
@@ -145,7 +145,8 @@ namespace HStrong.Quests
             }
 
             questMap.Add(questInfoSO.id, LoadQuest(questInfoSO));
-            this.GameEvents().questEvent.QuestStateChange( questMap[questInfoSO.id] );
+            
+            this.GameEvents().questEvent.QuestStateChange(questMap[questInfoSO.id]);
             mQuestView.Add( questMap[questInfoSO.id] );
             //Common.Log("Quest with id " + questInfoSO.id + " added to quest map");
         }

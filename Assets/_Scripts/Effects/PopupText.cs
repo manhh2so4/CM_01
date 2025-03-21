@@ -29,7 +29,9 @@ public class PopupText : MonoBehaviour,IPrefab,IObjectPoolItem {
         textMesh.color = textColor;
         
         textMesh.sortingOrder = 1;
-        moveVector = new Vector3(0.5f,.3f) * 6;
+        float randomX = Random.Range(-.6f, 0.6f);
+        float randomY = Random.Range(.2f, 0.4f);
+        moveVector = new Vector3(randomX,.3f) * 6;
         moveVector.x *= -dir;
 
     }
@@ -91,5 +93,5 @@ public class PopupText : MonoBehaviour,IPrefab,IObjectPoolItem {
         {
             objectPool = null;
         }
-        #endregion
+    #endregion
 }

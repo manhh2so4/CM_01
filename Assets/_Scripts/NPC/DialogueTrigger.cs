@@ -12,16 +12,13 @@ public class DialogueTrigger : MonoBehaviour,IClicker
     }
     public void OnClick()
     {   
-        
+       
         if ( isTalking ) return;
         if (dialogue == null) return;
         isTalking = true;
-
-
+        
         NodeParser.instance.StartDialogue(this,dialogue);
         
-        
-
     }
 
     public string GetName()

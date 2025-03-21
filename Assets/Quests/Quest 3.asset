@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: Nhiem vu 3
   describle: "\u0111\xE2y l\xE0 nhi\u1EC7m v\u1EE5 nh\u1EB7t coin r\u1EA5t quan tr\u1ECDng
     c\u1EA7n ph\u1EA3i s\u1EED l\xFD ngay\n"
+  state: 0
   levelRequirement: 1
   questPrerequisites: []
   goldReward: 50

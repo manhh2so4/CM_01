@@ -17,12 +17,28 @@ namespace HStrong.Quests{
             if (coinsCollected < data.coinsToComplete)
             {
                 coinsCollected++;
+                UpdateState();
             }
 
             if (coinsCollected >= data.coinsToComplete)
             {
                 FinishQuestStep();
             }
+        }
+        private void UpdateState(){
+            questStepState.status = coinsCollected + "/" + data.coinsToComplete;
+            questStepState.state = coinsCollected >= data.coinsToComplete ? QuestStepStatus.COMPLETED : QuestStepStatus.IN_PROGRESS;
+            ChangeState(questStepState);
+        }
+
+        protected override void SetQuestStepState( QuestStepState state ){
+            if(state.status != ""){
+                this.coinsCollected = int.Parse(state.status.Split('/')[0]);
+            }else{
+                this.coinsCollected = 0;
+            }
+            
+            UpdateState();
         }
 
     }

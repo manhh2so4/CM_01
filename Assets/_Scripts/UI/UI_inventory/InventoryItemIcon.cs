@@ -12,7 +12,7 @@ public class InventoryItemIcon : MonoBehaviour
     {
         SetItem(item, 0);
     }
-    public void SetItem(InventoryItemSO item,int number){
+    public void SetItem(InventoryItemSO item, int number){
         var iconImage = GetComponent<Image>();
         if (item == null)
         {

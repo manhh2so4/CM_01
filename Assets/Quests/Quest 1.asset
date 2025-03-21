@@ -28,6 +28,7 @@ MonoBehaviour:
     count: 200
   ComponentData:
   - rid: 607104471093739526
+  - rid: 607104599849959425
   references:
     version: 2
     RefIds:
@@ -36,4 +37,10 @@ MonoBehaviour:
       data:
         name: CollectCoinData
         __description__: Collect Coint
-        coinsToComplete: 4
+        coinsToComplete: 5
+    - rid: 607104599849959425
+      type: {class: CollectCoinData, ns: HStrong.Quests, asm: Assembly-CSharp}
+      data:
+        name: CollectCoinData
+        __description__: Collect Coint Lan 2
+        coinsToComplete: 6

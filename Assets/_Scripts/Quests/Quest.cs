@@ -8,10 +8,12 @@ namespace HStrong.Quests
         
         public QuestInfoSO info;
         public QuestState state;
-
         private int currentQuestStepIndex;
-        private QuestStepState[] questStepStates;
-        private Q_StepData[] questSteps;
+        [SerializeField] QuestStepState[] questStepStates;
+        Q_StepData[] questSteps;
+        public QuestStepState[] GetQuestStepStates() => questStepStates; 
+        public Q_StepData[] GetQ_StepData() => questSteps;
+        // Constructor for creating a new quest
         public Quest(QuestInfoSO questInfo)
         {
             this.info = questInfo;
@@ -22,10 +24,10 @@ namespace HStrong.Quests
             this.questStepStates = new QuestStepState[questSteps.Length];
             for (int i = 0; i < questStepStates.Length; i++)
             {
-                questStepStates[i] = new QuestStepState();
+                questStepStates[i] = new QuestStepState("", QuestStepStatus.NOT_STARTED);
             }
         }
-
+        // Constructor for loading a quest from saved data
         public Quest(QuestInfoSO questInfo, QuestState questState, int _currentQuestStepIndex, QuestStepState[] _questStepStates)
         {
             this.info = questInfo;
@@ -56,24 +58,25 @@ namespace HStrong.Quests
                 + "there's no current step: QuestId=" + info.id + ", stepIndex=" + currentQuestStepIndex);
                 return;
             }
-
             var dependency = questSteps[currentQuestStepIndex].ComponentDependency;
             var q_StepComponent = new GameObject(info.id +" Step " + currentQuestStepIndex).AddComponent(dependency) as Q_StepComponents;
             q_StepComponent.transform.SetParent(parent);
-            q_StepComponent.Init(questSteps[currentQuestStepIndex], info.id);
+            q_StepComponent.Init( questSteps[currentQuestStepIndex], info.id, currentQuestStepIndex , questStepStates[currentQuestStepIndex] );
 
         }
 
         public void StoreQuestStepState(QuestStepState questStepState, int stepIndex)
         {
-            if(stepIndex < questStepStates.Length)
-            {
-                questStepStates[stepIndex].state = questStepState.state;
+            if(stepIndex < questStepStates.Length){
+
+                questStepStates[stepIndex] = questStepState;
+
             }else{
                 Common.LogWarning("Tried to access quest step data, but stepIndex was out of range: "
                 + "Quest Id = " + info.id + ", Step Index = " + stepIndex);
             }
         }
+
         public QuestData GetQuestData(){
             return new QuestData( state, currentQuestStepIndex, questStepStates);
         }

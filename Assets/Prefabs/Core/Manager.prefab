@@ -88,6 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88df7d9c47cc1d34286205679ab9b721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 1786286862401806774, guid: e05abce3474f32d47aed2d1df8da5b8e, type: 3}
+  - {fileID: 8693903615449789782, guid: cedb96357932ba74d80e6276e3e4f531, type: 3}
 --- !u!1 &5203619928263602566
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,13 +182,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee5c58dbdef21b4b9e0b81dcfcdbf71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadQuestState: 0
-  questALL:
-  - {fileID: 11400000, guid: 2610f51d570a70d4da4c1f9fc4578d61, type: 2}
-  - {fileID: 11400000, guid: 998ad5e93c373d64bbe7c49d1a7a16db, type: 2}
-  - {fileID: 11400000, guid: 911e9380bf790f44ebeaccd34a9b3bd6, type: 2}
-  - {fileID: 11400000, guid: b02735fd534704f4ea797c65313c621b, type: 2}
-  - {fileID: 11400000, guid: b14357d54073d3843a023a733ccf740e, type: 2}
-  mQuest:
-    info: {fileID: 0}
-    state: 0
+  mQuestView: []

@@ -26,7 +26,7 @@ public class Box_Chat : MonoBehaviour, IObjectPoolItem,IPrefab
         bottom = transform.Find("Bottom").GetComponent<SpriteRenderer>();
         textMeshPro = transform.Find("Text").GetComponent<TextMeshPro>();
     }
-    public TextWriterSingle Setup(string text, Action OnComplete, int _SortingLayerID){
+    public TextWriterSingle Setup( string text, Action OnComplete = null, int _SortingLayerID = 0 ){
 
         bgBox.sortingLayerID = _SortingLayerID;
         bottom.sortingLayerID = _SortingLayerID;
@@ -34,14 +34,14 @@ public class Box_Chat : MonoBehaviour, IObjectPoolItem,IPrefab
         
         startPosition = Vector3.zero;
         textMeshPro.text = text;
+
         textMeshPro.ForceMeshUpdate();
+    
         Vector2 textSize = textMeshPro.GetRenderedValues(false);
         bgBox.size = textSize + new Vector2(0.6f,0.3f);
-
         textWriter = TextWriter.AddWriter_Static(textMeshPro, text, .03f, true, true, OnComplete );
-        return textWriter;
 
-        
+        return textWriter;
     }
 
     void Update()
@@ -83,6 +83,5 @@ public class Box_Chat : MonoBehaviour, IObjectPoolItem,IPrefab
     {
         objectPool = null;
     }
-
 
 }
