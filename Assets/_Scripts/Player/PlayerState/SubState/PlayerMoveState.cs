@@ -19,17 +19,17 @@ public class PlayerMoveState : PlayerGroundedState
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
+        if(isExitingState) return;
+        
         movement.SetVelocityX(playerData.movementSpeed * inputX);
         movement.CheckIfShouldFlip(inputX);
         if (!isExitingState)
         {
-            if( Mathf.Abs(movement.CurrentVelocity.x) < .5f && inputX == 0){
+            if( Mathf.Abs(movement.Velocity.x) < .5f && inputX == 0){
                 stateMachine.ChangeState(player.idleState);
             }
         }
     }
-    public override void PhysicsUpdate(){
-        base.PhysicsUpdate();
-    }
+
     
 }

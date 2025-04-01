@@ -11,11 +11,8 @@ public abstract class CoreReceiver : CoreComponent {
 
         base.Awake();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-        BoxCollider2D boxCollider = core.transform.parent.GetComponent<BoxCollider2D>();
-        if(boxCollider != null){
-            capsuleCollider.size = boxCollider.size;
-            capsuleCollider.offset = boxCollider.offset;
-        }
+        
+        
         characterStats = core.GetCoreComponent<CharacterStats>();
         particleManager = core.GetCoreComponent<ParticleManager>();
 
@@ -25,10 +22,15 @@ public abstract class CoreReceiver : CoreComponent {
         Top.Set(0,core.height,0);
         Center.Set(0,core.height/2,0);
         Bottom.Set(0,0,0);
+        BoxCollider2D boxCollider = core.transform.parent.GetComponent<BoxCollider2D>();
+        if(boxCollider != null){
+            capsuleCollider.size = new Vector2(boxCollider.size.x, core.height);
+            capsuleCollider.offset = new Vector2(boxCollider.offset.x, core.height/2);
+        }
 
     }
-    protected virtual Vector3 SetPosEff(GameObject PrefabEff){       
-        switch( PrefabEff.GetComponent<Effect_Instance>().posEff )
+    protected virtual Vector3 SetPosEff(Effect_Instance PrefabEff){       
+        switch( PrefabEff.posEff )
         {
             case PosEff.Head:
             return  Top;
@@ -38,7 +40,7 @@ public abstract class CoreReceiver : CoreComponent {
 
             case PosEff.Foot:
             return Bottom;
-
+            
             default:
             return Vector3.zero;
         }

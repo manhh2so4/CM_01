@@ -6,4 +6,5 @@ public class HitBoxData : ComponentData
     {
         ComponentDependency = typeof(WeaponHitBox);
     }
+    
 }

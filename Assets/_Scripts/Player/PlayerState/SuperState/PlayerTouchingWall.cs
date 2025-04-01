@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerTouchingWall : PlayerState
 {   
-    protected bool isGrounded;
     protected bool isWall;
     protected int inputX;
     protected bool jumpInput;
@@ -13,8 +12,7 @@ public class PlayerTouchingWall : PlayerState
     }
     public override void DoCheck(){
         base.DoCheck();
-        isGrounded = collisionSenses.isGround;
-        isWall = collisionSenses.isWall;
+        isWall = movement.isWall();
     }
     public override void Enter(){
         base.Enter();
@@ -24,19 +22,23 @@ public class PlayerTouchingWall : PlayerState
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
+        if(isExitingState) return;
+        
         inputX = player.inputPlayer.MoveInput;
         jumpInput = player.inputPlayer.jumpInput;
         if(jumpInput){
+
             player.wallJumpState.DetermineWallJumpDir(isWall);
             stateMachine.ChangeState(player.wallJumpState);
-        }else
-        if(isGrounded){
+
+        }else if(isGrounded){
+
             stateMachine.ChangeState(player.idleState);
-        }else if(!isWall || inputX != movement.facingDirection){
+
+        }else if( inputX != movement.facingDirection){
+
             stateMachine.ChangeState(player.airState);
+
         }
-    }
-    public override void PhysicsUpdate(){
-        base.PhysicsUpdate();
     }
 }

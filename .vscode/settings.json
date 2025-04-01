@@ -1,94 +1,56 @@
 {
-    "window.zoomLevel": 0,
     "dotnet.preferCSharpExtension": true,
     "dotnet.defaultSolution": "CM_01.sln",
-    "vstuc.refreshOnSave": true,
-    "material-icon-theme.folders.customClones": [
-        {
-            "name": "Quests-tasks",
-            "base": "tasks",
-            "color": "#ffcc00",
-            "folderNames": ["Quests"],
-            "rootFolderNames": ["users"]
-        },
-        {
-            "name": "Projectiles-Azure-pipelines",
-            "base": "azure-pipelines",
-            "color": "blue-400",
-            "folderNames": ["Projectiles"],
-            "rootFolderNames": ["users"]
-        },
-        {
-            "name": "Enemy",
-            "base": "robot",
-            "color": "red-400",
-            "folderNames": ["Enemy"],
-            "rootFolderNames": ["users"]
-        },
-        {
-            "name": "Player",
-            "base": "admin",
-            "color": "teal-400",
-            "folderNames": ["Player"],
-            "rootFolderNames": ["users"]
-        },
-        {
-            "name": "mySystem",
-            "base": "controller",
-            "color": "purple-400",
-            "folderNames": ["mySystem"],
-            "rootFolderNames": ["users"]
-        },
-        {
-            "name": "Dialogue",
-            "base": "other",
-            "color": "green-400",
-            "folderNames": ["Dialogue"],
-            "rootFolderNames": ["users"]
-        },
-        {
-            "name": "NPC",
-            "base": "job",
-            "color": "orange-400",
-            "folderNames": ["NPC"],
-            "rootFolderNames": ["users"]
-        },
-        {
-            "name": "Object",
-            "base": "sandbox",
-            "color": "green-400",
-            "folderNames": ["Object"],
-            "rootFolderNames": ["users"]
-        },
-        {
-            "name": "Item_and_Inventory",
-            "base": "mjml",
-            "color": "purple-400",
-            "folderNames": ["Item_and_Inventory"],
-            "rootFolderNames": ["users"]
-        },
-        {
-            "name": "Weapons",
-            "base": "snippet",
-            "color": "red-400",
-            "folderNames": ["Weapons"],
-            "rootFolderNames": ["users"]
-        },
-        {
-            "name": "Effects",
-            "base": "mojo",
-            "color": "blue-400",
-            "folderNames": ["Effects"],
-            "rootFolderNames": ["users"]
-        },
-
-    ],
-    "material-icon-theme.files.customClones":[
-			{
-				"name": "csharp",
-				"base": "csharp",
-				"color": "green-800"
-			},
-	]
-      
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.gitmodules": true,
+        "**/*.booproj": true,
+        "**/*.pidb": true,
+        "**/*.suo": true,
+        "**/*.user": true,
+        "**/*.userprefs": true,
+        "**/*.unityproj": true,
+        "**/*.dll": true,
+        "**/*.exe": true,
+        "**/*.pdf": true,
+        "**/*.mid": true,
+        "**/*.midi": true,
+        "**/*.wav": true,
+        "**/*.gif": true,
+        "**/*.ico": true,
+        "**/*.jpg": true,
+        "**/*.jpeg": true,
+        "**/*.png": true,
+        "**/*.psd": true,
+        "**/*.tga": true,
+        "**/*.tif": true,
+        "**/*.tiff": true,
+        "**/*.3ds": true,
+        "**/*.3DS": true,
+        "**/*.fbx": true,
+        "**/*.FBX": true,
+        "**/*.lxo": true,
+        "**/*.LXO": true,
+        "**/*.ma": true,
+        "**/*.MA": true,
+        "**/*.obj": true,
+        "**/*.OBJ": true,
+        "**/*.asset": true,
+        "**/*.cubemap": true,
+        "**/*.flare": true,
+        "**/*.mat": true,
+        "**/*.meta": true,
+        "**/*.prefab": true,
+        "**/*.unity": true,
+        "build/": true,
+        "Build/": true,
+        "Library/": true,
+        "library/": true,
+        "obj/": true,
+        "Obj/": true,
+        "ProjectSettings/": true,
+        "temp/": true,
+        "Temp/": true
+    },
 }

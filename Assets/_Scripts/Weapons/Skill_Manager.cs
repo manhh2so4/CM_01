@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 public class Skill_Manager : MonoBehaviour {
@@ -8,14 +9,18 @@ public class Skill_Manager : MonoBehaviour {
     public WeaponSkill[] weaponSkills;
     private void Awake() {
         playerEquipment = GetComponent<Equipment>();
+        
         Skill_1 = transform.Find("Skill_1").GetComponent<WeaponGenerator>();
         Skill_2 = transform.Find("Skill_2").GetComponent<WeaponGenerator>();
         Skill_3 = transform.Find("Skill_3").GetComponent<WeaponGenerator>();
+
     }
     
     void UpdateSkillWeapon(WeaponGenerator Skill_slot,int index)
     {
-        WeaponItemSO weapon = playerEquipment.GetItemInSlot(EquipLocation.Vukhi) as WeaponItemSO;
+        if(Skill_slot.gameObject.activeSelf == false) return;
+
+        WeaponItemSO weapon = playerEquipment.GetItemInSlot(EquipType.Vukhi) as WeaponItemSO;
         
         if(weapon != null) {
             for (int i = 0; i < weaponSkills.Length; i++)
@@ -30,11 +35,11 @@ public class Skill_Manager : MonoBehaviour {
         }
     }
 
-    void UpdateTypeEquip(EquipLocation typeEquip)
+    void UpdateTypeEquip(EquipType typeEquip)
     {
         switch (typeEquip)
         {
-            case EquipLocation.Vukhi:
+            case EquipType.Vukhi:
                 UpdateSkillWeapon(Skill_1,0);
                 UpdateSkillWeapon(Skill_2,2);
                 UpdateSkillWeapon(Skill_3,4);
@@ -49,12 +54,23 @@ public class Skill_Manager : MonoBehaviour {
 	private void OnDisable() {
 		playerEquipment.OnTypeEquipUpdate -= UpdateTypeEquip;
 	}
+    [Button]
+    void SetName(){
+        foreach (var item in weaponSkills){
+            item.SetName();
+        }
+    }
 
 
 }
 [System.Serializable]
 public struct WeaponSkill
 {   
+    string name;
     public WeaponType weaponType;
+
     public SkillData_SO[] skillData;
+    public void SetName(){
+        name = weaponType.ToString();
+    }
 }

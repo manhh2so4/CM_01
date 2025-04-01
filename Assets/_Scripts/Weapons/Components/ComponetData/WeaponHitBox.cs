@@ -5,16 +5,14 @@ using UnityEngine;
 
 public class WeaponHitBox : WeaponComponents<HitBoxData>{
 
-    public Action<Collider2D> Action;
+    public event Action<Collider2D> Action;
     Vector2 mSize,mOffset;
-    WeaponSprite weaponSprite;
+    [SerializeField] WeaponSprite weaponSprite;
     [SerializeField] int maxObjDetected = 3;
     [field : SerializeField] List<Collider2D> objDetected = new List<Collider2D>();
     public void OnHitBox(){
 
     }
-
-
     public void OffHitBox(){
         mSize = Vector2.zero;
         mOffset = Vector2.zero;
@@ -56,9 +54,6 @@ public class WeaponHitBox : WeaponComponents<HitBoxData>{
         }
 
     }
-    
-
-
     protected override void HandleEnter()
     {
         base.HandleEnter();
@@ -73,19 +68,20 @@ public class WeaponHitBox : WeaponComponents<HitBoxData>{
     protected override void SubscribeHandlers()
     {
         base.SubscribeHandlers();
-        results = new Collider2D[maxObjDetected+1];
-
-        OffHitBox();
         weaponSprite = GetComponent<WeaponSprite>();
+        results = new Collider2D[maxObjDetected+1];
+        OffHitBox();
+
         weaponSprite.setRange += RangeHitBox;
     }
-    protected override void OnDisable()
+
+    public override void Refest()
     { 
-        base.OnDisable();
+        base.Refest();
         weaponSprite.setRange -= RangeHitBox;
     }
-     public void OnDrawGizmos(){
+    public void OnDrawGizmos(){
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube((Vector2)transform.position + center, mSize);
-     }
+    }
 }

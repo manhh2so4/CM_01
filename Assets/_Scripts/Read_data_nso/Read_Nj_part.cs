@@ -8,15 +8,9 @@ public class Read_Nj_part
     public TextAsset textJson;
     private  JsonData data;
     private static Read_Nj_part _instance;
-    private static readonly object _lock = new object();
     private Read_Nj_part()
     {
         LoadData();
-        Debug.Log("creat! Nj_part");
-        Debug.Log("nj_Parts_Head! " + nj_Parts_Head.Count);
-        Debug.Log("nj_Parts_Leg! " + nj_Parts_Leg.Count);
-        Debug.Log("nj_Parts_Body! " + nj_Parts_Body.Count);
-        Debug.Log("nj_Parts_Wp! " + nj_Parts_Wp.Count);
     }
     public static Read_Nj_part Instance
     {
@@ -24,32 +18,23 @@ public class Read_Nj_part
         {
             if (_instance == null)
             {
-                lock (_lock)
-                {
-                    if (_instance == null)
-                    {
-                        _instance = new Read_Nj_part();
-                        
-                    }
-                }
-
+                _instance = new Read_Nj_part();
             }
             return _instance;
         }
     }
 
-    [SerializeField] public List<nj_Part> nj_Parts_Head = new List<nj_Part>();
-    [SerializeField] public List<nj_Part> nj_Parts_Leg = new List<nj_Part>();
-    [SerializeField] public List<nj_Part> nj_Parts_Body = new List<nj_Part>();
-    [SerializeField] public List<nj_Part> nj_Parts_Wp = new List<nj_Part>();
-
+    public List<nj_Part> nj_Parts_Head = new List<nj_Part>();
+    public List<nj_Part> nj_Parts_Leg = new List<nj_Part>();
+    public List<nj_Part> nj_Parts_Body = new List<nj_Part>();
+    public List<nj_Part> nj_Parts_Wp = new List<nj_Part>();
     
     void LoadData(){
+
         textJson = Resources.Load<TextAsset>("nj_part");
         data = JsonMapper.ToObject(textJson.ToString());
-
         Debug.Log(data.Count);
-        
+
         for (int i = 0; i < data.Count ; i++)
         {   
             nj_Part PartTemp = new nj_Part();
@@ -78,8 +63,8 @@ public class Read_Nj_part
     }
 
     nj_Part Readpart(string _data){
-        JsonData data2 = GetItem(_data);
 
+        JsonData data2 = GetItem(_data);
         nj_Part PartTemp = new nj_Part();
 
         PartTemp.imageIDs = new ImageID[data2.Count];

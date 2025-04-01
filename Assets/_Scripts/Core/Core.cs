@@ -9,12 +9,10 @@ public class Core : MonoBehaviour
     [SerializeField] private List<CoreComponent> CoreComponents = new List<CoreComponent>();
 	[SortingLayer]
 	public int SortingLayerID = 0;
-	public int size = 1;
+	public int uniqueID;
+	public bool isActive = true;
+	public Vector2 size = new Vector2(1,1);
 	public float height;
-    private void Awake()
-    {
-
-    }
     public void LogicUpdate() {
 		foreach (CoreComponent component in CoreComponents) {
 			component.LogicUpdate();

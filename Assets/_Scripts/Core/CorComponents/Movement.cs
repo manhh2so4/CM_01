@@ -8,7 +8,7 @@ public class Movement : CoreComponent
     [SerializeField] mPhysic2D mController2D;
     [SerializeField] public int facingDirection { get; private set; }
     [SerializeField] public bool CanSetVelocity;
-    [SerializeField] public Vector2 CurrentVelocity;
+    [SerializeField] public Vector2 Velocity;
     private Vector2 workspace;
 
     protected override void Awake()
@@ -21,7 +21,7 @@ public class Movement : CoreComponent
 
     public override void LogicUpdate()
     {
-        CurrentVelocity = mController2D.Velocity;
+        Velocity = mController2D.Velocity;
     }
 
     #region Set Functions
@@ -99,11 +99,20 @@ public class Movement : CoreComponent
         return mController2D.collisionInfor.below;
     }
     public bool isWall(){
-        return mController2D.collisionInfor.left || mController2D.collisionInfor.right;
+        return (mController2D.collisionInfor.left && facingDirection == -1)
+                || (mController2D.collisionInfor.right && facingDirection == 1);
+    }
+    public bool isVXzero(){
+        return Mathf.Abs(Velocity.x) < 0.01f;
+    }
+    public bool isVYzero(){
+        return Mathf.Abs(Velocity.y) < 0.01f;
     }
     public void IsColision(bool isColision){
         mController2D.isColision = isColision;
     }
+    public void SetDrag(float dragForce){
+        mController2D.dragForce = dragForce;
+    }
     #endregion
-
 }

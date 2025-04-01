@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlatformController2D : RaycastController {
+public class PlatformController2D : RaycastPhysic2D {
 
 	public LayerMask passengerMask;
 	public Vector2 move;

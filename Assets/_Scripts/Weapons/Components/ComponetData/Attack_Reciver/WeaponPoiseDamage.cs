@@ -16,9 +16,9 @@ public class WeaponPoiseDamage : WeaponComponents<PoiseDamageData> {
         HitBox = GetComponent<WeaponHitBox>();
         HitBox.Action += PoiseTrigger2D;        
     }
-    protected override void OnDisable()
+    public override void Refest()
     {
-        base.OnDisable();
+        base.Refest();
         HitBox.Action -= PoiseTrigger2D;
     }
 }

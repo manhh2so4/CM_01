@@ -10,19 +10,16 @@ public class PlayerAirState : PlayerState
     bool dashInput;
     private int inputX;
     //Check
-    bool isGrounded;
     bool isWall;
-    bool isWallBack;
     public bool isFall = true;
     public PlayerAirState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
     {
 
     }
+    
     public override void DoCheck(){
         base.DoCheck();
-        isGrounded = collisionSenses.isGround;
-        isWall = collisionSenses.isWall;
-        isWallBack = collisionSenses.isGround;
+        isWall = movement.isWall();
     }
     public override void Enter(){
         movement.SetVelocityX(0);
@@ -34,6 +31,8 @@ public class PlayerAirState : PlayerState
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
+        if(isExitingState) return;
+        
         inputX = player.inputPlayer.MoveInput;
         jumpInput = player.inputPlayer.jumpInput;
         dashInput = player.inputPlayer.dashInput;
@@ -53,7 +52,7 @@ public class PlayerAirState : PlayerState
             movement.SetVelocityY(4); 
             ChangeAttack(player.Attack_3);
 
-        }else if(isGrounded && movement.CurrentVelocity.y < 1f){
+        }else if(isGrounded && movement.Velocity.y < 1f){
 
             isFall = true;           
             stateMachine.ChangeState(player.idleState); 
@@ -64,7 +63,7 @@ public class PlayerAirState : PlayerState
             stateMachine.ChangeState(player.jumpState);
 
         
-        }else if(isWall && inputX == movement.facingDirection && !isExitingState && (movement.CurrentVelocity.y < 0) ){
+        }else if( ( isWall && inputX == movement.facingDirection ) && !isExitingState && (movement.Velocity.y < 0) ){
 
             isFall = true; 
             stateMachine.ChangeState(player.wallSlideState);
@@ -76,19 +75,16 @@ public class PlayerAirState : PlayerState
         else if(isFall){
             CheckDir();
             player.Anim.state = mState.InAir;
-            player.Anim.stagejump = movement.CurrentVelocity.y;
+            player.Anim.stagejump = movement.Velocity.y;
         }
         else if( player.Anim.state == mState.JumpMin ){
             CheckDir();
-            player.Anim.stagejump = movement.CurrentVelocity.y; 
+            player.Anim.stagejump = movement.Velocity.y; 
         }
         else{
             CheckDir();
-            player.Anim.stagejump = movement.CurrentVelocity.y;         
+            player.Anim.stagejump = movement.Velocity.y;         
         }
-    }
-    public override void PhysicsUpdate(){
-        base.PhysicsUpdate();
     }
     private void CheckDir(){
         movement.CheckIfShouldFlip(inputX);

@@ -9,40 +9,47 @@ public class E_DeadState : E_State
     }
 	public override void Enter() {
 		base.Enter();
-		enemy.state = StateEnemy.Dead;
 		stateMachine.canChange = false;
-		enemy.mCollider.enabled = false;
-        enemy.mRB.Gravity = (2*-9.8f);
-		core.gameObject.SetActive(false);
+      enemy.mPhysic2D.Gravity = (2* -9.8f);
+		enemy.CharStats.gameObject.SetActive(false);
+		enemy.knockBackReceiver.gameObject.SetActive(false);
 
-		movement.SetVelocity(-movement.facingDirection,10f);
+		movement.SetVelocity(-movement.facingDirection*3,7f);
 		movement.IsColision(false);
-		movement.CanSetVelocity = false;
-		//itemDrop.GenerateDrop();
+		//movement.CanSetVelocity = false;
+
+		itemDrop.GenerateDrop();
+		
 		enemy.Paint(2);
 	}
 	public override void LogicUpdate() {
-		if (Time.time >= startTime + 5f){
+		base.LogicUpdate();
+		if(isExitingState) return;
+		if(YDirPos > 30f){
+			movement.SetVelocityZero();
+		}
+		if (Time.time >= startTime + enemyData.timeReSpont){
 			stateMachine.canChange = true;
 			stateMachine.ChangeState(enemy.idleState);
+			return;
 		}
 	}
 	public override void Exit() {
 		base.Exit();
 
-		movement.CanSetVelocity = true;
+		//movement.CanSetVelocity = true;
 		movement.IsColision(true);
 		movement.SetVelocityZero();
 
-        enemy.mCollider.enabled = true;  
-		core.gameObject.SetActive(true);     
+		enemy.CharStats.gameObject.SetActive(true);  
+		enemy.knockBackReceiver.gameObject.SetActive(true);
 		enemy.transform.position = enemyPos;
 		enemy.CharStats.ResetMaxHealth(); 
 
 		if(enemyData.type == 4 || enemyData.type == 5){
-            enemy.mRB.Gravity = (0);
+            enemy.mPhysic2D.Gravity = (0);
         }else{
-			enemy.mRB.Gravity = (-9.8f *2f);
+			enemy.mPhysic2D.Gravity = (-9.8f *2f);
 		}
 	}
 }

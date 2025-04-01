@@ -1,11 +1,11 @@
 using HStrong.Saving;
 using UnityEngine;
 
-public class PickupSpawner : MonoBehaviour, ISaveable
+public class PickupSpawner : MonoBehaviour
 {
     [SerializeField] InventoryItemSO item = null;
     [SerializeField] int number = 1;
-    private void Awake()
+    private void Start()
     {
         SpawnPickup();
     }
@@ -19,8 +19,7 @@ public class PickupSpawner : MonoBehaviour, ISaveable
     }
     private void SpawnPickup()
     {
-        var pickup = item.SpawnPickup(transform.position, number);
-        //pickup.transform.SetParent(transform);
+        item.SpawnPickup(transform.position, number);
     }
     private void DestroyPickup()
     {
@@ -36,18 +35,19 @@ public class PickupSpawner : MonoBehaviour, ISaveable
 
     public void RestoreState(object state)
     {
-        bool shouldBeCollected = (bool)state;
+        // bool shouldBeCollected = (bool)state;
 
-        if (shouldBeCollected && !isCollected())
-        {
-            DestroyPickup();
-        }
+        // if (shouldBeCollected && !isCollected())
+        // {
+        //     DestroyPickup();
+        // }
 
-        if (!shouldBeCollected && isCollected())
-        {
-            SpawnPickup();
-        }
+        // if (!shouldBeCollected && isCollected())
+        // {
+        //     SpawnPickup();
+        // }
     }
+#if UNITY_EDITOR
     private void OnValidate()
     {
         if(item != null)
@@ -55,4 +55,5 @@ public class PickupSpawner : MonoBehaviour, ISaveable
             gameObject.name = item.GetDisplayName();
         }
     }
+#endif
 }

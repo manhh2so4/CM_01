@@ -9,7 +9,8 @@ public class PlayerWallSlideState : PlayerTouchingWall
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
-        if(!isExitingState)
-            movement.SetVelocityY(-playerData.wallSlideVelocity);
+        if(isExitingState) return;
+        
+        movement.SetVelocityY(-playerData.wallSlideVelocity);
     }
 }

@@ -5,10 +5,8 @@ using HStrong.ProjectileSystem;
 public class E_AttackState : EnemyAbilityState
 {
 	Vector3 posCurrent,targetPosition ;
-	protected Projectile projectile_Scrip;
-	Vector3 dirAttack = new Vector3();
-	int[] attackAnim;
-
+	Projectile projectile_Scrip;
+	int[] attackAnim ;
     public E_AttackState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine)
     {
 
@@ -19,34 +17,37 @@ public class E_AttackState : EnemyAbilityState
 		setAttack();
 		movement.SetVelocityZero();
 		posCurrent = enemy.transform.position;
-		targetPosition.Set( posCurrent.x - movement.facingDirection*0.5f,posCurrent.y,posCurrent.z); 
-		enemy.transform.DOMove( targetPosition, 0.1f/enemyData.speedAtk).SetEase(enemy.ease)
+		targetPosition.Set( posCurrent.x - movement.facingDirection*0.5f ,posCurrent.y, posCurrent.z);
+        enemy.transform.DOMove(targetPosition, 0.1f/ enemyData.speedAtk).SetEase(enemy.ease)
 
 
-            .OnComplete(()=>{
-				dirAttack = enemy.playerCheck.position - enemy.transform.position;
+            .OnComplete((TweenCallback)(()=>{
+				
+                Vector3 dirAttack = (enemy.playerCheck.position + Vector3.up*core.height/2) - enemy.transform.position;
+				Vector2 pos = new Vector2(enemy.transform.position.x, enemy.transform.position.y + core.height/2);
+                projectile_Scrip = PoolsContainer.GetObject(enemy.prefabProjectile, pos);
+                
+                projectile_Scrip.SetProjectile(15 , dirAttack.normalized, enemy.gameObject.tag, stats);
 
-				projectile_Scrip = PoolsContainer.GetObject(enemy.projectile);
-				projectile_Scrip.transform.position = enemy.transform.position;
-				projectile_Scrip.SetProjectile(15 , dirAttack.normalized, enemy.gameObject.tag,stats);
-
-                enemy.transform.DOMove(posCurrent, 0.2f/enemyData.speedAtk).SetEase(enemy.easeEnd)
+                enemy.transform.DOMove(posCurrent, 0.2f/ enemyData.speedAtk).SetEase(enemy.easeEnd)
                 .OnComplete(()=>{;
-                	isAbilityDone = true;
-
+                    isAbilityDone = true;
                 });
-        });
+        }));
 
 	}
 
 	public override void Exit() {
 		base.Exit();
-		
+		cooldowns.Start(enemy.attackState, enemyData.speedAtk);
 	}
 	public override void LogicUpdate() {
 
 		base.LogicUpdate();
+		if(isExitingState) return;
+
 		movement.SetVelocityZero();
+		
 		switch(enemyData.type){			
 			case 0:
 				enemy.Paint(0);
@@ -71,10 +72,6 @@ public class E_AttackState : EnemyAbilityState
 				break;
 
         }        
-	}
-
-	public override void PhysicsUpdate() {
-		base.PhysicsUpdate();
 	}
 	void setAttack(){
 		if( enemyData.textures.Length >= 4){

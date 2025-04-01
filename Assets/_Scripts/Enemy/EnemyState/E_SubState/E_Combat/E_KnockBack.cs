@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class E_KnockBack : E_State
+public class E_KnockBack : EnemyAbilityState
 {
     public E_KnockBack(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine){}
 	public override void Enter() {
 		base.Enter();
-        enemy.state = StateEnemy.Knockback;
         switch(enemyData.type){
             case 0:
 				enemy.Paint(0);
@@ -22,8 +21,9 @@ public class E_KnockBack : E_State
 	}
 	public override void LogicUpdate() {
 		base.LogicUpdate();
-        if (enemy.knockBackReceiver.isKnockBackActive == false){
-			stateMachine.ChangeState(enemy.lookState);
-		}        
+		if(isExitingState) return;
+
+		if(enemy.knockBackReceiver.isKnockBack == false) isAbilityDone = true;
+		
 	}
 }

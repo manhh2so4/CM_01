@@ -21,16 +21,17 @@ public class B_MoveState : BossNormalState
 	}
 	public override void LogicUpdate() {
 		base.LogicUpdate();
+		if(isExitingState) return;
+
         if (Time.time >= startTime + timeChangeState){
 			stateMachine.ChangeState(boss.idleState);
+			return;
 		}
-        if(isWall || !isLedge && isGround) movement.Flip();
-
-        if(isGround) movement?.SetVelocityX(bossData.speed_move * movement.facingDirection);
-	}
-
-	public override void PhysicsUpdate() {
-		base.PhysicsUpdate();
+		// if(boss.playerCheck != null){
+		// 	Debug.Log(" B_MoveState ");
+		// }
+        if( isWall || !isLedge && isGround ) movement.Flip();
+        if( isGround ) movement?.SetVelocityX(bossData.speed_move * movement.facingDirection);
 	}
     private void SetRandomMoveTime() {
 		timeChangeState = Random.Range(boss.minIdleTime, boss.maxIdleTime);

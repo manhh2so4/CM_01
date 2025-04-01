@@ -54,8 +54,8 @@ MonoBehaviour:
   speedAnim: 0.1
   life: 2
   posEff: 1
-  anchor: 1
-  mSPR: {fileID: 2215625782227489812}
+  anchor: 2
+  frameTimer: 0
 --- !u!212 &2215625782227489812
 SpriteRenderer:
   m_ObjectHideFlags: 0

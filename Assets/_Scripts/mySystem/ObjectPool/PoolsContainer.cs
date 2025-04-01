@@ -1,19 +1,7 @@
 using UnityEngine;
 
-public class PoolsContainer : MonoBehaviour {
+public class PoolsContainer : Singleton<PoolsContainer> {
     public ObjectPools objectPools = new ObjectPools();
-    public static PoolsContainer Instance { get; private set; }
-    private void Awake(){
-
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
     void Start()
     {
         Box_Chat box_Chat = GetObject( this.GetPrefab<Box_Chat>(),this.transform );
@@ -25,7 +13,7 @@ public class PoolsContainer : MonoBehaviour {
         return Instance.objectPools.GetObject(prefab, startCount);
     }
 
-    public static T GetObject<T>(T prefab,Transform _parent , int startCount = 1) where T: Component
+    public static T GetObject<T>(T prefab, Transform _parent , int startCount = 1) where T: Component
     {
         T obj = GetObject(prefab, startCount);
         obj.transform.SetParent(_parent);

@@ -5,44 +5,19 @@ namespace HStrong.ProjectileSystem
     public class Projectile_Graphics : ProjectileComponent {
         [SpritePreview]
         [SerializeField] Sprite[] sprites;
-         Pivot anchor;
         [SerializeField] float speedAnim;
-        public float life = 2;
         int FrameCurrent = 0; 
-        float startTime = 0,offsetY = 0;
         SpriteRenderer mSPR;
 
         protected override void Init(){
             base.Init();
             FrameCurrent = 0;
-            frameTimer = 99;
-            startTime = Time.time;
-            Paint();            
+            frameTimer = 99;  
         }
-        private void SetPivot(){
-            float h = sprites[0].rect.height/100;
-            float w = sprites[0].rect.width/100;
-            switch (anchor)
-            {               
-                case Pivot.Top:
-                    offsetY = -h/2;
-                break;
-                case Pivot.Bot:
-                    offsetY = h/2 - 0.02f;
-                break;
-                case Pivot.Center:
-                break;
-            }
-            Vector3 newPosition = new Vector3(0,offsetY,0);
-            this.transform.localPosition += newPosition;
-        }
+        
         protected override void Awake() {
             base.Awake();
             mSPR = GetComponent<SpriteRenderer>();
-        }
-        private void Paint(){ 
-            if(sprites == null) return;
-            mSPR.sprite = sprites[FrameCurrent];          
         }
         #region Play_anim
         private void Update(){
@@ -52,7 +27,7 @@ namespace HStrong.ProjectileSystem
         }
         void PlayEffect(){   
             if(FrameRate(speedAnim)) return;
-            Paint();
+            mSPR.sprite = sprites[FrameCurrent];
             FrameCurrent = ((FrameCurrent + 1)%sprites.Length);
         }
         
@@ -68,3 +43,20 @@ namespace HStrong.ProjectileSystem
         #endregion
     }
 }
+// private void SetPivot(){
+//             float h = sprites[0].rect.height/100;
+//             float w = sprites[0].rect.width/100;
+//             switch (anchor)
+//             {               
+//                 case Pivot.Top:
+//                     offsetY = -h/2;
+//                 break;
+//                 case Pivot.Bot:
+//                     offsetY = h/2 - 0.02f;
+//                 break;
+//                 case Pivot.Center:
+//                 break;
+//             }
+//             Vector3 newPosition = new Vector3(0,offsetY,0);
+//             this.transform.localPosition += newPosition;
+//}

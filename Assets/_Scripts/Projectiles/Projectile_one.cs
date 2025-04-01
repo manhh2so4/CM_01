@@ -12,7 +12,7 @@ public class Projectile_one : projectile_2
         IDamageable damageable;
         if(other.TryGetComponent<IDamageable>(out damageable)) {
             if(other.tag == gameObject.tag) return;
-            stats.DoDamage(damageable.Target(EffecHit));
+            //stats.DoDamage(damageable.Target(EffecHit));
             remove();
         }
     }

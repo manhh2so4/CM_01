@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
+using NaughtyAttributes;
 
 public class Read_anim_skill : MonoBehaviour
 {
     [SerializeField] public Skill[] skillPaints;
     public TextAsset textJson;
     private JsonData data; 
-    public List<Skill> FindFX = new List<Skill>();
+    public List<int> FindFX = new List<int>();
     public int idFxFind = 161;
     
     private void Reset() {
@@ -77,22 +78,16 @@ public class Read_anim_skill : MonoBehaviour
     JsonData GetItem(string data3){
         return JsonMapper.ToObject(data3);
     }
+    [Button]
     void FindIdSkill(){
-        
-        for (int i = 0; i < skillPaints.Length; i++)
+        FindFX.Clear();
+        Skill skillInfo = skillPaints[idFxFind];
+        for (int i = 0; i < skillInfo.skillStand.Length; i++)
         {
-            for (int j = 0; j < skillPaints[i].skillStand.Length; j++)
-            {
-                if(idFxFind == skillPaints[i].skillStand[j].effS0Id){
-                    FindFX.Add(skillPaints[i]);
-                }
-                if(idFxFind == skillPaints[i].skillStand[j].effS1Id){
-                    FindFX.Add(skillPaints[i]);
-                }
-                if(idFxFind == skillPaints[i].skillStand[j].effS2Id){
-                    FindFX.Add(skillPaints[i]);
-                }
-            }
+            if(skillInfo.skillStand[i].effS0Id != 0) FindFX.Add(skillInfo.skillStand[i].effS0Id);
+            if(skillInfo.skillStand[i].effS1Id != 0) FindFX.Add(skillInfo.skillStand[i].effS1Id);
+            if(skillInfo.skillStand[i].effS2Id != 0) FindFX.Add(skillInfo.skillStand[i].effS2Id);
         }
     }
+
 }

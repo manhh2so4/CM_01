@@ -23,6 +23,7 @@ public class HealthBar_UI : CoreComponent
         BarSprite.GetComponent<SpriteRenderer>().sortingLayerID = core.SortingLayerID;
         location.Set(0,core.height + 0.2f,0);
         transform.localPosition = location;
+        transform.localScale = new Vector3( core.size.x , core.size.y , 1 );
 
     }
     private void OnEnable(){

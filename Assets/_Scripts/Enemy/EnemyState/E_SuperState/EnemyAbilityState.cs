@@ -18,13 +18,10 @@ public class EnemyAbilityState : E_State
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
+        if(isExitingState) return;
+
         if(isAbilityDone){          
             stateMachine.ChangeState(enemy.lookState);
         }
-
-    }
-    public override void PhysicsUpdate(){
-        base.PhysicsUpdate();
-
     }
 }

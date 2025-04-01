@@ -13,8 +13,7 @@ public class CallTime{
 
         double elapsedMilliseconds = stopwatch.ElapsedTicks / (double)Stopwatch.Frequency * 1000;
         double roundedMilliseconds = System.Math.Round(elapsedMilliseconds, 3);
-
-        UnityEngine.Debug.Log("###executed " + Name + " : " + roundedMilliseconds + " ms");
+        UnityEngine.Debug.Log(" executed " + Name + " : " + roundedMilliseconds + " ms" );
         stopwatch.Reset();
     }
 

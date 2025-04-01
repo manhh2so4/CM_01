@@ -1,12 +1,14 @@
 using UnityEngine;
-
+[System.Serializable]
 public class BossAbilityState : BossState
 {
-    protected CharacterStats stats;
     protected bool isAbilityDone;
+    protected HitBox hitBoxBody;
+    protected HitBox hitBoxWeapon;
     public BossAbilityState(Boss boss, FiniteStateMachine stateMachine) : base(boss, stateMachine)
     {
-        stats = core.GetCoreComponent<CharacterStats>();
+        hitBoxBody = boss.hitBoxBody;
+        hitBoxWeapon = boss.hitBoxWeapon;
     }
 
     public override void Enter(){
@@ -15,6 +17,9 @@ public class BossAbilityState : BossState
     }
     public override void Exit(){
         base.Exit();
+        hitBoxWeapon.ClearObj();
+        hitBoxBody.ClearObj();
+        cooldowns.Start(boss.attack_1, bossData.speed_attack);
     }
 
     public override void LogicUpdate(){
@@ -24,8 +29,10 @@ public class BossAbilityState : BossState
             return;
         }
     }
-    public override void PhysicsUpdate(){
-        base.PhysicsUpdate();
-
+    protected void ExitHandler() {
+        isAbilityDone = true;
     }
+    protected void TakeDamage(){
+		hitBoxWeapon.OverLapObj();
+	}
 }

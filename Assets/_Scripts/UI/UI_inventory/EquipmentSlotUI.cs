@@ -6,7 +6,7 @@ using UnityEngine;
 public class EquipmentSlotUI : MonoBehaviour, IItemHolder, IDragContainer<InventoryItemSO>
 {
     [SerializeField] InventoryItemIcon icon = null;
-    [SerializeField] EquipLocation  typeEquip = EquipLocation.Vukhi;
+    [SerializeField] EquipType  typeEquip = EquipType.Vukhi;
     EquipableItemSO item = null;
     Equipment playerEquipment;
 

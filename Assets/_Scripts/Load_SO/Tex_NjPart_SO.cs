@@ -1,16 +1,18 @@
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Ao_lv", menuName = "GameData/Tex_NjPart_SO")]
 public class Tex_NjPart_SO : ScriptableObject
 {
        public njPart Part;
-       [SpritePreview]
-       [SerializeField] private Sprite[] importSprites;
+       
+       [SpritePreview][SerializeField] private Sprite[] importSprites;
        public SpriteInfo[] spriteInfos;
+
+       [Button]
        public void AddData()
        {
               // if(spriteInfos == null) return;
-
               nj_Part partTemp = new nj_Part();
               switch (Part)
               {
@@ -30,7 +32,6 @@ public class Tex_NjPart_SO : ScriptableObject
                             FindNjPart(ref partTemp,Read_Nj_part.Instance.nj_Parts_Wp);
                      break;
               }   
-
               Debug.Log(partTemp.imageIDs.Length);  
 
               spriteInfos = new SpriteInfo[importSprites.Length];
@@ -51,8 +52,6 @@ public class Tex_NjPart_SO : ScriptableObject
 
        }
        void FindNjPart(ref nj_Part part , List<nj_Part> _Parts){
-
-              Debug.Log("quan" + _Parts.Count);
               
               for (int i = 0; i < _Parts.Count; i++)
               {

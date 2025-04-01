@@ -74,7 +74,6 @@ public class QuestLogScronllingList : MonoBehaviour {
                 itemRewardsText.text += ", ";
             }
         }
-
         LogQuestSteps(_quest);
     }
 
@@ -94,6 +93,7 @@ public class QuestLogScronllingList : MonoBehaviour {
         for (int i = 0; i < _quest.GetQ_StepData().Length; i++){
 
             QuestStep_InfoUI step_InfoUI = PoolsContainer.GetObject( this.GetPrefab<QuestStep_InfoUI>(), StepQuestContener );
+            step_InfoUI.transform.localScale = Vector3.one;
             step_InfoUI.SetQuestStepInfo( _quest.GetQ_StepData()[i].__description__ , _quest.GetQuestStepStates()[i] );
 
         }

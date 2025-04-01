@@ -30,12 +30,12 @@ public class CharacterStats : CoreComponent{
         CalculationHP( GetMaxHealthValue() );
         isDead = false;
     }
-    public virtual void DoDamage(CharacterStats _targetStats)
+    public void DoDamage(CharacterStats _targetStats)
     {
         if (TargetCanAvoidAttack(_targetStats))
             return;
 
-        int totalDamage = damage.GetValue();
+        int totalDamage = Random.Range( (int)(damage.GetValue()*.9f), damage.GetValue());
 
         if (CanCrit())
         {
@@ -46,11 +46,16 @@ public class CharacterStats : CoreComponent{
         _targetStats.TakeDamage(totalDamage);
 
     }
+    public void DoDamage(int _damage){
+        _damage -= armor.GetValue();
+        _damage = Mathf.Clamp(_damage, 1, int.MaxValue);
+        TakeDamage( _damage);
+    }
     [Button]
     void dame(){
         TakeDamage(100);
     }
-    public virtual void TakeDamage(int _damage)
+    public void TakeDamage(int _damage)
     {
         PopupText textPopup = PoolsContainer.GetObject(this.GetPrefab<PopupText>(), this.transform.position );
         textPopup.Setup(_damage, false, movement.facingDirection);

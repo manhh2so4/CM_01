@@ -46,16 +46,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: -2177577721572615, guid: 9a9867d8488792d428f08e287956f305, type: 3}
-  - {fileID: 1964934553143125886, guid: 9a9867d8488792d428f08e287956f305, type: 3}
-  - {fileID: -5568096854728392012, guid: 9a9867d8488792d428f08e287956f305, type: 3}
-  - {fileID: 6320420870269799405, guid: 9a9867d8488792d428f08e287956f305, type: 3}
+  - {fileID: 21300000, guid: b2ec64aa38b6000449575027cbb2b0fc, type: 3}
+  - {fileID: 21300000, guid: 69e8cb50732da6841878d01489a7393d, type: 3}
+  - {fileID: 21300000, guid: 8246b2b123634e1499aa86628c2e4ae0, type: 3}
+  - {fileID: 21300000, guid: 0504c8ae10addff41b0cd50eeffcf557, type: 3}
+  - {fileID: 21300000, guid: 249d6b846eff01540bff335064ed67c0, type: 3}
   type: 0
   speedAnim: 0.1
   life: 2
   posEff: 1
-  anchor: 1
-  mSPR: {fileID: 2200558684753691943}
+  anchor: 0
+  frameTimer: 0
 --- !u!212 &2200558684753691943
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -96,7 +97,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1498733069
   m_SortingLayer: 3
-  m_SortingOrder: 200
+  m_SortingOrder: 10
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

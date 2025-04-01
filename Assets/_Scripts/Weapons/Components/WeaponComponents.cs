@@ -2,61 +2,40 @@ using UnityEngine;
 
 public abstract class WeaponComponents : MonoBehaviour {
     protected Weapon weapon;
-    protected Core Core => weapon.core;
+    protected Core Core;
     protected Movement coreMove;
     
-
-    protected bool isAttackActive;
     protected virtual void Awake()
     {
         weapon = GetComponent<Weapon>();
+        Core = weapon.core;
     }
 
     public virtual void Init()
     {
         coreMove = Core.GetCoreComponent<Movement>();
-        SubscribeHandlers();
         weapon.OnEnter += HandleEnter;
         weapon.OnExit += HandleExit;
         weapon.OnMidd += HandleMiddle;
-        
+        SubscribeHandlers();
     }
-    protected virtual void SubscribeHandlers()
-    {
+    protected virtual void SubscribeHandlers(){}
 
-    }
-
-    protected virtual void HandleEnter()
-    {
-        isAttackActive = true;
-    }
-    protected virtual void HandleMiddle()
-    {
-       
-    }
-    protected virtual void HandleExit()
-    {
-        isAttackActive = false;
-    }
-    protected virtual void OnDisable()
-    {
+    protected virtual void HandleEnter() {}
+    protected virtual void HandleMiddle() {}
+    protected virtual void HandleExit() {}
+    public virtual void Refest(){
         weapon.OnEnter -= HandleEnter;
         weapon.OnExit -= HandleExit;
         weapon.OnMidd -= HandleMiddle;
     }
-
+    public virtual void SetData(ComponentData data){}
 }
+
 public abstract class WeaponComponents<T1> : WeaponComponents where T1 : ComponentData
 {
     protected T1 data;
-
-    // protected override void HandleEnter()
-    // {
-    //     base.HandleEnter();
-    // }
-    protected override void SubscribeHandlers()
-    {
-        base.SubscribeHandlers();
-        data = weapon.Data.GetData<T1>();
+    public override void SetData(ComponentData _data){
+        this.data = _data as T1;
     }
 }

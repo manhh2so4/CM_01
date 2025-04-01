@@ -1,21 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using HStrong.ProjectileSystem;
+using NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
 
 public class Enemy : EnemyEntity
 {
-    #region Set_component
+
     [Header("Enemy Setting")]
-    public Enemy_SO enemy_Data;
+    #region Set_component
+    [OnValueChanged("OnValueChangedCallback")] 
+    [SerializeField] protected int idEnemy;
+    public Ease ease,easeEnd;
+    [Expandable] public Enemy_SO enemy_Data;
     Sprite[] sprites;
     SpriteRenderer mSPR;
-
-    [SerializeField] CapsuleCollider2D CapsunCheckPlayer;
-    
+    CapsuleCollider2D CapsunCheckPlayer;
     #endregion
-    //----------View_data
+    //----------View_combat
+    [SerializeField] bool isComBat;
+    public Projectile prefabProjectile;
+    public Cooldown cooldowns = new Cooldown();
 
     #region Setup_Enemy
     //---------------- Set State----------------------------
@@ -30,11 +37,14 @@ public class Enemy : EnemyEntity
     public E_DeadState deadState { get; private set;}
 
     #endregion
+    static int nextID = 0;  
     protected override void Awake() {
         base.Awake();
+        core.uniqueID = nextID;
+        nextID++;
         LoadComponent();
+        mSPR.sortingOrder = core.uniqueID;
         Load_Enemy();
-        LoadCore();
         moveState = new E_MoveState(this, stateMachine);
         idleState = new E_IdleState(this, stateMachine);
 
@@ -45,20 +55,44 @@ public class Enemy : EnemyEntity
         knockBack = new E_KnockBack(this,stateMachine);
         deadState = new E_DeadState(this, stateMachine);
     }
-    private void Start() {
+    private void Start(){
         stateMachine.Initialize(moveState);
+        core.GetCoreComponent<ItemDrop>().SetPossibleDrop( enemy_Data.dropInfo , enemy_Data.countDrop );
         Epos = transform.position;
         playerCheck = null;  
     }
     public virtual void Update()
     {
         canChangeState = stateMachine.canChange;
-        stateMachine.CurrentState.LogicUpdate();
         core.LogicUpdate();
+        cooldowns.Update();
+        stateMachine.CurrentState.LogicUpdate();
+        CheckPlayer();
         CheckReceiver();
     }
-    void CheckPlayer(){
+    
 
+    public virtual void FixedUpdate()
+    {
+        stateMachine.CurrentState.PhysicsUpdate();
+    }
+    private void OnEnable()
+    {
+        CharStats.onHealthZero += CheckDead;
+    }
+    private void OnDisable()
+    {
+        CharStats.onHealthZero -= CheckDead;
+    }
+
+    private void Reset() {
+        LoadComponent();
+        Load_Enemy();
+    }
+
+    #region ortherCheck
+    void CheckPlayer(){
+        if(!isComBat) return;
         Collider2D hit = Physics2D.OverlapCapsule(
             (Vector2)transform.position + playerCheckOffset,
             playerCheckSize,
@@ -73,63 +107,40 @@ public class Enemy : EnemyEntity
         }
         
     }
-
-    public virtual void FixedUpdate()
-    {
-        CheckPlayer();
-        stateMachine.CurrentState.PhysicsUpdate();
-    }
-    private void OnEnable()
-    {
-        CharStats.onHealthZero += CheckDead;
-    }
-    private void OnDisable()
-    {
-        CharStats.onHealthZero -= CheckDead;
-    }
-    private void Reset() {
-        LoadComponent();
-        Load_Enemy();
-        LoadCore();
-    }
-    #region ortherCheck
     private void CheckReceiver(){
         
         if(poiseReceiver.IsPoise()){
             
             stateMachine.ChangeState(stuneState);
-            return;
-        }
-        if(knockBackReceiver.isKnockBackActive){
+
+        }else if(knockBackReceiver.isKnockBack){
+
             stateMachine.ChangeState(knockBack);
         }
     }
+
     private void CheckDead(){
         stateMachine.ChangeState(deadState);
     }
 
     #endregion
-    #region ColCheck
-    // void OnTriggerEnter2D(Collider2D other) {
-    //     if ( (LayerCombat.value & (1 << other.gameObject.layer)) != 0)
-    //     {
-    //         if (other.tag == "Enemy") return;
-    //         playerCheck = other.transform;
-    //     }
-    // }
-    #endregion
 
     #region FuncLoad
-    protected override void LoadCore(){
-        base.LoadCore();
-    }
     protected override void LoadComponent(){
         base.LoadComponent();
-        if(mSPR == null) mSPR = transform.Find("Draw_Enemy").GetComponent<SpriteRenderer>(); 
+        if(mCollider == null) mCollider = GetComponent<BoxCollider2D>();
+        if(mSPR == null) mSPR = GetComponent<SpriteRenderer>(); 
+        
     }
+
     private void Load_Enemy(){
+        //if(enemy_Data == null) return;
         string resPath = "Enemy_Load/Enemy/Enemy " + idEnemy;
         this.enemy_Data = Resources.Load<Enemy_SO>(resPath);
+        if(enemy_Data == null) {
+            Debug.Log("Load Enemy Data Failed");
+            return;
+        }
         mPaint.LoadSprite(ref sprites,enemy_Data.textures, mPaint.BOTTOM | mPaint.HCENTER);
         Paint(0);
 
@@ -140,20 +151,20 @@ public class Enemy : EnemyEntity
         mCollider.size = new Vector2((w - w/5)/100, height );
         mCollider.offset = new Vector2 (0, height/2);
 
-        core.height = height;
+        if(core != null) core.height = height;
         
         ledgeCheck.position = new Vector3((w+20)/200 , 0.02f) + transform.position;
-
+        if(mPhysic2D == null) return;
         switch (enemy_Data.type)
         {
             case 1:
-                mRB.Gravity = (-9.8f *2f);
+                mPhysic2D.Gravity = (-9.8f *2f);
                 playerCheckSize = new Vector2(maxAgroDetect,maxAgroDetect/2f);
                 playerCheckOffset = new Vector2(0f,(playerCheckSize.y-2f)/2f);
 
 			break;
             case 4:
-                mRB.Gravity = (0);
+                mPhysic2D.Gravity = (0);
                 playerCheckOffset = Vector2.zero;
                 playerCheckSize = new Vector2(maxAgroDetect,maxAgroDetect);
 
@@ -165,12 +176,14 @@ public class Enemy : EnemyEntity
 
             break;
         }
-        
-        CapsunCheckPlayer.size = playerCheckSize;
-        CapsunCheckPlayer.offset = playerCheckOffset;
     }
     public void Paint(int frameCurrent){
         mSPR.sprite = sprites[frameCurrent];
     }
+    private void OnValueChangedCallback()
+	{
+		LoadComponent();
+        Load_Enemy();
+	}
     #endregion
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using HStrong.Saving;
@@ -18,6 +19,7 @@ public class Player : Entity,ISaveable
     public PlayerAttackState Attack_1 {get;private set;}
     public PlayerAttackState Attack_2 {get;private set;}
     public PlayerAttackState Attack_3 {get;private set;}
+    public PlayerKnockState knockState {get;private set;}
 
     #endregion
     #region Component
@@ -32,6 +34,7 @@ public class Player : Entity,ISaveable
     private Weapon Skill_1;
     private Weapon Skill_2;
     private Weapon Skill_3;
+    public Cooldown cooldowns = new Cooldown();
     
     #endregion
     
@@ -48,33 +51,49 @@ public class Player : Entity,ISaveable
         
         Skill_3 = transform.Find("Skill_3").GetComponent<Weapon>();
         Skill_3.SetCore(core);
-        
+
         core.height = 1.3f;
 
-        idleState = new PlayerIdleState(this,StateMachine,playerData,mState.Idle);
-        moveState = new PlayerMoveState(this,StateMachine,playerData,mState.Moving);
-        jumpState = new PlayerJumpState(this,StateMachine,playerData,mState.None);
-        airState = new PlayerAirState(this,StateMachine,playerData,mState.None);
-        wallSlideState = new PlayerWallSlideState(this,StateMachine,playerData,mState.Slide);  
-        wallJumpState = new PlayerWallJumpState(this,StateMachine,playerData,mState.InAir);   
-        dashState = new PlayerDashState(this,StateMachine,playerData,mState.InAir);
+        idleState = new PlayerIdleState(this,StateMachine, playerData,mState.Idle);
+        moveState = new PlayerMoveState(this,StateMachine, playerData,mState.Moving);
+        jumpState = new PlayerJumpState(this,StateMachine, playerData,mState.None);
+        airState = new PlayerAirState(this,StateMachine, playerData,mState.None);
+        wallSlideState = new PlayerWallSlideState(this, StateMachine,playerData,mState.Slide);  
+        wallJumpState = new PlayerWallJumpState(this, StateMachine,playerData,mState.InAir);   
+        dashState = new PlayerDashState(this, StateMachine,playerData,mState.Dash);
 
-        Attack_1 = new PlayerAttackState(this, StateMachine, playerData, mState.AttackStand, Skill_1);   
-        Attack_2 = new PlayerAttackState(this, StateMachine, playerData, mState.AttackStand, Skill_2);  
-        Attack_3 = new PlayerAttackState(this, StateMachine, playerData, mState.AttackStand, Skill_3);  
+        Attack_1 = new PlayerAttackState(this, StateMachine, playerData, mState.Attack, Skill_1);   
+        Attack_2 = new PlayerAttackState(this, StateMachine, playerData, mState.Attack, Skill_2);  
+        Attack_3 = new PlayerAttackState(this, StateMachine, playerData, mState.Attack, Skill_3);  
+        knockState = new PlayerKnockState(this, StateMachine, playerData, mState.Knockback);
     }
     private void Start(){
         Anim = GetComponent<Char_anim>();
         inputPlayer = GetComponent<PlayerInputHandler>();
         dashDirImgae = transform.Find("DashDirectionImg");
         StateMachine.Initialize(idleState);
-        core.GetCoreComponent<Movement>().SetGravity(playerData.GetGravity());
-        
+        movement.SetGravity(playerData.GetGravity());
     }
-    private void Update() {
+    private void OnEnable() {
+        knockBackReceiver.OnKnockBack += KnockBackEnd;
+    }
+    private void OnDisable() {
+        knockBackReceiver.OnKnockBack -= KnockBackEnd;
+    }
+
+    private void KnockBackEnd()
+    {
+        StateMachine.ChangeState(knockState);
+    }
+
+    private void Update(){
+
         core.LogicUpdate();
+        cooldowns.Update();
         StateMachine.CurrentState.LogicUpdate();  
+
     }
+
     private void FixedUpdate() {
         StateMachine.CurrentState.PhysicsUpdate();
     }

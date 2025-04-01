@@ -7,7 +7,6 @@ namespace HStrong.ProjectileSystem
         protected virtual void Awake() {
             projectile = GetComponent<Projectile>();
             projectile.OnInit += Init;
-            
         }
         protected virtual void Init()
         {
@@ -15,9 +14,8 @@ namespace HStrong.ProjectileSystem
         }
         protected virtual void remove()
         {
-            projectile.OnInit -= Init;
             projectile.Destroy();
-            
         }
+        protected virtual void OnDisable(){}    
     }
 }

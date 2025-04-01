@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: Quest 2
   displayName: Nhiem vu 2
-  describle: "l\xE0 m\u1ED9t b\u1EA3n sao c\u1EE7a m\u1EA3ng g\u1ED1c."
+  describle: "C\xF4ng vi\u1EC7c l\xE0m th\xEAm n\u1EBFu b\u1EA1n th\xEDch l\xE0m
+    th\xEC l\xE0m"
   state: 0
   levelRequirement: 1
   questPrerequisites: []
@@ -38,31 +39,31 @@ MonoBehaviour:
       type: {class: CollectCoinData, ns: HStrong.Quests, asm: Assembly-CSharp}
       data:
         name: CollectCoinData
-        __description__: Collect Coint
+        __description__: "Nh\u1EB7t 4 \u0111\u1ED3ng xu"
         coinsToComplete: 4
     - rid: 607104482003124224
       type: {class: CollectItemData, ns: HStrong.Quests, asm: Assembly-CSharp}
       data:
         name: CollectItemData
-        __description__: pickup HP
+        __description__: "Nh\u1EB7t 5 B\xECnh HP nh\u1ECF"
         itemToCollect: {fileID: 11400000, guid: f2389c129ad48a54d9d05e5588b5d571, type: 2}
         countToComplete: 5
     - rid: 607104494519713792
       type: {class: CollectCoinData, ns: HStrong.Quests, asm: Assembly-CSharp}
       data:
         name: CollectCoinData
-        __description__: Collect Coint 2
-        coinsToComplete: 0
+        __description__: "Nh\u1EB7t 4 \u0111\u1ED3ng xu"
+        coinsToComplete: 4
     - rid: 607104494519713793
       type: {class: CollectItemData, ns: HStrong.Quests, asm: Assembly-CSharp}
       data:
         name: CollectItemData
-        __description__: pickup HP 4F4F
+        __description__: "Nh\u1EB7t b\xF9a c\u1EA5p 2"
         itemToCollect: {fileID: 11400000, guid: 33117899a34708940a1b19a26c55a61c, type: 2}
-        countToComplete: 0
+        countToComplete: 1
     - rid: 607104494519713794
       type: {class: CollectCoinData, ns: HStrong.Quests, asm: Assembly-CSharp}
       data:
         name: CollectCoinData
-        __description__: pickup all
-        coinsToComplete: 0
+        __description__: "Nh\u1EB7t 4 \u0111\u1ED3ng xu"
+        coinsToComplete: 4

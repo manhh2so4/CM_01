@@ -7,24 +7,25 @@ using UnityEngine;
 public class Draw_boss : MonoBehaviour
 {
     public Action OnAttackDone;
+    public Action OnTakeDamage;
     //--------- Boss Data -----------
     [Expandable]
     public EnemyBoss_SO DataBoss_SO;
     Texture2D TEXTURE2D;   
-    Sprite[] sprites;
+    [SpritePreview][SerializeField] Sprite[] sprites;
     ImageInfor[] imageInfor;
     [SerializeField] FrameBoss[] frameBosses;
     public int[] frameBossMove;
     public BossAttack[] bossAttacks;
     [SerializeField] GameObject prefab;
+    [SerializeField] Transform DrawBoss;   
     [SerializeField] SpriteRenderer[] mSR;
     [SortingLayer]
     public string layerID;
     public LayerMask LayerCombat;
     public Transform playerCheck;
 
-    //--------- Boss Stage -----------
-    [SerializeField] bool isSortLayer;
+    //--------- Boss Stage ----------
     public int idBoss;
     public StateEnemy currentStage = StateEnemy.None;
     public StateEnemy state;
@@ -45,22 +46,21 @@ public class Draw_boss : MonoBehaviour
     }
     
     void Load_Enemy(){
+        DrawBoss = transform.Find("DrawBoss");
         TEXTURE2D = DataBoss_SO.TEXTURE2D;
         imageInfor = DataBoss_SO.imageInfors;
         frameBosses = DataBoss_SO.frameBoss;
         frameBossMove = DataBoss_SO.frameBossMove;
         bossAttacks = DataBoss_SO.BossAttacks;
         LoadSprite();
-        isSortLayer = false;
     }
     private void Awake() {
         Load_Enemy();
     }
-    void StageBoss(){
+    public void StageBoss(){
         if(currentStage != state){			
 			frameTimer = 99f;
 			FrameCurrent = 0;
-            isSortLayer = false;
 			currentStage = state;
 		}
         switch(currentStage){
@@ -119,9 +119,13 @@ public class Draw_boss : MonoBehaviour
             frameTimer = 0;
             if(FrameCurrent >= bossAttacks[index].attack.Length){
                 OnAttackDone?.Invoke();
-                Debug.Log("donw attack");
-                state = StateEnemy.Idle; 
+                FrameCurrent = 0;
+                frameTimer = 99f;
                 return;              
+            }
+            if(FrameCurrent >= ( bossAttacks[index].attack.Length - 3 ) ){
+                OnTakeDamage?.Invoke();
+                
             }
 			DrawSprite(bossAttacks[index].attack[FrameCurrent]);
 			FrameCurrent += 1; 						     
@@ -136,51 +140,34 @@ public class Draw_boss : MonoBehaviour
         }
     }
     void LoadSprite(){
+
         mPaint.LoadSpriteRegion(ref sprites,imageInfor,TEXTURE2D, mPaint.TOP|mPaint.LEFT);
+        SpriteRenderer[] tempSrs  = new SpriteRenderer[sprites.Length];
 
-            SpriteRenderer[] tempSrs  = new SpriteRenderer[sprites.Length];
-            
-            for (int i = 0; i < sprites.Length; i++){
-            try
-            {
-                if(mSR[i] != null){              
-                mSR[i].GetComponent<SpriteRenderer>().sprite = sprites[i];
-                
-                mSR[i].gameObject.SetActive(false);
-                mSR[i].name = "Sp" + i;
-                tempSrs[i] = mSR[i];
-                }
-            }
-            catch (System.Exception)
-            {
-                UnityEngine.GameObject subObject = Instantiate(prefab, transform.Find("Sprites"));
-                SpriteRenderer subSPR = subObject.GetComponent<SpriteRenderer>();
-                subSPR.sprite = sprites[i];
-                subSPR.sortingLayerName = layerID ;
-                subObject.SetActive(false);
-                subObject.name = "Sp" + i;
-                tempSrs[i] = subSPR; 
-            } 
-            }
-            mSR = tempSrs;
-    }
+        foreach (Transform child in DrawBoss)
+        {
+            Destroy(child.gameObject);
+        }
 
-    private void Update() {
-        StageBoss();
+        for (int i = 0; i < sprites.Length; i++){
+            SpriteRenderer subSPR = Instantiate(prefab, DrawBoss).GetComponent<SpriteRenderer>();
+            subSPR.sprite = sprites[i];
+            subSPR.sortingLayerName = layerID ;
+            subSPR.name = i.ToString();
+            subSPR.gameObject.SetActive(false);
+            tempSrs[i] = subSPR; 
+        }
+        mSR = tempSrs;
     }
     void DrawSprite(int frameBoss){
         SetFalse();
-        for (int i = 0; i < frameBosses[frameBoss].dx.Length; i++)
+        for (int i = 0; i < frameBosses[frameBoss].idImg.Length; i++)
         {
-            if(isSortLayer == false){
-                mSR[frameBosses[frameBoss].idImg[i]].GetComponent<SpriteRenderer>().sortingOrder = i;
-            }
+            mSR[frameBosses[frameBoss].idImg[i]].sortingOrder = i;
             mSR[frameBosses[frameBoss].idImg[i]].gameObject.SetActive(true);        
-            Vector3 move = new Vector3( (frameBosses[frameBoss].dx[i]*4f)/100, (-frameBosses[frameBoss].dy[i]*4f)/100,0);
+            Vector2 move = new Vector2( (frameBosses[frameBoss].dx[i]*4f)/100 , (-frameBosses[frameBoss].dy[i]*4f)/100 );
             mSR[frameBosses[frameBoss].idImg[i]].transform.localPosition = move;
         }
-        isSortLayer = true;
-        
     }
     void SetFalse(){
         for (int i = 0; i < mSR.Length; i++){

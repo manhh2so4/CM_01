@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class PlayerAbilityState : PlayerState
 {   
-    
-    
-    
-    protected bool isGrounded;
     public PlayerAbilityState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
     {
     }
     public override void DoCheck(){
         base.DoCheck();
-        isGrounded = collisionSenses.isGround;    
     }
     public override void Enter(){
         base.Enter();
@@ -24,8 +19,10 @@ public class PlayerAbilityState : PlayerState
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
+        if(isExitingState) return;
+        
         if(isAbilityDone){          
-            if (isGrounded && movement.CurrentVelocity.y < 0.1f)
+            if (isGrounded && movement.Velocity.y < 0.1f)
             {
                 stateMachine.ChangeState(player.moveState);
             }
@@ -35,7 +32,5 @@ public class PlayerAbilityState : PlayerState
             }
         }
     }
-    public override void PhysicsUpdate(){
-        base.PhysicsUpdate();
-    }        
+    
 }

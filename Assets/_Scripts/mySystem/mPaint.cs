@@ -23,7 +23,8 @@ public class mPaint
         Paint(gameObject,sprite,0, 0, anchor);
     }
     public static void Paint(UnityEngine.GameObject gameObject,Sprite sprite,float x, float y,int anchor){
-
+        
+        if(sprite == null) return;
         x *= 4;
         y *= 4;
         float h = sprite.rect.height/100;
@@ -67,7 +68,8 @@ public class mPaint
             int w = texs.width;
             int h = texs.height;
             temp[i] = Sprite.Create(texs, new Rect(x0, h - y0 - h0 , w0, h0),   
-            new Vector2(0,1));         
+            new Vector2(0,1));
+            temp[i].name = infor[i].ID.ToString();
         }
         sprites = temp;
     }

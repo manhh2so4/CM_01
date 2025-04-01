@@ -23,7 +23,9 @@ public class PlayerWallJumpState : PlayerAbilityState
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
-        player.Anim.stagejump = (int)System.Math.Round(movement.CurrentVelocity.y, System.MidpointRounding.AwayFromZero);
+        if(isExitingState) return;
+        
+        player.Anim.stagejump = (int)System.Math.Round(movement.Velocity.y, System.MidpointRounding.AwayFromZero);
         if(Time.time >= startTime + playerData.wallJumpTime){
             isAbilityDone = true;
         }

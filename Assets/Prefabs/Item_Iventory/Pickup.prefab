@@ -47,9 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c042b1811ba80e4eb5db7efc8b769de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!212 &6427335879899291548
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -124,8 +121,9 @@ MonoBehaviour:
     below: 0
     left: 0
     right: 0
-    faceDir: 0
-  HitDis: 0
+  isDrag: 1
+  isColision: 1
+  dragForce: 4
   gravity: -25
   velocity: {x: 0, y: 0}
 --- !u!61 &3292562146996341223

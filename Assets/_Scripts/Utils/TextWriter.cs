@@ -45,6 +45,7 @@ public class TextWriter : MonoBehaviour {
     }
 
     void Update() {
+        if(textWriterSingleList.Count == 0) return;
         for (int i = 0; i < textWriterSingleList.Count; i++) {
             textWriterSingleList[i].Update();
             // if (destroyInstance) {

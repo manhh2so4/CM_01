@@ -10,22 +10,17 @@ public class E_ChargeState : EnemyCombatState
 
 	public override void Enter() {
 		base.Enter();
-        enemy.state = StateEnemy.Charge;
 
 	}
 
 	public override void Exit() {
 		base.Exit();
-		
 	}
 	public override void LogicUpdate() {
 		base.LogicUpdate();
-		movement.CheckIfShouldFlip(xDirPlayer);
+        if(isExitingState) return;
 
-        if(canAttack){
-            stateMachine.ChangeState(enemy.attackState);
-            return;
-        } 
+		movement.CheckIfShouldFlip(xDirPlayer);
 
 		if(distancePlayer < enemy.minAgroDistance){
 			enemy.stateMachine.ChangeState(enemy.lookState);
@@ -55,12 +50,14 @@ public class E_ChargeState : EnemyCombatState
                 FrameCurrent = ( FrameCurrent + 1)%2;
                 xMove = 0;
                 yMove = 0;
+
                 if(Mathf.Abs( YDirPos ) > 2 ){
                     yMove = enemyPos.y - enemy.transform.position.y;
                 }
                 if( Mathf.Abs( XDirPos ) > enemy.RangeMove ){
 					xMove = enemyPos.x - enemy.transform.position.x;
                 }
+
                 movement?.SetVelocity( enemyData.speedMove/3 * movement.facingDirection + xMove,  dirY - vY + yMove);
                 break;
             default:
@@ -68,10 +65,5 @@ public class E_ChargeState : EnemyCombatState
 				break;           
         }
         
-	}
-
-	public override void PhysicsUpdate() {
-		base.PhysicsUpdate();
-
 	}
 }

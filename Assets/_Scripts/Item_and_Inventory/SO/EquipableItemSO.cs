@@ -3,9 +3,9 @@ using UnityEngine;
 
 [CreateAssetMenu( menuName = "Inventory/Equipment_no_ADD")]
 public class EquipableItemSO : InventoryItemSO {
-    [SerializeField] EquipLocation typeEquip;
+    [SerializeField] EquipType typeEquip;
     
-    public EquipLocation GetTypeEquip(){
+    public EquipType GetTypeEquip(){
         return typeEquip;
     }
     [SerializeField] private Modifiers[] AddtiveModifiers;
@@ -42,6 +42,6 @@ public class EquipableItemSO : InventoryItemSO {
         }
     }
     public void SetTypeEquip(int type){
-        this.typeEquip = (EquipLocation)type;
+        this.typeEquip = (EquipType)type;
     }
 }

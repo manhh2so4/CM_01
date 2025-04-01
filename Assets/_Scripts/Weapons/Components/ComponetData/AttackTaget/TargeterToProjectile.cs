@@ -9,8 +9,7 @@ public class TargeterToProjectile : WeaponComponents<ProjecttileData>
     WeaponTargeter targeter;
     CharacterStats stats;
     protected Movement movement;
-
-
+    
     protected override void SubscribeHandlers()
     {
         base.SubscribeHandlers();
@@ -19,26 +18,24 @@ public class TargeterToProjectile : WeaponComponents<ProjecttileData>
         targeter.TargeterTrigger += SpwanTargetProjectile;  
         movement = Core.GetCoreComponent<Movement>();     
     }
-    protected override void OnDisable()
+    public override void Refest()
     {
-        base.OnDisable();
+        base.Refest();
         targeter.TargeterTrigger -= SpwanTargetProjectile; 
     }
-    private void SpwanTargetProjectile(List<Transform> targeters){
+    private void SpwanTargetProjectile( List<Transform> targeters ){
         if(targeters.Count <= 0 || targeters == null){
-            var projectile1 = GameObject.Instantiate(data.prefabProjectile, transform.position + new Vector3(0,Core.height/2,0), transform.rotation);				
-		    Projectile projectile_Scrip1 = projectile1.GetComponent<Projectile>();	
-            Debug.Log("transform.right" + transform.right);
-            projectile_Scrip1.SetProjectile(12f , transform.right , transform.parent.tag, stats);
+            var projectile1 = SpwanProjectile();				
+            projectile1.SetProjectile(12f , transform.right , transform.tag, stats);
 
         }else{
             float dir = Mathf.Sign(targeters[0].position.x - transform.position.x);
             movement.CheckIfShouldFlip((int)dir);
-            var projectile = GameObject.Instantiate(data.prefabProjectile, transform.position + new Vector3(0,Core.height/2,0), transform.rotation);				
-            var projectile_Scrip = projectile.GetComponent<Projectile>();	
-            projectile_Scrip.SetProjectile(12f , targeters[0], transform.parent.tag, stats);
+            var projectile = SpwanProjectile();					
+            projectile.SetProjectile(12f , targeters[0], transform.tag, stats);
         }
     }
-
-
+    Projectile SpwanProjectile(){
+        return PoolsContainer.GetObject(data.prefabProjectile , transform.position + new Vector3(0,Core.height/2,0));
+    }
 }

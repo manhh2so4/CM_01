@@ -6,12 +6,8 @@ public class E_LookState : EnemyCombatState
     {
 
     }
-
-
-
 	public override void Enter() {        
 		base.Enter();
-        enemy.state = StateEnemy.Look;
         movement.SetVelocityZero();
 	}
 
@@ -21,16 +17,17 @@ public class E_LookState : EnemyCombatState
 	}
 	public override void LogicUpdate() {
 		base.LogicUpdate();
+        if(isExitingState) return;
+
         movement.CheckIfShouldFlip(xDirPlayer);
-        if(canAttack) {
-            stateMachine.ChangeState(enemy.attackState);  
-            return;
-        }
+
+        movement.SetVelocityZero();
         if(distancePlayer > enemy.minAgroDistance){                        
 			stateMachine.ChangeState(enemy.chargeState);
 		} 
         
         if(TimeRate(0.4f/enemyData.speedMove)) return;
+        
         switch(enemyData.type){
             case 0:
 				enemy.Paint(0);
@@ -47,9 +44,5 @@ public class E_LookState : EnemyCombatState
                 FrameCurrent = ( FrameCurrent + 1)%2;
                 break;
         }                  
-	}
-
-	public override void PhysicsUpdate() {
-		base.PhysicsUpdate();
 	}
 }

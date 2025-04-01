@@ -53,8 +53,10 @@ MonoBehaviour:
   speedAnim: 0.1
   life: 1
   posEff: 0
-  anchor: 2
-  mSPR: {fileID: 4485347768850219833}
+  anchor: 3
+  FrameCurrent: 0
+  startPos: {x: 0, y: 0}
+  frameTimer: 0
 --- !u!212 &4485347768850219833
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -95,7 +97,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

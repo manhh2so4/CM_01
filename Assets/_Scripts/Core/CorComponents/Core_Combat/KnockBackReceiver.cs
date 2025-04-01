@@ -4,10 +4,10 @@ public class KnockBackReceiver : CoreComponent,IKnockBackable
 {
 
     private Movement movement;
-    public float maxKnockbackTime = 0.2f;
-    public bool isKnockBackActive;
-    private float knockBackStartTime;
-    
+    float knockBackStartTime;
+    public float maxKnockbackTime = 0.5f;
+    public bool isKnockBack;
+    public event Action OnKnockBack;
     public override void LogicUpdate()
     {
         CheckKnockBack();
@@ -15,16 +15,17 @@ public class KnockBackReceiver : CoreComponent,IKnockBackable
     public void KnockBack(Vector2 angle, float strength, int direction)
     {
         movement.SetVelocity(strength, angle, direction);
-        isKnockBackActive = true;
-        knockBackStartTime = Time.time;
+        isKnockBack = true;
+        knockBackStartTime = Time.unscaledTime;
+        OnKnockBack?.Invoke();
     }
     private void CheckKnockBack()
     {
-        if( Time.time >= knockBackStartTime + maxKnockbackTime)
-        {
-            isKnockBackActive = false;
-            //movement.SetVelocityZero();
-            //movement.Comp.CanSetVelocity = true;
+        if(isKnockBack){
+            if( Time.unscaledTime >= knockBackStartTime + maxKnockbackTime)
+            {
+                isKnockBack = false;
+            }   
         }
     }
     protected override void Awake()

@@ -2,7 +2,7 @@ using UnityEngine;
 public class Persistence : MonoBehaviour
 {
     private void Awake(){
-            DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
 }

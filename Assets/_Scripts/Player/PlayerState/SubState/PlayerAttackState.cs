@@ -13,6 +13,7 @@ public class PlayerAttackState : PlayerAbilityState
     : base(player, stateMachine, playerData, state)
     {
         this.weapon = weapon;
+
         weapon.OnExit += ExitHandler;
     }
     public Weapon GetSkill(){
@@ -28,6 +29,8 @@ public class PlayerAttackState : PlayerAbilityState
 
     public override void LogicUpdate(){
         base.LogicUpdate();
+        if(isExitingState) return;
+
         movement.SetVelocityX(0);
         if(isGrounded ){  
             player.Anim.isFly = false;       
@@ -35,9 +38,11 @@ public class PlayerAttackState : PlayerAbilityState
             player.Anim.isFly = true; 
         }
     }
-
-    public void ExitHandler()
-    {
-        isAbilityDone = true;
+    public override void Exit(){
+        base.Exit();
+        if(isAbilityDone) return;
+        weapon.Exit();
     }
+
+    public void ExitHandler() => isAbilityDone = true;
 }

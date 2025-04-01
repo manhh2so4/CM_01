@@ -24,5 +24,9 @@ namespace HStrong.ProjectileSystem
             vOffset = new Vector3(0, target.GetComponent<CapsuleCollider2D>().size.y /2, 0);
             this.speed = projectile.speed; 
         }
+        protected override void OnDisable(){
+            base.OnDisable();
+            target = null;
+        }
     }
 }

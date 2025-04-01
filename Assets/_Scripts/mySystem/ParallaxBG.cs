@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using Cinemachine;
 
 public class ParallaxBG : MonoBehaviour
 {
@@ -29,51 +30,59 @@ public class ParallaxBG : MonoBehaviour
     Transform[] Bg1 = new Transform[3];
     Transform[] Bg2 = new Transform[3];
     Transform[] Bg3 = new Transform[3];
+    Vector2[] smoth = new Vector2[4];
     
     public Transform Sun;
+    [Button("Reset")]
     private void Reset() {
         LoadComponent();     
         LoadImgBG();
     }
     private void Awake(){
+        cam = Camera.main;
+        startCamX = cam.transform.localPosition.x;
+        startCamY = cam.transform.localPosition.y;
         LoadComponent();           
         LoadImgBG();
-        startCamX = cam.transform.position.x;
-        startCamY = cam.transform.position.y;
-        
         for (int i = 0; i < 3; i++)
         {
-            startPosX0[i] = Bg0[i].position.x;
-            startPosX1[i] = Bg1[i].position.x;
-            startPosX2[i] = Bg2[i].position.x;
-            startPosX3[i] = Bg3[i].position.x;
+            startPosX0[i] = Bg0[i].localPosition.x;
+            startPosX1[i] = Bg1[i].localPosition.x;
+            startPosX2[i] = Bg2[i].localPosition.x;
+            startPosX3[i] = Bg3[i].localPosition.x;
         }                
-        startPosY[0] = Bg0[0].position.y;
-        startPosY[1] = Bg1[0].position.y;
-        startPosY[2] = Bg2[0].position.y;
-        startPosY[3] = Bg3[0].position.y;
+        startPosY[0] = Bg0[0].localPosition.y;
+        startPosY[1] = Bg1[0].localPosition.y;
+        startPosY[2] = Bg2[0].localPosition.y;
+        startPosY[3] = Bg3[0].localPosition.y;
     }
-    private void FixedUpdate() {
+    private void Update() {
+        UpdateBG();
+    }
+    private void UpdateBG() {
         ParallaxEff();
         PaintSun();
     }
     void ParallaxEff(){                
                            
-            LoopMap(Bg0, startPosX0, 0);
-            LoopMap(Bg1, startPosX1, 1);
-            LoopMap(Bg2, startPosX2, 2);
-            LoopMap(Bg3, startPosX3, 3);  
+            LoopMap(Bg0,ref startPosX0, 0);
+            LoopMap(Bg1,ref startPosX1, 1);
+            LoopMap(Bg2,ref startPosX2, 2);
+            LoopMap(Bg3,ref startPosX3, 3);  
     }
-    void LoopMap(Transform[] layer,float[] startPos,int indexLayer){
-        distX = (cam.transform.position.x - startCamX)* parallaxEffect_X[indexLayer];
-        distY = (cam.transform.position.y - startCamY)* parallaxEffect_Y[indexLayer];
+    void LoopMap(Transform[] layer,ref float[] _startPosX,int indexLayer){
+
+        distX = (cam.transform.localPosition.x - startCamX) * parallaxEffect_X[indexLayer];
+        distY = (cam.transform.localPosition.y - startCamY) * parallaxEffect_Y[indexLayer];
         for (int i = 0; i < 3; i++)
             {
-                layer[i].position = new Vector3(startPos[i] + distX,startPosY[indexLayer] + distY);   
+                //layer[i].position = new Vector3( startPosY[i] + distX, this.startPosY[indexLayer] + distY);
+                Vector3 target = new Vector3( _startPosX[i] + distX, this.startPosY[indexLayer] + distY);
+                layer[i].position = target;
 
                 float tempX = (cam.transform.position.x * (1 - parallaxEffect_X[indexLayer]));
-                if (tempX >= startPos[i] + lengthX[indexLayer]*1.5f) startPos[i] += lengthX[indexLayer]*3;
-                else if (tempX < startPos[i] - lengthX[indexLayer]*1.5f) startPos[i] -= lengthX[indexLayer]*3; 
+                if (tempX >= _startPosX[i] + lengthX[indexLayer]*1.5f) _startPosX[i] += lengthX[indexLayer]*3;
+                else if (tempX < _startPosX[i] - lengthX[indexLayer]*1.5f) _startPosX[i] -= lengthX[indexLayer]*3; 
             }
     }
     void LoadComponent(){
@@ -94,9 +103,11 @@ public class ParallaxBG : MonoBehaviour
         string resPath = "TextLoad/imgBG/BG_type " + 0;
         imgBG_SO = Resources.Load<imgBG_SO>(resPath);
         this.imgBg = imgBG_SO.imgBGs;
+
         Field2Y = (float)imgBg[0].texture.height/100;
         houseY = Field2Y +  (float)imgBg[1].texture.height/100;
         mountainY = Field2Y +  (float)imgBg[1].texture.height/100 +0.4f;
+
         for (int i = 0; i < 3; i++)
         {
             LoadBG(ref Bg0[i],i,0);
@@ -106,28 +117,29 @@ public class ParallaxBG : MonoBehaviour
         }
     }
     void LoadBG(ref Transform obj,int index,int idImg){
-        int size = imgBg[idImg].texture.width;
-        int loop = (int)widthCam*100/(size);
-        lengthX[idImg] = ((float)loop*size)/100;
+        int widthImg = imgBg[idImg].texture.width;
+        int loop = Mathf.CeilToInt( widthCam*100 / (widthImg) );
+        lengthX[idImg] = ((float)loop*widthImg)/100;
 
         float hSet;       
-        hSet = (cam.transform.position.y - heightCam/2);
+        hSet = (cam.transform.position.y - heightCam/2 - 0.5f);
         float xSet = cam.transform.position.x;
         switch (idImg)
-            {
-                case 0:
-                hSet +=  (float)imgBg[idImg].texture.height/200;
-                break;
-                case 1:
-                hSet +=  Field2Y + (float)imgBg[idImg].texture.height/200;
-                break;
-                case 2:
-                hSet +=  houseY + (float)imgBg[idImg].texture.height/200;
-                break;
-                case 3:
-                hSet +=  mountainY + (float)imgBg[idImg].texture.height/200;
-                break;
-            }
+        {
+            case 0:
+            hSet +=  (float)imgBg[idImg].texture.height/200;
+            break;
+            case 1:
+            hSet +=  Field2Y + (float)imgBg[idImg].texture.height/200;
+            break;
+            case 2:
+            hSet +=  houseY + (float)imgBg[idImg].texture.height/200;
+            break;
+            case 3:
+            hSet +=  mountainY + (float)imgBg[idImg].texture.height/200;
+            break;
+        }
+
         obj.transform.position = new Vector3(0,0,0);
         SpriteRenderer spr = obj.GetComponent<SpriteRenderer>();
         spr.sprite = imgBg[idImg];
@@ -135,8 +147,8 @@ public class ParallaxBG : MonoBehaviour
         spr.sortingOrder = -idImg - 10;
         spr.drawMode = SpriteDrawMode.Tiled;
         spr.size = new Vector2(lengthX[idImg],spr.size.y);
-
         obj.transform.position = new Vector3( (lengthX[idImg]*(1-index)) + xSet, hSet, 0 );
+
     }
     void PaintSun(){
         Sun.transform.position = new Vector3(cam.transform.position.x + widthCam/3.5f,cam.transform.position.y + heightCam/4f);

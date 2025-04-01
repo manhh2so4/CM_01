@@ -5,21 +5,22 @@ public class ParticleManager : CoreComponent
     protected override void Awake()
     {
         base.Awake();
-        //particleContainer = GameObject.FindGameObjectWithTag("ParticleContainer").transform;
     }
-    public GameObject StartParticles(GameObject particlePrefab,Vector2 position, Quaternion rotation){
-        return Instantiate(particlePrefab, position, rotation, transform);
-    }
-    public GameObject StartParticles(GameObject particlePrefab,Vector2 position){
-        return StartParticles(particlePrefab,position,Quaternion.identity);
+    public T Creat<T>(T particlePrefab,Vector2 position, Quaternion rotation = default) where T : Component
+    {
+        T vale = PoolsContainer.GetObject(particlePrefab, position, transform);
+        vale.transform.rotation = rotation;
+        return vale;
     }
 
-    public GameObject StartParticlesRandomRotation(GameObject particlePrefab){
+    public T CreatRandomRotation<T>(T particlePrefab) where T : Component
+    {
         var randRotation = Quaternion.Euler(0f,0f, Random.Range(0,360));
-        return StartParticles(particlePrefab,transform.position,randRotation);
+        return Creat(particlePrefab,transform.position,randRotation);
     }
-    public GameObject StartParticlesRandomRotation(GameObject particlePrefab,Vector2 position){
+    public T CreatRandomRotation<T>(T particlePrefab,Vector2 position) where T : Component
+    {
         var randRotation = Quaternion.Euler(0f,0f, Random.Range(0,360));
-        return StartParticles(particlePrefab, position, randRotation);
+        return Creat(particlePrefab, position, randRotation);
     }
 }

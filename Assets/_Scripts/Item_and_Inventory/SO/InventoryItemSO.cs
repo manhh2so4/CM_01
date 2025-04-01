@@ -13,11 +13,11 @@ public class InventoryItemSO : ScriptableObject, ISerializationCallbackReceiver
     [Tooltip("The UI icon to represent this item in the inventory.")]
     [SpritePreview]
     [SerializeField] Sprite icon = null;
-
-    [SerializeField] Pickup pickup = null;
     
     [Tooltip("If true, multiple items of this type can be stacked in the same inventory slot.")]
     [SerializeField] bool stackable = false;
+    [SerializeField] int price;
+
     static Dictionary<string, InventoryItemSO> itemLookupCache;
     
     public static InventoryItemSO GetFromID(string itemID)
@@ -25,7 +25,7 @@ public class InventoryItemSO : ScriptableObject, ISerializationCallbackReceiver
         if (itemLookupCache == null)
         {
             itemLookupCache = new Dictionary<string, InventoryItemSO>();
-                var itemList = Resources.LoadAll<InventoryItemSO>("Assets/Resources/Inventory");
+                var itemList = Resources.LoadAll<InventoryItemSO>("Inventory/");
                 foreach (var item in itemList)
                 {
                     if (itemLookupCache.ContainsKey(item.itemID))
@@ -40,12 +40,11 @@ public class InventoryItemSO : ScriptableObject, ISerializationCallbackReceiver
         if (itemID == null || !itemLookupCache.ContainsKey(itemID)) return null;
         return itemLookupCache[itemID];
     }
-    public Pickup SpawnPickup(Vector3 position, int number)
+    Vector2 temp = Vector2.zero;
+    public Pickup SpawnPickup(Vector3 position, int number, Vector2 dirV = default(Vector2))
     {
-        Debug.Log("SpawnPickup" + this.pickup.name);
-        var pickup = Instantiate(this.pickup);
-        pickup.transform.position = position;
-        pickup.Setup(this, number);
+        Pickup pickup = PoolsContainer.GetObject( this.GetPrefab<Pickup>() , position);
+        pickup.Setup(this, number, dirV);
         return pickup;
     }
     public void SetName( string name, string description)
@@ -73,6 +72,11 @@ public class InventoryItemSO : ScriptableObject, ISerializationCallbackReceiver
     {
         return description;
     }
+    public int GetPrice()
+    {
+        return price;
+    }
+
     // PRIVATE
         
     void ISerializationCallbackReceiver.OnBeforeSerialize()

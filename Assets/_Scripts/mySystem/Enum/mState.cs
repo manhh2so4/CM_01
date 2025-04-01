@@ -11,8 +11,7 @@ public enum mState
     Grab,
     Dash,
     Follow_Player,
-    AttackStand,
-    AttackFly,
+    Attack,
 	Knockback,
     Respawn,
 	Dead

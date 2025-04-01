@@ -18,6 +18,8 @@ public class QuestButton : MonoBehaviour, IPointerClickHandler {
     public void OnPointerClick(PointerEventData eventData)
     {
         onSelectAction?.Invoke();
+        UI_selected.SetSelected(this.transform as RectTransform);
+
     }
     public void SetState(QuestState state){
 

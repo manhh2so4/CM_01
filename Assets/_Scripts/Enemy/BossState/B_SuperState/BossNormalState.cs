@@ -17,14 +17,12 @@ public class BossNormalState : BossState
 	public override void LogicUpdate() {
 		base.LogicUpdate();
 		if(boss.playerCheck){
-			if(Vector2.Distance(boss.playerCheck.position,boss.transform.position) < boss.AgroDistance)
-			stateMachine.ChangeState(boss.lookState);
-		}        
+			if( Vector2.Distance ( boss.playerCheck.position , boss.transform.position) < boss.AgroDistance){
+				stateMachine.ChangeState(boss.lookState); return;
+			}
+		}
 	}
 
-	public override void PhysicsUpdate() {
-		base.PhysicsUpdate();
-	}
 	public bool GetRandomBoolean()
     {
         int randomInt = Random.Range(0, 2);

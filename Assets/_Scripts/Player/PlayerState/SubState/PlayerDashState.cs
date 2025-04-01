@@ -7,67 +7,89 @@ public class PlayerDashState : PlayerAbilityState
     public bool canDash{get;private set;}
     bool isHolding;
     bool dashInputStop;
+    public float cooldownDash;
     Vector2 dashDirection;
-    Vector2 dashDirectionInput;
-    private float lastDashTime;
-    
     public PlayerDashState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
     {
-
+        cooldownDash = playerData.dashCooldown;
     }
     public override void Enter(){
         base.Enter();
         canDash = false;
         player.inputPlayer.UseDashInpur();
         isHolding =true;
-        dashDirection = Vector2.right*movement.facingDirection;
         Time.timeScale = playerData.holdTimeScale;
         startTime = Time.unscaledTime;
-        player.dashDirImgae.gameObject.SetActive(true);
+
     }
     public override void Exit(){
         base.Exit();
-        if(movement.CurrentVelocity.y >0){
-           movement.SetVelocityY(movement.CurrentVelocity.y*playerData.dashEndYMultiplier);
+        Time.timeScale =1f;
+        cooldowns.Start(this,cooldownDash);
+
+        if(movement.Velocity.y >0){
+           movement.SetVelocityY(movement.Velocity.y*playerData.dashEndYMultiplier);
         }
-        if(movement.CurrentVelocity.x >0){
-           movement.SetVelocityY(movement.CurrentVelocity.x*playerData.dashEndYMultiplier);
+        if(movement.Velocity.x >0){
+           movement.SetVelocityY(movement.Velocity.x*playerData.dashEndYMultiplier);
         }
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
-        if(!isExitingState){
-            if(isHolding){
-                dashDirectionInput = player.inputPlayer.DashDirInput;
-                dashInputStop = player.inputPlayer.dashInputStop;
-                if(dashDirectionInput != Vector2.zero){
-                    dashDirection = dashDirectionInput;
-                    dashDirection.Normalize();
-                }
-                float angle = Vector2.SignedAngle(Vector2.right,dashDirection);
-                player.dashDirImgae.rotation = Quaternion.Euler(0f,0f,angle);
-                if(dashInputStop || Time.unscaledTime >= startTime + playerData.maxHoldTime){
-                    isHolding = false;
-                    Time.timeScale =1f;
-                    startTime = Time.time;
-                    movement.CheckIfShouldFlip(Mathf.RoundToInt(dashDirection.x));
-                    //movement.mRB.drag = playerData.drag;
-                    movement.SetVelocity(playerData.dashVelocity,dashDirection);
-                    player.dashDirImgae.gameObject.SetActive(false);
-                }
-            }else{
-                movement.SetVelocity(playerData.dashVelocity,dashDirection);
-                if(Time.time >= startTime + playerData.dashTime){
-                    //movement.mRB.drag = 0f;
-                    isAbilityDone = true;
-                    lastDashTime = Time.time;
-                }
-            }
+        if(isExitingState) return;
 
+        if(isHolding){
+
+            dashInputStop = player.inputPlayer.dashInputStop;
+            int inputX = player.inputPlayer.MoveInput;
+            movement.CheckIfShouldFlip( inputX );
+            dashDirection.Set( movement.facingDirection, 0);
+            
+            if(dashInputStop || Time.unscaledTime >= startTime + playerData.maxHoldTime){
+                isHolding = false;
+                Time.timeScale =1f;
+                startTime = Time.time;
+                movement.SetDrag( playerData.drag );
+                movement.SetVelocity(playerData.dashVelocity,dashDirection);
+
+            }
+        }else{
+            movement.SetVelocity(playerData.dashVelocity , dashDirection);
+            if(Time.time >= startTime + playerData.dashTime){
+                movement.SetDrag(0);
+                isAbilityDone = true;
+            }
         }
+
+        
     }
     public bool CheckIfCanDash(){
-        return canDash && Time.time >= lastDashTime + playerData.dashCooldown;
+        return canDash && cooldowns.IsDone(this) ;
     }
     public void ResetCanDash() => canDash =true;
 }
+// if(isHolding){
+//             dashDirectionInput = player.inputPlayer.DashDirInput;
+//             dashInputStop = player.inputPlayer.dashInputStop;
+//             if(dashDirectionInput != Vector2.zero){
+//                 dashDirection = dashDirectionInput;
+//                 dashDirection.Normalize();
+//             }
+//             float angle = Vector2.SignedAngle(Vector2.right,dashDirection);
+//             player.dashDirImgae.rotation = Quaternion.Euler(0f,0f,angle);
+//             if(dashInputStop || Time.unscaledTime >= startTime + playerData.maxHoldTime){
+//                 isHolding = false;
+//                 Time.timeScale =1f;
+//                 startTime = Time.time;
+//                 movement.CheckIfShouldFlip(Mathf.RoundToInt(dashDirection.x));
+//                 movement.SetDrag( playerData.drag );
+//                 movement.SetVelocity(playerData.dashVelocity,dashDirection);
+//                 player.dashDirImgae.gameObject.SetActive(false);
+//             }
+//         }else{
+//             movement.SetVelocity(playerData.dashVelocity,dashDirection);
+//             if(Time.time >= startTime + playerData.dashTime){
+//                 movement.SetDrag(0);
+//                 isAbilityDone = true;
+//             }
+//         }

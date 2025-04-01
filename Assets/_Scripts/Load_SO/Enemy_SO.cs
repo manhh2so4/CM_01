@@ -13,4 +13,8 @@ public class Enemy_SO : ScriptableObject
         public float speedMove;
         public int speedAtk = 1;
         public int Hp = 100;
+        public float timeReSpont;
+        [Header("Set Drop")]
+        public int countDrop;
+        [field : SerializeField] public DropInfo[] dropInfo {get; private set;}
 }

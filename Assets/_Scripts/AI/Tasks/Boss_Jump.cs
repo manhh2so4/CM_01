@@ -32,7 +32,7 @@ using UnityEngine;
         public override TaskStatus OnUpdate()
         {
             core.LogicUpdate();
-            if(movement.CurrentVelocity.y < -0.01){
+            if(movement.Velocity.y < -0.01){
                 bossState.state = StateEnemy.Fall;
                 isjump = true;
                 int direction = playerCheck.position.x < transform.position.x ? -1 : 1;

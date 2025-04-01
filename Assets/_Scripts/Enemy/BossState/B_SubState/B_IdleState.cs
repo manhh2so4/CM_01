@@ -25,6 +25,8 @@ public class B_IdleState : BossNormalState
 	
 	public override void LogicUpdate() {
 		base.LogicUpdate();
+		if(isExitingState) return;
+		
 		if (Time.time >= startTime + timeChangeState) {
 			stateMachine.ChangeState(boss.moveState);
 		}	

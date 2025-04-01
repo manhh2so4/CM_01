@@ -4,35 +4,40 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UIElements;
 public class Weapon : MonoBehaviour {
-    [field: SerializeField] public SkillData_SO Data { get; private set; }
+    public bool hasWeapon = false;
+    public WeaponSprite wpSprite;
+    public Core core{ get; private set;}
+    #region Event
+
     public event Action OnEnter;
     public event Action OnMidd;
     public event Action OnExit;
     public event Action OnStarMove;
     public event Action OnStopMove;
+    public event Action<Sprite> OnSetIcon;
+
+    #endregion
     //------------------------------------
-    #region ID_Skill
-    [Header("ID_Skill")]
-    [SerializeField] public WeaponSprite wpSprite;
+    
+    [Header("ID_Skill")]  
 
     public int cf;
-    public int LengthSkill = 1;
-	int curIdSkill = -1;
+	public float cooldown;
+
+    #region Variable_Anim_Skill
+    //------------Anim_Skill------------------------
+	public Skill[] skills;
+    SkillInfo[] currentSkill;
+    int LengthSkill = 1;
 	int i0=0,dx0,dy0,eff0Lenth;
 	int i1=0,dx1,dy1,eff1Lenth;
 	int i2=0,dx2,dy2,eff2Lenth;
-	public float speedAttack1;
-    #endregion
-	[SerializeField] public Skill[] skills;
-    [SerializeField] SkillInfo[] currentSkill;
-
     //------------------------------------
-    public Core core{ get; private set;}
+    #endregion
 
     public void SetEffSkill(int idSkill){
         currentSkill = skills[idSkill].skillStand;
         LengthSkill = currentSkill.Length;
-		curIdSkill = idSkill;
         eff0Lenth = eff1Lenth = eff2Lenth = -1;
 
         List<int> idEffs = new List<int>();
@@ -41,24 +46,22 @@ public class Weapon : MonoBehaviour {
             
             if(currentSkill[i].effS0Id != 0){
 
-                if(!idEffs.Contains(currentSkill[i].effS0Id)) idEffs.Add(currentSkill[i].effS0Id);
-
+                if(!idEffs.Contains(currentSkill[i].effS0Id)) idEffs.Add( currentSkill[i].effS0Id);
             }
             if(currentSkill[i].effS1Id != 0){
-                if(!idEffs.Contains(currentSkill[i].effS1Id)) idEffs.Add(currentSkill[i].effS1Id);
+                if(!idEffs.Contains(currentSkill[i].effS1Id)) idEffs.Add( currentSkill[i].effS1Id);
             }
             if(currentSkill[i].effS2Id != 0){
-                if(!idEffs.Contains(currentSkill[i].effS2Id)) idEffs.Add(currentSkill[i].effS2Id);
+                if(!idEffs.Contains(currentSkill[i].effS2Id)) idEffs.Add( currentSkill[i].effS2Id);
             }
         }
-        wpSprite.LoadEffSkill(idEffs.ToArray());
+        wpSprite.LoadEffSkill( idEffs.ToArray() );
         idEffs.Clear();
     }
 
     public void AttackWeapon(int FrameCurrent){
 
         if(FrameCurrent >= LengthSkill){
-				wpSprite.SetSkillOff();
 				Exit();
 				return;
 		}
@@ -120,19 +123,25 @@ public class Weapon : MonoBehaviour {
     }
     public void SetData(SkillData_SO data){
         
-        this.Data = data;
-        if(data == null) return;
+
+        if(data == null) {
+            hasWeapon = false;
+            OnSetIcon?.Invoke(null);
+            return;
+        }
+        OnSetIcon?.Invoke(data.icon);
         SetEffSkill( data.GetData<PassiveSkillData>().idSkill );
-        speedAttack1 = data.GetData<PassiveSkillData>().speed;
+        cooldown = data.GetData<PassiveSkillData>().cooldown ;
+        hasWeapon = true;
     }
 
     public void Enter(){
-        //print($"{transform.name} enter");
         OnEnter?.Invoke();
     }
 
-    private void Exit()
+    public void Exit()
     {       
+        wpSprite.SetSkillOff();
         OnStopMove?.Invoke();   
         OnExit?.Invoke();
     }

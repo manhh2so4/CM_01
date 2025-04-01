@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Quest 1
   m_EditorClassIdentifier: 
   <id>k__BackingField: Quest 1
-  displayName: Collect the Coins!
-  describle: "b\u1EA1n \u0111ang tr\u1EA3 v\u1EC1 tham chi\u1EBFu \u0111\u1EBFn m\u1EA3ng
-    g\u1ED1c,"
+  displayName: "Thu th\u1EADp \u0111\u1ED3ng xu"
+  describle: "\xD4ng gate l\u01B0\u1EDDi l\xE0m vi\u1EC7c l\xEAn b\u1EA1n s\u1EBD
+    ph\u1EA3i gi\xFAp \xF4ng ta"
   state: 0
   levelRequirement: 1
   questPrerequisites: []
@@ -36,11 +36,11 @@ MonoBehaviour:
       type: {class: CollectCoinData, ns: HStrong.Quests, asm: Assembly-CSharp}
       data:
         name: CollectCoinData
-        __description__: Collect Coint
+        __description__: "Nh\u1EB7t 5 \u0111\u1ED3ng xu"
         coinsToComplete: 5
     - rid: 607104599849959425
       type: {class: CollectCoinData, ns: HStrong.Quests, asm: Assembly-CSharp}
       data:
         name: CollectCoinData
-        __description__: Collect Coint Lan 2
+        __description__: "Nh\u1EB7t ti\u1EBFp 6 \u0111\u1ED3ng xu"
         coinsToComplete: 6

@@ -37,8 +37,8 @@ public class PlayerData : ScriptableObject
 		float gravity = -(2 * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2);
 		MaxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 		MinJumpVelocity = Mathf.Sqrt (2 * Mathf.Abs (gravity) * minJumpHeight);
-        Debug.Log("Gravity: " + gravity + "  Jump Velocity: " + MaxJumpVelocity);
         return gravity;
+        
     }
         
 }

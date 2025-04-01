@@ -22,3 +22,14 @@ MonoBehaviour:
   speedMove: 0
   speedAtk: 0
   Hp: 100
+  timeReSpont: 40
+  countDrop: 1
+  <dropInfo>k__BackingField:
+  - item: {fileID: 0}
+    dropChance: 0
+  - item: {fileID: 0}
+    dropChance: 0
+  - item: {fileID: 0}
+    dropChance: 0
+  - item: {fileID: 0}
+    dropChance: 0

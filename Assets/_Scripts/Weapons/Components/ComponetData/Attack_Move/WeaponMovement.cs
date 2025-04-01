@@ -15,9 +15,9 @@ public class WeaponMovement : WeaponComponents<MovementData> {
         weapon.OnStarMove += StartMovement;
         weapon.OnStopMove += StopMovement;
     }
-    protected override void OnDisable()
+    public override void Refest()
     {
-        base.OnDisable();        
+        base.Refest();        
         weapon.OnStarMove -= StartMovement;
         weapon.OnStopMove -= StopMovement;
     }

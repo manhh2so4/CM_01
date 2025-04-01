@@ -7,14 +7,12 @@ public class PlayerGroundedState : PlayerState
 {   
     protected int inputX;
     private bool jumpInput;
-    private bool isGrounded;
     bool dashInput;
     public PlayerGroundedState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
     {
     }
     public override void DoCheck(){
         base.DoCheck();
-        isGrounded = collisionSenses.isGround;
     }
     public override void Enter(){
         base.Enter();
@@ -26,6 +24,7 @@ public class PlayerGroundedState : PlayerState
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
+        if(isExitingState) return;
 
         inputX = player.inputPlayer.MoveInput;
         jumpInput = player.inputPlayer.jumpInput;
@@ -57,9 +56,6 @@ public class PlayerGroundedState : PlayerState
 
             stateMachine.ChangeState(player.dashState);
         }
-    }
-    public override void PhysicsUpdate(){
-        base.PhysicsUpdate();    
     }
         
 }

@@ -13,17 +13,17 @@ public class PlayerJumpState : PlayerAbilityState
         base.DoCheck();
     }
     public override void Enter(){
-        //Debug.Log("Enter amountOfjumpLeft: " + amountOfjumpLeft);
-        player.inputPlayer.UseJumpInput();
         base.Enter();
-
+        player.inputPlayer.UseJumpInput();
+        player.airState.isFall = false;
+        float velJump = Mathf.Lerp(playerData.MinJumpVelocity, playerData.MaxJumpVelocity,player.inputPlayer.amountJump);
+        
         if( player.inputPlayer.amountJump < 0.5 ){
             player.Anim.state = mState.JumpMin;
         }else{
             player.Anim.state = mState.JumpMax;
+            player.Anim.SetStateVy(velJump);
         }
-        player.airState.isFall = false;
-        float velJump = Mathf.Lerp(playerData.MinJumpVelocity, playerData.MaxJumpVelocity,player.inputPlayer.amountJump);
         movement.SetVelocityY(velJump); 
         isAbilityDone = true;
         amountOfjumpLeft--;

@@ -1,19 +1,21 @@
+using System.Threading;
 using UnityEngine;
 
-public class Pickup : MonoBehaviour,IClicker {
-    [SerializeField] LayerMask playerMask;
+public class Pickup : MonoBehaviour,IClicker ,IObjectPoolItem {
+    mPhysic2D mPhysic2D;
     InventoryItemSO item;
     int number = 1;
-    Inventory inventory;
+    Inventory inventoryPlayer;
+    void Awake()
+    {
+        mPhysic2D = GetComponent<mPhysic2D>();
+    }
     private void Start()
     {
-        var player = PlayerManager.GetPlayer();
-        inventory = player.GetComponent<Inventory>();
-        
+        inventoryPlayer = PlayerManager.GetInventory();
     }
-    public void Setup(InventoryItemSO item, int number)
+    public void Setup(InventoryItemSO item, int number, Vector2 dirV )
     {
-        
         this.item = item;
         GetComponent<SpriteRenderer>().sprite = this.item.GetIcon();
         if (!item.IsStackable())
@@ -21,6 +23,8 @@ public class Pickup : MonoBehaviour,IClicker {
             number = 1;
         }
         this.number = number;
+
+        mPhysic2D.Velocity = dirV;
     }
     public InventoryItemSO GetItem()
     {
@@ -33,40 +37,54 @@ public class Pickup : MonoBehaviour,IClicker {
     public void PickupItem()
     {
 
-        bool foundSlot = inventory.AddToFirstEmptySlot(item, number);
+        bool foundSlot = inventoryPlayer.AddToFirstEmptySlot(item, number);
         if (foundSlot)
         {
-            Destroy(gameObject);
+            RemovePickup();
         }
     }
     public bool CanBePickedUp()
     {
-        return inventory.HasSpaceFor(item);
+        return inventoryPlayer.HasSpaceFor(item);
     }
 
     public void OnClick()
     {
         PickupItem();
     }
-    void FixedUpdate()
-    {
-        //CheckForPlayer();
-    }
-    private void CheckForPlayer()
-    {
-        Collider2D hit = Physics2D.OverlapCircle( transform.position, .26f, playerMask);
-        if (hit)
-        {
-            PickupItem();
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.CompareTag("Player")){
             PickupItem();
         }
     }
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, .26f);
+    void RemovePickup(){
+        item = null;
+        number = 0;
+        ReturnItemToPool();
     }
+#region CreatPool
+    ObjectPool objectPool;
+    void ReturnItemToPool()
+    {
+        if (objectPool != null)
+        {
+            objectPool.ReturnObject(this);
+            this.transform.SetParent(PoolsContainer.Instance.transform);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    public void SetObjectPool(ObjectPool pool)
+    {
+        objectPool = pool;
+    }
+
+    public void Release()
+    {
+        objectPool = null;
+    }
+#endregion
 }

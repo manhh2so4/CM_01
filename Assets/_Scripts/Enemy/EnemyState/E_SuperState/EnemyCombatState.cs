@@ -13,6 +13,7 @@ public class EnemyCombatState : E_State
 	
 	public override void Enter() {
 		base.Enter();
+		checkPlayer();
 
 
 	}
@@ -23,29 +24,34 @@ public class EnemyCombatState : E_State
 	}
 
 	public override void LogicUpdate() {
-
 		base.LogicUpdate();	
+		if(isExitingState) return;
+
 		if(enemy.playerCheck == null){
 			stateMachine.ChangeState(enemy.idleState);
 			return;
-		}	
+		}
 
-		distancePlayer = Vector2.Distance(enemy.playerCheck.position,enemy.transform.position);
-		xDirPlayer = (enemy.playerCheck.position.x > enemy.transform.position.x) ? 1 : -1;
-		yDirPlayer = (enemy.playerCheck.position.y > enemy.transform.position.y) ? 1 : -1;
+		if( cooldowns.IsDone(enemy.attackState) ) {
+            stateMachine.ChangeState(enemy.attackState);  
+            return;
+        }
+
+		checkPlayer();	
 
 		if(distancePlayer >= enemy.AgroDistance){
 			movement.Flip();
-			stateMachine.ChangeState(enemy.idleState);			
+			stateMachine.ChangeState(enemy.moveState);
+			return;			
 		}
 		
-		if(TimeAction(enemyData.speedAtk)){
-			canAttack = true;
-		}
+		
 		enemy.canAttack =  this.canAttack;
 	}
-
-	public override void PhysicsUpdate() {
-		base.PhysicsUpdate();
+	void checkPlayer(){
+		if(enemy.playerCheck == null) return;
+		distancePlayer = Vector2.Distance(enemy.playerCheck.position,enemy.transform.position);
+		xDirPlayer = (enemy.playerCheck.position.x > enemy.transform.position.x) ? 1 : -1;
+		yDirPlayer = (enemy.playerCheck.position.y > enemy.transform.position.y) ? 1 : -1;
 	}
 }

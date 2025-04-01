@@ -12,9 +12,6 @@ public class E_MoveState : EnemyNormalState
 
 	public override void Enter() {
 		base.Enter();
-        enemy.state = StateEnemy.Moving;
-
-        SetRandomMoveTime();
 	}
 
 	public override void Exit() {
@@ -22,9 +19,12 @@ public class E_MoveState : EnemyNormalState
 	}
 	public override void LogicUpdate() {
 		base.LogicUpdate();
+        if(isExitingState) return;
+        
         if (Time.time >= startTime + timeChangeState){
 			stateMachine.ChangeState(enemy.idleState);
 		}
+
         if(TimeRate(0.35f/enemyData.speedMove)) return;
         switch(enemyData.type){			
 			case 0:
@@ -32,8 +32,7 @@ public class E_MoveState : EnemyNormalState
 				break;
             case 1:                             
                 
-
-                if(isWall || !isLedge && isGround) movement.Flip();
+                if( (isWall || !isLedge ) && isGround) movement.Flip();
 
                 if(isGround) movement?.SetVelocityX(enemyData.speedMove * movement.facingDirection);
                 
@@ -71,12 +70,6 @@ public class E_MoveState : EnemyNormalState
 
         
 	}
-
-	public override void PhysicsUpdate() {
-		base.PhysicsUpdate();
-	}
-    private void SetRandomMoveTime() {
-		timeChangeState = Random.Range(enemy.minIdleTime, enemy.maxIdleTime);
-	}
+    
 
 }

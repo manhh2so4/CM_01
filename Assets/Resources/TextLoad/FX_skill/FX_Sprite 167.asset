@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f49f30a25850f34dbcbd491163231f6, type: 3}
+  m_Name: FX_Sprite 167
+  m_EditorClassIdentifier: 
+  EffId: 167
+  effSkillInfo_SO:
+  - sprite: {fileID: 21300000, guid: b2cd73b1dbd077441a805480bbf4ec61, type: 3}
+    dx: 7
+    dy: -29
+  - sprite: {fileID: 21300000, guid: b9ee49d0a769c5d4a8f85dfae88b58c7, type: 3}
+    dx: 11
+    dy: -17
+  - sprite: {fileID: 21300000, guid: 69d7a49b313ea454298341b00669f5c9, type: 3}
+    dx: 8
+    dy: -12
+  - sprite: {fileID: 21300000, guid: b7af6efc6aaf0ec45a49b36c58c25fd0, type: 3}
+    dx: 5
+    dy: -10

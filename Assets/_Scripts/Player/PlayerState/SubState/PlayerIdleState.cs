@@ -21,11 +21,11 @@ public class PlayerIdleState : PlayerGroundedState
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
+        if(isExitingState) return;
+        
         if(inputX != 0 && !isExitingState ){
             stateMachine.ChangeState(player.moveState);
         }
     }
-    public override void PhysicsUpdate(){
-        base.PhysicsUpdate();
-    }
+
 }

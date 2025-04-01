@@ -5,13 +5,14 @@ namespace HStrong.ProjectileSystem{
     public class Projectile : MonoBehaviour, IObjectPoolItem
     {
         public event Action OnInit;
-
-        public Transform target;
+        public event Action OnReset;
+        [HideInInspector]public Transform target;
         public float speed;
-        public CharacterStats stats;
+        [HideInInspector] public CharacterStats stats;
         public Vector2 Dir;
+        [HideInInspector] public int damage;
   
-        public virtual void SetProjectile(float speed, Vector2 _dir, string tag,CharacterStats stats)
+        public void SetProjectile(float speed, Vector2 _dir, string tag,CharacterStats stats)
         {
             
             this.speed = speed;
@@ -20,26 +21,45 @@ namespace HStrong.ProjectileSystem{
 
         }
 
-        public virtual void SetProjectile(float speed, Transform target, string tag,CharacterStats stats)
+        public void SetProjectile(float speed, Transform target, string tag,CharacterStats stats)
         {
             this.speed = speed;
             this.target = target;
             SetProjectile( tag, stats);
         }
 
-        public virtual void SetProjectile(string tag,CharacterStats stats)
+
+        public void SetProjectile(string tag, CharacterStats stats)
         {
             this.stats = stats;
             gameObject.tag = tag;
             Init();
         }
-        public void Init()
+        public void SetProjectile(string tag, int damage)
+        {
+            this.damage = damage;
+            gameObject.tag = tag;
+            Init();
+        }
+        private
+        void Init()
         {
             OnInit?.Invoke();
         }
-        public void Destroy()
+        void ReFresh()
         {
+           target = null;
+           speed = 0;
+           Dir = Vector2.zero;
+           stats = null;
+           OnReset?.Invoke();
+        }
+
+        public void Destroy()
+        {  
+            ReFresh();
             ReturnItemToPool();
+            
         }
         #region CreatPool
         ObjectPool objectPool;

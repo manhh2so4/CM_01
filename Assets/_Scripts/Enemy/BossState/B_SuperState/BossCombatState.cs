@@ -3,42 +3,37 @@ using UnityEngine;
 public class BossCombatState : BossState
 {
 	
-	protected bool canAttack;
-    public BossCombatState(Boss boss, FiniteStateMachine stateMachine) : base(boss, stateMachine)
+    public BossCombatState( Boss boss, FiniteStateMachine stateMachine ) : base( boss, stateMachine )
     {
-
     }
 	public override void Enter() {
 		base.Enter();
-
-
 	}
-
 	public override void Exit() {
 		base.Exit();
-		canAttack = false;
 	}
 
 	public override void LogicUpdate() {
 
 		base.LogicUpdate();	
-		if(boss.playerCheck == null){
-			stateMachine.ChangeState(boss.idleState);
-			return;
-		}	
-		
-		if(distancePlayer >= boss.AgroDistance){
+		if( distancePlayer >= boss.AgroDistance || boss.playerCheck == null){
 			movement.Flip();
-			stateMachine.ChangeState(boss.idleState);			
+			stateMachine.ChangeState(boss.idleState);
+			return;			
 		}
-		
-		if(TimeAction(bossData.speed_attack)){
-			canAttack = true;
-		}
-		boss.canAttack =  this.canAttack;
 	}
+	
+	#region funcTimer
+    private float timeAction = 0;
+    protected bool TimeAction(float timeWait){        
+        timeAction += Time.deltaTime;
+        if(timeAction >= timeWait){
+            timeAction = 0;
+            return true;
+        }
+        return false;
+    }
+    #endregion
 
-	public override void PhysicsUpdate() {
-		base.PhysicsUpdate();
-	}
 }
+

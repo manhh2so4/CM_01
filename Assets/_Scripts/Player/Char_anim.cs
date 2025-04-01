@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +14,16 @@ public class Char_anim : MonoBehaviour
 	public bool canChangStage = true;
 	public int FrameCurrent = 0;	        
 	float frameTimer = 0;
-    public float stagejump =0 ;
+    public float stagejump = 0 ;
 	public float speedRun = 5 ;
-
+	float stateVy1, stateVy2, stateVy3, stateVy4;
+	public void SetStateVy(float vY){
+		float step = (Mathf.Abs(vY)*0.6f)/4;
+		stateVy1 = step;
+		stateVy2 = step*2;
+		stateVy3 = step*3;
+		stateVy4 = step*4;
+	}
     private void Awake() {
         LoadCompnents();
     }
@@ -25,7 +33,7 @@ public class Char_anim : MonoBehaviour
     void LoadCompnents(){
         if(drawChar == null) drawChar = transform.Find("Sprite").gameObject.GetComponent<Draw_Char>();
     }
-	public void setSkill(Weapon _skill){
+	public void setSkill( Weapon _skill ){
 		skill = _skill;
 	}
 
@@ -69,9 +77,15 @@ public class Char_anim : MonoBehaviour
 			case mState.Climb:
 				charClimb();
 				break;
-			case mState.AttackStand:
+			case mState.Attack:
 				charAttack();
-				break;;
+				break;
+			case mState.Dash:
+				drawChar.cf = 7;
+				break;
+			case mState.Knockback:
+				charKnockback();
+				break;
 			case mState.Dead:
 				break;
 			default:
@@ -79,9 +93,16 @@ public class Char_anim : MonoBehaviour
         	break;					
 		}
 	}
-	void charRun(){
+
+    private void charKnockback()
+    {
+        drawChar.cf = 21;
+    }
+
+    void charRun(){
 		frameTimer += Time.deltaTime;
         if(TimeRate((1f)/(3*speedRun/2))){
+
 			drawChar.PainDust(FrameCurrent);
 			drawChar.cf = FrameCurrent + 2;
             FrameCurrent = ((FrameCurrent + 1)%5);
@@ -105,29 +126,31 @@ public class Char_anim : MonoBehaviour
         }
 	}
 	void charJumpMax(){
-			if 	(stagejump > 8 )
+
+			if 	(stagejump > stateVy4 )
 			{					
 				drawChar.cf = 7;
 			}
-			else if (stagejump > 6 && stagejump <= 8)
+			else if (stagejump > stateVy3 && stagejump <= stateVy4)
 			{
 				drawChar.cf = 8;
 			}
-			else if (stagejump > 4 && stagejump <= 6)
+			else if (stagejump > stateVy2 && stagejump <= stateVy3)
 			{
 				drawChar.cf = 9;
 			}
-			else if (stagejump > 2 && stagejump <= 4 )
+			else if (stagejump > stateVy1 && stagejump <= stateVy2 )
 			{
 				drawChar.cf = 10;
 			}
-			else if ( stagejump > 0 && stagejump <= 2)
+			else if ( stagejump > 0 && stagejump <= stateVy1)
 			{
 				drawChar.cf = 11;
 			} else if(stagejump < 0 )		
 			{
 				drawChar.cf = 12;
 			}
+
 	}
 	void charJumpMin(){
 		if(stagejump < 0 )
@@ -147,11 +170,11 @@ public class Char_anim : MonoBehaviour
 	}
 	void charAttack(){
 
-		if(skill.Data == null) return;
+		if(skill.hasWeapon == false) return;
 		frameTimer += Time.deltaTime;
-        if(TimeRate(skill.speedAttack1 / skill.LengthSkill )){			
+        if(TimeRate( 0.1f )){			
 			skill.AttackWeapon(FrameCurrent);
-			drawChar.cf = isFly ? skill.cf +9: skill.cf;
+			drawChar.cf = isFly ? skill.cf + 9 : skill.cf;
 			FrameCurrent++;	
         }		
 	}

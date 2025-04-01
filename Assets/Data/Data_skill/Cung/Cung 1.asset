@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bff999054a7070498e80d8cb4867207, type: 3}
+  m_Name: Cung 1
+  m_EditorClassIdentifier: 
+  icon: {fileID: 7322209816106840662, guid: e9c8dda83f5b2cf4bb0f25bd1aa3bc81, type: 3}
+  <ComponentData>k__BackingField:
+  - rid: 607104766750490624
+  - rid: 607104766750490626
+  - rid: 607104766750490627
+  references:
+    version: 2
+    RefIds:
+    - rid: 607104766750490624
+      type: {class: TargeterData, ns: , asm: Assembly-CSharp}
+      data:
+        name: TargeterData
+        <radius>k__BackingField: 7
+        <DamageableLayer>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 4096
+    - rid: 607104766750490626
+      type: {class: ProjecttileData, ns: , asm: Assembly-CSharp}
+      data:
+        name: ProjecttileData
+        prefabProjectile: {fileID: -2270211819613203214, guid: 97de1986570dbc9458528ca0859c2a59, type: 3}
+    - rid: 607104766750490627
+      type: {class: PassiveSkillData, ns: , asm: Assembly-CSharp}
+      data:
+        name: PassiveSkillData
+        <idSkill>k__BackingField: 16
+        <cooldown>k__BackingField: 0.7

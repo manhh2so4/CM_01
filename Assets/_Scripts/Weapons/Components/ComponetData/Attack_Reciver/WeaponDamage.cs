@@ -1,29 +1,29 @@
 using System;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class WeaponDamage : WeaponComponents<DamageData> {
 
-    WeaponHitBox hitBox;
-    CharacterStats stats;
+    [SerializeField] WeaponHitBox hitBox;
+    [SerializeField] CharacterStats stats;
     private void TriggerDame(Collider2D other) {
 
         if(other.TryGetComponent(out IDamageable damageable)){
-            
-            stats.DoDamage(damageable.Target(data.prefabHit));
-
+            stats.DoDamage( damageable.Target(data.prefabHit) );
         }
     }
+    [Button]
     protected override void SubscribeHandlers()
     {
         base.SubscribeHandlers();
         stats = Core.GetCoreComponent<CharacterStats>();
         hitBox = GetComponent<WeaponHitBox>();
         hitBox.Action += TriggerDame;
-
     }
-    protected override void OnDisable()
+
+    public override void Refest()
     {
-        base.OnDisable();
+        base.Refest();
         hitBox.Action -= TriggerDame;
     }
     protected override void HandleEnter()

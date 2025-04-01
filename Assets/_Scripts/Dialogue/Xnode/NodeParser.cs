@@ -1,11 +1,9 @@
 using System;
 using HStrong.Quests;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 using XNode;
-using XNodeEditor.Internal;
 
 public class NodeParser : MonoBehaviour{
     public static NodeParser instance;
@@ -60,6 +58,7 @@ public class NodeParser : MonoBehaviour{
     {
         chatPlayer = PlayerManager.GetPlayer().GetComponentInChildren<Core>().GetCoreComponent<Chat>();
         dialogueParent.SetActive(false);
+        canNextNode = true;
         nextButton.onClick.AddListener(() =>  NextNode() );
         quitButton.onClick.AddListener(() =>  QuitDialogue() );
     }
@@ -81,11 +80,7 @@ public class NodeParser : MonoBehaviour{
 
                 
                 dialogueALL.SetActive(true);
-
-                
                 NextNode();
-                
-                
                 break;
 
             case NodeType.ChoiceDialogueNode:
@@ -114,7 +109,7 @@ public class NodeParser : MonoBehaviour{
                 GetChat(dialogueNode.speaker).SetUpChat( dialogueNode.DialogueText ,()=>{
 
                     canNextNode = true;
-                    Invoke("NextNode", 1f);
+                    Invoke("NextNode", 2f);
 
                 }); 
 
@@ -155,6 +150,7 @@ public class NodeParser : MonoBehaviour{
                 dialogueTrigger = null;
                 chatNPC = null;
                 graph = null;
+                
 
                 break;
 
@@ -213,10 +209,10 @@ public class NodeParser : MonoBehaviour{
 
         ResetUI();
 
+        if(graph == null) return;
         NodePort exitPort = graph.current.GetOutputPort("exit");
-
+        if(exitPort == null) return;
         if (exitPort.IsConnected){
-
             graph.current = exitPort.Connection.node as BaseNode;
 
         }else{
@@ -226,7 +222,9 @@ public class NodeParser : MonoBehaviour{
         ParseNode();
     }
     void QuitDialogue(){
+        canNextNode = false;
         graph.Exit();
+        ResetUI();
         ParseNode();
     }
     void ResetUI()

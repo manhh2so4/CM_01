@@ -26,11 +26,9 @@ public class SpritePreviewDrawer : PropertyDrawer
                 Rect spriteRect = new Rect(position.x + position.width /3 + 10, position.y, position.height*rito, position.height);          
                 EditorGUI.DrawPreviewTexture(spriteRect, mTex2d);
             }
-        }
-        else
-        {
+        } else {
             EditorGUI.ObjectField(new Rect(position.x, position.y, position.width /3, position.height), property, typeof(Sprite), GUIContent.none);
-            //EditorGUI.LabelField(position, "This is not a Sprite or null");
+            EditorGUI.LabelField(position, property.name);
         }
         EditorGUI.indentLevel = indent;
         EditorGUI.EndProperty();
@@ -54,7 +52,6 @@ public class SpritePreviewDrawer : PropertyDrawer
             }
         }
         croppedTexture.SetPixels(pixels);
-
         croppedTexture.Apply();
         
         return croppedTexture;

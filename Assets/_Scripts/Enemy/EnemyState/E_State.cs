@@ -5,9 +5,10 @@ public class E_State : State
     #region defaut 
     protected Enemy enemy;
     protected Enemy_SO enemyData;
+    protected Cooldown cooldowns;
     protected FiniteStateMachine stateMachine;
     protected float startTime;
-    private float frameTimer = 0,timeCount = 0,timeAction = 0;
+    private float frameTimer = 0;
     protected int FrameCurrent = 0;
     #endregion
     //--------------------------------------- 
@@ -25,6 +26,7 @@ public class E_State : State
         this.enemy = enemy;
         this.stateMachine = stateMachine;
         this.enemyData = enemy.enemy_Data;
+        this.cooldowns = enemy.cooldowns;
         core = enemy.core;
         movement = core.GetCoreComponent<Movement>();
         enemyPos = enemy.transform.position;
@@ -32,6 +34,7 @@ public class E_State : State
     public override void Enter(){
         base.Enter();
         startTime = Time.time;
+        enemy.CurentState = this.GetType().Name;
     }
     public override void Exit(){
         base.Exit();
@@ -41,7 +44,6 @@ public class E_State : State
         base.LogicUpdate();
         isGround = movement.isGround();
         isWall = movement.isWall();
-
         isLedge = enemy.isledge();
         
         XDirPos = enemy.transform.position.x  - enemyPos.x;
@@ -60,22 +62,7 @@ public class E_State : State
         }
         return true;
     }
-    protected bool CountDown(float timeWait){        
-        timeCount += Time.deltaTime;
-        if(timeCount >= timeWait){
-            timeCount = 0;
-            return true;
-        }
-        return false;
-    }
-    protected bool TimeAction(float timeWait){        
-        timeAction += Time.deltaTime;
-        if(timeAction >= timeWait){
-            timeAction = 0;
-            return true;
-        }
-        return false;
-    }
+    
     #endregion
     
 }

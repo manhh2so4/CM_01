@@ -10,7 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
 {
     private Camera cam;
     //------------Move---------------
-    public int MoveInput {get;private set;}
+    [field : SerializeField]public int MoveInput {get;private set;}
     public bool[] AttackInputs {get;private set;}
     private float inputHoldTime = 0.2f;
 
@@ -51,12 +51,14 @@ public class PlayerInputHandler : MonoBehaviour
             isCharging = true;
             chargeStartTime = Time.time;
         }
+
         if(context.canceled){
             if( isCharging == false ) return; 
             isCharging = false;
             float chargeDuration = Time.time - chargeStartTime;
             amountJump = Mathf.Clamp01(chargeDuration / chargeTime);
             jumpInput = true;
+            JumpInputStartTime = Time.time;
         }
     }
     public void OnDashInput(InputAction.CallbackContext context){
@@ -94,7 +96,7 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
     public void OnDashDirectionInput(InputAction.CallbackContext context){
-        //Debug.Log("Drass");
+        
         mousePosition = context.ReadValue<Vector2>();
         if(dashInputStop) return;
         RawDashDirectionInput = context.ReadValue<Vector2>();
@@ -115,8 +117,19 @@ public class PlayerInputHandler : MonoBehaviour
             this.GameEvents().inputEvent.Click_Q();
         }
     }
+    public void OnSave (InputAction.CallbackContext context){
+        if(context.started)
+        {
+            SavingWrapper.Instance.Save();
+        }
+    }
+    public void OnLoad(InputAction.CallbackContext context){
+        if(context.started)
+        {
+            SavingWrapper.Instance.Load();
+        }
+    }
     void DetecObbject(){
-        //Debug.Log("Click");
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         RaycastHit2D[] hits2DAllNonAlloc = new RaycastHit2D[1];
         Physics2D.GetRayIntersectionNonAlloc(ray, hits2DAllNonAlloc);
@@ -132,10 +145,15 @@ public class PlayerInputHandler : MonoBehaviour
     public void UseDashInpur() => dashInput = false;
 
     private void CheckChargeJumpHoldTime(){
+
+        if(Time.time >= JumpInputStartTime + chargeTime){
+            jumpInput = false;
+        }
         if(isCharging == false) return;
         if( Time.time >= chargeStartTime + chargeTime){
             isCharging = false;
             jumpInput = true;
+            JumpInputStartTime = Time.time;
             amountJump = 1f;
         }
     }

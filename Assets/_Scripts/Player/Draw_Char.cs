@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class Draw_Char : MonoBehaviour
@@ -15,10 +16,10 @@ public class Draw_Char : MonoBehaviour
 	[SerializeField] GameObject DustGO;
 	[SerializeField] GameObject WpGO;
 
-    SpriteInfo[] partBody = new SpriteInfo[18];
+   SpriteInfo[] partBody = new SpriteInfo[18];
 	SpriteInfo[] partHead = new SpriteInfo[8];
 	SpriteInfo[] partLeg = new SpriteInfo[10];
-    SpriteInfo[] partWP = new SpriteInfo[2];
+   SpriteInfo[] partWP = new SpriteInfo[2];
 
 	[SerializeField] protected Tex_NjPart_SO mTexAo;
     [SerializeField] protected Tex_NjPart_SO mQuan;
@@ -40,7 +41,6 @@ public class Draw_Char : MonoBehaviour
 
     private void FixedUpdate()  
     {
-        //LoadTexWp();
         LoadTexHead_SO();   
     }
 
@@ -55,29 +55,29 @@ public class Draw_Char : MonoBehaviour
     }
     public void LoadTexWp()
     {
-        partWP = mWp.spriteInfos;
+      partWP = mWp.spriteInfos;
     }
-	void UpdateTypeEquip(EquipLocation typeEquip)
+	void UpdateTypeEquip(EquipType typeEquip)
     {
         switch (typeEquip)
         {
-            case EquipLocation.Vukhi:
+            case EquipType.Vukhi:
 
-				if(playerEquipment.GetItemInSlot(EquipLocation.Vukhi) != null) {
-				partWP = playerEquipment.GetItemInSlot(EquipLocation.Vukhi).GetImageDraw().spriteInfos;
+				if(playerEquipment.GetItemInSlot(EquipType.Vukhi) != null) {
+				partWP = playerEquipment.GetItemInSlot(EquipType.Vukhi).GetImageDraw().spriteInfos;
 				}else partWP = mWp.spriteInfos;
 
                 break;
-            case EquipLocation.Ao:
-				if(playerEquipment.GetItemInSlot(EquipLocation.Ao) != null) {
-					partBody = playerEquipment.GetItemInSlot(EquipLocation.Ao).GetImageDraw().spriteInfos;
+            case EquipType.Ao:
+				if(playerEquipment.GetItemInSlot(EquipType.Ao) != null) {
+					partBody = playerEquipment.GetItemInSlot(EquipType.Ao).GetImageDraw().spriteInfos;
 				}else partBody = mTexAo.spriteInfos;
 
                 break;
-            case EquipLocation.Quan:
+            case EquipType.Quan:
 
-				if(playerEquipment.GetItemInSlot(EquipLocation.Quan) != null) {
-					partLeg = playerEquipment.GetItemInSlot(EquipLocation.Quan).GetImageDraw().spriteInfos;
+				if(playerEquipment.GetItemInSlot(EquipType.Quan) != null) {
+					partLeg = playerEquipment.GetItemInSlot(EquipType.Quan).GetImageDraw().spriteInfos;
 				}else partLeg = mQuan.spriteInfos;
 
                 break;
@@ -101,7 +101,7 @@ public class Draw_Char : MonoBehaviour
 		partHead = mHead.spriteInfos;
         lvHeadCurrent = lvHead;
     }
-   private readonly int[][][] CharInfo2 = new int[34][][]
+   private readonly int[][][] CharInfo = new int[34][][]
     
 	{
 		new int[4][]
@@ -349,13 +349,6 @@ public class Draw_Char : MonoBehaviour
 		LoadTexWp();
 		LoadEffect_Trigger();   				
 	}
-	private void Reset() {
-		LoadCompnents();
-        LoadTexHead_SO(); 
-		Debug.Log(partBody[1].sprite.rect.height);
-		
-
-	}
 	void LoadCompnents(){
 		LegGO = transform.Find("Leg").gameObject;
 		HeadGO = transform.Find("Head").gameObject;
@@ -365,16 +358,25 @@ public class Draw_Char : MonoBehaviour
 		partLeg = mQuan.spriteInfos;
 		partBody = mTexAo.spriteInfos;
 	}
-	
+	[Button("PaintChar")]
+	void PaintCharTest(){
+		LoadCompnents();		        
+        LoadTexHead_SO();
+		LoadTexWp();
+		LoadEffect_Trigger(); 
+		PaintChar();
+	}
 	private void Update() {
         PaintChar();
-    }
+   }
     private void PaintChar(){
 		if(cf == current) return;
-        mPaint.Paint(BodyGO, partBody[CharInfo2[cf][2][0]].sprite, CharInfo2[cf][2][1] + partBody[CharInfo2[cf][2][0]].dx, CharInfo2[cf][2][2] - partBody[CharInfo2[cf][2][0]].dy, 0);
-        mPaint.Paint(HeadGO, partHead[CharInfo2[cf][0][0]].sprite, CharInfo2[cf][0][1] + partHead[CharInfo2[cf][0][0]].dx, CharInfo2[cf][0][2] - partHead[CharInfo2[cf][0][0]].dy, 0);
-        mPaint.Paint(LegGO,  partLeg[CharInfo2[cf][1][0]].sprite,  CharInfo2[cf][1][1] + partLeg[CharInfo2[cf][1][0]].dx,  CharInfo2[cf][1][2] - partLeg[CharInfo2[cf][1][0]].dy, 0);
-		mPaint.Paint(WpGO,   partWP[CharInfo2[cf][3][0]].sprite,   CharInfo2[cf][3][1] + partWP[CharInfo2[cf][3][0]].dx,   CharInfo2[cf][3][2] - partWP[CharInfo2[cf][3][0]].dy, 0);
+      mPaint.Paint(BodyGO, partBody[CharInfo[cf][2][0]].sprite, CharInfo[cf][2][1] + partBody[CharInfo[cf][2][0]].dx, CharInfo[cf][2][2] - partBody[CharInfo[cf][2][0]].dy, 0);
+      mPaint.Paint(HeadGO, partHead[CharInfo[cf][0][0]].sprite, CharInfo[cf][0][1] + partHead[CharInfo[cf][0][0]].dx, CharInfo[cf][0][2] - partHead[CharInfo[cf][0][0]].dy, 0);
+      mPaint.Paint(LegGO,  partLeg[CharInfo[cf][1][0]].sprite,  CharInfo[cf][1][1] + partLeg[CharInfo[cf][1][0]].dx,  CharInfo[cf][1][2] - partLeg[CharInfo[cf][1][0]].dy, 0);
+		if(partWP != null){
+			mPaint.Paint(WpGO, partWP[CharInfo[cf][3][0]].sprite,   CharInfo[cf][3][1] + partWP[CharInfo[cf][3][0]].dx,   CharInfo[cf][3][2] - partWP[CharInfo[cf][3][0]].dy, 0);
+		}
 		current = cf;
 	}
     public void PainDust(int index){

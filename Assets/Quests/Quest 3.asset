@@ -15,7 +15,7 @@ MonoBehaviour:
   <id>k__BackingField: Quest 3
   displayName: Nhiem vu 3
   describle: "\u0111\xE2y l\xE0 nhi\u1EC7m v\u1EE5 nh\u1EB7t coin r\u1EA5t quan tr\u1ECDng
-    c\u1EA7n ph\u1EA3i s\u1EED l\xFD ngay\n"
+    c\u1EA7n ph\u1EA3i s\u1EED l\xFD ngay! \n"
   state: 0
   levelRequirement: 1
   questPrerequisites: []
@@ -39,18 +39,18 @@ MonoBehaviour:
       type: {class: CollectCoinData, ns: HStrong.Quests, asm: Assembly-CSharp}
       data:
         name: CollectCoinData
-        __description__: Collect Coint
-        coinsToComplete: 4
+        __description__: "Gi\u1EBFt 10 con \u1ED1c s\xEAn"
+        coinsToComplete: 10
     - rid: 607104482003124224
       type: {class: CollectItemData, ns: HStrong.Quests, asm: Assembly-CSharp}
       data:
         name: CollectItemData
-        __description__: pickup HP
+        __description__: "Ti\xEAu di\u1EC7t 6 con th\u1ECF"
         itemToCollect: {fileID: 11400000, guid: f2389c129ad48a54d9d05e5588b5d571, type: 2}
-        countToComplete: 5
+        countToComplete: 6
     - rid: 607104494519713792
       type: {class: CollectCoinData, ns: HStrong.Quests, asm: Assembly-CSharp}
       data:
         name: CollectCoinData
-        __description__: Collect Coint 2
-        coinsToComplete: 0
+        __description__: "Ti\xEAu di\u1EC7t 4 con nh\xEDm"
+        coinsToComplete: 4
