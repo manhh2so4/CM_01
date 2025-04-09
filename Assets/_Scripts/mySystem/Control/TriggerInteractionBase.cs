@@ -7,15 +7,6 @@ public class TriggerInteractionBase : MonoBehaviour, IInteractable
     private void Start() {
         
     }
-    private void Update() {
-        if (CanInteract)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Interact();
-            }
-        }
-    }
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player"))
         {

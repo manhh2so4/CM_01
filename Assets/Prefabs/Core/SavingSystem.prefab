@@ -59,3 +59,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeInTime: 0.2
   fadeOutTime: 0.2
+  firstFieldBuildIndex:
+    _sceneAsset: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
+    _sceneName: Scene 1
+  menuLevelBuildIndex:
+    _sceneAsset: {fileID: 102900000, guid: a78d819803fe7504bbd1c094ab4b1c58, type: 3}
+    _sceneName: MainMenu

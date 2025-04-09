@@ -19,28 +19,31 @@ MonoBehaviour:
   state: 0
   levelRequirement: 1
   questPrerequisites: []
+  questSteps:
+  - rid: 524617755326152709
+  - rid: 524617755326152710
   goldReward: 50
   expReward: 100
   itemRewards:
-  - item: {fileID: 11400000, guid: 35bd5b23a3ed1a84a8f5e89eb83e17da, type: 2}
+  - item: {fileID: 11400000, guid: 816129c50cf2c784595a821ea319a919, type: 2}
     count: 1
-  - item: {fileID: 11400000, guid: f2389c129ad48a54d9d05e5588b5d571, type: 2}
-    count: 200
+  - item: {fileID: 11400000, guid: 33117899a34708940a1b19a26c55a61c, type: 2}
+    count: 1
   ComponentData:
-  - rid: 607104471093739526
-  - rid: 607104599849959425
+  - rid: 524617755326152709
+  - rid: 524617755326152710
   references:
     version: 2
     RefIds:
-    - rid: 607104471093739526
+    - rid: 524617755326152709
       type: {class: CollectCoinData, ns: HStrong.Quests, asm: Assembly-CSharp}
       data:
         name: CollectCoinData
-        __description__: "Nh\u1EB7t 5 \u0111\u1ED3ng xu"
-        coinsToComplete: 5
-    - rid: 607104599849959425
-      type: {class: CollectCoinData, ns: HStrong.Quests, asm: Assembly-CSharp}
-      data:
-        name: CollectCoinData
-        __description__: "Nh\u1EB7t ti\u1EBFp 6 \u0111\u1ED3ng xu"
+        __description__: "Nh\u1EB7t 6 xu"
         coinsToComplete: 6
+    - rid: 524617755326152710
+      type: {class: CollectCoinData, ns: HStrong.Quests, asm: Assembly-CSharp}
+      data:
+        name: CollectCoinData
+        __description__: "Nh\u1EB7t 5 xu"
+        coinsToComplete: 5

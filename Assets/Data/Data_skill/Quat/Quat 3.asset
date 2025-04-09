@@ -54,4 +54,4 @@ MonoBehaviour:
       data:
         name: PassiveSkillData
         <idSkill>k__BackingField: 27
-        <cooldown>k__BackingField: 0.7
+        <cooldown>k__BackingField: 0.5

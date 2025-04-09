@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using HStrong.Quests;
 using TMPro;
 using UnityEngine;
@@ -40,16 +41,16 @@ public class NodeParser : MonoBehaviour{
     [Header("____ Chat Elements ____")]
     [SerializeField] Chat chatPlayer;
     [SerializeField] Chat chatNPC;
-    [SerializeField] DialogueTrigger dialogueTrigger;
+    [SerializeField] NPC_Dialogue dialogueTrigger;
     #endregion 
-    public void StartDialogue(DialogueTrigger npc,DialogueGraph _graph)
+    public void StartDialogue(NPC_Dialogue npc,DialogueGraph _graph)
     {
         
         graph = _graph;
         dialogueTrigger = npc;
         chatNPC = npc.chat;
+        canNextNode = true;
         graph.Start();
-        
         ParseNode();
         
         
@@ -58,7 +59,7 @@ public class NodeParser : MonoBehaviour{
     {
         chatPlayer = PlayerManager.GetPlayer().GetComponentInChildren<Core>().GetCoreComponent<Chat>();
         dialogueParent.SetActive(false);
-        canNextNode = true;
+        
         nextButton.onClick.AddListener(() =>  NextNode() );
         quitButton.onClick.AddListener(() =>  QuitDialogue() );
     }
@@ -127,8 +128,9 @@ public class NodeParser : MonoBehaviour{
                 break;
             case NodeType.GiverQuestNode:
 
-                foreach (QuestInfoSO questInfo in ((GiverQuestNode)graph.current).GetQuests()){
+                Debug.Log( "quest Gives " + ((GiverQuestNode)graph.current).GetQuests().Count() );
 
+                foreach (QuestInfoSO questInfo in ((GiverQuestNode)graph.current).GetQuests()){
                     this.GameEvents().questEvent.AddQuestToMap(questInfo);
                 }
 
@@ -137,7 +139,6 @@ public class NodeParser : MonoBehaviour{
             case NodeType.ConditionQuestNode:
             
                 BaseNode baseNode = ((ConditionQuestNode)graph.current).Trigger();
-
                 NextNode(baseNode);
                 break;
 

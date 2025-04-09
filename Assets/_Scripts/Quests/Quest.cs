@@ -16,12 +16,14 @@ namespace HStrong.Quests
         // Constructor for creating a new quest
         public Quest(QuestInfoSO questInfo)
         {
+
             this.info = questInfo;
             this.state = QuestState.HAS_QUEST;
             questInfo.state = this.state;
             this.currentQuestStepIndex = 0;
             this.questSteps = questInfo.GetStepData();
             this.questStepStates = new QuestStepState[questSteps.Length];
+            
             for (int i = 0; i < questStepStates.Length; i++)
             {
                 questStepStates[i] = new QuestStepState("", QuestStepStatus.NOT_STARTED);

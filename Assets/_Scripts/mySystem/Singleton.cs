@@ -9,7 +9,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (_instance == null)
             {
-                Debug.Log("Not Instance in scence: " + typeof(T).Name);
+                Debug.Log(" Not Instance in scence: " + typeof(T).Name );
                 _instance = FindObjectOfType<T>();
                 
                 if (_instance == null)

@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] private Player player;
-    private Purse purse;
-    private Inventory inventory;
-    
     static PlayerManager instance;
+    [SerializeField] Player player;
+    Purse purse;
+    Inventory inventory;
+    InteracButton interacButton;
+
 
     private void Awake() {
         instance = this;
         if(player == null) player = FindObjectOfType<Player>();
         purse = player.GetComponent<Purse>();   
         inventory = player.GetComponent<Inventory>();
+        interacButton = player.GetComponent<InteracButton>();
     }
 
     public static Player GetPlayer(){
@@ -29,5 +31,7 @@ public class PlayerManager : MonoBehaviour
     public static Inventory GetInventory(){
         return instance.inventory;
     }
-
+    public static InteracButton GetInteracButton(){
+        return instance.interacButton;
+    }
 }

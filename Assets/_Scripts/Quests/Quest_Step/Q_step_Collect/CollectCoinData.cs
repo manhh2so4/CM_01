@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 
 namespace HStrong.Quests{
+    [Serializable]
     public class CollectCoinData : Q_StepData
     {
         [Min(1)]

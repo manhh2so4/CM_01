@@ -23,6 +23,7 @@ public class BossCombatState : BossState
 		}
 	}
 	
+	
 	#region funcTimer
     private float timeAction = 0;
     protected bool TimeAction(float timeWait){        

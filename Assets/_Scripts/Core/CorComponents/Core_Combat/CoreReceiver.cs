@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 public abstract class CoreReceiver : CoreComponent {
 
     protected CharacterStats characterStats;
-    protected ParticleManager particleManager;
+    protected PaintEffect particleManager;
     protected CapsuleCollider2D capsuleCollider;
     protected override void Awake()
     {
@@ -14,7 +14,7 @@ public abstract class CoreReceiver : CoreComponent {
         
         
         characterStats = core.GetCoreComponent<CharacterStats>();
-        particleManager = core.GetCoreComponent<ParticleManager>();
+        particleManager = core.GetCoreComponent<PaintEffect>();
 
     }
     protected virtual void Start(){

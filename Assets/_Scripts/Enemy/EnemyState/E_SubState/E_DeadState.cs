@@ -10,14 +10,13 @@ public class E_DeadState : E_State
 	public override void Enter() {
 		base.Enter();
 		stateMachine.canChange = false;
+		movement.IsColision(false);
+		movement.SetVelocity( -movement.facingDirection*3, 7f );
       enemy.mPhysic2D.Gravity = (2* -9.8f);
 		enemy.CharStats.gameObject.SetActive(false);
 		enemy.knockBackReceiver.gameObject.SetActive(false);
 
-		movement.SetVelocity(-movement.facingDirection*3,7f);
-		movement.IsColision(false);
-		//movement.CanSetVelocity = false;
-
+		movement.CanSetVelocity = false;
 		itemDrop.GenerateDrop();
 		
 		enemy.Paint(2);
@@ -26,6 +25,7 @@ public class E_DeadState : E_State
 		base.LogicUpdate();
 		if(isExitingState) return;
 		if(YDirPos > 30f){
+			movement.CanSetVelocity = true;
 			movement.SetVelocityZero();
 		}
 		if (Time.time >= startTime + enemyData.timeReSpont){
@@ -37,7 +37,7 @@ public class E_DeadState : E_State
 	public override void Exit() {
 		base.Exit();
 
-		//movement.CanSetVelocity = true;
+		movement.CanSetVelocity = true;
 		movement.IsColision(true);
 		movement.SetVelocityZero();
 

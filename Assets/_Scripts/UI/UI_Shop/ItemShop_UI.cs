@@ -10,11 +10,11 @@ public class ItemShop_UI : MonoBehaviour, IPointerClickHandler {
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI priceText;
     [SerializeField] TextMeshProUGUI countText;
-    Shop currentShop = null;
+    NPC_Shop currentShop = null;
     ShopItem item = null;
     Action OnSelect;
 
-    public void Setup(Shop currentShop, ShopItem item, Action _OnSelect){
+    public void Setup(NPC_Shop currentShop, ShopItem item, Action _OnSelect){
         this.currentShop = currentShop;
         this.item = item;
 

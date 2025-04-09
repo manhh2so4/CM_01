@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 public class WeaponGenerator : MonoBehaviour {
-    [SerializeField] private Weapon weapon;
+    [SerializeField] private SKill weapon;
     private List<WeaponComponents> compAlreadyOnWeapon = new List<WeaponComponents>();
     private List<WeaponComponents> compAddedToWeapon = new List<WeaponComponents>();
     //private List<Type> componetDependencies = new List<Type>();

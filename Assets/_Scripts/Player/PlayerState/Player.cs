@@ -8,7 +8,7 @@ public class Player : Entity,ISaveable
 {
 
     #region State Variable
-    public FiniteStateMachine StateMachine{get;private set;}
+    public FiniteStateMachine StateMachine { get;private set;}
     public PlayerIdleState idleState {get;private set;}
     public PlayerMoveState moveState{get;private set;}
     public PlayerJumpState jumpState{get;private set;}
@@ -23,18 +23,24 @@ public class Player : Entity,ISaveable
 
     #endregion
     #region Component
-    public Char_anim Anim {get;private set;}
+    public PaintChar paintChar {get;private set;}
     public PlayerInputHandler inputPlayer {get;private set;}
     [SerializeField] public Transform dashDirImgae;
     [SerializeField] private PlayerData playerData;
 
     #endregion
+
     //------------------------------------------
+
     #region Other Variable
-    private Weapon Skill_1;
-    private Weapon Skill_2;
-    private Weapon Skill_3;
+
+    private SKill Skill_1;
+    private SKill Skill_2;
+    private SKill Skill_3;
     public Cooldown cooldowns = new Cooldown();
+    public Map map;
+    public List<Vector2i> mPath = new List<Vector2i>();
+    public int mCurrentNodeId = -1;
     
     #endregion
     
@@ -43,15 +49,16 @@ public class Player : Entity,ISaveable
         base.Awake();
         StateMachine = new FiniteStateMachine();
 
-        Skill_1 = transform.Find("Skill_1").GetComponent<Weapon>();
+        Skill_1 = transform.Find("Skill_1").GetComponent<SKill>();
         Skill_1.SetCore(core);
 
-        Skill_2 = transform.Find("Skill_2").GetComponent<Weapon>();
+        Skill_2 = transform.Find("Skill_2").GetComponent<SKill>();
         Skill_2.SetCore(core);
         
-        Skill_3 = transform.Find("Skill_3").GetComponent<Weapon>();
+        Skill_3 = transform.Find("Skill_3").GetComponent<SKill>();
         Skill_3.SetCore(core);
 
+        inputPlayer = GetComponent<PlayerInputHandler>();
         core.height = 1.3f;
 
         idleState = new PlayerIdleState(this,StateMachine, playerData,mState.Idle);
@@ -68,8 +75,7 @@ public class Player : Entity,ISaveable
         knockState = new PlayerKnockState(this, StateMachine, playerData, mState.Knockback);
     }
     private void Start(){
-        Anim = GetComponent<Char_anim>();
-        inputPlayer = GetComponent<PlayerInputHandler>();
+        paintChar = core.GetCoreComponent<PaintChar>();
         dashDirImgae = transform.Find("DashDirectionImg");
         StateMachine.Initialize(idleState);
         movement.SetGravity(playerData.GetGravity());
@@ -94,10 +100,7 @@ public class Player : Entity,ISaveable
 
     }
 
-    private void FixedUpdate() {
-        StateMachine.CurrentState.PhysicsUpdate();
-    }
-
+    #endregion
     public object CaptureState()
     {
         return new SerializableVector3(transform.position);
@@ -108,5 +111,6 @@ public class Player : Entity,ISaveable
         SerializableVector3 position = state as SerializableVector3;
         transform.position = position.ToVector();
     }
-    #endregion
+    
+
 }

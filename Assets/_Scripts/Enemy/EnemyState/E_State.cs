@@ -49,10 +49,6 @@ public class E_State : State
         XDirPos = enemy.transform.position.x  - enemyPos.x;
         YDirPos = enemy.transform.position.y  - enemyPos.y;     
     }
-    public override void PhysicsUpdate(){
-        base.PhysicsUpdate();
-       
-    }
     #region funcTimer
     protected bool TimeRate(float speed){        
         frameTimer += Time.deltaTime;

@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3472390101272852070}
   - component: {fileID: 7192111469129469948}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: skill1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3472390101272852070
 Transform:
   m_ObjectHideFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5995273984749868094}
+  m_Father: {fileID: 9186731522089530202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7192111469129469948
 SpriteRenderer:
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1797320017
   m_SortingLayer: 6
-  m_SortingOrder: 6
+  m_SortingOrder: 51
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -84,40 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2606230550626690031
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5995273984749868094}
-  m_Layer: 13
-  m_Name: WeaponSprite
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5995273984749868094
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2606230550626690031}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 676529249628269632}
-  - {fileID: 3472390101272852070}
-  - {fileID: 7666196159479654421}
-  m_Father: {fileID: 9186731522089530202}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2682375222000723082
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,13 +94,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7666196159479654421}
   - component: {fileID: 6403830329109089188}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: skill2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7666196159479654421
 Transform:
   m_ObjectHideFlags: 0
@@ -148,7 +114,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5995273984749868094}
+  m_Father: {fileID: 9186731522089530202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6403830329109089188
 SpriteRenderer:
@@ -190,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1797320017
   m_SortingLayer: 6
-  m_SortingOrder: 6
+  m_SortingOrder: 52
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -212,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 676529249628269632}
   - component: {fileID: 416375120105930806}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: skill0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,11 +194,11 @@ Transform:
   m_GameObject: {fileID: 7478453553665386215}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.28, y: 0.28, z: 0}
+  m_LocalPosition: {x: 0.2800007, y: 0.27999997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5995273984749868094}
+  m_Father: {fileID: 9186731522089530202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &416375120105930806
 SpriteRenderer:
@@ -274,7 +240,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1797320017
   m_SortingLayer: 6
-  m_SortingOrder: 6
+  m_SortingOrder: 50
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -298,9 +264,9 @@ GameObject:
   - component: {fileID: 6517908811143187492}
   - component: {fileID: 5370280469662493794}
   - component: {fileID: 6607442074224927714}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -318,7 +284,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5995273984749868094}
+  - {fileID: 676529249628269632}
+  - {fileID: 3472390101272852070}
+  - {fileID: 7666196159479654421}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6517908811143187492
@@ -336,7 +304,7 @@ MonoBehaviour:
   Skill_0: {fileID: 0}
   Skill_1: {fileID: 0}
   Skill_2: {fileID: 0}
-  skills: []
+  skillsView: []
 --- !u!114 &5370280469662493794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,11 +317,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7102c89cd196549a21fc898e09daa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Data>k__BackingField: {fileID: 0}
+  hasWeapon: 0
   wpSprite: {fileID: 6517908811143187492}
   cf: 0
-  LengthSkill: 13
-  speedAttack1: 1
+  cooldown: 0
+  rangeAttack: 0
   skills:
   - idSkill: 0
     skillStand:
@@ -20910,7 +20878,6 @@ MonoBehaviour:
       arrowId: 0
       adx: 0
       ady: 0
-  currentSkill: []
 --- !u!114 &6607442074224927714
 MonoBehaviour:
   m_ObjectHideFlags: 0

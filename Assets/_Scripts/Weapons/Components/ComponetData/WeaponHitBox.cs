@@ -20,16 +20,19 @@ public class WeaponHitBox : WeaponComponents<HitBoxData>{
     }
 
     public void RangeHitBox(Vector2 vec){ 
-        if( vec.y > mSize.y || vec.x > mSize.x ) {
+        if( vec.y > mSize.y || vec.x > mSize.x ){
+
             if (vec.x > mSize.x){
                 mSize.x = vec.x;
                 mOffset.x = vec.x/2;
             }
 
             if (vec.y > mSize.y) {
+                if(vec.y > 1.6 ) vec.y = 1.6f;
                 mSize.y = vec.y;
                 mOffset.y = vec.y/2;         
             }
+
             OverLapObj();
         }
     }
@@ -69,9 +72,8 @@ public class WeaponHitBox : WeaponComponents<HitBoxData>{
     {
         base.SubscribeHandlers();
         weaponSprite = GetComponent<WeaponSprite>();
-        results = new Collider2D[maxObjDetected+1];
+        results = new Collider2D[ maxObjDetected+1 ];
         OffHitBox();
-
         weaponSprite.setRange += RangeHitBox;
     }
 
@@ -82,6 +84,6 @@ public class WeaponHitBox : WeaponComponents<HitBoxData>{
     }
     public void OnDrawGizmos(){
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube((Vector2)transform.position + center, mSize);
+        Gizmos.DrawWireCube( (Vector2)transform.position + center, mSize );
     }
 }

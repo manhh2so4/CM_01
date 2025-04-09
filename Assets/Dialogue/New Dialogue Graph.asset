@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Choice Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 40, y: -104}
+  position: {x: 24, y: -424}
   ports:
     keys:
     - Answers
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -536, y: -184}
+  position: {x: -472, y: -360}
   ports:
     keys:
     - exit
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: Exit
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1240, y: -648}
+  position: {x: 1640, y: -776}
   ports:
     keys:
     - input
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: Condition Quest
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -1224, y: -456}
+  position: {x: -1224, y: -632}
   ports:
     keys:
     - input
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -1368, y: -440}
+  position: {x: -1368, y: -632}
   ports:
     keys:
     - exit
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: Choice Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -824, y: -136}
+  position: {x: -664, y: -152}
   ports:
     keys:
     - Answers
@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -248, y: -200}
+  position: {x: -232, y: -360}
   ports:
     keys:
     - exit
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 328, y: -520}
+  position: {x: 808, y: -456}
   ports:
     keys:
     - exit
@@ -574,7 +574,7 @@ MonoBehaviour:
   m_Name: Giver Quest
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 56, y: -472}
+  position: {x: 360, y: -456}
   ports:
     keys:
     - exit
@@ -607,7 +607,6 @@ MonoBehaviour:
   QuestInfos:
   - {fileID: 11400000, guid: 998ad5e93c373d64bbe7c49d1a7a16db, type: 2}
   - {fileID: 11400000, guid: 911e9380bf790f44ebeaccd34a9b3bd6, type: 2}
-  - {fileID: 11400000, guid: b02735fd534704f4ea797c65313c621b, type: 2}
 --- !u!114 &2410047469109852605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,7 +620,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -1064, y: -136}
+  position: {x: -984, y: -472}
   ports:
     keys:
     - exit
@@ -666,7 +665,7 @@ MonoBehaviour:
   m_Name: Condition Quest
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -392, y: -584}
+  position: {x: -424, y: -584}
   ports:
     keys:
     - pass
@@ -724,7 +723,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 616, y: -440}
+  position: {x: 1080, y: -456}
   ports:
     keys:
     - exit
@@ -770,7 +769,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 552, y: -248}
+  position: {x: 1080, y: -232}
   ports:
     keys:
     - exit
@@ -816,7 +815,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 24, y: -600}
+  position: {x: 24, y: -568}
   ports:
     keys:
     - exit
@@ -862,7 +861,7 @@ MonoBehaviour:
   m_Name: Condition Quest
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -728, y: -712}
+  position: {x: -728, y: -776}
   ports:
     keys:
     - pass

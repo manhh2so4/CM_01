@@ -28,7 +28,7 @@ MonoBehaviour:
         name: PoiseDamageData
         <TimeEff>k__BackingField: 2
         <Rate>k__BackingField: 50
-        <type>k__BackingField: 0
+        <type>k__BackingField: 1
         prefabEff: {fileID: 2804874706322604517, guid: 36eede3f4d1f5544287616e34e4a7dfb, type: 3}
     - rid: 4502466544620797964
       type: {class: DamageData, ns: , asm: Assembly-CSharp}
@@ -54,4 +54,5 @@ MonoBehaviour:
       data:
         name: PassiveSkillData
         <idSkill>k__BackingField: 66
-        <cooldown>k__BackingField: 2
+        <cooldown>k__BackingField: 1
+        <RangeAttack>k__BackingField: 3

@@ -6,7 +6,7 @@ public class InventoryUI : MonoBehaviour {
 
     private void Start()
     {
-        playerInventory = Inventory.GetPlayerInventory();
+        playerInventory = PlayerManager.GetInventory();
         playerInventory.inventoryUpdated += Redraw;
         Redraw();
     }

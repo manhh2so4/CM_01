@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PLayerPhysic : mPhysic2D {
 	[Header("mPhysic")]
-	float accelerationTimeAirborne = .2f;
-	float accelerationTimeGrounded = .1f;
+	[SerializeField] float accelerationTimeAirborne = .2f;
+	[SerializeField] float accelerationTimeGrounded = .1f;
 
 	float SetX;
 	float velocityXSmoothing;

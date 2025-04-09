@@ -12,7 +12,7 @@ public class SavingWrapper : MonoBehaviour {
     SavingSystem savingSystem;
     [SerializeField] float fadeInTime = 0.1f;
     [SerializeField] float fadeOutTime = 0.1f;
-    [SerializeField] int firstFieldBuildIndex = 0;
+    [SerializeField] SceneField firstFieldBuildIndex;
     [SerializeField] SceneField menuLevelBuildIndex;
     void Awake()
     {

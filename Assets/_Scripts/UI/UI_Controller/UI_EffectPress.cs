@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UI_EffectPress : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
-   [SerializeField] Image image;
+   Image image;
    Color normalColor = new Color(1,1,1,1);
    Color pressColor = new Color(.7f, .7f, .7f, 1f);
+   public UnityEvent<TypeButton> Onclick;
 
    void Start()
    {
@@ -22,10 +24,19 @@ public class UI_EffectPress : MonoBehaviour, IPointerDownHandler, IPointerUpHand
    public void OnPointerDown(PointerEventData eventData)
    {
       Press();
+      Onclick.Invoke(TypeButton.Press);
    }
 
    public void OnPointerUp(PointerEventData eventData)
    {
+
       Release();
+      Onclick.Invoke(TypeButton.Release);
+
    }
+   
+}
+public enum TypeButton{
+   Press,
+   Release
 }

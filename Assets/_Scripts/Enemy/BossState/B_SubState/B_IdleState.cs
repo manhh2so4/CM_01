@@ -20,7 +20,7 @@ public class B_IdleState : BossNormalState
 	public override void Exit() {
 		base.Exit();
         movement.CanSetVelocity = true;
-		if(GetRandomBoolean()) movement.Flip();
+		if( GetRandomBoolean() ) movement.Flip();
 	}
 	
 	public override void LogicUpdate() {

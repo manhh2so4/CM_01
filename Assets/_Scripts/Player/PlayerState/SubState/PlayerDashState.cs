@@ -8,6 +8,7 @@ public class PlayerDashState : PlayerAbilityState
     bool isHolding;
     bool dashInputStop;
     public float cooldownDash;
+    Vector2 dashDirectionInput;
     Vector2 dashDirection;
     public PlayerDashState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, mState state) : base(player, stateMachine, playerData, state)
     {
@@ -20,11 +21,14 @@ public class PlayerDashState : PlayerAbilityState
         isHolding =true;
         Time.timeScale = playerData.holdTimeScale;
         startTime = Time.unscaledTime;
+        player.dashDirImgae.gameObject.SetActive(true);
 
     }
     public override void Exit(){
+
         base.Exit();
         Time.timeScale =1f;
+        player.dashDirImgae.gameObject.SetActive(false);
         cooldowns.Start(this,cooldownDash);
 
         if(movement.Velocity.y >0){
@@ -33,63 +37,44 @@ public class PlayerDashState : PlayerAbilityState
         if(movement.Velocity.x >0){
            movement.SetVelocityY(movement.Velocity.x*playerData.dashEndYMultiplier);
         }
+
     }
     public override void LogicUpdate(){
         base.LogicUpdate();
         if(isExitingState) return;
 
         if(isHolding){
-
+            dashDirectionInput = player.inputPlayer.DashDirInput;
             dashInputStop = player.inputPlayer.dashInputStop;
-            int inputX = player.inputPlayer.MoveInput;
-            movement.CheckIfShouldFlip( inputX );
-            dashDirection.Set( movement.facingDirection, 0);
-            
+            if(dashDirectionInput != Vector2.zero){
+                dashDirection = dashDirectionInput;
+                dashDirection.Normalize();
+            }else{
+                dashDirection.Set( movement.facingDirection, 0);
+            }
+            float angle = Vector2.SignedAngle(Vector2.right,dashDirection);
+            player.dashDirImgae.rotation = Quaternion.Euler(0f,0f,angle);
+
             if(dashInputStop || Time.unscaledTime >= startTime + playerData.maxHoldTime){
                 isHolding = false;
                 Time.timeScale =1f;
                 startTime = Time.time;
+                movement.CheckIfShouldFlip( Mathf.RoundToInt(dashDirection.x));
                 movement.SetDrag( playerData.drag );
-                movement.SetVelocity(playerData.dashVelocity,dashDirection);
-
+                player.dashDirImgae.gameObject.SetActive(false);
             }
         }else{
-            movement.SetVelocity(playerData.dashVelocity , dashDirection);
+            movement.SetVelocity(playerData.dashVelocity,dashDirection);
             if(Time.time >= startTime + playerData.dashTime){
                 movement.SetDrag(0);
                 isAbilityDone = true;
             }
         }
 
-        
     }
     public bool CheckIfCanDash(){
         return canDash && cooldowns.IsDone(this) ;
     }
     public void ResetCanDash() => canDash =true;
 }
-// if(isHolding){
-//             dashDirectionInput = player.inputPlayer.DashDirInput;
-//             dashInputStop = player.inputPlayer.dashInputStop;
-//             if(dashDirectionInput != Vector2.zero){
-//                 dashDirection = dashDirectionInput;
-//                 dashDirection.Normalize();
-//             }
-//             float angle = Vector2.SignedAngle(Vector2.right,dashDirection);
-//             player.dashDirImgae.rotation = Quaternion.Euler(0f,0f,angle);
-//             if(dashInputStop || Time.unscaledTime >= startTime + playerData.maxHoldTime){
-//                 isHolding = false;
-//                 Time.timeScale =1f;
-//                 startTime = Time.time;
-//                 movement.CheckIfShouldFlip(Mathf.RoundToInt(dashDirection.x));
-//                 movement.SetDrag( playerData.drag );
-//                 movement.SetVelocity(playerData.dashVelocity,dashDirection);
-//                 player.dashDirImgae.gameObject.SetActive(false);
-//             }
-//         }else{
-//             movement.SetVelocity(playerData.dashVelocity,dashDirection);
-//             if(Time.time >= startTime + playerData.dashTime){
-//                 movement.SetDrag(0);
-//                 isAbilityDone = true;
-//             }
-//         }
+

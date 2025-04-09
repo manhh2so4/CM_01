@@ -12,6 +12,7 @@ public class WeaponSprite : MonoBehaviour {
     Vector3 valueRage;
     public Action<Vector2> setRange;
 
+
     //--------- Set Collider-----------    
     public void LoadEff0(int eff0id){
         this.eff0id = eff0id;           
@@ -48,9 +49,9 @@ public class WeaponSprite : MonoBehaviour {
 
     //------------------------------
     private void Awake() {
-        Skill_0 = transform.Find("WeaponSprite").GetChild(0).gameObject;
-        Skill_1 = transform.Find("WeaponSprite").GetChild(1).gameObject;
-        Skill_2 = transform.Find("WeaponSprite").GetChild(2).gameObject;
+        Skill_0 = transform.GetChild(0).gameObject;
+        Skill_1 = transform.GetChild(1).gameObject;
+        Skill_2 = transform.GetChild(2).gameObject;
     }
 
     public void SetSkillOff(){

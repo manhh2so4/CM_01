@@ -7,10 +7,12 @@ public class RaycastPhysic2D : MonoBehaviour {
 	BoxCollider2D boxCollider;
     Vector2 Center;
 	Vector2 Size ;
+
 	
 	protected const float skinWidth = .05f;
     [SerializeField] protected int horizontalRayCount = 4;
 	[SerializeField] protected int verticalRayCount = 4;
+	[SerializeField] bool showRay;
 
 	protected float horizontalRaySpacing;
 	protected float verticalRaySpacing;
@@ -56,16 +58,17 @@ public class RaycastPhysic2D : MonoBehaviour {
 		public Vector2 topLeft, topRight;
 		public Vector2 bottomLeft, bottomRight;
 	}
+
     void OnDrawGizmos()
     {
-        // Gizmos.color = Color.blue;
-		// Gizmos.DrawWireCube( (Vector2)transform.position + Center , Size);
-
-		// for (int i = 0; i < verticalRayCount; i ++) {
-		//  	Gizmos.DrawRay(raycastOrigins.bottomLeft + Vector2.right * verticalRaySpacing * i, Vector2.up * -.5f);
-		// }
-		// for (int i = 0; i < horizontalRayCount; i ++) {
-		// 	Gizmos.DrawRay(raycastOrigins.bottomLeft + Vector2.up * horizontalRaySpacing * i, Vector2.right * -.5f);
-		// }
+#if UNITY_EDITOR
+		if(!showRay) return;
+		for (int i = 0; i < verticalRayCount; i ++) {
+		 	Gizmos.DrawRay(raycastOrigins.bottomLeft + Vector2.right * verticalRaySpacing * i, Vector2.up * -.5f);
+		}
+		for (int i = 0; i < horizontalRayCount; i ++) {
+			Gizmos.DrawRay(raycastOrigins.bottomLeft + Vector2.up * horizontalRaySpacing * i, Vector2.right * -.5f);
+		}
+#endif
     }
 }

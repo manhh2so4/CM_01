@@ -25,7 +25,7 @@ public class E_MoveState : EnemyNormalState
 			stateMachine.ChangeState(enemy.idleState);
 		}
 
-        if(TimeRate(0.35f/enemyData.speedMove)) return;
+        
         switch(enemyData.type){			
 			case 0:
 				enemy.Paint(0);
@@ -33,9 +33,10 @@ public class E_MoveState : EnemyNormalState
             case 1:                             
                 
                 if( (isWall || !isLedge ) && isGround) movement.Flip();
-
                 if(isGround) movement?.SetVelocityX(enemyData.speedMove * movement.facingDirection);
-                
+
+                if(TimeRate(0.35f/enemyData.speedMove)) return;
+
                 enemy.Paint(FrameCurrent);
                 FrameCurrent = ( FrameCurrent + 1)%2; 
                 break;
@@ -44,12 +45,12 @@ public class E_MoveState : EnemyNormalState
                 break;
 
             case 4:
-
+                if(TimeRate(0.35f/enemyData.speedMove)) return;
                 if( Mathf.Abs(XDirPos) > enemy.RangeMove ){                    
                     movement.CheckIfShouldFlip( XDirPos > 0 ? -1 : 1 );
                 } 
 
-                if(Mathf.Abs(enemy.transform.position.y  - enemyPos.y) > 1.5 ){
+                if( Mathf.Abs( enemy.transform.position.y  - enemyPos.y ) > 1.5 ){
                     dirY = enemyPos.y - enemy.transform.position.y;
                 }else{
                     dirY = Random.Range(-1f,1f);

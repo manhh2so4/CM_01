@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace HStrong.Shops{
-    public class Shop : MonoBehaviour, IClicker{
+    public class NPC_Shop : MonoBehaviour, IClicker{
         [SerializeField] string shopName;
         public event Action onChange;
         
@@ -81,7 +81,7 @@ namespace HStrong.Shops{
         {
            
             colider2D.enabled = false;
-            this.GameEvents().shopEvents.ActiveShop(this);
+            //this.GameEvents().shopEvents.ActiveShop(this);
         }
     }
 }

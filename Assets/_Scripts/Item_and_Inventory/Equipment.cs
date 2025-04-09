@@ -8,11 +8,16 @@ public class Equipment : MonoBehaviour,ISaveable
     Dictionary<EquipType,EquipableItemSO> equippedItems = new Dictionary<EquipType,EquipableItemSO>();
     public event Action OnEquipmentUpdate;
     public event Action<EquipType> OnTypeEquipUpdate;
+
     [SerializeField] CharacterStats characterStats;
+    [SerializeField] PaintChar paintChar;
+    [SerializeField] Skill_Manager skillManager;
     
     private void Start() {
         Core core = GetComponentInChildren<Core>();
         characterStats = core.GetCoreComponent<CharacterStats>();
+        paintChar = core.GetCoreComponent<PaintChar>();
+        skillManager = GetComponent<Skill_Manager>();
     }
     public EquipableItemSO GetItemInSlot(EquipType typeEquip){
         if(!equippedItems.ContainsKey(typeEquip)){
@@ -21,21 +26,52 @@ public class Equipment : MonoBehaviour,ISaveable
         return equippedItems[typeEquip];
     }
     public void AddItem(EquipType typeEquip, EquipableItemSO item){
+
         Debug.Assert(item.GetTypeEquip() == typeEquip);
         item.AddModifiers(characterStats);
         equippedItems[typeEquip] = item;
         OnEquipmentUpdate?.Invoke();
-        OnTypeEquipUpdate?.Invoke(typeEquip);
-
+        UpdateTypeEquip(typeEquip);
+        
     }
 
-    
-
     public void RemoveItem(EquipType typeEquip){
-        equippedItems[typeEquip].RemoveModifiers(characterStats);
+        equippedItems[typeEquip].RemoveModifiers( characterStats );
         equippedItems.Remove(typeEquip);
         OnEquipmentUpdate?.Invoke();
-        OnTypeEquipUpdate?.Invoke(typeEquip);
+        UpdateTypeEquip(typeEquip);
+        
+    }
+
+    void UpdateTypeEquip(EquipType typeEquip)
+    {
+        switch (typeEquip)
+        {
+            case EquipType.Vukhi:
+
+				if(GetItemInSlot(EquipType.Vukhi) != null) {
+				    paintChar.SetWeapon(GetItemInSlot(EquipType.Vukhi).GetImageDraw().spriteInfos);
+                    skillManager.UpdateTypeEquip();
+				}else paintChar.SetWeapon(null);
+
+                break;
+            case EquipType.Ao:
+				if(GetItemInSlot(EquipType.Ao) != null) {
+					paintChar.SetBody(GetItemInSlot(EquipType.Ao).GetImageDraw().spriteInfos);
+				}else paintChar.SetBody(null);
+
+                break;
+            case EquipType.Quan:
+
+				if(GetItemInSlot(EquipType.Quan) != null) {
+					paintChar.SetLeg(GetItemInSlot(EquipType.Quan).GetImageDraw().spriteInfos);
+				}else paintChar.SetLeg(null);
+
+                break;
+				
+            default:
+                break;
+        }
     }
 
     public object CaptureState()

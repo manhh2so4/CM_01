@@ -35,25 +35,14 @@ public class Skill_Manager : MonoBehaviour {
         }
     }
 
-    void UpdateTypeEquip(EquipType typeEquip)
+    public void UpdateTypeEquip()
     {
-        switch (typeEquip)
-        {
-            case EquipType.Vukhi:
-                UpdateSkillWeapon(Skill_1,0);
-                UpdateSkillWeapon(Skill_2,2);
-                UpdateSkillWeapon(Skill_3,4);
-                break;
-            default:
-                break;
-        }
+
+        UpdateSkillWeapon(Skill_1,0);
+        UpdateSkillWeapon(Skill_2,2);
+        UpdateSkillWeapon(Skill_3,4);
     }
-    private void OnEnable() {
-		playerEquipment.OnTypeEquipUpdate += UpdateTypeEquip;
-	}
-	private void OnDisable() {
-		playerEquipment.OnTypeEquipUpdate -= UpdateTypeEquip;
-	}
+
     [Button]
     void SetName(){
         foreach (var item in weaponSkills){

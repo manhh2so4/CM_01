@@ -27,7 +27,7 @@ public class PlayerState : State
     public override void Enter(){
         base.Enter();
         DoCheck();
-        player.Anim.state = mState;
+        player.paintChar.state = mState;
         startTime = Time.time;
     }
     public override void Exit(){
@@ -40,8 +40,7 @@ public class PlayerState : State
     public virtual void DoCheck(){
         isGrounded = movement.isGround();
     }
-    protected void ChangeAttack( PlayerAttackState Skill){
-        if(isAbilityDone == false ) return;
+    protected void ChangeAttack( PlayerAttackState Skill , bool fly = false ){
 
         if( cooldowns.IsDone(Skill) == false) return;
 
@@ -49,9 +48,10 @@ public class PlayerState : State
             Common.Log("Player haven't weapon");
             return;
         }
-
+        if(fly){
+            movement.SetVelocityY(1); 
+        }
         stateMachine.ChangeState(Skill);
-        cooldowns.Start( Skill, Skill.GetSkill().cooldown );
-        player.Anim.setSkill( Skill.GetSkill() );
+        
     }
 }

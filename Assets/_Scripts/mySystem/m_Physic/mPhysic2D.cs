@@ -9,16 +9,18 @@ public class mPhysic2D : RaycastPhysic2D {
     [Header("\n--------Setting_Colision--------\n")]
     public LayerMask groundMask;
     public CollisionInfor collisionInfor;
+	float directionX;
 
 	[Header("\n--------Setting_Physic--------\n")]
 	public bool isDrag = false;
 	public bool isColision = true;
 	public float dragForce = 2f;
-	[SerializeField] protected float gravity = -9.8f;
+	[SerializeField] float gravity = -9.8f;
 	[SerializeField] protected Vector2 velocity;
 	public Vector2 Velocity { get {return velocity; } set { SetVelocity(value); }}
 	public float Gravity{ get {return gravity;} set{ gravity = value;} }
 	[SerializeField] Vector2 velocitySet;
+
 	protected virtual void SetVelocity( Vector2 _xy){
 		this.velocity = _xy;
 	}
@@ -43,15 +45,17 @@ public class mPhysic2D : RaycastPhysic2D {
 		UpdateRaycastOrigins ();
 		collisionInfor.Reset ();
 
-		if (isColision) {
-			HorizontalCollisions (ref velSet);
+		//velocitySet = velSet;
+
+		if (isColision){
+			HorizontalCollisions(ref velSet);
 
 			if (velSet.y != 0) {
 				
-				VerticalCollisions (ref velSet);
+				VerticalCollisions(ref velSet);
 			}
 		}
-		velocitySet = velSet;
+		
 		
 		transform.Translate(velSet,Space.World);
 	}
@@ -71,8 +75,13 @@ public class mPhysic2D : RaycastPhysic2D {
 	}
 
 	void HorizontalCollisions(ref Vector2 vel){
-		float directionX = Mathf.Sign (vel.x);
+		if( vel.x != 0 ) {
+			directionX = Mathf.Sign ( vel.x );
+		}
 		float rayLength = Mathf.Abs (vel.x) + skinWidth;
+
+		velocitySet.x = directionX;
+
 		for (int i = 0; i < horizontalRayCount; i ++){
 			Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft: raycastOrigins.bottomRight;
 			rayOrigin.y += 1 * ( horizontalRaySpacing * i );

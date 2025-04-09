@@ -19,13 +19,15 @@ public class BossAbilityState : BossState
         base.Exit();
         hitBoxWeapon.ClearObj();
         hitBoxBody.ClearObj();
-        cooldowns.Start(boss.attack_1, bossData.speed_attack);
+        cooldowns.Start( boss.attack_1, bossData.speed_attack );
     }
 
     public override void LogicUpdate(){
         base.LogicUpdate();
+        if(isExitingState) return;
+        
         if(isAbilityDone){          
-            stateMachine.ChangeState(boss.lookState);
+            stateMachine.ChangeState( boss.lookState );
             return;
         }
     }

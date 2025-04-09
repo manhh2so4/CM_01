@@ -16,24 +16,25 @@ namespace HStrong.Quests
         [Header("Requirements")]
         public int levelRequirement ;
         public QuestInfoSO[] questPrerequisites;
-        Q_StepData[] questSteps;
+        [field: SerializeReference] Q_StepData[] questSteps;
         [Header("Rewards")]
         public int goldReward;
         public int expReward;
-        [ SerializeField] ItemAndCount[] itemRewards;
+        public ItemAndCount[] itemRewards;
         public ItemAndCount[] GetItemRewards()
         {
             return itemRewards;
         }
         public Q_StepData[] GetStepData()
         {
+            Debug.Log("questSteps " + questSteps.Length);
             return questSteps;
         }
         
 
-#region EDitor
-        #if UNITY_EDITOR
-
+    #region EDitor
+        
+#if UNITY_EDITOR
         [field: SerializeReference] List<Q_StepData> ComponentData;
         public void AddData(Q_StepData data)
         {
@@ -43,20 +44,21 @@ namespace HStrong.Quests
         private void OnValidate()
         {
             id = this.name;
-            UnityEditor.EditorUtility.SetDirty(this);
+            
             if (questSteps == null || questSteps.Length != ComponentData.Count)
             {
                 questSteps = new Q_StepData[ComponentData.Count]; // Tạo mảng mới nếu cần
             }
             ComponentData.CopyTo(questSteps);
+            UnityEditor.EditorUtility.SetDirty(this);
         }
         public IEnumerable<Q_StepData> GetComponentData()
         {
             return ComponentData;
         }
         
-        #endif
-#endregion
+#endif
+    #endregion
 
     }
 }

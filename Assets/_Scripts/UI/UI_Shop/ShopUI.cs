@@ -14,9 +14,9 @@ public class ShopUI : MonoBehaviour {
     [SerializeField] TextMeshProUGUI Buy10Text;
     [SerializeField] Button Buy100;
     [SerializeField] TextMeshProUGUI Buy100Text;
-    
-    //Shopper shopper = null;
-    Shop currentShop;
+
+   //Shopper shopper = null;
+    NPC_Shop currentShop;
     ShopItem itemCurent;
     void Awake()
     {
@@ -31,7 +31,7 @@ public class ShopUI : MonoBehaviour {
         this.GameEvents().shopEvents.onActiveShop -= ShopChanged;
 
     }
-    private void ShopChanged(Shop shop)
+    private void ShopChanged(NPC_Shop shop)
     {
         currentShop = shop;
         shopContener.SetActive(currentShop != null);
@@ -70,7 +70,6 @@ public class ShopUI : MonoBehaviour {
     }
     public void Close()
     {
-        currentShop.colider2D.enabled = true;
         ShopChanged(null);
     }
 }

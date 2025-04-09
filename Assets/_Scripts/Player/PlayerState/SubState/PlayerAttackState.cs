@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerAbilityState
 {
-    private Weapon weapon;
-    public PlayerAttackState(Player player,
-                            FiniteStateMachine stateMachine,
-                            PlayerData playerData,
-                            mState state,
-                            Weapon weapon)
+    private SKill skill;
+    float mGravity;
+    public PlayerAttackState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, mState state, SKill _skill)
     : base(player, stateMachine, playerData, state)
     {
-        this.weapon = weapon;
-
-        weapon.OnExit += ExitHandler;
+        this.skill = _skill;
+        this.skill.OnExit += ExitHandler;
     }
-    public Weapon GetSkill(){
-        return weapon;
+    public SKill GetSkill(){
+        return skill;
     }
     
     public override void Enter(){
         base.Enter();
-        weapon.Enter();
+        cooldowns.Start( this, skill.cooldown );
+        player.paintChar.SetSkill( skill );
+        skill.Enter();
+
         movement.SetVelocityX(0);
+        mGravity = movement.GetPhysic2D().Gravity;
+        movement.SetGravity(-5);
 
     }
 
@@ -31,17 +32,19 @@ public class PlayerAttackState : PlayerAbilityState
         base.LogicUpdate();
         if(isExitingState) return;
 
-        movement.SetVelocityX(0);
+        //movement.SetVelocityZero();
         if(isGrounded ){  
-            player.Anim.isFly = false;       
+            player.paintChar.isFly = false;       
         }else{
-            player.Anim.isFly = true; 
+            player.paintChar.isFly = true; 
         }
     }
     public override void Exit(){
         base.Exit();
+        movement.SetGravity(mGravity);
+        player.paintChar.ResetAnim();
         if(isAbilityDone) return;
-        weapon.Exit();
+        skill.Exit();
     }
 
     public void ExitHandler() => isAbilityDone = true;

@@ -1,13 +1,13 @@
 using UnityEngine;
 
 public abstract class WeaponComponents : MonoBehaviour {
-    protected Weapon weapon;
+    protected SKill weapon;
     protected Core Core;
     protected Movement coreMove;
     
     protected virtual void Awake()
     {
-        weapon = GetComponent<Weapon>();
+        weapon = GetComponent<SKill>();
         Core = weapon.core;
     }
 

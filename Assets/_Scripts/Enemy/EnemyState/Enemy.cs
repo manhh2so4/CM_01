@@ -70,12 +70,6 @@ public class Enemy : EnemyEntity
         CheckPlayer();
         CheckReceiver();
     }
-    
-
-    public virtual void FixedUpdate()
-    {
-        stateMachine.CurrentState.PhysicsUpdate();
-    }
     private void OnEnable()
     {
         CharStats.onHealthZero += CheckDead;

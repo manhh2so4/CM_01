@@ -59,7 +59,7 @@ public abstract class EnemyEntity : Entity
             GUIStyle style = new GUIStyle();
             style.fontSize = 20;  // Đặt kích thước font chữ
             style.normal.textColor = Color.blue;
-            Handles.Label( (playerCheck.position + transform.position)/2, Vector2.Distance(playerCheck.position,transform.position).ToString(),style);
+            Handles.Label( (playerCheck.position + transform.position)/2, Vector2.Distance(playerCheck.position,transform.position).ToString(), style);
         }
         Gizmos.color = Color.green;
         Gizmos.DrawLine( ledgeCheck.position , ledgeCheck.position + Vector3.down * .1f);

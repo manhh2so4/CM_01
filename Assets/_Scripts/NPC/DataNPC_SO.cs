@@ -6,6 +6,26 @@ using UnityEngine;
 public class DataNPC_SO : ScriptableObject {
    public string NameNPC;
    public SpriteInfo[] spriteInfos;
+
+   public float speedMove = 2;
+   [SerializeField] float maxJumpHeight = 4;
+	[SerializeField] float minJumpHeight = 1;
+   [SerializeField] float timeToJumpApex = 0.4f;
+   [HideInInspector] public float MaxJumpVel = 0;
+   [HideInInspector] public float MinJumpVel = 0;
+
+
+   public SkillData_SO skill_1;
+   public SkillData_SO skill_2;
+   public SkillData_SO skill_3;
+
+   public float GetGravity(){
+		float gravity = -(2 * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2);
+		MaxJumpVel = Mathf.Abs(gravity) * timeToJumpApex;
+		MinJumpVel = Mathf.Sqrt (2 * Mathf.Abs (gravity) * minJumpHeight);
+      return gravity;
+    }
+#if UNITY_EDITOR
    [Button]
    void AddData(){
       if(spriteInfos.Length != 3) return;
@@ -30,7 +50,5 @@ public class DataNPC_SO : ScriptableObject {
          }
       }
    }
-
-
-
+#endif
 }

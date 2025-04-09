@@ -16,13 +16,18 @@ public class PlayerJumpState : PlayerAbilityState
         base.Enter();
         player.inputPlayer.UseJumpInput();
         player.airState.isFall = false;
-        float velJump = Mathf.Lerp(playerData.MinJumpVelocity, playerData.MaxJumpVelocity,player.inputPlayer.amountJump);
+        
+        float velJump = Mathf.Lerp(playerData.MinJumpVelocity, playerData.MaxJumpVelocity, player.inputPlayer.amountJump);
         
         if( player.inputPlayer.amountJump < 0.5 ){
-            player.Anim.state = mState.JumpMin;
+
+            player.paintChar.state = mState.JumpMin;
+
         }else{
-            player.Anim.state = mState.JumpMax;
-            player.Anim.SetStateVy(velJump);
+
+            player.paintChar.state = mState.JumpMax;
+            player.paintChar.SetStateVy(velJump);
+
         }
         movement.SetVelocityY(velJump); 
         isAbilityDone = true;

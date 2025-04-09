@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -39,6 +40,7 @@ namespace HStrong.Quests
                 }
                 this.GameEvents().questEvent.QuestStateChange(quest);
             }
+
         }
         void ChangeQuestState(string id, QuestState state)
         {
@@ -66,11 +68,12 @@ namespace HStrong.Quests
         }
         void Update()
         {
+
             foreach(Quest quest in questMap.Values)
             {
                 
                 if(quest.state == QuestState.HAS_QUEST && CheckRequirements(quest)){
-
+                    
                     ChangeQuestState(quest.info.id, QuestState.CAN_START);
                     StartQuset(quest.info.id);
 
@@ -136,18 +139,20 @@ namespace HStrong.Quests
         }
     #endregion
     #region Setup QuestMap
-        public void AddQuestToMap(QuestInfoSO questInfoSO){
+        public void AddQuestToMap( QuestInfoSO questInfoSO ){
 
-            if(questMap.ContainsKey(questInfoSO.id)) {
+            
+            if( questMap.ContainsKey(questInfoSO.id) ) {
                 Common.LogWarning("Quest with id " + questInfoSO.id + " already exists in quest map");
                 return;
             }
 
-            questMap.Add(questInfoSO.id, LoadQuest(questInfoSO));
-            
+            questMap.Add(questInfoSO.id,LoadQuest(questInfoSO));
+
+             
             this.GameEvents().questEvent.QuestStateChange(questMap[questInfoSO.id]);
             mQuestView.Add( questMap[questInfoSO.id] );
-            //Common.Log("Quest with id " + questInfoSO.id + " added to quest map");
+
         }
         private Dictionary<string, Quest> CreateQuestMap()
         {
@@ -192,10 +197,9 @@ namespace HStrong.Quests
         }
         private Quest LoadQuest(QuestInfoSO questInfo){
 
-            Quest quest = null;
-            quest = new Quest(questInfo);   
-
+            Quest quest = new Quest(questInfo);
             return quest;
+
         }
     #endregion
     }

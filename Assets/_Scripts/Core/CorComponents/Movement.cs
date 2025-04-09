@@ -5,26 +5,29 @@ using UnityEngine.PlayerLoop;
 public class Movement : CoreComponent
 {
     public System.Action OnFlip;
-    [SerializeField] mPhysic2D mController2D;
+    [SerializeField] mPhysic2D _Physic2D;
     [SerializeField] public int facingDirection { get; private set; }
     [SerializeField] public bool CanSetVelocity;
     [SerializeField] public Vector2 Velocity;
     private Vector2 workspace;
+    public int mWidth = 1,mHeight = 1;
 
     protected override void Awake()
     {
         base.Awake();
-        mController2D = GetComponentInParent<mPhysic2D>();
+        _Physic2D = GetComponentInParent<mPhysic2D>();
         facingDirection = 1;
         CanSetVelocity = true;
     }
 
     public override void LogicUpdate()
     {
-        Velocity = mController2D.Velocity;
+        Velocity = _Physic2D.Velocity;
     }
 
     #region Set Functions
+    
+    
 
     public void SetVelocityZero()
     {
@@ -54,13 +57,13 @@ public class Movement : CoreComponent
 
     public void SetVelocityX(float vX)
     {
-        workspace.Set(vX, mController2D.Velocity.y);
+        workspace.Set(vX, _Physic2D.Velocity.y);
         SetFinalVelocity();
     }
 
     public void SetVelocityY(float vY)
     {
-        workspace.Set(mController2D.Velocity.x, vY);
+        workspace.Set(_Physic2D.Velocity.x, vY);
         SetFinalVelocity();
     }
 
@@ -69,7 +72,7 @@ public class Movement : CoreComponent
 
         if (CanSetVelocity)
         {
-            mController2D.Velocity = workspace;
+            _Physic2D.Velocity = workspace;
         }  
 
     }
@@ -87,20 +90,23 @@ public class Movement : CoreComponent
         //mRB.AddForce(dir,ForceMode2D.Impulse);
     }
     public void SetGravity(float gravity){
-        mController2D.Gravity = gravity;
+        _Physic2D.Gravity = gravity;
+    }
+    public mPhysic2D GetPhysic2D(){
+        return _Physic2D;
     }
     public void Flip()
     {
         OnFlip?.Invoke();
         facingDirection *= -1;
-        mController2D.transform.Rotate(0.0f, 180.0f, 0.0f);
+        _Physic2D.transform.Rotate(0.0f, 180.0f, 0.0f);
     }
     public bool isGround(){
-        return mController2D.collisionInfor.below;
+        return _Physic2D.collisionInfor.below;
     }
     public bool isWall(){
-        return (mController2D.collisionInfor.left && facingDirection == -1)
-                || (mController2D.collisionInfor.right && facingDirection == 1);
+        return (_Physic2D.collisionInfor.left && facingDirection == -1)
+                || (_Physic2D.collisionInfor.right && facingDirection == 1);
     }
     public bool isVXzero(){
         return Mathf.Abs(Velocity.x) < 0.01f;
@@ -109,10 +115,10 @@ public class Movement : CoreComponent
         return Mathf.Abs(Velocity.y) < 0.01f;
     }
     public void IsColision(bool isColision){
-        mController2D.isColision = isColision;
+        _Physic2D.isColision = isColision;
     }
     public void SetDrag(float dragForce){
-        mController2D.dragForce = dragForce;
+        _Physic2D.dragForce = dragForce;
     }
     #endregion
 }

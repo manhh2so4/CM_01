@@ -67,13 +67,14 @@ public class QuestLogScronllingList : MonoBehaviour {
             ItemAndCount item = _quest.info.GetItemRewards()[i];
             int count = item.count;
 
-            itemRewardsText.text += $"{(count == 1 ? null : count)} {item.item.GetDisplayName()}";
+            itemRewardsText.text += $"{ (count == 1 ? null : count) } {item.item.GetDisplayName()}";
 
             if (i < Length - 1)
             {
                 itemRewardsText.text += ", ";
             }
         }
+        Debug.Log("Done");
         LogQuestSteps(_quest);
     }
 

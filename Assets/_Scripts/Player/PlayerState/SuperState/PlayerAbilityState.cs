@@ -21,10 +21,11 @@ public class PlayerAbilityState : PlayerState
         base.LogicUpdate();
         if(isExitingState) return;
         
-        if(isAbilityDone){          
-            if (isGrounded && movement.Velocity.y < 0.1f)
+        if(isAbilityDone){   
+
+            if ( isGrounded && movement.Velocity.y < 0.1f )
             {
-                stateMachine.ChangeState(player.moveState);
+                stateMachine.ChangeState(player.idleState);
             }
             else
             {

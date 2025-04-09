@@ -16,9 +16,6 @@ public class SkillData_SO : ScriptableObject {
         return ComponentData.OfType<T>().FirstOrDefault();
     }
 
-    // public List<Type> GetAllDependencies(){
-    //     return ComponentData.Select(ComponentData => ComponentData.ComponentDependency).ToList();
-    // }
     public IEnumerable<ComponentData> GetAllData(){
         return ComponentData;
     }

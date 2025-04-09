@@ -60,8 +60,6 @@ public class BossState : EnemyState
         }
     }
 
-    public override void PhysicsUpdate(){
-        base.PhysicsUpdate();
-    }
+
 
 }

@@ -9,17 +9,12 @@ public class Inventory : MonoBehaviour,ISaveable
     [Tooltip("Allowed size")]
     [SerializeField] int inventorySize = 16;
     InventorySlot[] slots;
-    public struct InventorySlot
+    struct InventorySlot
     {
         public InventoryItemSO item;
         public int number;
     }
     public event Action inventoryUpdated;
-    public static Inventory GetPlayerInventory()
-    {
-        var player = PlayerManager.GetPlayer();
-        return player.GetComponent<Inventory>();
-    }
 
     private void Awake()
     {
@@ -86,10 +81,8 @@ public class Inventory : MonoBehaviour,ISaveable
             slots[slot].number = 0;
             slots[slot].item = null;
         }
-        if (inventoryUpdated != null)
-        {
-            inventoryUpdated();
-        }
+
+        inventoryUpdated?.Invoke();
     }
 
     public bool AddItemToSlot(int slot, InventoryItemSO item, int number)
@@ -110,6 +103,7 @@ public class Inventory : MonoBehaviour,ISaveable
         inventoryUpdated?.Invoke();
         return true;
     }
+
 
 
     private int FindSlot(InventoryItemSO item)

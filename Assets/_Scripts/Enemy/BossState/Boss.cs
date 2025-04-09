@@ -84,11 +84,6 @@ public class Boss : EnemyEntity{
         CheckReceiver();
         stateMachine.CurrentState.LogicUpdate();
     }
-
-    void FixedUpdate()
-    {
-        stateMachine.CurrentState.PhysicsUpdate();
-    }
     private void OnEnable()
     {
         hitBoxWeapon.OnHit += TakeDamage;

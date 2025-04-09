@@ -28,9 +28,6 @@ public class EnemyState : State
         base.LogicUpdate();
 
     }
-    public override void PhysicsUpdate(){
-        base.PhysicsUpdate();
-       
-    }
+
 
 }

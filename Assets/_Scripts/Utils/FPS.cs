@@ -12,6 +12,7 @@ public class FPS : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 60;
         fpsNextPeriod = Time.realtimeSinceStartup + fpsMeasurePeriod;
     }
     void Update()

@@ -34,17 +34,8 @@
                 },
                 {
                     "name": "Dash",
-                    "type": "Button",
-                    "id": "eda21190-664d-4aa0-8619-f57efdba2537",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "DashDirection",
                     "type": "Value",
-                    "id": "08b5aef2-22a4-4044-8f53-0f3e328b0aa4",
+                    "id": "eda21190-664d-4aa0-8619-f57efdba2537",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -105,22 +96,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Press_I",
-                    "type": "Button",
-                    "id": "a9630894-83c8-4323-9f95-dbe0ac4311c8",
-                    "expectedControlType": "Button",
+                    "name": "MousePos",
+                    "type": "Value",
+                    "id": "a18838f6-f805-4f8a-8a6a-9e0822d2432c",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Press_Q",
-                    "type": "Button",
-                    "id": "0e02ec0d-6fd3-491d-a974-090eadabc54d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -292,22 +274,11 @@
                 {
                     "name": "",
                     "id": "1efeb92b-58cd-4983-9dbe-404cd3602f60",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "",
                     "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1f6d28a3-90e0-4648-a084-c03b0f0ef125",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "DashDirection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -390,17 +361,6 @@
                 },
                 {
                     "name": "",
-                    "id": "93320f7e-e4da-4427-b3ce-80159cc2abe6",
-                    "path": "<Keyboard>/i",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Press_I",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c85e91d7-58d1-48bf-96c5-6780fd04be38",
                     "path": "<Keyboard>/numpad3",
                     "interactions": "",
@@ -423,12 +383,12 @@
                 },
                 {
                     "name": "",
-                    "id": "6859f2bd-93b8-4b68-9569-30b8569aa3ad",
-                    "path": "<Keyboard>/q",
+                    "id": "dbc99f0b-3fe8-4151-abbc-63af45fedbd0",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Press_Q",
+                    "groups": "",
+                    "action": "MousePos",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
