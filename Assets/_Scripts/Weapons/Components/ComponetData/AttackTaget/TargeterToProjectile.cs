@@ -26,16 +26,16 @@ public class TargeterToProjectile : WeaponComponents<ProjecttileData>
     private void SpwanTargetProjectile( List<Transform> targeters ){
         if(targeters.Count <= 0 || targeters == null){
             var projectile1 = SpwanProjectile();				
-            projectile1.SetProjectile(12f , transform.right , transform.tag, stats);
+            projectile1.SetData(12f , transform.right , transform.tag, stats);
 
         }else{
             float dir = Mathf.Sign(targeters[0].position.x - transform.position.x);
             movement.CheckIfShouldFlip((int)dir);
             var projectile = SpwanProjectile();					
-            projectile.SetProjectile(12f , targeters[0], transform.tag, stats);
+            projectile.SetData(12f , targeters[0], transform.tag, stats);
         }
     }
     Projectile SpwanProjectile(){
-        return PoolsContainer.GetObject(data.prefabProjectile , transform.position + new Vector3(0,Core.height/2,0));
+        return PoolsContainer.GetObject(data.prefabProjectile , transform.position + new Vector3(0,Core.Height/2,0));
     }
 }

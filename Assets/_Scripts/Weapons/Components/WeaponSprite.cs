@@ -84,7 +84,7 @@ public class WeaponSprite : MonoBehaviour {
         for (int i = 0; i < id.Length; i++)
         {
             string resPath = "TextLoad/FX_skill/FX_Sprite " +  id[i];
-            SpriteInfo[] effSkillInfos = Resources.Load<Sprite_FXSkill_SO>(resPath).effSkillInfo_SO;
+            SpriteInfo[] effSkillInfos = Resources.Load<Sprite_FXSkill_SO>(resPath).effSkillInfo;
             effSkills.Add(id[i], effSkillInfos);    
         }
         skillsView = new EffSkill[effSkills.Count];

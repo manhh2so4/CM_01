@@ -7,18 +7,18 @@ public class Equipment : MonoBehaviour,ISaveable
 {
     Dictionary<EquipType,EquipableItemSO> equippedItems = new Dictionary<EquipType,EquipableItemSO>();
     public event Action OnEquipmentUpdate;
-    public event Action<EquipType> OnTypeEquipUpdate;
-
+    
     [SerializeField] CharacterStats characterStats;
     [SerializeField] PaintChar paintChar;
-    [SerializeField] Skill_Manager skillManager;
-    
-    private void Start() {
-        Core core = GetComponentInChildren<Core>();
-        characterStats = core.GetCoreComponent<CharacterStats>();
-        paintChar = core.GetCoreComponent<PaintChar>();
-        skillManager = GetComponent<Skill_Manager>();
+    [SerializeField] SkillTreeManager skillTreeManager;
+
+
+    void Awake()
+    {
+        characterStats = PlayerManager.GetCharStats();
+        paintChar = PlayerManager.GetCore().GetCoreComponent<PaintChar>();
     }
+
     public EquipableItemSO GetItemInSlot(EquipType typeEquip){
         if(!equippedItems.ContainsKey(typeEquip)){
             return null;
@@ -26,7 +26,6 @@ public class Equipment : MonoBehaviour,ISaveable
         return equippedItems[typeEquip];
     }
     public void AddItem(EquipType typeEquip, EquipableItemSO item){
-
         Debug.Assert(item.GetTypeEquip() == typeEquip);
         item.AddModifiers(characterStats);
         equippedItems[typeEquip] = item;
@@ -39,8 +38,15 @@ public class Equipment : MonoBehaviour,ISaveable
         equippedItems[typeEquip].RemoveModifiers( characterStats );
         equippedItems.Remove(typeEquip);
         OnEquipmentUpdate?.Invoke();
-        UpdateTypeEquip(typeEquip);
-        
+        UpdateTypeEquip(typeEquip);     
+    }
+
+    public bool HasItem(InventoryItemSO item){
+        EquipableItemSO _equipableItem = item as EquipableItemSO;
+        if(_equipableItem != null){
+            return equippedItems.ContainsValue(_equipableItem);
+        }
+        return false;
     }
 
     void UpdateTypeEquip(EquipType typeEquip)
@@ -50,10 +56,10 @@ public class Equipment : MonoBehaviour,ISaveable
             case EquipType.Vukhi:
 
 				if(GetItemInSlot(EquipType.Vukhi) != null) {
-				    paintChar.SetWeapon(GetItemInSlot(EquipType.Vukhi).GetImageDraw().spriteInfos);
-                    skillManager.UpdateTypeEquip();
+				    paintChar.SetWeapon( GetItemInSlot(EquipType.Vukhi).GetImageDraw().spriteInfos);
 				}else paintChar.SetWeapon(null);
 
+                skillTreeManager.UpdateSkillTreeUI( GetItemInSlot(EquipType.Vukhi) );
                 break;
             case EquipType.Ao:
 				if(GetItemInSlot(EquipType.Ao) != null) {

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b0d4e92b631ea478df56c0a7a0dd30, type: 3}
+  m_Name: GGSheetEquipmentConfig
+  m_EditorClassIdentifier: 
+  GoogleSheetId: 1tjRcLoO7oQ_zQNYIUnszzrHm1lw3yGkakkyfjks_9iw
+  CredentialPath: Assets/Data/KEYgoogle.json
+  targetScriptFile: {fileID: 11500000, guid: 168fe5f8c012e784497f511abdccacc6, type: 3}

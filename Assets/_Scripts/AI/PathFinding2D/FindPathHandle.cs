@@ -1,7 +1,19 @@
+using System;
 using System.Collections.Generic;
+using Algorithms;
 using NaughtyAttributes;
+using UnityEditor;
 using UnityEngine;
 
+[System.Serializable]
+public struct FinData{
+    public Vector2i pos;
+    public int jumpValue;
+    public FinData(Vector2i _pos, int _jumpValue){
+        this.pos = _pos;
+        this.jumpValue = _jumpValue;
+    }
+}
 public class FindPathHandle : MonoBehaviour {
     //--------Input Action--------
     public int amountJump;
@@ -9,28 +21,23 @@ public class FindPathHandle : MonoBehaviour {
     public int moveInput;
     public bool jumpInput;
     //------------------------
-    public PlayerInputHandler inputPlayer ;
     Movement movement;
     public Map map;
     public List<Vector2i> mPath = new List<Vector2i>();
     public int mCurrentNodeId = -1;
     
-    Vector2 prevDest, currentDest, nextDest;
-    Vector2 pathPosition;
+    [SerializeField] Vector2 prevDest, currentDest, nextDest;
+    [SerializeField] Vector2 pathPosition;
     [SerializeField] bool destOnGround, reachedY, reachedX;
 
+
+    public Action OnMoveEnd;
     public void SetMovement(Movement _movement){
         movement = _movement;
     }
-    void OnEnable(){
-        inputPlayer.OnClickPos += OnClickPos;
-    }
-    void OnDisable(){
-        inputPlayer.OnClickPos -= OnClickPos;
-    }
     void Update()
     {
-        UpdatePath();
+        //UpdatePath();
     }
     [Button]
     void Jump(){
@@ -38,28 +45,32 @@ public class FindPathHandle : MonoBehaviour {
         jumpInput = true;
     }
 
-    void OnClickPos(Vector2i _pos){
+    public void SetDestination(Vector2i _pos , Action _onMoveEnd){
+        
         Vector2i destination = _pos - map.Offset;
         for(int i = 0; i < 100; i++){
             destination.y--;
             if( map.IsGround(destination.x, destination.y)){ 
                 destination.y++;
+                MoveTo(destination);
                 break;
             }
         }
-        MoveTo(destination);
-        pos.Set(destination.x + map.Offset.x, destination.y + map.Offset.y);
+        OnMoveEnd = _onMoveEnd;
+        
+        //pos.Set(destination.x + map.Offset.x, destination.y + map.Offset.y);
     }
 
     public void MoveTo(Vector2i destination)
     {
-        Vector2i startTile = map.GetMapTileAtPoint(transform.position);
+        Vector2i startTile = map.GetMapTileAtPoint(transform.position + transform.up * 0.2f);
         List<Vector2i> path = map.mPathFinder.FindPath( startTile , destination , 1, 1, 3 );
 
         mPath.Clear();
 
         if (path != null && path.Count > 1)
         {
+            //findDatas = map.mPathFinder.findDatas;
             for (var i = path.Count - 1; i >= 0; --i)
                 mPath.Add(path[i]);
             
@@ -71,6 +82,7 @@ public class FindPathHandle : MonoBehaviour {
             mCurrentNodeId = -1;
         }
     }
+    
     public bool ReachedNodeOnXAxis(Vector2 pathPosition, Vector2 prevDest, Vector2 currentDest)
     {
         return (prevDest.x <= currentDest.x && pathPosition.x >= currentDest.x )
@@ -111,15 +123,22 @@ public class FindPathHandle : MonoBehaviour {
         reachedX = ReachedNodeOnXAxis(pathPosition, prevDest, currentDest);
         reachedY = ReachedNodeOnYAxis(pathPosition, prevDest, currentDest);
 
-        //snap the character if it reached the goal but overshot it by more than cBotMaxPositionError
         if ( reachedX && Mathf.Abs(pathPosition.x - currentDest.x) > StaticValue.cBotMaxPositionError && movement.isGround() )
         {
-            if(Mathf.Abs(pathPosition.x - currentDest.x) > StaticValue.cBotMaxPositionError*3){
-                reachedX = false;
-            }else{
-                Debug.Log("snap");
+
+            if( Mathf.Abs( pathPosition.x - currentDest.x ) < StaticValue.cBotMaxPositionError*3 ){
+                
                 pathPosition.x = currentDest.x;
                 transform.position = pathPosition + new Vector2(map.Offset.x + 0.5f, map.Offset.y);
+
+            }else{
+
+                if(  Mathf.Abs( currentDest.x - nextDest.x ) > StaticValue.cBotMaxPositionError && Mathf.Abs( pathPosition.y - nextDest.y ) < StaticValue.cBotMaxPositionError ){
+                    reachedX = true;
+                }
+                else{
+                    reachedX = false;
+                }
             }
         }
 
@@ -159,41 +178,52 @@ public class FindPathHandle : MonoBehaviour {
         float sqrDistance = (pathPosition - nextDest).sqrMagnitude;
         
 
-        if (reachedX && reachedY)
+        if ( reachedX && reachedY )
         {
             int prevNodeId = mCurrentNodeId;
             mCurrentNodeId++;
 
             if( mCurrentNodeId >= mPath.Count ){
                 
-                if( sqrDistance < StaticValue.cBotMaxPositionError ){
-
-                    Debug.Log("end find path");
-
+                if( sqrDistance < StaticValue.cBotMaxPositionError * StaticValue.cBotMaxPositionError ){
                     mCurrentNodeId = -1;
                     moveInput = 0;
                     jumpInput = false;
                     isFollowPath = false;
+                    mPath.Clear();
+                    OnMoveEnd?.Invoke();
                     return;
                 }
-                return;
+                mCurrentNodeId = prevNodeId;
             }
+            else
+            {
 
-            if( movement.isGround() ) amountJump = GetJumpFramesForNode(prevNodeId);
+                if( movement.isGround() ) amountJump = GetJumpFramesForNode(prevNodeId);
+            }
+            
 
-        }else if( !reachedX ){
-            //moveInput = Mathf.Clamp(currentDest.x - pathPosition.x, -1, 1);
-
+        }
+        else if( reachedX == false )
+        {
             if( currentDest.x - pathPosition.x > StaticValue.cBotMaxPositionError ) //    * |
                 moveInput = 1;
             else if( pathPosition.x - currentDest.x > StaticValue.cBotMaxPositionError ) //  | *
                 moveInput = -1;
+            
+            if(Mathf.Abs(currentDest.x - pathPosition.x) < StaticValue.cBotMaxPositionError){
+                moveInput = 0;
+            }
 
-        }else if( !reachedY && ( mPath.Count > mCurrentNodeId + 1 ) && !destOnGround
-            //&& (sqrDistance >= StaticValue.cBotMaxPositionError*2 )
-            ){
+        }else if(
+            !reachedY
+            && ( mPath.Count > mCurrentNodeId + 1 )
+            && !destOnGround
+            && ( sqrDistance >= StaticValue.cBotMaxPositionError*2 )
+            )
+        {
 
-            //moveInput = Mathf.Clamp(nextDest.x - pathPosition.x, -1, 1);
+
             if( nextDest.x - pathPosition.x > StaticValue.cBotMaxPositionError ) //  * |
                 moveInput = 1;
             else if( pathPosition.x - nextDest.x > StaticValue.cBotMaxPositionError ) //  | *
@@ -211,14 +241,31 @@ public class FindPathHandle : MonoBehaviour {
 
         }
 
+        // if( reachedY && ( mPath.Count > mCurrentNodeId + 1 ) ){
+
+        //     if( ReachedNodeOnXAxis( pathPosition, currentDest, nextDest ) )
+        //     {
+        //         mCurrentNodeId ++;
+        //         return;
+        //     }
+
+        // }
+
         if( amountJump > 0 &&  movement.isGround()){
+
+            if( nextDest.x - pathPosition.x > StaticValue.cBotMaxPositionError )
+                moveInput = 1;
+            else if( pathPosition.x - nextDest.x > StaticValue.cBotMaxPositionError )
+                moveInput = -1;
+
+            movement.CheckIfShouldFlip(moveInput);
             jumpInput = true;
         }
         
         if( movement.Velocity.magnitude < 2f ){
-            if(TimeAction(1f)){
-                Debug.Log("MoveTo");
+            if(TimeAction(.5f)){
                 MoveTo(mPath[mPath.Count-1]);
+                Debug.Log("MoveTo");
             }
         }else{
             timeAction = 0;
@@ -236,6 +283,18 @@ public class FindPathHandle : MonoBehaviour {
         return false;
     }
 #if UNITY_EDITOR
+    void DrawJumpState(){
+
+        // if(findDatas != null){
+        //     GUIStyle style = new GUIStyle();
+        //     style.fontSize = 20;  // Đặt kích thước font chữ
+        //     style.normal.textColor = Color.blue;
+        //     foreach(FinData fin in findDatas){
+        //         Handles.Label( new Vector2(fin.pos.x +map.Offset.x + 0.15f, fin.pos.y + map.Offset.y ) + Vector2.one * 0.5f , fin.jumpValue.ToString(), style);
+        //     }
+        // }
+
+    }
     Vector2 pos;
     void OnDrawGizmos()
     {
@@ -245,15 +304,16 @@ public class FindPathHandle : MonoBehaviour {
         Gizmos.DrawSphere( pos , .1f);
 
         Gizmos.color = Color.cyan;
-        Gizmos.DrawSphere( pathPosition + new Vector2( map.Offset.x , map.Offset.y) , .1f);
+        Gizmos.DrawSphere( pathPosition + new Vector2( map.Offset.x , map.Offset.y) + Vector2.one * 0.5f , .1f);
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere( currentDest + new Vector2( map.Offset.x , map.Offset.y) + Vector2.one * 0.5f , .1f );
+        Gizmos.DrawSphere( currentDest + new Vector2( map.Offset.x +0.1f, map.Offset.y) + Vector2.one * 0.5f , .1f );
         Gizmos.color = Color.red;
         Gizmos.DrawSphere( prevDest + new Vector2( map.Offset.x , map.Offset.y) + Vector2.one * 0.5f , .1f);
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere( nextDest + new Vector2( map.Offset.x , map.Offset.y) + Vector2.one * 0.5f , .1f );
 
         DrawInput();
+        DrawJumpState();
         
     }
     void DrawPath()

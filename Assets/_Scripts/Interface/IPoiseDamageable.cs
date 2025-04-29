@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPoiseDamageable
 {
-    void DamagePoise(float amount,Poisetype poisetype,Effect_Instance prefabEff);
+    void DamagePoise(float amount,Poisetype poisetype,BaseEffect prefabEff);
 }

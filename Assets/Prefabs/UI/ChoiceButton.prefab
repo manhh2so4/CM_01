@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 5
-    m_Bottom: 5
+    m_Top: 15
+    m_Bottom: 15
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
@@ -213,10 +213,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: I've lived here all my life!
+  m_text: "V\u1EA5n \u0111\u1EC1 ch\u1EC9 tr\u1EDF n\xEAn quan tr\u1ECDng "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6f78ccd8905a558428f483e863571047, type: 2}
-  m_sharedMaterial: {fileID: 4170177438499017841, guid: 6f78ccd8905a558428f483e863571047, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 03e4eac26aa6b48468afa1d67b50a115, type: 2}
+  m_sharedMaterial: {fileID: 5194591758127070636, guid: 03e4eac26aa6b48468afa1d67b50a115, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -240,8 +240,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -5
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

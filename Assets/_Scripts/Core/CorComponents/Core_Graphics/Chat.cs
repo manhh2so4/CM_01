@@ -15,13 +15,8 @@ public class Chat : CoreComponent
     protected override void Awake() {
         base.Awake();
         movement = core.GetCoreComponent<Movement>();
-        
-        
     }
-    void Start()
-    {
-        this.transform.localPosition = new Vector3(0,core.height + 0.3f,0);
-    }
+
     [Button]
     void DrawText(){
         //SetUpChat("Sena Livestream - Bốc phét + Reaction + Tiktok + Game Gủng");
@@ -48,12 +43,24 @@ public class Chat : CoreComponent
         textWriter = null;
     }
 
-    void OnEnable(){
+    protected override void OnEnable()
+    {
+        base.OnEnable();
         if(movement != null) movement.OnFlip += FlipUI;    
     }
-    void OnDisable() {
+    protected override void OnDisable() {
+        base.OnDisable();
         if(movement != null) movement.OnFlip -= FlipUI;
     }
+
+    protected override void SetData(){
+        base.SetData();
+        this.transform.localPosition = new Vector3(0,core.Height + 0.3f,0);
+    }
+
     void FlipUI() => transform.Rotate(0, 180, 0);
+    public Core GetCore(){
+        return core;
+    }
 
 }

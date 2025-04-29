@@ -16,7 +16,6 @@ public class CallTime{
         UnityEngine.Debug.Log(" executed " + Name + " : " + roundedMilliseconds + " ms" );
         stopwatch.Reset();
     }
-
 }
 public class SetTime{
     Stopwatch stopwatch; 

@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour,ISaveable
     public bool HasSpaceFor(InventoryItemSO item)
     {
 
-        return FindSlot(item) >= 0;
+        return FindSlotAdd(item) >= 0;
     }
 
     public int GetSize()
@@ -37,7 +37,7 @@ public class Inventory : MonoBehaviour,ISaveable
     public bool AddToFirstEmptySlot(InventoryItemSO item, int number)
     {
 
-        int i = FindSlot(item);
+        int i = FindSlotAdd(item);
 
         if (i < 0)
         {
@@ -56,13 +56,34 @@ public class Inventory : MonoBehaviour,ISaveable
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            if (object.ReferenceEquals(slots[i].item, item))
+            if ( object.ReferenceEquals( slots[i].item, item) )
             {
                 return true;
             }
         }
         return false;
     }
+    public bool HasItem(InventoryItemSO item, int number){
+
+        int count = 0;
+        for (int i = 0; i < slots.Length; i++){
+            if ( object.ReferenceEquals( slots[i].item, item) ){
+                count += GetNumberInSlot(i);
+            }
+        }
+        return count >= number;
+    }
+
+    public int GetNumberItem(InventoryItemSO item){
+        int count = 0;
+        for (int i = 0; i < slots.Length; i++){
+            if ( object.ReferenceEquals( slots[i].item, item) ){
+                count += GetNumberInSlot(i);
+            }
+        }
+        return count;
+    }
+
 
     public InventoryItemSO GetItemInSlot(int slot)
     {
@@ -72,7 +93,26 @@ public class Inventory : MonoBehaviour,ISaveable
     {
         return slots[slot].number;
     }
-    
+
+    public bool UseItemAction(ActionItem item){
+        int slot = FindSlot(item);
+        if(slot >= 0){
+            if( item.IsConsumable() ){
+                RemoveFromSlot(slot,1);
+            }
+            item.Use( PlayerManager.GetBuffStat());
+            return true;
+        }
+        return false;
+    }
+
+    public bool RemoveItem(InventoryItemSO item, int number = 1){
+        int slot = FindSlot(item);
+        if(slot >= 0) RemoveFromSlot(slot, number);
+        else return false;
+        
+        return true;
+    }
     public void RemoveFromSlot(int slot, int number)
     {
         slots[slot].number -= number;
@@ -91,7 +131,9 @@ public class Inventory : MonoBehaviour,ISaveable
         {
             return AddToFirstEmptySlot(item, number);
         }
+
         var i = FindStack(item);
+
         if (i >= 0)
         {
             slot = i;
@@ -106,7 +148,7 @@ public class Inventory : MonoBehaviour,ISaveable
 
 
 
-    private int FindSlot(InventoryItemSO item)
+    private int FindSlotAdd(InventoryItemSO item)
     {
         
         int i = FindStack(item);
@@ -130,21 +172,32 @@ public class Inventory : MonoBehaviour,ISaveable
     }
     private int FindStack(InventoryItemSO item)
     {
-            if (!item.IsStackable())
+            if ( item.IsStackable() == false )
             {
                 return -1;
             }
 
             for (int i = 0; i < slots.Length; i++)
             {
-                if (object.ReferenceEquals(slots[i].item, item))
+                if ( object.ReferenceEquals(slots[i].item, item))
                 {
                     return i;
                 }
             }
             return -1;
     }
-    #region Save_File
+    private int FindSlot(InventoryItemSO item){
+
+        for (int i = 0; i < slots.Length; i++)
+            {
+                if ( object.ReferenceEquals(slots[i].item, item))
+                {
+                    return i;
+            }
+        }
+        return -1;
+    }
+#region Save_File
     [System.Serializable]
     private struct InventorySlotRecord
     {

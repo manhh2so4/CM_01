@@ -8,7 +8,6 @@ using System.Linq;
 [CustomEditor(typeof(MeshRenderer))]
 public class MeshRendererSortingEditor : Editor
 {
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

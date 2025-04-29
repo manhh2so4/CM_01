@@ -19,9 +19,7 @@ public class ShowHideUI : MonoBehaviour
         }
     }
     public void Toggle(){
-        UI_selected.SetSelected(null);
         ObjectUI.SetActive(!ObjectUI.activeSelf);
-       
     }
 
 }

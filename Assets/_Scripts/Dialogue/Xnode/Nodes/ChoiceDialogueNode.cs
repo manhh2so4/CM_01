@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XNode;
-
+[Node.CreateNodeMenuAttribute("Dialogue/ChoiceDialogueNode")] 
 public class ChoiceDialogueNode : BaseNode {
     [Output( dynamicPortList = true, connectionType = ConnectionType.Override )] public List<string> Answers;
     public Speaker speaker;

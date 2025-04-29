@@ -9,7 +9,7 @@ public class WeaponGenerator : MonoBehaviour {
     private List<WeaponComponents> compAddedToWeapon = new List<WeaponComponents>();
     //private List<Type> componetDependencies = new List<Type>();
 
-    public void GenerateWeapon(SkillData_SO data){
+    public void GenerateWeapon(SkillData data){
         weapon.SetData(data);
         
         compAlreadyOnWeapon.Clear();
@@ -23,9 +23,9 @@ public class WeaponGenerator : MonoBehaviour {
             component.Refest();
         }
 
-        //componetDependencies = data.GetAllDependencies();
-
-        foreach(ComponentData componentData in data.GetAllData()){
+        SkillData_Active_SO dataSO = data.dataSO as SkillData_Active_SO;
+       
+        foreach(ComponentData componentData in dataSO.GetAllData()){
             var dependency = componentData.ComponentDependency;
             WeaponComponents weaponComponent = compAlreadyOnWeapon.FirstOrDefault(component => component.GetType() == dependency);
 

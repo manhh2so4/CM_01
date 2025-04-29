@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class cliked : MonoBehaviour,IClicker
+public class cliked : MonoBehaviour
 {
     public void OnClick()
     {

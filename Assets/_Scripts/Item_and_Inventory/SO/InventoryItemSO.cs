@@ -2,19 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(menuName = "Inventory/Item")]
-public class InventoryItemSO : ScriptableObject, ISerializationCallbackReceiver
+public class InventoryItemSO : ScriptableObject
 {
-    [Tooltip("Auto-generated UUID for saving/loading. Clear this field if you want to generate a new one.")]
     [SerializeField] string itemID = null;
-    [Tooltip("Item name to be displayed in UI.")]
     [SerializeField] string displayName = null;
-    [Tooltip("Item description to be displayed in UI.")]
     [SerializeField][TextArea] string description = null;
-    [Tooltip("The UI icon to represent this item in the inventory.")]
-    [SpritePreview]
-    [SerializeField] Sprite icon = null;
-    
-    [Tooltip("If true, multiple items of this type can be stacked in the same inventory slot.")]
+    [SpritePreview][SerializeField] Sprite icon = null;
     [SerializeField] bool stackable = false;
     [SerializeField] int price;
 
@@ -40,7 +33,6 @@ public class InventoryItemSO : ScriptableObject, ISerializationCallbackReceiver
         if (itemID == null || !itemLookupCache.ContainsKey(itemID)) return null;
         return itemLookupCache[itemID];
     }
-    Vector2 temp = Vector2.zero;
     public Pickup SpawnPickup(Vector3 position, int number, Vector2 dirV = default(Vector2))
     {
         Pickup pickup = PoolsContainer.GetObject( this.GetPrefab<Pickup>() , position);
@@ -78,26 +70,26 @@ public class InventoryItemSO : ScriptableObject, ISerializationCallbackReceiver
     }
 
     // PRIVATE
-        
-    void ISerializationCallbackReceiver.OnBeforeSerialize()
-    {
-        // Generate and save a new UUID if this is blank.
-        if (string.IsNullOrWhiteSpace(itemID))
-        {
-            itemID = System.Guid.NewGuid().ToString();
-        }
+#if UNITY_EDITOR 
+    void OnValidate(){
+        itemID = this.name;
     }
 
-    void ISerializationCallbackReceiver.OnAfterDeserialize()
-    {
-        // Require by the ISerializationCallbackReceiver but we don't need
-        // to do anything with it.
+    public void SetData(string displayName, string description, Sprite icon, bool stackable, int price){
+        this.displayName = displayName;
+        this.description = description;
+        this.icon = icon;
+        this.stackable = stackable;
+        this.price = price;
     }
+#endif
 }
+
 [System.Serializable]
 public class ItemAndCount
 {
     public InventoryItemSO item;
+    [Min(1)]
     public int count;
     
 }

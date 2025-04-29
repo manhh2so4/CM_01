@@ -14,6 +14,9 @@ public class SceneField {
         get{
             return _sceneName;
         }
+		set{
+			_sceneName = value;
+		}
     }
 
     public static implicit operator string(SceneField sceneField) {

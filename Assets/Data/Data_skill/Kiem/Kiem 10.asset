@@ -12,7 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bff999054a7070498e80d8cb4867207, type: 3}
   m_Name: Kiem 10
   m_EditorClassIdentifier: 
-  icon: {fileID: 5290670118394407882, guid: e9c8dda83f5b2cf4bb0f25bd1aa3bc81, type: 3}
+  icon: {fileID: 21300000, guid: 65f2065e1a021d04a9c55bd2ce6a36a1, type: 3}
+  lvMaxSkill: 7
+  skillName: "Chi\xEAu X Zangeki"
+  description: 99
+  lvRequirement: 1
+  isActiveSkill: 1
+  AddtiveModifiers:
+  - statType: 0
+    _value: 0a0000000f00000014000000190000001e0000002300000028000000
+  - statType: 1
+    _value: 0a000000140000001e00000028000000320000003c00000046000000
+  - statType: 5
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 6
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 7
+    _value: 00000000000000000000000000000000000000000000000000000000
+  Range: 10
+  consumeMana: 0a0000000f00000014000000190000001e0000002300000028000000
+  cooldown:
+  - 1
+  - 0.9
+  - 0.8
+  - 0.7
+  - 0.6
+  - 0.5
+  - 0.4
   <ComponentData>k__BackingField:
   - rid: 4502466544620797964
   - rid: 4502466544620797965
@@ -29,7 +55,7 @@ MonoBehaviour:
         <TimeEff>k__BackingField: 2
         <Rate>k__BackingField: 50
         <type>k__BackingField: 0
-        prefabEff: {fileID: 4485347768850219834, guid: 6749158fff20f4e489c9fe69c85c8500, type: 3}
+        prefabEff: {fileID: -6978634772155302930, guid: 53e530ec0d824014ba9e58baa2cbe6b2, type: 3}
     - rid: 4502466544620797964
       type: {class: DamageData, ns: , asm: Assembly-CSharp}
       data:
@@ -53,6 +79,6 @@ MonoBehaviour:
       type: {class: PassiveSkillData, ns: , asm: Assembly-CSharp}
       data:
         name: PassiveSkillData
-        <idSkill>k__BackingField: 1
+        <idSkill>k__BackingField: 64
         <cooldown>k__BackingField: 1
-        <RangeAttack>k__BackingField: 1.5
+        <RangeAttack>k__BackingField: 3

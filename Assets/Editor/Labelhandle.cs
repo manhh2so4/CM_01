@@ -8,14 +8,14 @@ class Labelhandle : Editor
         labelStyle = new GUIStyle();
         labelStyle.normal.textColor = Color.white;
         labelStyle.alignment = TextAnchor.LowerCenter;
-        labelStyle.fontSize = 40;
+        labelStyle.fontSize = 30;
     }
     private void OnSceneGUI()
     {
         Portal portal = (Portal)target;
 
         Handles.BeginGUI();
-        Handles.Label(portal.transform.position + new Vector3(0f,.4f,0f), portal.CurrentGate.ToString(), labelStyle);
+        Handles.Label(portal.transform.position + new Vector3(0f,.4f,0f), portal._sceneToLoad.SceneName, labelStyle);
         Handles.EndGUI();
     }
     

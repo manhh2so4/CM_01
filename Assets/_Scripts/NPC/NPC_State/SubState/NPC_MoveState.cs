@@ -14,7 +14,7 @@ public class NPC_MoveState : NPCNormalState {
         base.LogicUpdate();
         if(isExitingState) return;
 
-        movement.SetVelocityX(npc.mSpeed* inputX);
+        movement.SetVelocityX(npcData.speedMove* inputX);
         movement.CheckIfShouldFlip(inputX);
 
         if( Mathf.Abs(movement.Velocity.x) < .1f && inputX == 0){

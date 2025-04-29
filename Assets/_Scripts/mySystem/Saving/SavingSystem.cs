@@ -9,34 +9,32 @@ using UnityEngine.SceneManagement;
 
 namespace HStrong.Saving
 {
-    /// <summary>
-    /// This component provides the interface to the saving system. It provides
-    /// methods to save and restore a scene.
-    ///
-    /// This component should be created once and shared between all subsequent scenes.
-    /// </summary>
     public class SavingSystem : MonoBehaviour
     {
-        /// <summary>
-        /// Will load the last scene that was saved and restore the state. This
-        /// must be run as a coroutine.
-        /// </summary>
-        /// <param name="saveFile">The save file to consult for loading.</param>
+        private static string  saveFilePath;
+        void Awake()
+        {
+            saveFilePath = Application.persistentDataPath;
+        }
         public IEnumerator LoadLastScene(string saveFile)
         {
             Dictionary<string, object> state = LoadFile(saveFile);
             int buildIndex = SceneManager.GetActiveScene().buildIndex;
-            if (state.ContainsKey("lastSceneBuildIndex"))
+
+            if ( state.ContainsKey("lastSceneBuildIndex") )
             {
                 buildIndex = (int)state["lastSceneBuildIndex"];
             }
             yield return SceneManager.LoadSceneAsync(buildIndex);
             RestoreState(state);
         }
+        
+        public IEnumerator LoadToScene(string saveFile,string sceneName)
+        {
+            Dictionary<string, object> state = LoadFile(saveFile);
+            yield return SceneManager.LoadSceneAsync(sceneName);
+        }
 
-        /// <summary>
-        /// Save the current scene to the provided save file.
-        /// </summary>
         public void Save(string saveFile)
         {
             Dictionary<string, object> state = LoadFile(saveFile);
@@ -60,7 +58,7 @@ namespace HStrong.Saving
         }
         public IEnumerable<string> ListSaves()
         {
-            foreach (string path in Directory.EnumerateFiles(Application.persistentDataPath))
+            foreach (string path in Directory.EnumerateFiles(saveFilePath))
             {
                 if (Path.GetExtension(path) == ".sav")
                 {
@@ -72,10 +70,11 @@ namespace HStrong.Saving
         private Dictionary<string, object> LoadFile(string saveFile)
         {
             string path = GetPathFromSaveFile(saveFile);
-            if (!File.Exists(path))
+            if ( !File.Exists(path) )
             {
                 return new Dictionary<string, object>();
             }
+
             using (FileStream stream = File.Open(path, FileMode.Open))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -86,7 +85,7 @@ namespace HStrong.Saving
         private void SaveFile(string saveFile, object state)
         {
             string path = GetPathFromSaveFile(saveFile);
-            print("Saving to " + path);
+            //print("Saving to " + path);
             using (FileStream stream = File.Open(path, FileMode.Create))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -98,6 +97,7 @@ namespace HStrong.Saving
         {
             foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
             {
+                
                 state[saveable.GetUniqueIdentifier()] = saveable.CaptureState();
             }
             state["lastSceneBuildIndex"] = SceneManager.GetActiveScene().buildIndex;
@@ -117,7 +117,7 @@ namespace HStrong.Saving
 
         private string GetPathFromSaveFile(string saveFile)
         {
-            return Path.Combine(Application.persistentDataPath, saveFile + ".sav");
+            return Path.Combine(saveFilePath, saveFile + ".sav");
         }
     }
 }

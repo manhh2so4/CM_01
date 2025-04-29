@@ -49,6 +49,7 @@ public class E_State : State
         XDirPos = enemy.transform.position.x  - enemyPos.x;
         YDirPos = enemy.transform.position.y  - enemyPos.y;     
     }
+
     #region funcTimer
     protected bool TimeRate(float speed){        
         frameTimer += Time.deltaTime;

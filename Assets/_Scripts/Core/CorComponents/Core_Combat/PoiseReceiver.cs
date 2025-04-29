@@ -8,13 +8,15 @@ public class PoiseReceiver : CoreReceiver, IPoiseDamageable
     [SerializeField] float resistanceEffect = 1;
     float StartTime;
     float maxTime;
-    public void DamagePoise(float time,Poisetype type,Effect_Instance prefabEff)
+    public void DamagePoise(float time,Poisetype type,BaseEffect prefabEff)
     {
         if(prefabEff == null ) return;
         time = time * resistanceEffect;
         isPoise = true;
-        Effect_Instance effect = particleManager.Creat(prefabEff, this.transform.position + SetPosEff(prefabEff) );
+
+        BaseEffect effect = PoolsContainer.GetObject(prefabEff, this.transform.position + SetPosEff(prefabEff) ,transform);
         effect.SetData( core.SortingLayerID, core.uniqueID, time, (int)core.size.y);
+        
         isPoise = true;
         StartTime = Time.time;
         maxTime = time;

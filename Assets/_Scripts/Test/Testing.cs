@@ -1,13 +1,12 @@
+using HStrong.ProjectileSystem;
 using NaughtyAttributes;
 using UnityEngine;
 
 public class Testing : MonoBehaviour {
-
+    [SerializeField] BaseEffect  effPrefab;
     [Button]
     void Test() {
-        PopupText textPopupInstance = PoolsContainer.GetObject(this.GetPrefab<PopupText>());
-        textPopupInstance.transform.position = transform.position ;
-        textPopupInstance.Setup(100, false, 1);
+       //BuffHealing healing = this.ReplaceComponent<BuffHealing>();
     }
 
 }

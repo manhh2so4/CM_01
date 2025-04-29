@@ -35,17 +35,7 @@ public class PickupSpawner : MonoBehaviour
 
     public void RestoreState(object state)
     {
-        // bool shouldBeCollected = (bool)state;
 
-        // if (shouldBeCollected && !isCollected())
-        // {
-        //     DestroyPickup();
-        // }
-
-        // if (!shouldBeCollected && isCollected())
-        // {
-        //     SpawnPickup();
-        // }
     }
 #if UNITY_EDITOR
     private void OnValidate()

@@ -12,47 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db150e60046b5ee4898d6c624c8d0121, type: 3}
   m_Name: Enemy 8
   m_EditorClassIdentifier: 
-  textures: []
-  Id: 0
-  type: 0
-  Name: 
-  speedMove: 0
+  Sprites:
+  - {fileID: 21300000, guid: a7a2ec8344a9a514f98109f2eb2a1a7e, type: 3}
+  - {fileID: 21300000, guid: f28db3251da3635468810a627ab8596c, type: 3}
+  - {fileID: 21300000, guid: dcda0083ffec82b4484d2555d0e92c23, type: 3}
+  - {fileID: 21300000, guid: 2ae0a0fe726b40542a30989d325431ce, type: 3}
+  projectile: {fileID: -2270211819613203214, guid: 25d81f1221c41f24cb80349a67ce24b9, type: 3}
+  idEnemy: 8
+  type: 5
+  Name: "Mu\u1ED7i r\u1EEBng"
+  speedMove: 2
   speedAtk: 3
-  Hp: 0
+  damage: 9
+  Hp: 500
   timeReSpont: 40
-  countDrop: 1
-  <dropInfo>k__BackingField:
-  - item: {fileID: 11400000, guid: 06818ee6996c0054383c804bb72bafcd, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 816129c50cf2c784595a821ea319a919, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 33117899a34708940a1b19a26c55a61c, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 54b1ef7a70afdd948a8945cc8f5c47b8, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 09f2bcd660cc21e4a9f792bf8f5c5de0, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 4bb3d34b23e764245a0bfaf26ccc9226, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: e9386d7e162428440af0cd764c8d77de, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 4457ce447e6831e43a073c9e1745405f, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 39c7807c4d043c14a918728db4b5ba4d, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 1abefe42065f5764896415e525075dfd, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 7073d1ff37e1cec4a96437cb6d864296, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 6643eb07f044c4d4ca7ea2c9357c5379, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 0cc887e10bbe2144aa4003533df1ca95, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 4409ad83d97d31b459004c2e11a35a30, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 5d3b33b17bb7a4a47b3c724fda0c8873, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: f2389c129ad48a54d9d05e5588b5d571, type: 2}
-    dropChance: 50
-  - item: {fileID: 11400000, guid: 35bd5b23a3ed1a84a8f5e89eb83e17da, type: 2}
-    dropChance: 50
+  countDrop: 0
+  <dropInfo>k__BackingField: []

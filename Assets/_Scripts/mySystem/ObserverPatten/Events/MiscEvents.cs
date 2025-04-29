@@ -8,4 +8,7 @@ public class MiscEvents
     public event Action onGemCollected;
     public void GemCollected() => onGemCollected?.Invoke();
 
+    public event Action<EnemyEntity> onKillEnemy;
+    public void KillEnemy(EnemyEntity enemy) => onKillEnemy?.Invoke(enemy);
+
 }

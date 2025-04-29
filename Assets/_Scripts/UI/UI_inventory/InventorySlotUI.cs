@@ -1,7 +1,7 @@
 using HStrong.Core.UI.Dragging;
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class InventorySlotUI : MonoBehaviour, IItemHolder, IDragContainer<InventoryItemSO>,IPointerClickHandler
+public class InventorySlotUI : MonoBehaviour, IItemHolder, IDragContainer<InventoryItemSO>
 {
     [SerializeField] InventoryItemIcon icon = null;
     int index;
@@ -39,8 +39,8 @@ public class InventorySlotUI : MonoBehaviour, IItemHolder, IDragContainer<Invent
         inventory.RemoveFromSlot(index, number);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        UI_selected.SetSelected(this.transform as RectTransform);
-    }
+    // public void OnPointerClick(PointerEventData eventData)
+    // {
+    //     UI_selected.SetSelected(this.transform as RectTransform);
+    // }
 }

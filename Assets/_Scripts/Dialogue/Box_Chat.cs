@@ -5,7 +5,7 @@ using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 
-public class Box_Chat : MonoBehaviour, IObjectPoolItem,IPrefab
+public class Box_Chat : MonoBehaviour, IObjectPoolItem
 {
     ObjectPool objectPool;
     SpriteRenderer bgBox;
@@ -64,16 +64,9 @@ public class Box_Chat : MonoBehaviour, IObjectPoolItem,IPrefab
 
     void ReturnItemToPool()
     {
-        if (objectPool != null)
-        {
-            objectPool.ReturnObject(this);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        ReturnToPool();
     }
-
+    
     public void SetObjectPool(ObjectPool pool)
     {
         objectPool = pool;
@@ -82,6 +75,18 @@ public class Box_Chat : MonoBehaviour, IObjectPoolItem,IPrefab
     public void Release()
     {
         objectPool = null;
+    }
+
+    public void ReturnToPool()
+    {
+        if (objectPool != null)
+        {
+            objectPool.ReturnObject(this);
+            this.transform.SetParent(PoolsContainer.Instance.transform);
+        }else
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

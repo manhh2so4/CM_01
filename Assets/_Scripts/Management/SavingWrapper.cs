@@ -19,6 +19,7 @@ public class SavingWrapper : MonoBehaviour {
         savingSystem = GetComponent<SavingSystem>();
         if(Instance == null) Instance = this;
         else Destroy(gameObject);
+
     }
 
     public void ContinueGame() 
@@ -43,13 +44,14 @@ public class SavingWrapper : MonoBehaviour {
     }
     private string GetCurrentSave()
     {
-        return PlayerPrefs.GetString(currentSaveKey);
+        return "test2";
+        //return PlayerPrefs.GetString(currentSaveKey);
     }
     
     async UniTaskVoid LoadLastScene() {
         Fader fader = Fader.Instance;
         await fader.FadeOut(fadeOutTime);
-        await  savingSystem.LoadLastScene(GetCurrentSave());
+        await savingSystem.LoadLastScene(GetCurrentSave());
         await fader.FadeIn(fadeInTime);
     }
     async UniTaskVoid LoadFirstScene(){
@@ -66,12 +68,20 @@ public class SavingWrapper : MonoBehaviour {
         await fader.FadeIn(fadeInTime);
     }
 
-    public void Load(){
-        LoadLastScene().Forget();
+    public static void LoadDataScene(){
+        Instance.LoadLastScene().Forget();
     }
 
-    public void Save(){
-        savingSystem.Save(GetCurrentSave());
+    [Button]
+    public static void LoadData(){
+        Instance.savingSystem.Load(Instance.GetCurrentSave());
+    }
+    public static IEnumerator LoadToScene(string sceneName){
+        yield return Instance.savingSystem.LoadToScene(Instance.GetCurrentSave(),sceneName);
+    }
+
+    public static void Save(){
+        Instance.savingSystem.Save(Instance.GetCurrentSave());
     }
     public IEnumerable<string> ListSaves()
     {

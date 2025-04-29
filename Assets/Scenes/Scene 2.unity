@@ -60809,12 +60809,12 @@ MonoBehaviour:
   mapGround: {fileID: 1130773805}
   mapOneWay: {fileID: 539176964}
   showTypeTile: 0
-  Center: {x: -2.5, y: 0}
+  Center: {x: -2, y: 1}
   Offset:
     x: -29
     y: -8
   mWidth: 53
-  mHeight: 16
+  mHeight: 19
 --- !u!1 &267280886
 GameObject:
   m_ObjectHideFlags: 0
@@ -70551,7 +70551,6 @@ MonoBehaviour:
   Target: {fileID: 0}
   radiusDetect: 10
   canDetect: 0
-  mSpeed: 5
   findPathHandle: {fileID: 0}
 --- !u!58 &1455832852
 CircleCollider2D:
@@ -70597,7 +70596,7 @@ Transform:
   m_GameObject: {fileID: 1455832848}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.77, y: -0.59, z: 0}
+  m_LocalPosition: {x: -1.45, y: 6.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -70624,7 +70623,12 @@ MonoBehaviour:
   inputPlayer: {fileID: 2016922236}
   map: {fileID: 256232920}
   mPath: []
+  findDatas: []
   mCurrentNodeId: -1
+  prevDest: {x: 0, y: 0}
+  currentDest: {x: 0, y: 0}
+  nextDest: {x: 0, y: 0}
+  pathPosition: {x: 0, y: 0}
   destOnGround: 0
   reachedY: 0
   reachedX: 0

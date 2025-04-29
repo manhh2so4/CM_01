@@ -13,11 +13,11 @@ public class UI_PauseMenu : MonoBehaviour {
         PlayerManager.GetPlayer().enabled = true;
     }
     public void SaveGame(){
-        SavingWrapper.Instance.Save();
+        SavingWrapper.Save();
     }
     public void SaveAndQuit(){
         gameObject.SetActive(false);
-        SavingWrapper.Instance.Save();
+        SavingWrapper.Save();
         SavingWrapper.Instance.LoadMenu();
     }
 }

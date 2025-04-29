@@ -9,8 +9,23 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: a78d819803fe7504bbd1c094ab4b1c58
   - enabled: 1
-    path: Assets/Scenes/Scene 1.unity
+    path: Assets/Scenes/Scene 1_3.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Scene 3.unity
+    guid: 2433b10d53165f442ac6819302a07b1c
+  - enabled: 1
+    path: Assets/Scenes/Right_1_1.unity
+    guid: afa8690e9f550cf448f23a5ce04074e9
+  - enabled: 1
+    path: Assets/Scenes/Right_1_2.unity
+    guid: 93c8cf8602377074abbd3bb151c06a95
+  - enabled: 1
+    path: Assets/Scenes/Left_Home.unity
+    guid: ae032d9275f50f44d8482c24042d1106
+  - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: 363f043cfce74d147ab4a415951f3f15
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: ebb95a896dbe6c7428369868e494dec3, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: b00d6af86a713fb43a70afca9f9b9c56, type: 2}

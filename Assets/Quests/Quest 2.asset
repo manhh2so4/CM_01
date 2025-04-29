@@ -25,9 +25,9 @@ MonoBehaviour:
   goldReward: 50
   expReward: 100
   itemRewards:
-  - item: {fileID: 11400000, guid: 09f2bcd660cc21e4a9f792bf8f5c5de0, type: 2}
+  - item: {fileID: 11400000, guid: 42c35266e4ba1da48823717775d78ae6, type: 2}
     count: 1
-  - item: {fileID: 11400000, guid: 6643eb07f044c4d4ca7ea2c9357c5379, type: 2}
+  - item: {fileID: 11400000, guid: a8c7d67999576c745ab5c4060fd95469, type: 2}
     count: 1
   ComponentData:
   - rid: 524617755326152711
@@ -40,12 +40,12 @@ MonoBehaviour:
       data:
         name: CollectItemData
         __description__: "Nh\u1EB7t 1 chi\xEAc \xE1o"
-        itemToCollect: {fileID: 11400000, guid: 06818ee6996c0054383c804bb72bafcd, type: 2}
+        itemToCollect: {fileID: 11400000, guid: 42c35266e4ba1da48823717775d78ae6, type: 2}
         countToComplete: 1
     - rid: 524617755326152712
       type: {class: CollectItemData, ns: HStrong.Quests, asm: Assembly-CSharp}
       data:
         name: CollectItemData
         __description__: "Nh\u1EB7t 1 chi\u1EBFc cung"
-        itemToCollect: {fileID: 11400000, guid: 7073d1ff37e1cec4a96437cb6d864296, type: 2}
+        itemToCollect: {fileID: 11400000, guid: a8c7d67999576c745ab5c4060fd95469, type: 2}
         countToComplete: 1

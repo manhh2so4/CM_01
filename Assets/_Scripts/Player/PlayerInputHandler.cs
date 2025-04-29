@@ -38,6 +38,7 @@ public class PlayerInputHandler : MonoBehaviour
    }
     void OnEnable(){
         playerInput.Enable();
+        
         playerInput.Player.Move.performed += OnMoveInput;
         playerInput.Player.Move.canceled += OnMoveInput;
 
@@ -160,6 +161,7 @@ public class PlayerInputHandler : MonoBehaviour
     void OnMousePosition(InputAction.CallbackContext context){
         mousePos = context.ReadValue<Vector2>();
     }
+
     void OnAttack1(InputAction.CallbackContext context){
         if(context.started){
             AttackInputs[ (int)CombatInput.Attack1 ] = true;
@@ -168,6 +170,7 @@ public class PlayerInputHandler : MonoBehaviour
             AttackInputs[ (int)CombatInput.Attack1 ] = false;
         }
     }
+
     void OnAttack2(InputAction.CallbackContext context){
         if(context.started){
             AttackInputs[(int)CombatInput.Attack2] = true;
@@ -176,6 +179,7 @@ public class PlayerInputHandler : MonoBehaviour
             AttackInputs[(int)CombatInput.Attack2] = false;
         }
     }
+
     void OnAttack3(InputAction.CallbackContext context){
         if(context.started){
             AttackInputs[(int)CombatInput.Attack3] = true;
@@ -184,6 +188,7 @@ public class PlayerInputHandler : MonoBehaviour
             AttackInputs[(int)CombatInput.Attack3] = false;
         }
     }
+    
     void OnLeftClick(InputAction.CallbackContext context){
         if(context.started)
         {
@@ -195,13 +200,13 @@ public class PlayerInputHandler : MonoBehaviour
     void OnSave (InputAction.CallbackContext context){
         if(context.started)
         {
-            SavingWrapper.Instance.Save();
+            SavingWrapper.Save();
         }
     }
     void OnLoad(InputAction.CallbackContext context){
         if(context.started)
         {
-            SavingWrapper.Instance.Load();
+            SavingWrapper.LoadDataScene();
         }
     }
     void DetecObbject(){
@@ -210,10 +215,10 @@ public class PlayerInputHandler : MonoBehaviour
         Physics2D.GetRayIntersectionNonAlloc(ray, hits2DAllNonAlloc);
         for (int i = 0; i < hits2DAllNonAlloc.Length; i++)
         {
-            if(hits2DAllNonAlloc[i].collider != null){
-                IClicker click = hits2DAllNonAlloc[i].collider.GetComponent<IClicker>();
-                if(click != null) click.OnClick();
-            }
+            // if(hits2DAllNonAlloc[i].collider != null){
+            //     IPickUp click = hits2DAllNonAlloc[i].collider.GetComponent<IPickUp>();
+            //     if(click != null) click.OnClick();
+            // }
         }
     }
     public void UseJumpInput() => jumpInput = false;

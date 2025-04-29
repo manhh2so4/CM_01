@@ -7,6 +7,7 @@ public class RaycastPhysic2D : MonoBehaviour {
 	BoxCollider2D boxCollider;
     Vector2 Center;
 	Vector2 Size ;
+	public float Height => Size.y;
 
 	
 	protected const float skinWidth = .05f;

@@ -16,7 +16,7 @@ namespace HStrong.Quests
         [Header("Requirements")]
         public int levelRequirement ;
         public QuestInfoSO[] questPrerequisites;
-        [field: SerializeReference] Q_StepData[] questSteps;
+        [field: SerializeReference][HideInInspector] Q_StepData[] questSteps;
         [Header("Rewards")]
         public int goldReward;
         public int expReward;
@@ -27,7 +27,6 @@ namespace HStrong.Quests
         }
         public Q_StepData[] GetStepData()
         {
-            Debug.Log("questSteps " + questSteps.Length);
             return questSteps;
         }
         

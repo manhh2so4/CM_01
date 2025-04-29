@@ -13,82 +13,82 @@ MonoBehaviour:
   m_Name: FX_Sprite 68
   m_EditorClassIdentifier: 
   EffId: 68
-  effSkillInfo_SO:
+  effSkillInfo:
   - sprite: {fileID: 2029471498850833245, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
     dx: -1
     dy: -6
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
   - sprite: {fileID: -5048168017549841447, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
     dx: -1
     dy: -6
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
   - sprite: {fileID: 2029471498850833245, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
     dx: 1
     dy: -6
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
   - sprite: {fileID: -5048168017549841447, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
     dx: 1
     dy: -6
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0

@@ -12,26 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f49f30a25850f34dbcbd491163231f6, type: 3}
   m_Name: FX_Sprite 55
   m_EditorClassIdentifier: 
-  EffId: 10
-  effSkillInfo_SO:
-  - sprite: {fileID: 2439627202533997482, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
-    dx: 5
-    dy: -16
-  - sprite: {fileID: 2439627202533997482, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
-    dx: 5
-    dy: -16
-  - sprite: {fileID: 8369447865772916490, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
-    dx: 2
+  EffId: 55
+  effSkillInfo:
+  - sprite: {fileID: -1126271621817865780, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 14
+    dy: -29
+  - sprite: {fileID: 7115231666849958538, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 14
+    dy: -19
+  - sprite: {fileID: 7219261543069714374, guid: 9a9867d8488792d428f08e287956f305, type: 3}
+    dx: 14
+    dy: -21
+  - sprite: {fileID: -1126271621817865780, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 11
     dy: -20
-  - sprite: {fileID: 8369447865772916490, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
-    dx: 2
+  - sprite: {fileID: 7115231666849958538, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: 7
+    dy: -23
+  - sprite: {fileID: 8370549277168377520, guid: 9a9867d8488792d428f08e287956f305, type: 3}
+    dx: 8
+    dy: -7
+  - sprite: {fileID: -1126271621817865780, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: -13
     dy: -20
-  - sprite: {fileID: 8369447865772916490, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
-    dx: 2
-    dy: -20
-  - sprite: {fileID: 7047629125559180919, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
-    dx: 2
-    dy: -20
-  - sprite: {fileID: 7047629125559180919, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
-    dx: 2
-    dy: -20
+  - sprite: {fileID: 7115231666849958538, guid: 60d2fef8023ab624cba74ae6342bc5ed, type: 3}
+    dx: -13
+    dy: -26
+  - sprite: {fileID: 7219261543069714374, guid: 9a9867d8488792d428f08e287956f305, type: 3}
+    dx: -12
+    dy: -10

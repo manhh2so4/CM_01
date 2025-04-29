@@ -15,9 +15,9 @@ public class DataNPC_SO : ScriptableObject {
    [HideInInspector] public float MinJumpVel = 0;
 
 
-   public SkillData_SO skill_1;
-   public SkillData_SO skill_2;
-   public SkillData_SO skill_3;
+   public SkillData skill_1;
+   public SkillData skill_2;
+   public SkillData skill_3;
 
    public float GetGravity(){
 		float gravity = -(2 * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2);
@@ -34,7 +34,7 @@ public class DataNPC_SO : ScriptableObject {
          FindNjPart( 1 , Read_Nj_part.Instance.nj_Parts_Body );
          FindNjPart( 2 , Read_Nj_part.Instance.nj_Parts_Leg );   
    }
-   void FindNjPart(int index , List<nj_Part> _Parts){
+   void FindNjPart(int index , List<Frames> _Parts){
 
       int IDFind = int.Parse(spriteInfos[index].sprite.name);
       for (int i = 0; i < _Parts.Count; i++)

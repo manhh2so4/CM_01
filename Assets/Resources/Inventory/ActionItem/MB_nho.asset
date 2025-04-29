@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e3a44296a6edc941a24101b2ec15e2c, type: 3}
   m_Name: MB_nho
   m_EditorClassIdentifier: 
-  itemID: b40e28ab-86b2-48a1-dfdfde-e990f2875132
+  itemID: MB_nho
   displayName: Binh MB nho
   description: "H\u1ED3i m\u1ED9t l\u01B0\u1EE3ng mana nh\u1ECF"
   icon: {fileID: 2791595852367629972, guid: e9c8dda83f5b2cf4bb0f25bd1aa3bc81, type: 3}
-  pickup: {fileID: 7339652577957182515, guid: 091f0a42533b59a40855d2a68d26c4db, type: 3}
   stackable: 1
+  price: 100
   isConsumable: 1
+  duration: 3
+  valuePerTick: 1
+  buffType: 1

@@ -4,9 +4,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyBig ", menuName = "GameData/EnemyBig_SO")]
 public class EnemyBoss_SO : ScriptableObject
 {
+        public int idEnemy;
         public Texture2D TEXTURE2D;
         public ImageInfor[] imageInfors;
-        public FrameBoss[] frameBoss;
+        public FrameImage[] frameBoss;
         public int[] frameBossMove;
         public BossAttack[] BossAttacks;
 

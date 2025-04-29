@@ -1,7 +1,7 @@
 using System.Threading;
 using UnityEngine;
 
-public class Pickup : MonoBehaviour,IClicker ,IObjectPoolItem {
+public class Pickup : MonoBehaviour ,IObjectPoolItem {
     mPhysic2D mPhysic2D;
     InventoryItemSO item;
     int number = 1;
@@ -34,12 +34,14 @@ public class Pickup : MonoBehaviour,IClicker ,IObjectPoolItem {
     {
         return number;
     }
-    public void PickupItem()
+    public void PickUpItem()
     {
 
         bool foundSlot = inventoryPlayer.AddToFirstEmptySlot(item, number);
+        
         if (foundSlot)
         {
+            NotifyUIManager.NotifyUI( $"Nhận {number} {item.GetDisplayName()}", item.GetIcon() );
             RemovePickup();
         }
     }
@@ -48,35 +50,25 @@ public class Pickup : MonoBehaviour,IClicker ,IObjectPoolItem {
         return inventoryPlayer.HasSpaceFor(item);
     }
 
-    public void OnClick()
-    {
-        PickupItem();
-    }
     private void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.CompareTag("Player")){
-            PickupItem();
+            PickUpItem();
         }
     }
+
+    // void OnTriggerExit2D(Collider2D collision){
+    //     if(collision.CompareTag("Player")){
+    //         PlayerManager.GetInteracButton().SetPickuptable();
+    //     }
+    // }
     void RemovePickup(){
         item = null;
         number = 0;
-        ReturnItemToPool();
+        ReturnToPool();
     }
+
 #region CreatPool
     ObjectPool objectPool;
-    void ReturnItemToPool()
-    {
-        if (objectPool != null)
-        {
-            objectPool.ReturnObject(this);
-            this.transform.SetParent(PoolsContainer.Instance.transform);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    
     public void SetObjectPool(ObjectPool pool)
     {
         objectPool = pool;
@@ -85,6 +77,18 @@ public class Pickup : MonoBehaviour,IClicker ,IObjectPoolItem {
     public void Release()
     {
         objectPool = null;
+    }
+
+    public void ReturnToPool()
+    {
+        if (objectPool != null)
+        {
+            objectPool.ReturnObject(this);
+            this.transform.SetParent(PoolsContainer.Instance.transform);
+        }else
+        {
+            Destroy(gameObject);
+        }
     }
 #endregion
 }

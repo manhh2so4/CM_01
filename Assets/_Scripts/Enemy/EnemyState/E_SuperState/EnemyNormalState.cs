@@ -12,6 +12,7 @@ public class EnemyNormalState : E_State
 		base.Enter();
 		SetRandomMoveTime();
 	}
+
 	public override void Exit() {
 		base.Exit();
 	}
@@ -21,11 +22,11 @@ public class EnemyNormalState : E_State
 		if(isExitingState) return;
 
 		if(enemy.playerCheck){
+			if(enemy.enemy_Data.type == 0) return;
 			if( Vector2.Distance(enemy.playerCheck.position, enemy.transform.position ) < enemy.AgroDistance )
-
 				stateMachine.ChangeState(enemy.lookState);
 
-			if( Vector2.Distance(enemy.playerCheck.position, enemy.transform.position ) > enemy.AgroDistance + 2){
+			if( Vector2.Distance(enemy.playerCheck.position, enemy.transform.position ) > enemy.AgroDistance + 1){
 				enemy.playerCheck = null;
 			}
 		}

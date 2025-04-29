@@ -43,9 +43,8 @@ public class ShopUI : MonoBehaviour {
         RefreshUI();
     }
     void RefreshUI(){ 
-        foreach (Transform child in ListItemContainer){
-            Destroy(child.gameObject);
-        }
+        ListItemContainer.RemoveAllChild();
+        
         foreach (var item in currentShop.GetAllItems()){
            ItemShop_UI itemShop_UI = Instantiate(ItemShop_UIFrefab, ListItemContainer);
            itemShop_UI.Setup(currentShop, item, () => SetButton(item));

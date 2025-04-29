@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db150e60046b5ee4898d6c624c8d0121, type: 3}
+  m_Name: Enemy 20
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 21300000, guid: fede79c5ab7dd0448a1e60d2e562f92b, type: 3}
+  - {fileID: 21300000, guid: c1b39fadeeb74f048878dc15240aae2d, type: 3}
+  - {fileID: 21300000, guid: cb9019f8685de8f42a7efaadaf0aa6ef, type: 3}
+  - {fileID: 21300000, guid: 53dbd4c7cb313214e92ab827fafe08f0, type: 3}
+  projectile: {fileID: -2270211819613203214, guid: 25d81f1221c41f24cb80349a67ce24b9, type: 3}
+  idEnemy: 20
+  type: 3
+  Name: "S\xE2u xanh"
+  speedMove: 1
+  speedAtk: 3
+  damage: 21
+  Hp: 1100
+  timeReSpont: 40
+  countDrop: 0
+  <dropInfo>k__BackingField: []

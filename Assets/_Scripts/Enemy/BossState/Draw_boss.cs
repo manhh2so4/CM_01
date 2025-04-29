@@ -14,7 +14,7 @@ public class Draw_boss : MonoBehaviour
     Texture2D TEXTURE2D;   
     [SpritePreview][SerializeField] Sprite[] sprites;
     ImageInfor[] imageInfor;
-    [SerializeField] FrameBoss[] frameBosses;
+    [SerializeField] FrameImage[] frameBosses;
     public int[] frameBossMove;
     public BossAttack[] bossAttacks;
     [SerializeField] GameObject prefab;
@@ -141,7 +141,7 @@ public class Draw_boss : MonoBehaviour
     }
     void LoadSprite(){
 
-        mPaint.LoadSpriteRegion(ref sprites,imageInfor,TEXTURE2D, mPaint.TOP|mPaint.LEFT);
+        mPaint.LoadSpriteRegion(ref sprites,imageInfor,TEXTURE2D, new Vector2(0,1));
         SpriteRenderer[] tempSrs  = new SpriteRenderer[sprites.Length];
 
         foreach (Transform child in DrawBoss)

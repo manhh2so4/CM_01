@@ -25,8 +25,8 @@ public class SKill : MonoBehaviour {
     public float rangeAttack;
     #region Variable_Anim_Skill
     //------------Anim_Skill------------------------
-	public Skill[] skills;
-    SkillInfo[] currentSkill;
+	public AttackData[] skills;
+    AttackInfo[] currentSkill;
     int LengthSkill = 1;
 	int i0=0,dx0,dy0,eff0Lenth;
 	int i1=0,dx1,dy1,eff1Lenth;
@@ -119,18 +119,19 @@ public class SKill : MonoBehaviour {
     {
         this.core = core;
     }
-    public void SetData(SkillData_SO data){
-        
+    public void SetData(SkillData data){
 
-        if(data == null) {
+        
+        if(data == null ) {
             hasWeapon = false;
             OnSetIcon?.Invoke(null);
             return;
         }
-        OnSetIcon?.Invoke(data.icon);
-        SetEffSkill( data.GetData<PassiveSkillData>().idSkill );
-        cooldown = data.GetData<PassiveSkillData>().cooldown ;
-        rangeAttack = data.GetData<PassiveSkillData>().RangeAttack;
+        SkillData_Active_SO dataSO = data.dataSO as SkillData_Active_SO;
+        OnSetIcon?.Invoke(data.dataSO.icon);
+        SetEffSkill( dataSO.GetData<PassiveSkillData>().idSkill );
+        cooldown = data.Cooldown ;
+        rangeAttack = data.Range;
         hasWeapon = true;
     }
 

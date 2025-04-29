@@ -18,15 +18,18 @@ public abstract class EnemyEntity : Entity
     [Foldout("Data Enemy")] public float maxIdleTime;
     protected Vector3 Epos;
     //----------View_data
+    [OnValueChanged("OnValueChangedCallback")] 
+    public int idEnemy;
     public string CurentState;
     public bool canAttack;
-    public bool canChangeState;
 
     #region Setup_Enemy
     public Transform playerCheck;
-    [SerializeField] protected Transform ledgeCheck;
+    [SerializeField] bool ShowLog;
+    protected Transform ledgeCheck;
     protected Vector2 playerCheckOffset;
     protected Vector2 playerCheckSize;
+
 
     public FiniteStateMachine stateMachine; 
     protected BoxCollider2D mCollider;
@@ -52,8 +55,10 @@ public abstract class EnemyEntity : Entity
     #endregion
 #if UNITY_EDITOR
     public void OnDrawGizmos(){
-        //Gizmos.DrawLine(Epos,transform.position);
-
+        
+        if(ShowLog == false) return;
+        
+        Gizmos.DrawLine(Epos,transform.position);
         if(playerCheck) {
             Gizmos.DrawLine(playerCheck.position, transform.position);
             GUIStyle style = new GUIStyle();
@@ -64,13 +69,14 @@ public abstract class EnemyEntity : Entity
         Gizmos.color = Color.green;
         Gizmos.DrawLine( ledgeCheck.position , ledgeCheck.position + Vector3.down * .1f);
 
-    //     Gizmos.color = Color.red;
-    //     Gizmos.DrawRay( (Vector2)transform.position + playerCheckOffset , Vector2.right * playerCheckSize.x/2);
-    //     Gizmos.DrawRay( (Vector2)transform.position + playerCheckOffset , Vector2.left * playerCheckSize.x/2);
-    //     Gizmos.DrawRay( (Vector2)transform.position + playerCheckOffset , Vector2.up * playerCheckSize.y/2);
-    //     Gizmos.DrawRay( (Vector2)transform.position + playerCheckOffset , Vector2.down * playerCheckSize.y/2);
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay( (Vector2)transform.position + playerCheckOffset , Vector2.right * playerCheckSize.x/2);
+        Gizmos.DrawRay( (Vector2)transform.position + playerCheckOffset , Vector2.left * playerCheckSize.x/2);
+        Gizmos.DrawRay( (Vector2)transform.position + playerCheckOffset , Vector2.up * playerCheckSize.y/2);
+        Gizmos.DrawRay( (Vector2)transform.position + playerCheckOffset , Vector2.down * playerCheckSize.y/2);
 
     }
+    protected virtual void OnValueChangedCallback(){}
 #endif
 }
 

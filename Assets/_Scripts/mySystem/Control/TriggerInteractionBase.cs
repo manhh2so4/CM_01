@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TriggerInteractionBase : MonoBehaviour, IInteractable
+public class TriggerInteractionBase : MonoBehaviour//, IInteractable
 {
     public bool CanInteract { get ; set ; }
     public GameObject Player { get ; set ; }
@@ -22,5 +22,5 @@ public class TriggerInteractionBase : MonoBehaviour, IInteractable
         }
     }
 
-    public virtual void Interact(){}
+    //public virtual void Interact(){}
 }

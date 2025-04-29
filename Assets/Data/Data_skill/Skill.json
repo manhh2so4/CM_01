@@ -1,0 +1,518 @@
+[
+  {
+    "skillName": "chiêu kiếm cấp 1",
+    "description": "Vung kiếm chém vào kẻ địch",
+    "lvRequirement": 1,
+    "Range": 10,
+    "Arr": [
+      {
+        "consumeMana": 10,
+        "cooldown": 1.0,
+        "Stat": {
+          "damage": 10,
+          "damagePercent": 10,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 15,
+        "cooldown": 0.9,
+        "Stat": {
+          "damage": 15,
+          "damagePercent": 20,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 20,
+        "cooldown": 0.8,
+        "Stat": {
+          "damage": 20,
+          "damagePercent": 30,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 25,
+        "cooldown": 0.7,
+        "Stat": {
+          "damage": 25,
+          "damagePercent": 40,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 30,
+        "cooldown": 0.6,
+        "Stat": {
+          "damage": 30,
+          "damagePercent": 50,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 35,
+        "cooldown": 0.5,
+        "Stat": {
+          "damage": 35,
+          "damagePercent": 60,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 40,
+        "cooldown": 0.4,
+        "Stat": {
+          "damage": 40,
+          "damagePercent": 70,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      }
+    ],
+    "Id": "Kiem 1"
+  },
+  {
+    "skillName": "chiêu kiếm cấp 2",
+    "description": "Vung kiếm chém vào kẻ địch",
+    "lvRequirement": 1,
+    "Range": 10,
+    "Arr": [
+      {
+        "consumeMana": 10,
+        "cooldown": 1.0,
+        "Stat": {
+          "damage": 10,
+          "damagePercent": 10,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 15,
+        "cooldown": 0.9,
+        "Stat": {
+          "damage": 15,
+          "damagePercent": 20,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 20,
+        "cooldown": 0.8,
+        "Stat": {
+          "damage": 20,
+          "damagePercent": 30,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 25,
+        "cooldown": 0.7,
+        "Stat": {
+          "damage": 25,
+          "damagePercent": 40,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 30,
+        "cooldown": 0.6,
+        "Stat": {
+          "damage": 30,
+          "damagePercent": 50,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 35,
+        "cooldown": 0.5,
+        "Stat": {
+          "damage": 35,
+          "damagePercent": 60,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 40,
+        "cooldown": 0.4,
+        "Stat": {
+          "damage": 40,
+          "damagePercent": 70,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      }
+    ],
+    "Id": "Kiem 2"
+  },
+  {
+    "skillName": "chiêu kiếm cấp 3",
+    "description": "Vung kiếm chém vào kẻ địch",
+    "lvRequirement": 1,
+    "Range": 10,
+    "Arr": [
+      {
+        "consumeMana": 10,
+        "cooldown": 1.0,
+        "Stat": {
+          "damage": 10,
+          "damagePercent": 10,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 15,
+        "cooldown": 0.9,
+        "Stat": {
+          "damage": 15,
+          "damagePercent": 20,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 20,
+        "cooldown": 0.8,
+        "Stat": {
+          "damage": 20,
+          "damagePercent": 30,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 25,
+        "cooldown": 0.7,
+        "Stat": {
+          "damage": 25,
+          "damagePercent": 40,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 30,
+        "cooldown": 0.6,
+        "Stat": {
+          "damage": 30,
+          "damagePercent": 50,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 35,
+        "cooldown": 0.5,
+        "Stat": {
+          "damage": 35,
+          "damagePercent": 60,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 40,
+        "cooldown": 0.4,
+        "Stat": {
+          "damage": 40,
+          "damagePercent": 70,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      }
+    ],
+    "Id": "Kiem 3"
+  },
+  {
+    "skillName": "chiêu kiếm cấp 4",
+    "description": "Vung kiếm chém vào kẻ địch",
+    "lvRequirement": 1,
+    "Range": 10,
+    "Arr": [
+      {
+        "consumeMana": 10,
+        "cooldown": 1.0,
+        "Stat": {
+          "damage": 10,
+          "damagePercent": 10,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 15,
+        "cooldown": 0.9,
+        "Stat": {
+          "damage": 15,
+          "damagePercent": 20,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 20,
+        "cooldown": 0.8,
+        "Stat": {
+          "damage": 20,
+          "damagePercent": 30,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 25,
+        "cooldown": 0.7,
+        "Stat": {
+          "damage": 25,
+          "damagePercent": 40,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 30,
+        "cooldown": 0.6,
+        "Stat": {
+          "damage": 30,
+          "damagePercent": 50,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 35,
+        "cooldown": 0.5,
+        "Stat": {
+          "damage": 35,
+          "damagePercent": 60,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 40,
+        "cooldown": 0.4,
+        "Stat": {
+          "damage": 40,
+          "damagePercent": 70,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      }
+    ],
+    "Id": "Kiem 4"
+  },
+  {
+    "skillName": "chiêu kiếm cấp 2",
+    "description": "Vung kiếm chém vào kẻ địch",
+    "lvRequirement": 1,
+    "Range": 10,
+    "Arr": [
+      {
+        "consumeMana": 10,
+        "cooldown": 1.0,
+        "Stat": {
+          "damage": 10,
+          "damagePercent": 10,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 15,
+        "cooldown": 0.9,
+        "Stat": {
+          "damage": 15,
+          "damagePercent": 20,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 20,
+        "cooldown": 0.8,
+        "Stat": {
+          "damage": 20,
+          "damagePercent": 30,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 25,
+        "cooldown": 0.7,
+        "Stat": {
+          "damage": 25,
+          "damagePercent": 40,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 30,
+        "cooldown": 0.6,
+        "Stat": {
+          "damage": 30,
+          "damagePercent": 50,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 35,
+        "cooldown": 0.5,
+        "Stat": {
+          "damage": 35,
+          "damagePercent": 60,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 40,
+        "cooldown": 0.4,
+        "Stat": {
+          "damage": 40,
+          "damagePercent": 70,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      }
+    ],
+    "Id": "Kiem 5"
+  },
+  {
+    "skillName": "Chiêu X Zangeki",
+    "description": "99",
+    "lvRequirement": 1,
+    "Range": 10,
+    "Arr": [
+      {
+        "consumeMana": 10,
+        "cooldown": 1.0,
+        "Stat": {
+          "damage": 10,
+          "damagePercent": 10,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 15,
+        "cooldown": 0.9,
+        "Stat": {
+          "damage": 15,
+          "damagePercent": 20,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 20,
+        "cooldown": 0.8,
+        "Stat": {
+          "damage": 20,
+          "damagePercent": 30,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 25,
+        "cooldown": 0.7,
+        "Stat": {
+          "damage": 25,
+          "damagePercent": 40,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 30,
+        "cooldown": 0.6,
+        "Stat": {
+          "damage": 30,
+          "damagePercent": 50,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 35,
+        "cooldown": 0.5,
+        "Stat": {
+          "damage": 35,
+          "damagePercent": 60,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      },
+      {
+        "consumeMana": 40,
+        "cooldown": 0.4,
+        "Stat": {
+          "damage": 40,
+          "damagePercent": 70,
+          "fireDame": 0,
+          "iceDame": 0,
+          "electricDame": 0
+        }
+      }
+    ],
+    "Id": "Kiem 10"
+  }
+]

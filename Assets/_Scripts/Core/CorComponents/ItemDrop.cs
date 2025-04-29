@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDrop : CoreComponent{
+public class ItemDrop : CoreComponent {
     [SerializeField] int possibleItemDrop;
     [SerializeField] DropInfo[] possibleDrop;
     public void SetPossibleDrop(DropInfo[] _possibleDrop, int _possibleItemDrop){
@@ -13,6 +13,7 @@ public class ItemDrop : CoreComponent{
 
     public virtual void GenerateDrop()
     {
+        
         for (int i = 0; i < possibleDrop.Length; i++){
 
             if (Random.Range(0, 100) <= possibleDrop[i].dropChance)

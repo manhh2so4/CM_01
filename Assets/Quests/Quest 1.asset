@@ -24,11 +24,7 @@ MonoBehaviour:
   - rid: 524617755326152710
   goldReward: 50
   expReward: 100
-  itemRewards:
-  - item: {fileID: 11400000, guid: 816129c50cf2c784595a821ea319a919, type: 2}
-    count: 1
-  - item: {fileID: 11400000, guid: 33117899a34708940a1b19a26c55a61c, type: 2}
-    count: 1
+  itemRewards: []
   ComponentData:
   - rid: 524617755326152709
   - rid: 524617755326152710

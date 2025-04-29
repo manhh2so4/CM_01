@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using HStrong.Saving;
 using UnityEngine;
 
-public class ItemDropper : MonoBehaviour, ISaveable
+public class ItemDropper : MonoBehaviour
 {
     private List<Pickup> droppedItems = new List<Pickup>();
     public void DropItem(InventoryItemSO item, int number)
@@ -11,7 +11,9 @@ public class ItemDropper : MonoBehaviour, ISaveable
     }
     protected virtual Vector3 GetDropLocation()
     {
-        return transform.position + new Vector3(0,.3f,0);
+        float x = Random.Range(-3f , 3f);
+        if( Mathf.Abs(x) < 1f ) x = x<0 ? -1f : 1f;
+        return transform.position + new Vector3(x,1.5f,0);
     }
     
 

@@ -40,11 +40,13 @@ namespace HStrong.Saving
         public object CaptureState()
         {
             Dictionary<string, object> state = new Dictionary<string, object>();
+            //Debug.Log("ISaveable  " + this.name + " : " + GetComponents<ISaveable>().Length);
             foreach (ISaveable saveable in GetComponents<ISaveable>())
             {
-                state[saveable.GetType().ToString()] = saveable.CaptureState();
+                //Debug.Log("ISaveable  " + saveable.GetType().ToString());
+                state[ saveable.GetType().ToString() ] = saveable.CaptureState();
             }
-            return state;
+            return state; 
         }
 
         /// <summary>

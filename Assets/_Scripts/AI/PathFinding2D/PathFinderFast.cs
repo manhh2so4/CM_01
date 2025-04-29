@@ -29,6 +29,7 @@ namespace Algorithms
         Custom1             = 6
     }
     #endregion
+    
 	
     public class PathFinderFast
     {
@@ -120,6 +121,7 @@ namespace Algorithms
                 throw new Exception("Grid cannot be null");
 			
 			mMap = map;
+
             mGrid           = grid;
             mGridX          = (ushort) (mGrid.GetUpperBound(0) + 1);
             mGridY          = (ushort) (mGrid.GetUpperBound(1) + 1);
@@ -345,39 +347,29 @@ namespace Algorithms
                         mNewLocationX = (ushort) (mLocationX + mDirection[i,0]);
                         mNewLocationY = (ushort) (mLocationY + mDirection[i,1]);
                         
-                        if( mNewLocationX - 1 < 0 || mNewLocationY -1 < 0 || mNewLocationX + 1 >= mGridX || mNewLocationY + 1 >= mGridY ){
+                        if( mNewLocationX < 0 || mNewLocationY < 0 || mNewLocationX >= mGridX || mNewLocationY >= mGridY ){
                             continue;
                         }
+
+
                         mNewLocation  = (mNewLocationY << mGridXLog2) + mNewLocationX;
 
                         var onGround = false;
                         var atCeiling = false;
-
-
-
-                        for (var w = 0; w < characterWidth; ++w)
-                        {
-
-                            if ( mGrid[mNewLocationX, mNewLocationY ] == 0 ){
-                                goto CHILDREN_LOOP_END;
+                        if( mDirection[i,1] == -1 ){
+                            if( mMap.IsGround( mNewLocationX , mNewLocationY) ){
+                                continue;
                             }
-                                
-                            
-                            if ( mMap.IsGround( mNewLocationX , mNewLocationY - 1 ) )
-                                onGround = true;
-                            else if ( mGrid[ mNewLocationX , mNewLocationY + 1 ] == 0 )
-                                atCeiling = true;
+                        }
+
+                        if ( mGrid[ mNewLocationX, mNewLocationY ] == 0 ){
+                            continue;
                         }
                         
-                        for (var h = 1; h < characterHeight - 1; ++h)
-                        {
-                            if ( mGrid[mNewLocationX, mNewLocationY + h] == 0
-                                || mGrid[mNewLocationX + characterWidth - 1, mNewLocationY + h] == 0)
-
-                                goto CHILDREN_LOOP_END;
-                        }
-						
-						//calculate a proper jumplength value for the successor
+                        if ( mMap.IsGround( mNewLocationX , mNewLocationY - 1 ) )
+                            onGround = true;
+                        else if ( mGrid[ mNewLocationX , mNewLocationY + 1 ] == 0 )
+                            atCeiling = true;
 
                         var jumpLength = nodes[mLocation.xy][mLocation.z].JumpLength;
                         short newJumpLength = jumpLength;
@@ -395,7 +387,7 @@ namespace Algorithms
                         }
 						else if (mNewLocationY > mLocationY)
 						{
-                            if (jumpLength < 2 && maxCharacterJumpHeight > 2) //first jump is always two block up instead of one up and optionally one to either right or left
+                            if ( jumpLength < 2 && maxCharacterJumpHeight > 2) //first jump is always two block up instead of one up and optionally one to either right or left
                                 newJumpLength = 3;
                             else  if (jumpLength % 2 == 0)
                                 newJumpLength = (short)(jumpLength + 2);
@@ -409,15 +401,21 @@ namespace Algorithms
 							else
 								newJumpLength = (short)Mathf.Max(maxCharacterJumpHeight * 2, jumpLength + 1);
 						}
-						else if (!onGround && mNewLocationX != mLocationX)
-							newJumpLength = (short)(jumpLength + 1);
+						else if (!onGround && mNewLocationX != mLocationX){
+                            newJumpLength = (short)(jumpLength + 1);
+                        }
+							
 
                         if (jumpLength >= 0 && jumpLength % 2 != 0 && mLocationX != mNewLocationX)
                             continue;
+                        
+                        // if( newJumpLength == 7 && mMap.IsGround( mNewLocationX, mNewLocationY ) ){
+                        //     continue;
+                        // }
 
-                        if ((newJumpLength == 0 && mNewLocationX != mLocationX && jumpLength + 1 >= maxCharacterJumpHeight * 2 + 6 && (jumpLength + 1 - (maxCharacterJumpHeight * 2 + 6)) % 8 <= 1)
-                             || (newJumpLength >= maxCharacterJumpHeight * 2 + 6 && mNewLocationX != mLocationX && (newJumpLength - (maxCharacterJumpHeight * 2 + 6)) % 8 != 7))
-							continue;
+                        if (( newJumpLength == 0 && mNewLocationX != mLocationX && jumpLength + 1 >= maxCharacterJumpHeight * 2 + 6 && (jumpLength + 1 - (maxCharacterJumpHeight * 2 + 6)) % 8 <= 1)
+                             || ( ( newJumpLength >= maxCharacterJumpHeight * 2 + 6 ) && mNewLocationX != mLocationX && (newJumpLength - (maxCharacterJumpHeight * 2 + 6)) % 8 != 7))
+							continue; 
 
                         //if we're falling and succeor's height is bigger than ours, skip that successor
 						if (jumpLength >= maxCharacterJumpHeight * 2 && mNewLocationY > mLocationY)
@@ -476,6 +474,7 @@ namespace Algorithms
                         }
 
                         PathFinderNodeFast newNode = new PathFinderNodeFast();
+
                         newNode.JumpLength = newJumpLength;
                         newNode.PX = mLocationX;
                         newNode.PY = mLocationY;
@@ -490,8 +489,8 @@ namespace Algorithms
                         nodes[mNewLocation].Add(newNode);
                         mOpen.Push(new Location(mNewLocation, nodes[mNewLocation].Count - 1));
 						
-					CHILDREN_LOOP_END:
-						continue;
+					//CHILDREN_LOOP_END:
+						//continue;
                     }
 
                     nodes[mLocation.xy][mLocation.z] = nodes[mLocation.xy][mLocation.z].UpdateStatus(mCloseNodeValue);
@@ -501,6 +500,7 @@ namespace Algorithms
                 if (mFound)
                 {
                     mClose.Clear();
+                    //findDatas.Clear();
                     var posX = end.x;
                     var posY = end.y;
 					
@@ -510,8 +510,9 @@ namespace Algorithms
                     Vector2i fNode = end;
                     Vector2i fPrevNode = end;
 
-                    var loc = (fNodeTmp.PY << mGridXLog2) + fNodeTmp.PX;
-					
+                    int loc = (fNodeTmp.PY << mGridXLog2) + fNodeTmp.PX;
+                    
+					//findDatas.Add(new FinData(fNode,0));
                     while(fNode.x != fNodeTmp.PX || fNode.y != fNodeTmp.PY)
                     {
                         PathFinderNodeFast fNextNodeTmp = nodes[loc][fNodeTmp.PZ];
@@ -529,6 +530,9 @@ namespace Algorithms
                                 ))
                             mClose.Add(fNode);
 
+                            //findDatas.Add(new FinData( new Vector2i(fNodeTmp.PX, fNodeTmp.PY), fNextNodeTmp.JumpLength) );
+
+
                         fPrevNode = fNode;
 						posX = fNodeTmp.PX;
                         posY = fNodeTmp.PY;
@@ -537,6 +541,7 @@ namespace Algorithms
 						loc = (fNodeTmp.PY << mGridXLog2) + fNodeTmp.PX;
                         fNode = new Vector2i(posX, posY);
                     } 
+                    
 
                     mClose.Add(fNode);
 
@@ -544,15 +549,15 @@ namespace Algorithms
 
                     return mClose;
                 }
-                mStopped = true;
-                
+                mStopped = true;                
                 Debug.Log("mStopped " + mCloseNodeCounter );
+                Debug.Log("mClose " + mOpen.Count );
                 return null;
                 
             }
         }
         #endregion
-
+        //public List<FinData> findDatas = new List<FinData>();
         #region Inner Classes
         internal class ComparePFNodeMatrix : IComparer<Location>
         {

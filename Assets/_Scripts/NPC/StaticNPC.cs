@@ -56,6 +56,7 @@ public class StaticNPC : MonoBehaviour,IInteractable {
          PaintChar(cf);						     
       }
    }
+   
 
    void OnTriggerEnter2D(Collider2D collision)
    {
@@ -68,6 +69,7 @@ public class StaticNPC : MonoBehaviour,IInteractable {
          PlayerManager.GetInteracButton().SetInteractable();
       }
    }
+
    float frameTimer = 0;
    bool TimeRate(float timeWait){        
         frameTimer += Time.deltaTime;
@@ -76,13 +78,13 @@ public class StaticNPC : MonoBehaviour,IInteractable {
             return true;
         }
         return false;
-    }
+   }
 
    public string GetName()
    {
       return NameNPC;
    }
-
+   public float Height => 1.3f;
    public virtual void Interact()
    {
    }

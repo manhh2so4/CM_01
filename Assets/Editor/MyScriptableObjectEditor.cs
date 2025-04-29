@@ -1,18 +1,23 @@
-using UnityEditor;
 using UnityEngine;
+using UnityEditor; // Cần cho các lớp Editor
+using UnityEngine.Networking; // Cần cho UnityWebRequest
+using System.Collections; // Cần cho IEnumerator
+using System.IO;
+using Unity.EditorCoroutines.Editor;
+using System.Threading.Tasks;
+using System.Runtime.CompilerServices; // Cần cho việc xử lý đường dẫn và thư mục
 
-[CustomEditor(typeof(Tex_NjPart_SO))]
-public class MyScriptableObjectEditor : Editor
+// Đặt tên file là SkillDataImporter.cs và đặt trong thư mục "Editor"
+public class SkillDataImporter
 {
-    public override void OnInspectorGUI()
+    private const string FOLDER_PATH = "TextLoad/FX_skill/";
+    [MenuItem("Tools/Process My ScriptableObjects")]
+    private static void RunProcessingTool()
     {
-        Tex_NjPart_SO myScriptableObject = (Tex_NjPart_SO)target;
-
-        DrawDefaultInspector();
-        // Add a button that calls MyMethod()
-        if (GUILayout.Button("Call MyMethod"))
-        {
-            myScriptableObject.AddData();
+        Sprite_FXSkill_SO[] foundObjects = Resources.LoadAll<Sprite_FXSkill_SO>(FOLDER_PATH);
+        Common.Log("foundObjects: " + foundObjects.Length);
+        foreach(Sprite_FXSkill_SO item in foundObjects){
+            item.LoadData();
         }
     }
 }

@@ -6,7 +6,4 @@ using UnityEngine.Events;
 
 public class Test_Obj : MonoBehaviour{
 
-
-
-
 }

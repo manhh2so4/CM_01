@@ -12,9 +12,10 @@ public class E_StuneState : EnemyAbilityState
 		movement.SetVelocityZero();
 		switch(enemyData.type){
             case 0:
-				enemy.Paint(0);
-				break;
-            case 1:
+			case 1:                             
+            case 2:
+            case 3:
+            case 5: 
             case 4:                
                 enemy.Paint(0);
                 break;

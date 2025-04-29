@@ -19,20 +19,20 @@ public class Fader : MonoBehaviour
             canvasGroup.alpha = 1;
         }
 
-        public async UniTask FadeOut(float time)
+        public IEnumerator FadeOut(float time)
         {
-            await Fade(1, time);
+            yield return Fade(1, time);
             
         }
 
-        public async UniTask FadeIn(float time)
+        public IEnumerator FadeIn(float time)
         {
-            await Fade(0, time);
+            yield return Fade(0, time);
         }
 
-        public async UniTask Fade(float target, float time)
+        public IEnumerator Fade(float target, float time)
         {
-            await FadeRoutine(target, time);
+            yield return FadeRoutine(target, time);
         }
 
         private IEnumerator FadeRoutine(float target, float time)

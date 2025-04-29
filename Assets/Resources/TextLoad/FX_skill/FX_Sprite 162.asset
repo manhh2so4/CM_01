@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FX_Sprite 162
   m_EditorClassIdentifier: 
   EffId: 162
-  effSkillInfo_SO:
+  effSkillInfo:
   - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0

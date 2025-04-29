@@ -9,7 +9,7 @@ public class WeaponDamage : WeaponComponents<DamageData> {
     private void TriggerDame(Collider2D other) {
 
         if(other.TryGetComponent(out IDamageable damageable)){
-            stats.DoDamage( damageable.Target(data.prefabHit) );
+            stats.DoDamage( damageable.GetTarget(data.prefabHit) );
         }
     }
     [Button]
@@ -29,11 +29,11 @@ public class WeaponDamage : WeaponComponents<DamageData> {
     protected override void HandleEnter()
     {
         base.HandleEnter();
-        stats.GetStatOfType(StatType.damage).AddModifier(data.Amout);
+        stats.AddModifier(StatType.damage, data.Amout);
     }
     protected override void HandleExit()
     {
         base.HandleExit();
-        stats.GetStatOfType(StatType.damage).RemoveModifier(data.Amout);
+        stats.RemoveModifier(StatType.damage, data.Amout);
     }
 }

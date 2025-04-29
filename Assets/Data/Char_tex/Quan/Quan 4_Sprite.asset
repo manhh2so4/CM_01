@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e633f32cb8ec445b769f2077137377, type: 3}
+  m_Name: Quan 4_Sprite
+  m_EditorClassIdentifier: 
+  PartType: 3
+  spriteInfos:
+  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: -7801911720782495467, guid: 719ee77855068f749a33fc6496951865, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 3912026959801463880, guid: 719ee77855068f749a33fc6496951865, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 4929331844081689334, guid: 719ee77855068f749a33fc6496951865, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 3150082354912184108, guid: 719ee77855068f749a33fc6496951865, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 2412769765377681049, guid: 719ee77855068f749a33fc6496951865, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 1896547310616523155, guid: 719ee77855068f749a33fc6496951865, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 7691740748377827382, guid: 719ee77855068f749a33fc6496951865, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 2876845072216945947, guid: 719ee77855068f749a33fc6496951865, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: -5644845310693556296, guid: 719ee77855068f749a33fc6496951865, type: 3}
+    dx: 0
+    dy: 0

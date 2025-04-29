@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,13 +7,18 @@ using UnityEngine;
 
 public class Core : MonoBehaviour
 {
-    [SerializeField] private List<CoreComponent> CoreComponents = new List<CoreComponent>();
-	[SortingLayer]
-	public int SortingLayerID = 0;
+    [SerializeField] List<CoreComponent> CoreComponents = new List<CoreComponent>();
+	[SortingLayer] public int SortingLayerID = 0;
 	public int uniqueID;
-	public bool isActive = true;
 	public Vector2 size = new Vector2(1,1);
-	public float height;
+	//---------------- Height ----------------
+	public float Height;
+	public event Action OnChangeData;
+	//-------------------------------------------
+	void Start() {
+		OnChangeData?.Invoke();
+	}
+	public void SetData() => OnChangeData?.Invoke();
     public void LogicUpdate() {
 		foreach (CoreComponent component in CoreComponents) {
 			component.LogicUpdate();
@@ -29,7 +35,7 @@ public class Core : MonoBehaviour
 
 		comp = GetComponentInChildren<T>();
 		if(comp) return comp;
-		//Debug.LogWarning($"{typeof(T)} not found on {transform.parent.name}");
+		//Common.LogWarning($"{typeof(T)} not found on {transform.parent.name}");
 		return null;
 	}
 
@@ -37,4 +43,5 @@ public class Core : MonoBehaviour
 		value = GetCoreComponent<T>();
 		return value;
 	}
+    
 }

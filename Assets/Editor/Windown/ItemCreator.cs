@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Collections;
+using UnityEngine.Networking;
+using Unity.EditorCoroutines.Editor;
 
 public class ItemCreator : EditorWindow
 {
-    private string filePath = "";
     private string SavePath = "";
+    private static string PublicCsvUrl = "";
 
     [MenuItem("Tools/Create Items from Text")]
     public static void ShowWindow()
@@ -18,11 +21,11 @@ public class ItemCreator : EditorWindow
         GUILayout.Label("Select Text File", EditorStyles.boldLabel);
         EditorGUILayout.BeginHorizontal();
 
-        filePath = EditorGUILayout.TextField("File Path:", filePath);
-        if (GUILayout.Button("Select Text File", GUILayout.Width(100)))
-        {
-            filePath = EditorUtility.OpenFilePanel("Select Text File", "", "csv");
-        }
+        PublicCsvUrl = EditorGUILayout.TextField("Link URL:", PublicCsvUrl);
+        // if (GUILayout.Button("Select Text File", GUILayout.Width(100)))
+        // {
+        //     filePath = EditorUtility.OpenFilePanel("Select Text File", "", "csv");
+        // }
         EditorGUILayout.EndHorizontal();
         
         EditorGUILayout.BeginHorizontal();
@@ -33,14 +36,34 @@ public class ItemCreator : EditorWindow
 
         if (GUILayout.Button("Create Items"))
         {
-            if (!string.IsNullOrEmpty(filePath))
+            if (!string.IsNullOrEmpty(PublicCsvUrl))
             {
-                ReadCSVAndCreateScriptableObjects(filePath, SavePath);
+                EditorCoroutineUtility.StartCoroutineOwnerless(FetchAndProcessData());
             }
             else
             {
-                Debug.LogError("Please select a text file first.");
+                Debug.LogError("Please select a URL.");
             }
+        }
+    }
+    private static IEnumerator FetchAndProcessData()
+    {
+        Debug.Log("Load URL :" + PublicCsvUrl);
+        UnityWebRequest request = UnityWebRequest.Get(PublicCsvUrl);
+        // Gửi yêu cầu và đợi phản hồi (sẽ tạm dừng Editor một chút)
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("<color=green>Successfully fetched data from Google Sheet.</color>");
+            string csvText = request.downloadHandler.text;
+            Debug.Log(csvText);
+            //ParseAndCreateScriptableObjects(csvText);
+        }
+        else
+        {
+            Debug.LogError($"<color=red>Error fetching data: {request.error}</color>");
+            EditorUtility.DisplayDialog("Import Error", $"Failed to fetch data from Google Sheet.\nError: {request.error}\n\nCheck URL and internet connection.", "OK");
         }
     }
     void ReadCSVAndCreateScriptableObjects(string Path, string SavePath)
@@ -56,11 +79,7 @@ public class ItemCreator : EditorWindow
             // Tạo một instance của ScriptableObject
             WeaponItemSO Equipable = ScriptableObject.CreateInstance<WeaponItemSO>();
 
-            // Gán giá trị từ CSV vào ScriptableObject
-            Equipable.SetName(data[0],data[1]);
-            Equipable.SetTypeEquip(int.Parse(data[2]));
-            Equipable.SetWeaponType(int.Parse(data[3]));
-            Equipable.SetImageDraw( data[4]);
+
 
             string savepath = SavePath+"/" + data[0] + ".asset";
             UnityEditor.AssetDatabase.CreateAsset(Equipable, savepath);

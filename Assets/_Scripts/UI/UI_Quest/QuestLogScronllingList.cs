@@ -3,8 +3,10 @@ using HStrong.Quests;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class QuestLogScronllingList : MonoBehaviour {
+public class QuestLogScronllingList : MonoBehaviour, IPointerClickHandler{
     [Header("Quest Log Button")]
     [SerializeField] private GameObject questLogButtonPrefab;
 
@@ -18,12 +20,17 @@ public class QuestLogScronllingList : MonoBehaviour {
     [SerializeField] TextMeshProUGUI goldRewardsText;
     [SerializeField] TextMeshProUGUI expRewardsText;
     [SerializeField] TextMeshProUGUI itemRewardsText;
-
+    //-----------------------------
+    [SerializeField] Quest_InfoUI quest_InfoUI;   
+    [SerializeField] GameObject FolowQuest;
+    [SpritePreview][SerializeField] Sprite[] Tick;
+    Quest CurrentQuest;
     private Dictionary<string, QuestButton> idToButtonMap = new Dictionary<string, QuestButton>();
+
     [SerializeField] string idQuestButtonSelect;
     void OnEnable()
     {
-        
+        SetQuestLogInfo(null);
     }
     void OnDisable(){
 
@@ -55,6 +62,15 @@ public class QuestLogScronllingList : MonoBehaviour {
     
     void SetQuestLogInfo(Quest _quest)
     {
+        if(_quest == null){
+            QuestInfoNull();
+            return;
+        }
+
+        CurrentQuest = _quest;
+        FolowQuest.SetActive(true);
+        CheckFollowQuest();
+
         questDisplayNameText.text = _quest.info.displayName;
         questDescrible.text = _quest.info.describle;
         goldRewardsText.text = $"+{_quest.info.goldReward.ToString()} yen";
@@ -74,22 +90,17 @@ public class QuestLogScronllingList : MonoBehaviour {
                 itemRewardsText.text += ", ";
             }
         }
-        Debug.Log("Done");
         LogQuestSteps(_quest);
     }
 
     private void LogQuestSteps(Quest _quest)
     {
 
-        List<QuestStep_InfoUI> questStep_InfoUI = new List<QuestStep_InfoUI>();
-        foreach(Transform child in StepQuestContener) {
-            questStep_InfoUI.Add(child.GetComponent<QuestStep_InfoUI>());
+        for (int i = StepQuestContener.childCount - 1; i >= 0; i--)
+        {
+            QuestStep_InfoUI child = StepQuestContener.GetChild(i).GetComponent<QuestStep_InfoUI>();
+            child.RemoveQuestStepInfo();
         }
-
-        foreach(QuestStep_InfoUI step in questStep_InfoUI){
-            step.RemoveQuestStepInfo();
-        }
-        questStep_InfoUI.Clear();
 
         for (int i = 0; i < _quest.GetQ_StepData().Length; i++){
 
@@ -99,5 +110,34 @@ public class QuestLogScronllingList : MonoBehaviour {
 
         }
     }
-    
+    void QuestInfoNull(){
+        FolowQuest.SetActive(false);
+        questDisplayNameText.text = "Chọn nhiệm vụ để xem thông tin";
+        questDescrible.text = "";
+        goldRewardsText.text = "";
+        expRewardsText.text = "";
+        itemRewardsText.text = "";
+
+        for (int i = StepQuestContener.childCount - 1; i >= 0; i--)
+        {
+            QuestStep_InfoUI child = StepQuestContener.GetChild(i).GetComponent<QuestStep_InfoUI>();
+            child.RemoveQuestStepInfo();
+        }
+    }
+    void CheckFollowQuest(){
+        if(quest_InfoUI.questFollow.info.id == CurrentQuest.info.id){
+            FolowQuest.GetComponentInChildren<Image>().sprite = Tick[1];
+        }else{
+            FolowQuest.GetComponentInChildren<Image>().sprite = Tick[0];
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log("click");
+        if(quest_InfoUI.questFollow.info.id == CurrentQuest.info.id) return;
+
+        quest_InfoUI.questFollow = CurrentQuest;
+        CheckFollowQuest();
+    }
 }

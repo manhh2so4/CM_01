@@ -7,12 +7,12 @@ public class E_DeadState : E_State
     {
 		itemDrop = core.GetCoreComponent<ItemDrop>();
     }
-	public override void Enter() {
+	public override void Enter(){
 		base.Enter();
 		stateMachine.canChange = false;
 		movement.IsColision(false);
 		movement.SetVelocity( -movement.facingDirection*3, 7f );
-      enemy.mPhysic2D.Gravity = (2* -9.8f);
+      	enemy.mPhysic2D.Gravity = (2* -9.8f);
 		enemy.CharStats.gameObject.SetActive(false);
 		enemy.knockBackReceiver.gameObject.SetActive(false);
 
@@ -51,5 +51,6 @@ public class E_DeadState : E_State
         }else{
 			enemy.mPhysic2D.Gravity = (-9.8f *2f);
 		}
+		enemy.gameObject.SetActive(false);
 	}
 }

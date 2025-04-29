@@ -18,6 +18,7 @@ namespace HStrong.ProjectileSystem
             rb.Velocity = Vector2.zero;
         }
         private void SetVelocity(){
+            
             rb.Velocity = projectile.Dir * projectile.speed;
             float angle = Mathf.Atan2(rb.Velocity.y, rb.Velocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);

@@ -191,14 +191,14 @@ public class PaintChar : CoreComponent {
 				FrameCurrent++;	
 			}		
 	}
-   bool TimeRate(float timeWait){        
+   	bool TimeRate(float timeWait){        
       frameTimer += Time.deltaTime;
       if(frameTimer >= timeWait){
          frameTimer = 0;
          return true;
          }
          return false;
-   }
+   	}
 #endregion
 #region PaintChar
    void LoadCompnents(){
@@ -207,12 +207,14 @@ public class PaintChar : CoreComponent {
 		BodyGO = transform.Find("Body").gameObject;		
 		WpGO = transform.Find("Wp").gameObject;
       	DustGO = transform.Find("Dust").gameObject;
-
-		LegGO.GetComponent<SpriteRenderer>().sortingLayerID = core.SortingLayerID;
-		HeadGO.GetComponent<SpriteRenderer>().sortingLayerID = core.SortingLayerID;
-		BodyGO.GetComponent<SpriteRenderer>().sortingLayerID = core.SortingLayerID;
-		WpGO.GetComponent<SpriteRenderer>().sortingLayerID = core.SortingLayerID;
-		DustGO.GetComponent<SpriteRenderer>().sortingLayerID = core.SortingLayerID;
+		
+		if(core != null){
+			LegGO.GetComponent<SpriteRenderer>().sortingLayerID = core.SortingLayerID;
+			HeadGO.GetComponent<SpriteRenderer>().sortingLayerID = core.SortingLayerID;
+			BodyGO.GetComponent<SpriteRenderer>().sortingLayerID = core.SortingLayerID;
+			WpGO.GetComponent<SpriteRenderer>().sortingLayerID = core.SortingLayerID;
+			DustGO.GetComponent<SpriteRenderer>().sortingLayerID = core.SortingLayerID;
+		}
 
 		partLeg = mQuan.spriteInfos;
 		partBody = mTexAo.spriteInfos;

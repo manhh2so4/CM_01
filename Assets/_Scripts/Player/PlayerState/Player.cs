@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using HStrong.Saving;
+using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Entity,ISaveable
 {
@@ -33,20 +36,22 @@ public class Player : Entity,ISaveable
     //------------------------------------------
 
     #region Other Variable
-
+    
     private SKill Skill_1;
     private SKill Skill_2;
     private SKill Skill_3;
     public Cooldown cooldowns = new Cooldown();
-    public Map map;
-    public List<Vector2i> mPath = new List<Vector2i>();
-    public int mCurrentNodeId = -1;
-    
+    public LayerMask layerDetectable;
+    public DetectTarget detectTarget;
+    public Collider2D target;
+    public SelectObj selectObj;
+    int indexTarget;
     #endregion
     
     #region Unity Callback Function
     protected override void Awake(){
         base.Awake();
+        detectTarget = new DetectTarget(layerDetectable, 15 );
         StateMachine = new FiniteStateMachine();
 
         Skill_1 = transform.Find("Skill_1").GetComponent<SKill>();
@@ -59,7 +64,7 @@ public class Player : Entity,ISaveable
         Skill_3.SetCore(core);
 
         inputPlayer = GetComponent<PlayerInputHandler>();
-        core.height = 1.3f;
+        core.Height = 1.3f;
 
         idleState = new PlayerIdleState(this,StateMachine, playerData,mState.Idle);
         moveState = new PlayerMoveState(this,StateMachine, playerData,mState.Moving);
@@ -82,9 +87,11 @@ public class Player : Entity,ISaveable
     }
     private void OnEnable() {
         knockBackReceiver.OnKnockBack += KnockBackEnd;
+        CharStats.OnDie += Die;
     }
     private void OnDisable() {
         knockBackReceiver.OnKnockBack -= KnockBackEnd;
+        CharStats.OnDie -= Die;
     }
 
     private void KnockBackEnd()
@@ -95,8 +102,43 @@ public class Player : Entity,ISaveable
     private void Update(){
 
         core.LogicUpdate();
+        
         cooldowns.Update();
         StateMachine.CurrentState.LogicUpdate();  
+
+    }
+    private void FixedUpdate(){
+
+    }
+    [Button]
+    private void Die(){
+        RespawnHome().Forget();
+    }
+    private async UniTaskVoid RespawnHome()
+    {
+        await Fader.Instance.FadeOut(0.2f);
+
+        SavingWrapper.Save();
+        await SavingWrapper.LoadToScene("Home");
+        SavingWrapper.LoadData();
+
+        SavingWrapper.Save();
+
+        await Fader.Instance.FadeIn(0.2f);
+    }
+    [Button]
+    void SetTarget(){
+
+        if( indexTarget >= detectTarget.objDetected.Count ) indexTarget = 0;
+        target = detectTarget.objDetected[indexTarget];
+
+        if( target.TryGetComponent<IInteractable>( out IInteractable interactable) ) {
+            selectObj.setUp( 0.2f, target.transform);
+        }
+        indexTarget++;
+    }
+
+    private void OnDrawGizmos(){
 
     }
 

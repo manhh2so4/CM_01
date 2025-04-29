@@ -1,37 +1,37 @@
 using UnityEngine;
-
-public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+[DefaultExecutionOrder(-2)]
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
     public static T Instance
     {
         get
         {
-            if (_instance == null)
-            {
-                Debug.Log(" Not Instance in scence: " + typeof(T).Name );
-                _instance = FindObjectOfType<T>();
+            // if (_instance == null)
+            // {
+            //     Debug.Log(" Not Instance in scence: " + typeof(T).Name );
+
+            //     _instance = FindObjectOfType<T>();
                 
-                if (_instance == null)
-                {
-                    GameObject singletonObject = new GameObject(typeof(T).Name);
-                    _instance = singletonObject.AddComponent<T>();
-                }
-            }
+            //     if (_instance == null)
+            //     {
+            //         Common.LogWarning(" Not Instance in scence: " + typeof(T).Name );
+            //         GameObject singletonObject = new GameObject(typeof(T).Name);
+            //         _instance = singletonObject.AddComponent<T>();
+            //     }
+            // }
             return _instance;
         }
     }
 
-    // Đảm bảo instance không bị hủy khi chuyển scene
     protected virtual void Awake()
     {
+        _instance = this as T;
+        
         if (_instance != null && _instance != this as T)
         {
-            Destroy(gameObject); // Hủy bản sao nếu đã có instance khác
+            Destroy(gameObject);
         }
-        else
-        {
-            _instance = this as T;// Giữ instance khi chuyển scene
-        }
+        
     }
 }

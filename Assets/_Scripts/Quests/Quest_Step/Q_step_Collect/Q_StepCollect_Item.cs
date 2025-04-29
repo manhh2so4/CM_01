@@ -3,6 +3,7 @@ namespace HStrong.Quests{
     public class Q_StepCollect_Item : Q_StepComponents<CollectItemData>{
 
         int CountCollected = 0;
+        InventoryItemSO ItemReQuire => data.itemToCollect;
         
         protected override void SubscribeHandlers()
         {
@@ -16,7 +17,6 @@ namespace HStrong.Quests{
 
         private void CoinCollected(InventoryItemSO item, int number)
         {
-            InventoryItemSO ItemReQuire = data.itemToCollect;
             if(item.GetItemID() == ItemReQuire.GetItemID()){
                 if(ItemReQuire.IsStackable()){
                     CountCollected += number;

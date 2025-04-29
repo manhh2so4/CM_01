@@ -24,48 +24,28 @@ public class Read_Nj_part
         }
     }
 
-    public List<nj_Part> nj_Parts_Head = new List<nj_Part>();
-    public List<nj_Part> nj_Parts_Leg = new List<nj_Part>();
-    public List<nj_Part> nj_Parts_Body = new List<nj_Part>();
-    public List<nj_Part> nj_Parts_Wp = new List<nj_Part>();
+    public List<Frames> nj_Parts_Head = new List<Frames>();
+    public List<Frames> nj_Parts_Leg = new List<Frames>();
+    public List<Frames> nj_Parts_Body = new List<Frames>();
+    public List<Frames> nj_Parts_Wp = new List<Frames>();
+    public Frames[] nj_Parts;
     
     void LoadData(){
-
         textJson = Resources.Load<TextAsset>("nj_part");
         data = JsonMapper.ToObject(textJson.ToString());
         Debug.Log(data.Count);
+        nj_Parts = new Frames[data.Count];
 
         for (int i = 0; i < data.Count ; i++)
         {   
-            nj_Part PartTemp = new nj_Part();
-            int type =  int.Parse(data[i]["type"].ToString());
-            if(type == 0){
-
-                PartTemp = Readpart(data[i]["part"].ToString());
-                nj_Parts_Head.Add(PartTemp);
-
-            }else if(type == 1){
-
-                PartTemp = Readpart(data[i]["part"].ToString());
-                nj_Parts_Body.Add(PartTemp);
-
-            }else if(type == 2){
-
-                PartTemp = Readpart(data[i]["part"].ToString());
-                nj_Parts_Leg.Add(PartTemp);
-
-            }else if(type == 3){
-
-                PartTemp = Readpart(data[i]["part"].ToString());
-                nj_Parts_Wp.Add(PartTemp);
-            }
+            nj_Parts[i] = Readpart(data[i]["part"].ToString());    
         }
     }
 
-    nj_Part Readpart(string _data){
+    Frames Readpart(string _data){
 
         JsonData data2 = GetItem(_data);
-        nj_Part PartTemp = new nj_Part();
+        Frames PartTemp = new Frames();
 
         PartTemp.imageIDs = new ImageID[data2.Count];
 
@@ -83,4 +63,5 @@ public class Read_Nj_part
     JsonData GetItem(string data3){
         return JsonMapper.ToObject(data3);
     }
+
 }

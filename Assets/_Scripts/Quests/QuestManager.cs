@@ -8,19 +8,25 @@ namespace HStrong.Quests
     public class QuestManager : Singleton<QuestManager>
     {
         [Header("Config")]
+        [SerializeField] QuestInfoSO[] questTest;
         [SerializeField] List<Quest> mQuestView;
         readonly Dictionary<string, Quest> questMap = new Dictionary<string, Quest>();
         private int currentPlayerLV=10;
+        [Button("Test")]
+        void Test(){
+            foreach(QuestInfoSO questInfo in questTest){
+                AddQuestToMap(questInfo);
+            }
+        }
         void OnEnable()
         {
-
             this.GameEvents().questEvent.onStartQuest += StartQuset;
             this.GameEvents().questEvent.onAdvanceQuest += AdvanceQuest;
             this.GameEvents().questEvent.onFinishQuest += FinishQuest;
             this.GameEvents().questEvent.onQuestStepStateChange += QuestStepStateChangre;
             this.GameEvents().questEvent.onAddQuestToMap += AddQuestToMap;
-            
         }
+
         void OnDisable()
         {
             this.GameEvents().questEvent.onStartQuest -= StartQuset;
@@ -29,9 +35,9 @@ namespace HStrong.Quests
             this.GameEvents().questEvent.onQuestStepStateChange -= QuestStepStateChangre;
             this.GameEvents().questEvent.onAddQuestToMap -= AddQuestToMap;
         }
-
         void Start()
         {
+            Test();
             foreach(Quest quest in questMap.Values)
             {
                 if(quest.state == QuestState.IN_PROGRESS)
@@ -40,17 +46,19 @@ namespace HStrong.Quests
                 }
                 this.GameEvents().questEvent.QuestStateChange(quest);
             }
-
         }
+
         void ChangeQuestState(string id, QuestState state)
         {
             Quest quest = GetQuestById(id);
             quest.state = state;
             this.GameEvents().questEvent.QuestStateChange(quest);
         }
+
         void PlayerLevelChange(int Level){
             currentPlayerLV = Level;
         }
+
         private bool CheckRequirements(Quest quest){
             bool requirementsMet = true;
             if(currentPlayerLV < quest.info.levelRequirement){
@@ -119,9 +127,9 @@ namespace HStrong.Quests
                 quest.InstantiateCurrentQuestStep(this.transform);
             }else{
                 ChangeQuestState(quest.info.id, QuestState.CAN_FINISH);
-                this.GameEvents().questEvent.FinishQuest(id);
             }
         }
+        
         void FinishQuest(string id){
             Quest quest = GetQuestById(id);
             ClaimRewards(quest);
@@ -151,8 +159,7 @@ namespace HStrong.Quests
 
              
             this.GameEvents().questEvent.QuestStateChange(questMap[questInfoSO.id]);
-            mQuestView.Add( questMap[questInfoSO.id] );
-
+            mQuestView.Add( questMap[questInfoSO.id]);
         }
         private Dictionary<string, Quest> CreateQuestMap()
         {

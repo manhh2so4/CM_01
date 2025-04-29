@@ -13,23 +13,23 @@ MonoBehaviour:
   m_Name: FX_Sprite 64
   m_EditorClassIdentifier: 
   EffId: 64
-  effSkillInfo_SO:
+  effSkillInfo:
   - sprite: {fileID: 919050273578564639, guid: 9a9867d8488792d428f08e287956f305, type: 3}
     dx: 2
     dy: -8
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
   - sprite: {fileID: 7219261543069714374, guid: 9a9867d8488792d428f08e287956f305, type: 3}
     dx: 1
     dy: -9
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
   - sprite: {fileID: 448984457396920129, guid: 9a9867d8488792d428f08e287956f305, type: 3}
     dx: 2
     dy: -9
-  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+  - sprite: {fileID: -5774996654182199871, guid: 719ee77855068f749a33fc6496951865, type: 3}
     dx: 0
     dy: 0
   - sprite: {fileID: 8370549277168377520, guid: 9a9867d8488792d428f08e287956f305, type: 3}

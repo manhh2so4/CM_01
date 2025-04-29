@@ -24,7 +24,7 @@ public class Boss : EnemyEntity{
     #region DataCombat
     [SerializeField] public Projectile PrefabProjectile;
     [SerializeField] LayerMask layerCombat;
-    [SerializeField] Effect_Instance prefabHit;
+    [SerializeField] BaseEffect prefabHit;
     [SerializeField] Collider2D colWeapon;
     public HitBox hitBoxWeapon;
     public HitBox hitBoxBody;
@@ -51,7 +51,7 @@ public class Boss : EnemyEntity{
         LoadComponent();
         FistSetUp();
 
-        core.height = mCollider.size.y + .7f;
+        core.Height = mCollider.size.y + .7f;
         core.size = new Vector2(3,2);
 
         moveState = new B_MoveState(this, stateMachine);
@@ -70,14 +70,13 @@ public class Boss : EnemyEntity{
         abilitys = new BossAbilityState[]{ jump, dash, rage};
 
     }
+    
     void Start(){
-
         stateMachine.Initialize(moveState);
-       
     }
+
     void Update()
     {
-        canChangeState = stateMachine.canChange;
         core.LogicUpdate();
         cooldowns.Update();
         draw_Boss.StageBoss();
@@ -88,16 +87,16 @@ public class Boss : EnemyEntity{
     {
         hitBoxWeapon.OnHit += TakeDamage;
         hitBoxBody.OnHit += TakeDamage;
-        CharStats.onHealthZero += CheckDead;
+        CharStats.OnDie += CheckDead;
     }
     private void OnDisable()
     {
         hitBoxWeapon.OnHit -= TakeDamage;
         hitBoxBody.OnHit -= TakeDamage;
-        CharStats.onHealthZero -= CheckDead;
+        CharStats.OnDie -= CheckDead;
     }
 
-    #region FuncLoad
+#region FuncLoad
     private void CheckReceiver(){
         
         if(poiseReceiver.IsPoise()){
@@ -105,6 +104,7 @@ public class Boss : EnemyEntity{
         }
     }
     private void CheckDead(){
+        this.GameEvents().miscEvents.KillEnemy( this );
         stateMachine.ChangeState(deadState);
     }
     List<int> IdAbility = new List<int>();
@@ -122,7 +122,7 @@ public class Boss : EnemyEntity{
     }
     void TakeDamage(Collider2D other){
         if(other.TryGetComponent(out IDamageable damageable)){
-            CharStats.DoDamage( damageable.Target(prefabHit) );
+            CharStats.DoDamage( damageable.GetTarget(prefabHit) );
         }
         if(other.TryGetComponent(out IKnockBackable knockBackable)){
             knockBackable.KnockBack(new Vector2(1,1), 5, movement.facingDirection);
@@ -147,5 +147,5 @@ public class Boss : EnemyEntity{
         cooldowns.Start( jump, 10 );
         cooldowns.Start( rage, 20 );
     }
-    #endregion
+#endregion
 }

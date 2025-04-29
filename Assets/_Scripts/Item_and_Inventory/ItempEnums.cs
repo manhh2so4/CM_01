@@ -1,5 +1,5 @@
 public enum EquipType{
-    None,
+    Non,
     Ao,
     Gang,
     Quan,
@@ -9,13 +9,5 @@ public enum EquipType{
     NgocBoi,
     Bua,
     Nhan
-}
-public enum ItemType{
-    None,
-    Weapon,
-    Clothes,
-    Accessory,
-    Consumable,
-    Material,
 }
 

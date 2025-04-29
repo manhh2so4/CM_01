@@ -17,6 +17,7 @@ public class Effect_Trigger : MonoBehaviour
     }
     private void Awake() {
         LoadComponent();
+        
     }
     private void Reset() {
         LoadComponent();

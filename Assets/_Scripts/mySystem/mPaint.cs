@@ -57,7 +57,7 @@ public class mPaint
         sprites = temp;
     }
 
-    public static void LoadSpriteRegion(ref Sprite[] sprites,ImageInfor[] infor,Texture2D texs,int anchor){
+    public static void LoadSpriteRegion(ref Sprite[] sprites,ImageInfor[] infor,Texture2D texs,Vector2 Pivot){
         Sprite[] temp = new Sprite[infor.Length];
         for (int i = 0; i < infor.Length; i++)
         {
@@ -68,11 +68,12 @@ public class mPaint
             int w = texs.width;
             int h = texs.height;
             temp[i] = Sprite.Create(texs, new Rect(x0, h - y0 - h0 , w0, h0),   
-            new Vector2(0,1));
+            Pivot);
             temp[i].name = infor[i].ID.ToString();
         }
         sprites = temp;
     }
+
     static Sprite Draw_prite(Texture2D text,int anchor){
         float anchorX = 0f;
         float anchorY = 1f;

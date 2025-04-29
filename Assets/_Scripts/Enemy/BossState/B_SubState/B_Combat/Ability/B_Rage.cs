@@ -53,7 +53,7 @@ public class B_Rage : BossAbilityState
         float randomY = Random.Range(SpawnPos.y - 3, SpawnPos.y + 3);
         Vector2 randomPos = new Vector2(randomX, randomY);
         Projectile rock = PoolsContainer.GetObject(boss.PrefabProjectile, randomPos);
-        rock.SetProjectile(boss.tag, 12);
+        rock.SetData(boss.tag, 12);
     }
 
 }

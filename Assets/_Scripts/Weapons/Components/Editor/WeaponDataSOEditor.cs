@@ -5,14 +5,14 @@ using System;
 using UnityEditor.Callbacks;
 using System.Linq;
 
-[CustomEditor(typeof(SkillData_SO))]
+[CustomEditor(typeof(SkillData_Active_SO))]
 public class WeaponDataSOEditor : Editor {
     private static List<Type> dataCompTypes = new List<Type>();
-    private SkillData_SO dataSO;
+    private SkillData_Active_SO dataSO;
     private bool showAddComponentButtons;
     private void OnEnable()
     {
-        dataSO = target as SkillData_SO;
+        dataSO = target as SkillData_Active_SO;
     }
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();

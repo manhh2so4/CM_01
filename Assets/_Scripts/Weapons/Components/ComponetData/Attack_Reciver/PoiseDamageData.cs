@@ -5,7 +5,7 @@ public class PoiseDamageData : ComponentData
     [field: SerializeField] public float TimeEff { get; private set;}
     [field: SerializeField] public float Rate { get; private set;}
     [field: SerializeField] public Poisetype type { get; private set;}
-    [field: SerializeField] public Effect_Instance prefabEff;
+    [field: SerializeField] public BaseEffect prefabEff;
     protected override void SetComponentDependency()
     {
         ComponentDependency = typeof(WeaponPoiseDamage);

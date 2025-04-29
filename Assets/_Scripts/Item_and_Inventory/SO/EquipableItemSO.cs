@@ -4,21 +4,24 @@ using UnityEngine;
 [CreateAssetMenu( menuName = "Inventory/Equipment_no_ADD")]
 public class EquipableItemSO : InventoryItemSO {
     [SerializeField] EquipType typeEquip;
+    [SerializeField] int requiredLevel;
     
     public EquipType GetTypeEquip(){
         return typeEquip;
     }
-    [SerializeField] private Modifiers[] AddtiveModifiers;
-    [SerializeField] private Modifiers[] percentageModifiers;
+    public int GetRequiredLevel(){
+        return requiredLevel;
+    }
+    public int Level;
+    [SerializeField] private ModifiersUpgrade[] AddtiveModifiers;
+    public ModifiersUpgrade[] GetAddtiveModifiers(){
+        return AddtiveModifiers;
+    }
+
     [Header("Image_Character")]
     [SerializeField] Tex_NjPart_SO image_Draw;
-    
 
-    [System.Serializable]
-    struct  Modifiers{
-        public StatType statType;
-        public int _value;
-    }
+
 
     public Tex_NjPart_SO GetImageDraw(){
         return image_Draw;
@@ -29,19 +32,32 @@ public class EquipableItemSO : InventoryItemSO {
     }
     public void AddModifiers(CharacterStats playerStats)
     {
-        foreach (Modifiers modifier in AddtiveModifiers)
+        foreach (ModifiersUpgrade modifier in AddtiveModifiers)
         {
-            playerStats.GetStatOfType(modifier.statType).AddModifier(modifier._value);
+            playerStats.AddModifier(modifier.statType, modifier._value[Level]);
         }
     }
     public void RemoveModifiers(CharacterStats playerStats) 
     {
-        foreach (Modifiers modifier in AddtiveModifiers)
+        foreach (ModifiersUpgrade modifier in AddtiveModifiers)
         {
-            playerStats.GetStatOfType(modifier.statType).RemoveModifier(modifier._value);
+            playerStats.RemoveModifier(modifier.statType, modifier._value[Level]);
         }
     }
     public void SetTypeEquip(int type){
         this.typeEquip = (EquipType)type;
     }
+    
+
+#if UNITY_EDITOR
+    public void SetData(string name, string description, Sprite icon, int price, int requiredLevel, EquipType typeEquip,ModifiersUpgrade[] AddtiveModifiers){
+        this.SetData(name, description, icon, true , price);
+        this.requiredLevel = requiredLevel;
+        this.typeEquip = typeEquip;
+        this.AddtiveModifiers = AddtiveModifiers;
+    }
+    public void SetImageDraw(Tex_NjPart_SO _image_Draw){
+        this.image_Draw = _image_Draw;
+    }
+#endif
 }

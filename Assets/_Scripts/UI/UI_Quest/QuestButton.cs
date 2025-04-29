@@ -21,6 +21,7 @@ public class QuestButton : MonoBehaviour, IPointerClickHandler {
         UI_selected.SetSelected(this.transform as RectTransform);
 
     }
+    
     public void SetState(QuestState state){
 
         switch(state){

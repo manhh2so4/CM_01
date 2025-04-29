@@ -6,46 +6,61 @@ namespace HStrong.ProjectileSystem{
     {
         public event Action OnInit;
         public event Action OnReset;
+        public float life;
+        float startTime;
+        [HideInInspector] public Vector2 Dir;
+        [HideInInspector] public float speed;
         [HideInInspector]public Transform target;
-        public float speed;
-        [HideInInspector] public CharacterStats stats;
-        public Vector2 Dir;
-        [HideInInspector] public int damage;
+        [HideInInspector]public CharacterStats stats;
+        [HideInInspector]public int damage;
   
-        public void SetProjectile(float speed, Vector2 _dir, string tag,CharacterStats stats)
+        public void SetData(float speed, Vector2 _dir, string tag = "",CharacterStats stats = null)
         {
             
             this.speed = speed;
             this.Dir = _dir;
-            SetProjectile( tag, stats);
+            SetData( tag, stats);
 
         }
 
-        public void SetProjectile(float speed, Transform target, string tag,CharacterStats stats)
+        public void SetData(float speed, Transform target, string tag,CharacterStats stats)
         {
             this.speed = speed;
             this.target = target;
-            SetProjectile( tag, stats);
+            SetData( tag, stats);
         }
+        
 
-
-        public void SetProjectile(string tag, CharacterStats stats)
+        public void SetData(string tag, CharacterStats stats)
         {
             this.stats = stats;
-            gameObject.tag = tag;
+            if(tag != "") gameObject.tag = tag;
             Init();
         }
-        public void SetProjectile(string tag, int damage)
+
+        public void SetData(string tag, int damage)
         {
             this.damage = damage;
             gameObject.tag = tag;
             Init();
         }
-        private
+
         void Init()
         {
+            startTime = 0;
             OnInit?.Invoke();
         }
+
+        void Update() {
+
+            if(life <= 0) return;
+            
+            startTime += Time.deltaTime;
+            if( startTime > life){
+                Destroy();
+            }
+        }
+
         void ReFresh()
         {
            target = null;
@@ -61,19 +76,11 @@ namespace HStrong.ProjectileSystem{
             ReturnItemToPool();
             
         }
-        #region CreatPool
+#region CreatPool
         ObjectPool objectPool;
         void ReturnItemToPool()
         {
-            if (objectPool != null)
-            {
-                objectPool.ReturnObject(this);
-                this.transform.SetParent(PoolsContainer.Instance.transform);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            ReturnToPool();
         }
         
         public void SetObjectPool(ObjectPool pool)
@@ -85,6 +92,18 @@ namespace HStrong.ProjectileSystem{
         {
             objectPool = null;
         }
-        #endregion
+
+        public void ReturnToPool()
+        {
+            if (objectPool != null)
+            {
+                objectPool.ReturnObject(this);
+                this.transform.SetParent(PoolsContainer.Instance.transform);
+            }else
+            {
+                Destroy(gameObject);
+            }
+        }
+ #endregion
     }
 }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
-public class NPC : Entity {
+public class NPC : Entity, IInteractable
+{
 #region State Variable
+
     public FiniteStateMachine StateMachine { get;private set;}
     public NPC_IdleState idle {get;private set;}
     public NPC_MoveState move {get;private set;}
@@ -15,13 +17,12 @@ public class NPC : Entity {
     public NPC_AttackState attack1 {get;private set;}
     public NPC_AttackState attack2 {get;private set;}
     public NPC_AttackState attack3 {get;private set;}
+
 #endregion
 
 #region Data
     public string CurentState;
     public float RangeMove;
-
-
 #endregion
 
 
@@ -42,7 +43,6 @@ public class NPC : Entity {
 
     
     //--------Input Action--------
-    public float mSpeed = 5;
     public FindPathHandle findPathHandle;
 
 #region UnityCallback
@@ -59,7 +59,7 @@ public class NPC : Entity {
         
         // Skill_3 = transform.Find("Skill_3").GetComponent<SKill>();
         // Skill_3.SetCore(core);
-        core.height = 1.3f;
+        core.Height = 1.3f;
 
         StateMachine = new FiniteStateMachine();
         idle = new NPC_IdleState(this, StateMachine );
@@ -79,24 +79,24 @@ public class NPC : Entity {
         StateMachine.Initialize( idle );
     }
 
-    [Button]
-    void Attack(){
-        
-    }
-
-
     private void Update(){
         OverLapObj();
         core.LogicUpdate();
         cooldowns.Update();
+        findPathHandle.UpdatePath();
         StateMachine.CurrentState.LogicUpdate(); 
     }
+    
+    public void Show(bool isShow){
+        core.gameObject.SetActive(isShow);
+    }
+    
     
 #endregion
 #region Check
     void OverLapObj(){
         if( canDetect == false ) return;
-        Collider2D collider = Physics2D.OverlapCircle( transform.position + transform.up * core.height , radiusDetect , layerDetect );
+        Collider2D collider = Physics2D.OverlapCircle( transform.position + transform.up * core.Height , radiusDetect , layerDetect );
         if( collider != null ){
             Target = collider.transform;
         }
@@ -126,6 +126,11 @@ public class NPC : Entity {
             
         }
         Gizmos.DrawWireSphere( transform.position + transform.up * 1.3f , radiusDetect );
+    }
+    public float Height => core.Height;
+    public void Interact()
+    {
+        
     }
 
 #endif

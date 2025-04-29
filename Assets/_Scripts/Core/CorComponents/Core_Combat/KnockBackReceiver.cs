@@ -12,6 +12,7 @@ public class KnockBackReceiver : CoreComponent,IKnockBackable
     {
         CheckKnockBack();
     }
+    
     public void KnockBack(Vector2 angle, float strength, int direction)
     {
         movement.SetVelocity(strength, angle, direction);

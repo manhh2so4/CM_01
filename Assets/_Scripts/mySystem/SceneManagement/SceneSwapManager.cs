@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwapManager : MonoBehaviour {
     public static SceneSwapManager Instance;
-    private Portal.DestinationIdentifier _destination;
+    //private Portal.DestinationIdentifier _destination;
     private void Awake() {
         if (Instance == null)
         {
@@ -15,10 +15,10 @@ public class SceneSwapManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-    public static void SwapSceneFormDoorUse(SceneField myScene, Portal.DestinationIdentifier destination)
-    {
-        //Instance.StartCoroutine(Instance.FadeOutThenChangeScene(myScene,destination));
-    }
+    // public static void SwapSceneFormDoorUse(SceneField myScene, Portal.DestinationIdentifier destination)
+    // {
+    //     //Instance.StartCoroutine(Instance.FadeOutThenChangeScene(myScene,destination));
+    // }
     // private IEnumerator FadeOutThenChangeScene(SceneField myScene,Portal.DestinationIdentifier destination = Portal.DestinationIdentifier.None)
     // {
     //     _destination = destination;

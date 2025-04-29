@@ -10,7 +10,7 @@ public class DialogueNodeEditor : NodeEditor{
         DialogueNode node = target as DialogueNode;
 
         GUILayout.BeginHorizontal();
-        NodeEditorGUILayout.PortField(GUIContent.none, target.GetInputPort("input"), GUILayout.MinWidth(0));
+        NodeEditorGUILayout.PortField(GUIContent.none, target.GetInputPort("inputDialogue"), GUILayout.MinWidth(0));
         GUILayout.Label("Speaker");
         EditorGUILayout.PropertyField(serializedObject.FindProperty("speaker"), GUIContent.none);
         NodeEditorGUILayout.PortField(GUIContent.none, target.GetOutputPort("exit"), GUILayout.MinWidth(0));

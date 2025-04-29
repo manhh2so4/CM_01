@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Nhi\u1EC7m v\u1EE5 1"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6f78ccd8905a558428f483e863571047, type: 2}
-  m_sharedMaterial: {fileID: 4170177438499017841, guid: 6f78ccd8905a558428f483e863571047, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a5120f430a960334f85d7cc9a42a7d64, type: 2}
+  m_sharedMaterial: {fileID: -7342607114050575824, guid: a5120f430a960334f85d7cc9a42a7d64, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

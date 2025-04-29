@@ -1,70 +1,45 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEditor;
+
 [CreateAssetMenu(fileName = "Ao_lv", menuName = "GameData/Tex_NjPart_SO")]
 public class Tex_NjPart_SO : ScriptableObject
 {
-       public njPart Part;
-       
-       [SpritePreview][SerializeField] private Sprite[] importSprites;
+       public EquipType PartType;
        public SpriteInfo[] spriteInfos;
-
-       [Button]
-       public void AddData()
+       public int idPart;
+       
+#if UNITY_EDITOR
+       [Button("AddData")]
+       void AddData()
        {
-              // if(spriteInfos == null) return;
-              nj_Part partTemp = new nj_Part();
-              switch (Part)
-              {
-                     case njPart.Head:
-                            FindNjPart(ref partTemp,Read_Nj_part.Instance.nj_Parts_Head);
-                     break;
-
-                     case njPart.Body:
-                            FindNjPart(ref partTemp,Read_Nj_part.Instance.nj_Parts_Body);
-                     break;
-
-                     case njPart.Leg:
-                            FindNjPart(ref partTemp,Read_Nj_part.Instance.nj_Parts_Leg);
-                     break;
-
-                     case njPart.Weapon:
-                            FindNjPart(ref partTemp,Read_Nj_part.Instance.nj_Parts_Wp);
-                     break;
-              }   
-              Debug.Log(partTemp.imageIDs.Length);  
-
-              spriteInfos = new SpriteInfo[importSprites.Length];
-              for (int i = 0; i < importSprites.Length; i++)
-              {
-                     SpriteInfo SpriteInfoTemp = new SpriteInfo();
-                     SpriteInfoTemp.sprite = importSprites[i];
-
-                     foreach (var item in partTemp.imageIDs)
-                     {
-                            if(item.ID == int.Parse(importSprites[i].name)){
-                                  SpriteInfoTemp.dx = item.x0;
-                                  SpriteInfoTemp.dy = item.y0;
-                            }
-                     }
-                     spriteInfos[i] = SpriteInfoTemp;                                        
-              }
-
+              AddData(idPart, PartType);
        }
-       void FindNjPart(ref nj_Part part , List<nj_Part> _Parts){
+       public void AddData(int idPart, EquipType equipType)
+       {
+              PartType = equipType;
+              Frames partTemp = Read_Nj_part.Instance.nj_Parts[idPart];
+              spriteInfos = new SpriteInfo[ partTemp.imageIDs.Length ];
               
-              for (int i = 0; i < _Parts.Count; i++)
+              //GetSpritesID.SetSprite();
+              
+              for(int i = 0; i < spriteInfos.Length; i++)
               {
-                     foreach (var item in _Parts[i].imageIDs)
-                     {
-                            if( item.ID == int.Parse(importSprites[1].name)){
-                                   part =  _Parts[i];
-                                   Debug.Log("seeee");
-                                   return;
-                     }     
+                     SpriteInfo spriteInfoTemp = new SpriteInfo();
+                     if(i==0 && ( PartType == EquipType.Ao || PartType == EquipType.Quan)){
+                        spriteInfoTemp.sprite = GetSpritesID.Get()[ 0 ];
                      }
-                     
+                     else{
+                        spriteInfoTemp.sprite = GetSpritesID.Get()[ partTemp.imageIDs[i].ID ];
+                     }
+                     spriteInfoTemp.dx = partTemp.imageIDs[i].x0;
+                     spriteInfoTemp.dy = partTemp.imageIDs[i].y0;
+
+                     spriteInfos[i] = spriteInfoTemp;
               }
        }
+#endif
 }
+
 

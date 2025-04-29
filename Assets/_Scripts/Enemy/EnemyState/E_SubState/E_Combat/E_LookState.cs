@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class E_LookState : EnemyCombatState
 {
+    float minDistance;
     public E_LookState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine)
     {
 
     }
 	public override void Enter() {        
 		base.Enter();
+        //minDistance = Random.Range( enemy.minAgroDistance -1.5f, enemy.minAgroDistance + 1 );
         movement.SetVelocityZero();
 	}
 
@@ -19,10 +21,11 @@ public class E_LookState : EnemyCombatState
 		base.LogicUpdate();
         if(isExitingState) return;
 
-        movement.CheckIfShouldFlip(xDirPlayer);
+        movement.CheckIfShouldFlip(xDirTarget);
 
         movement.SetVelocityZero();
-        if(distancePlayer > enemy.minAgroDistance){                        
+
+        if(XDisTarget > enemy.minAgroDistance + 1){                        
 			stateMachine.ChangeState(enemy.chargeState);
 		} 
         
@@ -32,13 +35,16 @@ public class E_LookState : EnemyCombatState
             case 0:
 				enemy.Paint(0);
 				break;
-            case 1:
-
+            case 1:                             
+            case 2:
+            case 3:
+            
                 enemy.Paint(FrameCurrent);
                 FrameCurrent = ( FrameCurrent + 1)%2;
                 enemy.Paint(0);
                 break;
-            case 4:
+            case 5: 
+            case 4: 
             
                 enemy.Paint(FrameCurrent);
                 FrameCurrent = ( FrameCurrent + 1)%2;

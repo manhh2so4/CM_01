@@ -29,7 +29,9 @@ public class ItemShop_UI : MonoBehaviour, IPointerClickHandler {
         OnSelect?.Invoke();
         UI_selected.SetSelected(this.transform as RectTransform);
     }
-    public void OnDisable(){
+    void OnDisable()
+    {
         UI_selected.SetSelected(null);
     }
+
 }

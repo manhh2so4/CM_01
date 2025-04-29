@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e633f32cb8ec445b769f2077137377, type: 3}
+  m_Name: Ao 5_Sprite
+  m_EditorClassIdentifier: 
+  PartType: 1
+  spriteInfos:
+  - sprite: {fileID: -5027509340213622084, guid: 719ee77855068f749a33fc6496951865, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: -190587159223057277, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: -2
+    dy: -2
+  - sprite: {fileID: -7226479682729980995, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: -1
+    dy: -3
+  - sprite: {fileID: 5341915492894051597, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: -2
+    dy: -2
+  - sprite: {fileID: 7537292068877936519, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: -2
+    dy: -3
+  - sprite: {fileID: -5951300427386752941, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 0
+    dy: -3
+  - sprite: {fileID: 7488990881031252310, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: -1
+    dy: -2
+  - sprite: {fileID: 6985088157523624575, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: -1
+    dy: -3
+  - sprite: {fileID: 8667938514999487238, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 4246010701578017363, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: -4
+    dy: 0
+  - sprite: {fileID: 2749235425237266878, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: -3
+    dy: -2
+  - sprite: {fileID: 4414011543242549170, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: -1
+    dy: -2
+  - sprite: {fileID: 5207000421010791253, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: -1
+    dy: -2
+  - sprite: {fileID: -2763694330348596835, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 0
+    dy: -2
+  - sprite: {fileID: -8631318785239197704, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 1489668700847450854, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: -8686112698909794860, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 0
+    dy: 0
+  - sprite: {fileID: 6560979871319251897, guid: 6a3bb8ee4ef3ca74ca3d0e7247e9a8d6, type: 3}
+    dx: 0
+    dy: -1

@@ -2,7 +2,7 @@ using UnityEngine;
 namespace HStrong.ProjectileSystem
 {
     public class Projectile_Damage : ProjectileComponent {
-        [SerializeField] private Effect_Instance EffecHit;
+        [SerializeField] private BaseEffect EffecHit;
         [SerializeField] LayerMask layerMask;
         [SerializeField] float radius = .15f;
         [SerializeField] Vector2 offset = new Vector2(0,0);
@@ -17,11 +17,11 @@ namespace HStrong.ProjectileSystem
                     if(hit.tag == gameObject.tag) return;
 
                     if(projectile.stats != null){
-                        projectile.stats.DoDamage(damageable.Target(EffecHit));
+                        projectile.stats.DoDamage(damageable.GetTarget(EffecHit));
                         
                     }
                     else{
-                        damageable.Target(EffecHit).DoDamage(projectile.damage);
+                        damageable.GetTarget(EffecHit).DoDamage(projectile.damage);
                     }
                     remove();   
                 }

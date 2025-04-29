@@ -30,7 +30,7 @@ public class Read_Mob : MonoBehaviour
             MobData tempId = new MobData();
             JsonData data2 = GetItem(data[i]["Img1"].ToString());
             tempId.imageInfors = new ImageInfor[data2.Count];
-             for (int j = 0; j < data2.Count; j++)
+            for (int j = 0; j < data2.Count; j++)
             {
                 ImageInfor image = new ImageInfor();
                 image.ID = int.Parse(data2[j]["ID"].ToString());
@@ -42,11 +42,11 @@ public class Read_Mob : MonoBehaviour
             }
 
             JsonData data3 = GetItem(data[i]["frameBoss"].ToString());
-            tempId.frameBosses = new FrameBoss[data3.Count];
+            tempId.frameBosses = new FrameImage[data3.Count];
             for (int j = 0; j < data3.Count; j++)
             {
                 
-                FrameBoss frameTemp = new FrameBoss();
+                FrameImage frameTemp = new FrameImage();
                 int[] _dx = new int[data3[j]["dx"].Count];
                 int[] _dy = new int[data3[j]["dy"].Count];
                 int[] _Id = new int[data3[j]["idImg"].Count];

@@ -1,7 +1,7 @@
-using BehaviorDesigner.Runtime.Tasks.Unity.UnityCharacterController;
 using NaughtyAttributes;
 using UnityEngine;
-
+using SOArchitecture;
+using HStrong.Saving;
 
 public class CharacterStats : CoreComponent{
 
@@ -12,24 +12,41 @@ public class CharacterStats : CoreComponent{
 
     [Header("Defensive stats")]
     public Stat Health;
+    public Stat Mana;
     public Stat armor;
-    public Stat magicResistance;
+
     [Header("Defensive stats")]
     [SerializeField] protected bool isDead;
     public event System.Action onChangeHP;
-    public System.Action onHealthZero;
+    public System.Action OnDie;
     Movement movement;
+    LevelSystem levelSystem;
+    [Header("Share Data")]
+    [SerializeField] StatVariable ShareHealth;
+    [SerializeField] StatVariable ShareMana;
 
-    void Start()
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        Health.OnChangeValue += ChangeHP;
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Health.OnChangeValue -= ChangeHP;
+    }
+
+    protected override void Start()
     {
         movement = core.GetCoreComponent<Movement>();
+        levelSystem = core.GetCoreComponent<LevelSystem>();
         ResetMaxHealth();
     }
     public void ResetMaxHealth(){
-
-        CalculationHP( GetMaxHealthValue() );
+        Health.CurrentValue = Health.GetValue() ;
         isDead = false;
     }
+
     public void DoDamage(CharacterStats _targetStats)
     {
         if (TargetCanAvoidAttack(_targetStats))
@@ -43,49 +60,46 @@ public class CharacterStats : CoreComponent{
         }
 
         totalDamage = CheckTargetArmor(_targetStats, totalDamage);
-        _targetStats.TakeDamage(totalDamage);
+
+        levelSystem?.AddExperience(totalDamage);
+
+        _targetStats.TakeDamage(totalDamage,CanCrit());
 
     }
-    public void DoDamage(int _damage){
+    public void DoDamage( int _damage ){
         _damage -= armor.GetValue();
         _damage = Mathf.Clamp(_damage, 1, int.MaxValue);
         TakeDamage( _damage);
     }
     [Button]
     void dame(){
-        TakeDamage(100);
-    }
-    public void TakeDamage(int _damage)
-    {
-        PopupText textPopup = PoolsContainer.GetObject(this.GetPrefab<PopupText>(), this.transform.position );
-        textPopup.Setup(_damage, false, movement.facingDirection);
-
-        DecreaseHealthBy(_damage);
-    }
-    protected virtual void DecreaseHealthBy(int _damage)
-    {
-        CalculationHP( -_damage); 
-    }
-    public virtual void IncreaseHealthBy(int _amount)
-    {
-       CalculationHP( _amount );  
-    }
-
-    void CalculationHP(int _amount)
-    {
-        Health.currentValue += _amount;
-        onChangeHP?.Invoke();
-        if ( Health.currentValue > GetMaxHealthValue() ) Health.currentValue = GetMaxHealthValue();
-        if ( Health.currentValue < 0 && !isDead ) Die();
+        //TakeDamage(100);
     }
     
+    public void TakeDamage(int _damage , bool isCrit = false)
+    {
+        PopupText textPopup = PoolsContainer.GetObject( this.GetPrefab<PopupText>(), this.transform.position );
+        textPopup.Setup( -_damage, isCrit ? PopupTextType.CritDamage : PopupTextType.Damage , movement?.facingDirection ?? 0 );
+        Health.CurrentValue -= _damage;
+    }
+
+    void ChangeHP()
+    {
+        if(ShareHealth != null) ShareHealth.Value = new StatValue( Health.CurrentValue, Health.GetValue() );
+        onChangeHP?.Invoke();
+        if( Health.CurrentValue <= 0 && !isDead ) Die();
+    }
+    void ChangeMana(int _amount)
+    {
+        if(ShareMana != null) ShareMana.Value = new StatValue( Mana.CurrentValue, Mana.GetValue() );
+    }
     protected virtual void Die()
     {
         isDead = true;
-        onHealthZero?.Invoke();
+        OnDie?.Invoke();
     }
 
-    #region Stat calculations
+#region Stat calculations
     private int CheckTargetArmor(CharacterStats _targetStats, int totalDamage)
     {
         totalDamage -= _targetStats.armor.GetValue();
@@ -120,35 +134,89 @@ public class CharacterStats : CoreComponent{
     {
         float totalCritPower = (critPower.GetValue()) *.01f;
         float critDamage = _damage * totalCritPower;
-
         return Mathf.RoundToInt(critDamage);
     }
-    public int GetMaxHealthValue()
-    {
-        return Health.GetValue();
-    }
+
     public Stat GetStatOfType(StatType statType)
     {
         switch (statType)
         {
             case StatType.damage: return damage;
             case StatType.critChance: return critChance;
-            case StatType.critDame: return critPower;
+            case StatType.critDamage: return critPower;
             case StatType.health: return Health;
+            case StatType.mana: return Mana;
             case StatType.armor: return armor;
-            case StatType.magicRes: return magicResistance;
         }
         return null;
     }
+    public void AddModifier(StatType statType, int _modifier)
+    {
+        GetStatOfType(statType)?.AddModifier(_modifier);
+    }
+    public void RemoveModifier(StatType statType, int _modifier)
+    {
+        GetStatOfType(statType)?.RemoveModifier(_modifier);
+    }
+
+    
     #endregion
 
+    #region BuffEffect
+    
+    // public void AddBuff(BuffType buffType, int valuePerTick, float duration){
+    //     switch(buffType){
+    //         case BuffType.Healing:
+    //             BuffHealing healing = this.ReplaceComponent<BuffHealing>();
+    //             healing.StartBuff(valuePerTick, duration,Health);
+    //             break;
+    //     }
+    // }
+
+    // [Button]
+    // void SetBuff(){
+    //     AddBuff(BuffType.Healing, 1, 10);
+    // }
+
+    #endregion
 }
+
 public enum StatType
 {
+    //-----------
     damage,
+    damagePercent,
     critChance,
-    critDame,
+    critDamage,
+    //-----------
+    cooldown,
+    fireDame,
+    iceDame,
+    electricDame,
+
+    //-----------
     health,
+    healthPercent,
+    mana,
+    manaPercent,
     armor,
-    magicRes,
+    //-----------
+    ExpPercent,
+    SpeedPercent,
+
+    BurnTime,
+    FreezeTime,
+    ShockTime,
+    //-----------
+}
+
+[System.Serializable]
+public struct Modifiers{
+    public StatType statType;
+    public int _value;
+}
+[System.Serializable]
+public struct ModifiersUpgrade{
+    public StatType statType;
+    public int[] _value;
 }

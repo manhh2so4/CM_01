@@ -54,7 +54,7 @@ public class NPC_AirState : NPCState
 
         movement.CheckIfShouldFlip( inputX );
 
-        movement.SetVelocityX( npc.mSpeed * inputX );
+        movement.SetVelocityX( npcData.speedMove * inputX );
 
         if(isFollowPath) return;
         

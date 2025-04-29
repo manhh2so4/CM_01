@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    CharacterStats Target(Effect_Instance prefabHit);
+    CharacterStats GetTarget(BaseEffect prefabHit);
 }

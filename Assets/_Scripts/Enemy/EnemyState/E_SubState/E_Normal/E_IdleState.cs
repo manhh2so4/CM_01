@@ -10,9 +10,7 @@ public class E_IdleState : EnemyNormalState
 	public override void Enter() {
 		base.Enter();	
 		movement?.SetVelocityZero();
-
 	}
-
 	public override void Exit() {
 		base.Exit();
 		if( GetRandomBoolean() ) movement.Flip();
@@ -22,25 +20,27 @@ public class E_IdleState : EnemyNormalState
 		base.LogicUpdate();
 		if(isExitingState) return;
 		
-		movement?.SetVelocityZero();
+		movement?.SetVelocityX(0);
 		if (Time.time >= startTime + timeChangeState) {
 			stateMachine.ChangeState(enemy.moveState);
 		}
+
 		if(TimeRate(0.4f/enemyData.speedMove)) return;
 		
 		switch(enemyData.type){
             case 0:
-				enemy.Paint(0);
-				break;
-            case 1:
-
+			case 1:                             
+            case 2:
+            case 3:
 				enemy.Paint(0);
                 break;
-            case 4:                
+			case 5: 
+            case 4: 
+				movement?.SetVelocityZero();               
                 enemy.Paint(FrameCurrent);
                 FrameCurrent = ( FrameCurrent + 1)%2; 
-
                 break;
+			
         }		
 	}
 }

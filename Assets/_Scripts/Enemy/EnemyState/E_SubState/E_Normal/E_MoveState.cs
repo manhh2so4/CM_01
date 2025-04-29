@@ -25,27 +25,41 @@ public class E_MoveState : EnemyNormalState
 			stateMachine.ChangeState(enemy.idleState);
 		}
 
-        
-        switch(enemyData.type){			
+        switch(enemyData.type){
+           
 			case 0:
 				enemy.Paint(0);
 				break;
             case 1:                             
-                
+            case 3:
                 if( (isWall || !isLedge ) && isGround) movement.Flip();
                 if(isGround) movement?.SetVelocityX(enemyData.speedMove * movement.facingDirection);
 
+                if( Mathf.Abs(XDirPos) > enemy.RangeMove ) movement.CheckIfShouldFlip( XDirPos > 0 ? -1 : 1 );
+                    
                 if(TimeRate(0.35f/enemyData.speedMove)) return;
-
-                enemy.Paint(FrameCurrent);
-                FrameCurrent = ( FrameCurrent + 1)%2; 
+                    enemy.Paint(FrameCurrent);
+                    FrameCurrent = ( FrameCurrent + 1)%2;
                 break;
-
             case 2:
-                break;
+                if( (isWall || !isLedge ) && isGround) movement.Flip();
+             
+                    if(TimeRate(0.35f/enemyData.speedMove)) return;
+                        enemy.Paint(FrameCurrent);
 
+                        if( Mathf.Abs(XDirPos) > enemy.RangeMove ) movement.CheckIfShouldFlip( XDirPos > 0 ? -1 : 1 );
+
+                        if( isGround && (FrameCurrent == 1) ) movement?.SetVelocityX(enemyData.speedMove * movement.facingDirection);
+
+                        FrameCurrent = ( FrameCurrent + 1)%2;
+                break;
+                
+            
             case 4:
+            case 5: 
+                
                 if(TimeRate(0.35f/enemyData.speedMove)) return;
+
                 if( Mathf.Abs(XDirPos) > enemy.RangeMove ){                    
                     movement.CheckIfShouldFlip( XDirPos > 0 ? -1 : 1 );
                 } 
@@ -55,6 +69,7 @@ public class E_MoveState : EnemyNormalState
                 }else{
                     dirY = Random.Range(-1f,1f);
                 }
+
                 vY *= -1;
 
                 movement?.SetVelocity( enemyData.speedMove/3 * movement.facingDirection,  dirY - vY);

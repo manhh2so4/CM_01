@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace HStrong.Shops{
-    public class NPC_Shop : MonoBehaviour, IClicker{
+    public class NPC_Shop : MonoBehaviour{
         [SerializeField] string shopName;
         public event Action onChange;
         
