@@ -21,7 +21,7 @@ MonoBehaviour:
   idEnemy: 11
   type: 5
   Name: "C\xE1nh cam"
-  speedMove: 2
+  speedMove: 1
   speedAtk: 3
   damage: 12
   Hp: 650

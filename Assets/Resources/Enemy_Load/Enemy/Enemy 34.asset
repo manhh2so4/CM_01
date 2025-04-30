@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db150e60046b5ee4898d6c624c8d0121, type: 3}
+  m_Name: Enemy 34
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 21300000, guid: 16e8ed83279b8e64986e140614b687b1, type: 3}
+  - {fileID: 21300000, guid: 0e7ab5ec8a04fb54f841d0fd9bcfb234, type: 3}
+  - {fileID: 21300000, guid: 4cd8c628101349344ab917955598131e, type: 3}
+  - {fileID: 21300000, guid: 01440eed643b8f54098eaf334189e9bd, type: 3}
+  projectile: {fileID: -2270211819613203214, guid: 25d81f1221c41f24cb80349a67ce24b9, type: 3}
+  idEnemy: 34
+  type: 3
+  Name: "R\xF9a tai xanh"
+  speedMove: 1
+  speedAtk: 3
+  damage: 35
+  Hp: 1250
+  timeReSpont: 40
+  countDrop: 0
+  <dropInfo>k__BackingField: []

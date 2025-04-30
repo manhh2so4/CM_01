@@ -123,7 +123,7 @@ public class Player : Entity,ISaveable
         SavingWrapper.LoadData();
 
         SavingWrapper.Save();
-
+        PlayerManager.GetPlayer().transform.position = new Vector3(19,5,0);
         await Fader.Instance.FadeIn(0.2f);
     }
     [Button]

@@ -65615,7 +65615,7 @@ Tilemap:
       - {fileID: 1935062222, guid: 0467605ce392e544c9c3eb64c7968cb4, type: 3}
       - {fileID: -1567653579, guid: 0467605ce392e544c9c3eb64c7968cb4, type: 3}
       - {fileID: -1813727476, guid: 0467605ce392e544c9c3eb64c7968cb4, type: 3}
-      m_AnimationSpeed: 12.000001
+      m_AnimationSpeed: 12
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 52, y: 1, z: 0}
@@ -65714,7 +65714,7 @@ Tilemap:
       - {fileID: 1935062222, guid: 0467605ce392e544c9c3eb64c7968cb4, type: 3}
       - {fileID: -1567653579, guid: 0467605ce392e544c9c3eb64c7968cb4, type: 3}
       - {fileID: -1813727476, guid: 0467605ce392e544c9c3eb64c7968cb4, type: 3}
-      m_AnimationSpeed: 12
+      m_AnimationSpeed: 12.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 54, y: 3, z: 0}
@@ -65725,7 +65725,7 @@ Tilemap:
       - {fileID: 1935062222, guid: 0467605ce392e544c9c3eb64c7968cb4, type: 3}
       - {fileID: -1567653579, guid: 0467605ce392e544c9c3eb64c7968cb4, type: 3}
       - {fileID: -1813727476, guid: 0467605ce392e544c9c3eb64c7968cb4, type: 3}
-      m_AnimationSpeed: 12
+      m_AnimationSpeed: 12.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 52, y: 4, z: 0}
@@ -65758,7 +65758,7 @@ Tilemap:
       - {fileID: -1941049875, guid: 63bf70770daa0d94e871e769fe7b6458, type: 3}
       - {fileID: -838716666, guid: 63bf70770daa0d94e871e769fe7b6458, type: 3}
       - {fileID: -378921485, guid: 63bf70770daa0d94e871e769fe7b6458, type: 3}
-      m_AnimationSpeed: 12.000001
+      m_AnimationSpeed: 12
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 52, y: 5, z: 0}
@@ -65824,7 +65824,7 @@ Tilemap:
       - {fileID: -1941049875, guid: 63bf70770daa0d94e871e769fe7b6458, type: 3}
       - {fileID: -838716666, guid: 63bf70770daa0d94e871e769fe7b6458, type: 3}
       - {fileID: -378921485, guid: 63bf70770daa0d94e871e769fe7b6458, type: 3}
-      m_AnimationSpeed: 12.000001
+      m_AnimationSpeed: 12
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 53, y: 7, z: 0}
@@ -67060,7 +67060,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: 275926543, guid: 4efed47dcae333542a567ac1dfb90790, type: 3}
       - {fileID: -1976737729, guid: 4efed47dcae333542a567ac1dfb90790, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -11, y: 2, z: 0}
@@ -68960,11 +68960,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2689868839486631336, guid: b63cfd8da6c9105458b9cc6433f688f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.392
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 2689868839486631336, guid: b63cfd8da6c9105458b9cc6433f688f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.207
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3239030181340395013, guid: b63cfd8da6c9105458b9cc6433f688f0, type: 3}
       propertyPath: m_AnchorMax.y
@@ -68980,19 +68980,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4578359214443937652, guid: b63cfd8da6c9105458b9cc6433f688f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.444445
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 4578359214443937652, guid: b63cfd8da6c9105458b9cc6433f688f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5219622566629690763, guid: b63cfd8da6c9105458b9cc6433f688f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.392
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 5219622566629690763, guid: b63cfd8da6c9105458b9cc6433f688f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.207
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5491418997985010761, guid: b63cfd8da6c9105458b9cc6433f688f0, type: 3}
       propertyPath: m_AnchorMax.y

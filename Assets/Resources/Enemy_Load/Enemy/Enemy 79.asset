@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db150e60046b5ee4898d6c624c8d0121, type: 3}
+  m_Name: Enemy 79
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 21300000, guid: f253babdf7fd90f49986dba99c3748be, type: 3}
+  - {fileID: 21300000, guid: 2eb5887978b70044892f2b20978f9795, type: 3}
+  - {fileID: 21300000, guid: 656c616d868e02f478e422bbf39d0502, type: 3}
+  - {fileID: 21300000, guid: e5abf5e5b9ab0bd439f4f56a7376add2, type: 3}
+  projectile: {fileID: -2270211819613203214, guid: 25d81f1221c41f24cb80349a67ce24b9, type: 3}
+  idEnemy: 79
+  type: 1
+  Name: "M\u1EB7t n\u1EA1 s\u1EAFt"
+  speedMove: 1
+  speedAtk: 3
+  damage: 80
+  Hp: 1250
+  timeReSpont: 40
+  countDrop: 0
+  <dropInfo>k__BackingField: []

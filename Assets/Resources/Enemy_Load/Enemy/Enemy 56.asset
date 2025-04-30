@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db150e60046b5ee4898d6c624c8d0121, type: 3}
+  m_Name: Enemy 56
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 21300000, guid: 2052eff3e6ce4a4459b8b9e4eea2dd2e, type: 3}
+  - {fileID: 21300000, guid: 46b89c68e3a921942929d91e96b30446, type: 3}
+  - {fileID: 21300000, guid: eb93fd50a18c7af47b4393e9999f1e34, type: 3}
+  - {fileID: 21300000, guid: 3490a30ed01cf9f4d9c9dc162cdc52bc, type: 3}
+  projectile: {fileID: -2270211819613203214, guid: 25d81f1221c41f24cb80349a67ce24b9, type: 3}
+  idEnemy: 56
+  type: 4
+  Name: Omalai
+  speedMove: 2
+  speedAtk: 3
+  damage: 57
+  Hp: 1250
+  timeReSpont: 40
+  countDrop: 0
+  <dropInfo>k__BackingField: []

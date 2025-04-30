@@ -20,7 +20,7 @@ MonoBehaviour:
   idEnemy: 14
   type: 4
   Name: "B\u01B0\u1EDBm l\u1EEDa"
-  speedMove: 2
+  speedMove: 1
   speedAtk: 3
   damage: 15
   Hp: 800

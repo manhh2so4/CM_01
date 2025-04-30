@@ -11,7 +11,6 @@ public class Enemy : EnemyEntity,IInteractable
 
     [Header("Enemy Setting")]
     #region Set_component
-    
     public Ease ease,easeEnd;
     [Expandable] public Enemy_SO enemy_Data;
     Sprite[] sprites;
@@ -19,7 +18,6 @@ public class Enemy : EnemyEntity,IInteractable
     //CapsuleCollider2D CapsunCheckPlayer;
     #endregion
     //----------View_combat
-    public BaseEffect effPrefab;
     public Cooldown cooldowns = new Cooldown();
 
     #region Setup_Enemy
@@ -46,7 +44,6 @@ public class Enemy : EnemyEntity,IInteractable
         mSPR.sortingOrder = core.uniqueID;
 
     }
-
     void SetState(){
 
         moveState = new E_MoveState(this, stateMachine);
@@ -73,13 +70,7 @@ public class Enemy : EnemyEntity,IInteractable
     }
     private void OnEnable()
     {
-
-        int size = core.Height > 1 ? 3 : 2;
-        BaseEffect eff = PoolsContainer.GetObject(effPrefab, transform.position + Vector3.up*core.Height/2f,transform);
-        eff.SetData(core.SortingLayerID, core.uniqueID+2,-1,size);
-        Invoke(nameof(ShowImage),0.4f);
         CharStats.OnDie += CheckDead;
-        
     }
     void ShowImage(){
         mSPR.enabled = true;

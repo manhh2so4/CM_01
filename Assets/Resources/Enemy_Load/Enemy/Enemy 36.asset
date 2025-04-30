@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db150e60046b5ee4898d6c624c8d0121, type: 3}
+  m_Name: Enemy 36
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 21300000, guid: fe47c187bb6d0db4aa72b87275a9ae2a, type: 3}
+  - {fileID: 21300000, guid: 07e1f0c7a7134fe4cb14811cc7c210ab, type: 3}
+  - {fileID: 21300000, guid: e415b9de7e0976c4cbc0681153a01168, type: 3}
+  - {fileID: 21300000, guid: 33448a87b8d8536489399d378f3b08ba, type: 3}
+  projectile: {fileID: -2270211819613203214, guid: 25d81f1221c41f24cb80349a67ce24b9, type: 3}
+  idEnemy: 36
+  type: 3
+  Name: "Ma 1 m\u1EAFt"
+  speedMove: 2
+  speedAtk: 3
+  damage: 37
+  Hp: 1250
+  timeReSpont: 40
+  countDrop: 0
+  <dropInfo>k__BackingField: []

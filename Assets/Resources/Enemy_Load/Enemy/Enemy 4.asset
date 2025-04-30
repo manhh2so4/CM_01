@@ -21,7 +21,7 @@ MonoBehaviour:
   idEnemy: 4
   type: 2
   Name: "Th\u1ECF x\xE1m"
-  speedMove: 3
+  speedMove: 2
   speedAtk: 3
   damage: 5
   Hp: 300

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db150e60046b5ee4898d6c624c8d0121, type: 3}
+  m_Name: Enemy 31
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 21300000, guid: 35e75457163cb2b49b339c28c35a2c7a, type: 3}
+  - {fileID: 21300000, guid: fc6350592dd803148b0ff1836d6e4292, type: 3}
+  - {fileID: 21300000, guid: c958e5783b698f745b5a66997d55e941, type: 3}
+  - {fileID: 21300000, guid: 065d307aee995db43b8f6de03908701d, type: 3}
+  projectile: {fileID: -2270211819613203214, guid: 25d81f1221c41f24cb80349a67ce24b9, type: 3}
+  idEnemy: 31
+  type: 0
+  Name: "Qu\u1EF7 hoa"
+  speedMove: 1
+  speedAtk: 3
+  damage: 32
+  Hp: 1250
+  timeReSpont: 40
+  countDrop: 0
+  <dropInfo>k__BackingField: []

@@ -1437,216 +1437,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1581327523}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!213 &94647562
-Sprite:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 72
-    height: 56
-  m_Offset: {x: 0, y: -28}
-  m_Border: {x: 0, y: 0, z: 0, w: 0}
-  m_PixelsToUnits: 100
-  m_Pivot: {x: 0.5, y: 0}
-  m_Extrude: 0
-  m_IsPolygon: 0
-  m_AtlasName: 
-  m_PackingTag: 
-  m_RenderDataKey:
-    00000000000000000000000000000000: 0
-  m_AtlasTags: []
-  m_SpriteAtlas: {fileID: 0}
-  m_RD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: 222c8033a143f3246a6951bea32f9050, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 15
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 7
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 060005000400030004000500010004000300000001000300020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 7
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 152
-      _typelessdata: ec51b83e295c0f3f00000000c3f5a83e0000000000000000ec51b83e0ad7233c000000000ad723be295c0f3f000000000ad7a3be0000000000000000ec51b8beec51b83e00000000ec51b8be0ad7a33c000000000000000000000000000000000000803f0000803f5555753f000000000000803f2549923ce4388e3e0000803f398e633d00000000000000004992243f000000002549123d
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 72
-      height: 56
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 36, z: 100, w: 0}
-    downscaleMultiplier: 1
-  m_AtlasRD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: 222c8033a143f3246a6951bea32f9050, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 15
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 7
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 060005000400030004000500010004000300000001000300020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 7
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 152
-      _typelessdata: ec51b83e295c0f3f00000000c3f5a83e0000000000000000ec51b83e0ad7233c000000000ad723be295c0f3f000000000ad7a3be0000000000000000ec51b8beec51b83e00000000ec51b8be0ad7a33c000000000000000000000000000000000000803f0000803f5555753f000000000000803f2549923ce4388e3e0000803f398e633d00000000000000004992243f000000002549123d
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 72
-      height: 56
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 36, z: 100, w: 0}
-    downscaleMultiplier: 1
-  m_PhysicsShape: []
-  m_Bones: []
-  m_SpriteID: 
 --- !u!1 &107723945
 GameObject:
   m_ObjectHideFlags: 0
@@ -58541,216 +58331,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!213 &542235642
-Sprite:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 96
-    height: 68
-  m_Offset: {x: 0, y: -34}
-  m_Border: {x: 0, y: 0, z: 0, w: 0}
-  m_PixelsToUnits: 100
-  m_Pivot: {x: 0.5, y: 0}
-  m_Extrude: 0
-  m_IsPolygon: 0
-  m_AtlasName: 
-  m_PackingTag: 
-  m_RenderDataKey:
-    00000000000000000000000000000000: 0
-  m_AtlasTags: []
-  m_SpriteAtlas: {fileID: 0}
-  m_RD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: cb8e9e3744ebb9649a52ae58c63bbaea, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 12
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 6
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 050004000100030001000400000001000300020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 6
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 128
-      _typelessdata: b81e853e7b142e3f000000008fc2f53e00000000000000008fc2f53e85ebd13e000000001f85ebbe7b142e3f000000008fc2f5be0ad7233f000000008fc2f5be000000000000000000000000000000005555453f0000803f0000803f000000000000803f5a5a1a3fabaaaa3c0000803f00000000f1f0703f0000000000000000
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 96
-      height: 68
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 48, z: 100, w: 0}
-    downscaleMultiplier: 1
-  m_AtlasRD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: cb8e9e3744ebb9649a52ae58c63bbaea, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 12
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 6
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 050004000100030001000400000001000300020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 6
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 128
-      _typelessdata: b81e853e7b142e3f000000008fc2f53e00000000000000008fc2f53e85ebd13e000000001f85ebbe7b142e3f000000008fc2f5be0ad7233f000000008fc2f5be000000000000000000000000000000005555453f0000803f0000803f000000000000803f5a5a1a3fabaaaa3c0000803f00000000f1f0703f0000000000000000
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 96
-      height: 68
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 48, z: 100, w: 0}
-    downscaleMultiplier: 1
-  m_PhysicsShape: []
-  m_Bones: []
-  m_SpriteID: 
 --- !u!1 &553423250
 GameObject:
   m_ObjectHideFlags: 0
@@ -58982,11 +58562,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.42000008
+      value: 0.5799866
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 1
+      value: 68
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -58995,7 +58575,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 751ae8a38c2339f488e4658cb973e578, type: 2}
+      objectReference: {fileID: 11400000, guid: 67a86ccec5b252f408fd4d748adbb40e, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -59007,7 +58587,7 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1422935311}
+      objectReference: {fileID: 21300000, guid: ad79235dbbd872e4dab24d9d2dc6727b, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -59054,15 +58634,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.512
+      value: 0.768
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 0.6
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.3
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -59078,11 +58658,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.64
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.6
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -59111,11 +58691,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.42000008
+      value: 0.7200012
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 13
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -59124,7 +58704,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: ca85b8d326c93de47a97898bd5b3d102, type: 2}
+      objectReference: {fileID: 11400000, guid: 85c09294e47afb448af6d2438e0f4271, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -59136,7 +58716,7 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 850172466}
+      objectReference: {fileID: 21300000, guid: f4660db653146604e9efe870705aabb1, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -59147,7 +58727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -290.44266
+      value: -293.12
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.z
@@ -59183,15 +58763,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.512
+      value: 0.992
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 0.56
+      value: 1.52
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.28
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -59207,11 +58787,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.64
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.56
+      value: 1.52
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -60122,11 +59702,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5400009
+      value: 0.3999939
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 14
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -60135,7 +59715,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 3e969d43177bcb04990ea8eed1f4e5a0, type: 2}
+      objectReference: {fileID: 11400000, guid: 2bd28013ca792a84cb314cea549e1c93, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -60147,7 +59727,7 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 836888999}
+      objectReference: {fileID: 21300000, guid: 023aeb610728cfb41a0b89f2c7b91aea, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -60158,7 +59738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -281.74265
+      value: -282.36
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.z
@@ -60194,15 +59774,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.704
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 0.8
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.4
+      value: 0.215
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -60218,11 +59798,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.88
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.8
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -60700,216 +60280,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!213 &764952540
-Sprite:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 104
-    height: 136
-  m_Offset: {x: 0, y: -68}
-  m_Border: {x: 0, y: 0, z: 0, w: 0}
-  m_PixelsToUnits: 100
-  m_Pivot: {x: 0.5, y: 0}
-  m_Extrude: 0
-  m_IsPolygon: 0
-  m_AtlasName: 
-  m_PackingTag: 
-  m_RenderDataKey:
-    00000000000000000000000000000000: 0
-  m_AtlasTags: []
-  m_SpriteAtlas: {fileID: 0}
-  m_RD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: c080b4a90d138a14a8626caa0896e380, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 27
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 11
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 0a0009000800060008000900070008000600050007000600030005000600040005000300010004000300000001000300020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 11
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 232
-      _typelessdata: b81e053f0ad7833f000000003d0ad73e0000000000000000b81e053f295c8f3e00000000295c8f3d7b14ae3f000000000ad7a3bc00000000000000008fc2f5bc00000000000000000ad723bd7b14ae3f00000000f628dcbe0000000000000000d7a3f0be0ad7233c00000000b81e05bf3333733f00000000b81e05bfe17a943e000000000000000000000000000000000000803fe2e1413f7662673f000000000000803fd3d2523e143b113f0000803f6227f63e00000000143bf13e00000000c54eec3e0000803f143bb13d000000004fec443df1f0f03b00000000d3d2323f000000005a5a5a3e
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 104
-      height: 136
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 52, z: 100, w: 0}
-    downscaleMultiplier: 1
-  m_AtlasRD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: c080b4a90d138a14a8626caa0896e380, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 27
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 11
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 0a0009000800060008000900070008000600050007000600030005000600040005000300010004000300000001000300020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 11
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 232
-      _typelessdata: b81e053f0ad7833f000000003d0ad73e0000000000000000b81e053f295c8f3e00000000295c8f3d7b14ae3f000000000ad7a3bc00000000000000008fc2f5bc00000000000000000ad723bd7b14ae3f00000000f628dcbe0000000000000000d7a3f0be0ad7233c00000000b81e05bf3333733f00000000b81e05bfe17a943e000000000000000000000000000000000000803fe2e1413f7662673f000000000000803fd3d2523e143b113f0000803f6227f63e00000000143bf13e00000000c54eec3e0000803f143bb13d000000004fec443df1f0f03b00000000d3d2323f000000005a5a5a3e
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 104
-      height: 136
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 52, z: 100, w: 0}
-    downscaleMultiplier: 1
-  m_PhysicsShape: []
-  m_Bones: []
-  m_SpriteID: 
 --- !u!1 &773573030
 GameObject:
   m_ObjectHideFlags: 0
@@ -61377,216 +60747,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dec6d80cf6838f48bf58e342503375d, type: 3}
---- !u!213 &836888999
-Sprite:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 88
-    height: 80
-  m_Offset: {x: 0, y: -40}
-  m_Border: {x: 0, y: 0, z: 0, w: 0}
-  m_PixelsToUnits: 100
-  m_Pivot: {x: 0.5, y: 0}
-  m_Extrude: 0
-  m_IsPolygon: 0
-  m_AtlasName: 
-  m_PackingTag: 
-  m_RenderDataKey:
-    00000000000000000000000000000000: 0
-  m_AtlasTags: []
-  m_SpriteAtlas: {fileID: 0}
-  m_RD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: b4ddafa0c69586e428a5e56a80af6f80, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 12
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 6
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 050004000100030001000400000001000300020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 6
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 128
-      _typelessdata: ae47e13ecdcc4c3f00000000713d8a3e0000000000000000ae47e13e3d0ad73e00000000ec51b83dcdcc4c3f00000000ae47e1be6666263f00000000ae47e1be000000000000000000000000000000000000803f0000803fa38b4e3f000000000000803f6666063f8c2e1a3f0000803f000000000000503f0000000000000000
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 88
-      height: 80
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 44, z: 100, w: 0}
-    downscaleMultiplier: 1
-  m_AtlasRD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: b4ddafa0c69586e428a5e56a80af6f80, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 12
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 6
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 050004000100030001000400000001000300020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 6
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 128
-      _typelessdata: ae47e13ecdcc4c3f00000000713d8a3e0000000000000000ae47e13e3d0ad73e00000000ec51b83dcdcc4c3f00000000ae47e1be6666263f00000000ae47e1be000000000000000000000000000000000000803f0000803fa38b4e3f000000000000803f6666063f8c2e1a3f0000803f000000000000503f0000000000000000
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 88
-      height: 80
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 44, z: 100, w: 0}
-    downscaleMultiplier: 1
-  m_PhysicsShape: []
-  m_Bones: []
-  m_SpriteID: 
 --- !u!1001 &839691785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61605,11 +60765,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.62000084
+      value: 0.55999756
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 17
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -61618,7 +60778,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 2103e1f770dae8346a5a0edfdd5f9300, type: 2}
+      objectReference: {fileID: 11400000, guid: 2059e5a558cc8ec42ab605faedd16d93, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -61630,7 +60790,7 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 764952540}
+      objectReference: {fileID: 21300000, guid: 8f4103911fb527c41b8dd90b6d3f3039, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -61677,15 +60837,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.832
+      value: 0.736
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 1.36
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.68
+      value: 0.44
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -61701,11 +60861,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.04
+      value: 0.92
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.36
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -62006,216 +61166,6 @@ Sprite:
     atlasRectOffset: {x: -1, y: -1}
     settingsRaw: 64
     uvTransform: {x: 100, y: 0, z: 100, w: 16}
-    downscaleMultiplier: 1
-  m_PhysicsShape: []
-  m_Bones: []
-  m_SpriteID: 
---- !u!213 &850172466
-Sprite:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 64
-    height: 56
-  m_Offset: {x: 0, y: -28}
-  m_Border: {x: 0, y: 0, z: 0, w: 0}
-  m_PixelsToUnits: 100
-  m_Pivot: {x: 0.5, y: 0}
-  m_Extrude: 0
-  m_IsPolygon: 0
-  m_AtlasName: 
-  m_PackingTag: 
-  m_RenderDataKey:
-    00000000000000000000000000000000: 0
-  m_AtlasTags: []
-  m_SpriteAtlas: {fileID: 0}
-  m_RD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: 0566efe687e8da14baada1369259262a, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 15
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 7
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 060005000400030004000500010004000300000001000300020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 7
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 152
-      _typelessdata: 52b89e3e295c0f3f000000000ad7a33e00000000000000000ad7a33eb81e053f000000005c8f42be295c0f3f00000000295c8fbe00000000000000000ad7a3be6666e63e000000000ad7a3be0ad7233d0000000000000000000000000000000000007c3f0000803f0000803f000000000000803fdbb66d3f0000503e0000803f0000803d0000000000000000dbb64d3f000000002549923d
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 64
-      height: 56
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 32, z: 100, w: 0}
-    downscaleMultiplier: 1
-  m_AtlasRD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: 0566efe687e8da14baada1369259262a, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 15
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 7
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 060005000400030004000500010004000300000001000300020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 7
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 152
-      _typelessdata: 52b89e3e295c0f3f000000000ad7a33e00000000000000000ad7a33eb81e053f000000005c8f42be295c0f3f00000000295c8fbe00000000000000000ad7a3be6666e63e000000000ad7a3be0ad7233d0000000000000000000000000000000000007c3f0000803f0000803f000000000000803fdbb66d3f0000503e0000803f0000803d0000000000000000dbb64d3f000000002549923d
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 64
-      height: 56
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 32, z: 100, w: 0}
     downscaleMultiplier: 1
   m_PhysicsShape: []
   m_Bones: []
@@ -62915,11 +61865,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.42000008
+      value: 0.66000366
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 13
+      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -62928,7 +61878,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: ca85b8d326c93de47a97898bd5b3d102, type: 2}
+      objectReference: {fileID: 11400000, guid: 5fd5c5e6c9c7c4e4aaf79f5d9363d588, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -62940,7 +61890,7 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 850172466}
+      objectReference: {fileID: 21300000, guid: 2052eff3e6ce4a4459b8b9e4eea2dd2e, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -62951,7 +61901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -290.40265
+      value: -293.11
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.z
@@ -62987,15 +61937,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.512
+      value: 0.896
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 0.56
+      value: 1.36
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.28
+      value: 0.68
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -63011,11 +61961,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.64
+      value: 1.12
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.56
+      value: 1.36
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -63102,11 +62052,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5799999
+      value: 1.2399902
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 3
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -63115,7 +62065,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 971ae836b4edde0478e11138270eb542, type: 2}
+      objectReference: {fileID: 11400000, guid: 98e3869a05fa95f44b98966da24609aa, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -63127,18 +62077,18 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 542235642}
+      objectReference: {fileID: 21300000, guid: 4295882e6201dd741a9ed30ed234370d, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -369.05505
+      value: -369.01
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -283.96265
+      value: -284.18
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.z
@@ -63174,15 +62124,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.768
+      value: 1.824
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 0.68
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.34
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -63198,11 +62148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.96
+      value: 2.28
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.68
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -64998,7 +63948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5400009
+      value: 0.54000854
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
@@ -65023,7 +63973,7 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1156113686}
+      objectReference: {fileID: 21300000, guid: 9579c19f73998384491a164e4a2d1096, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -65038,11 +63988,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -397.07507
+      value: -396.48
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -281.59265
+      value: -282.11
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.z
@@ -79172,216 +78122,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!213 &1156113686
-Sprite:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 88
-    height: 88
-  m_Offset: {x: 0, y: -44}
-  m_Border: {x: 0, y: 0, z: 0, w: 0}
-  m_PixelsToUnits: 100
-  m_Pivot: {x: 0.5, y: 0}
-  m_Extrude: 0
-  m_IsPolygon: 0
-  m_AtlasName: 
-  m_PackingTag: 
-  m_RenderDataKey:
-    00000000000000000000000000000000: 0
-  m_AtlasTags: []
-  m_SpriteAtlas: {fileID: 0}
-  m_RD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: 9579c19f73998384491a164e4a2d1096, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 21
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 9
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 080007000600050006000700030006000500040003000500000003000400010003000000020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 9
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 184
-      _typelessdata: 3d0ad73eae47613f00000000ae47e13e0ad7a33c00000000ae47e13ef6285c3f0000000014aec73e00000000000000008fc2f53dae47613f00000000295c8f3d295c4f3f00000000e17a94be0000000000000000ae47e1be14aec73e00000000ae47e1beb81e053e00000000000000008c2e7a3f0000803f0000803f8c2eba3c0000803f8c2e7a3f5d74713f00000000bae8223f0000803f175d143fe9a26b3fa38b2e3e0000000000000000bae8e23e00000000d145173e
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 88
-      height: 88
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 44, z: 100, w: 0}
-    downscaleMultiplier: 1
-  m_AtlasRD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: 9579c19f73998384491a164e4a2d1096, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 21
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 9
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 080007000600050006000700030006000500040003000500000003000400010003000000020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 9
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 184
-      _typelessdata: 3d0ad73eae47613f00000000ae47e13e0ad7a33c00000000ae47e13ef6285c3f0000000014aec73e00000000000000008fc2f53dae47613f00000000295c8f3d295c4f3f00000000e17a94be0000000000000000ae47e1be14aec73e00000000ae47e1beb81e053e00000000000000008c2e7a3f0000803f0000803f8c2eba3c0000803f8c2e7a3f5d74713f00000000bae8223f0000803f175d143fe9a26b3fa38b2e3e0000000000000000bae8e23e00000000d145173e
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 88
-      height: 88
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 44, z: 100, w: 0}
-    downscaleMultiplier: 1
-  m_PhysicsShape: []
-  m_Bones: []
-  m_SpriteID: 
 --- !u!1 &1160814804
 GameObject:
   m_ObjectHideFlags: 0
@@ -83452,11 +82192,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.42000008
+      value: 0.519989
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 1
+      value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -83465,7 +82205,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 751ae8a38c2339f488e4658cb973e578, type: 2}
+      objectReference: {fileID: 11400000, guid: 06b290fded94a214fa5cdce242b3777a, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -83477,7 +82217,7 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1422935311}
+      objectReference: {fileID: 21300000, guid: 758fc205af511184cbf29b36ba4c3275, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -83524,15 +82264,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.512
+      value: 0.672
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 0.6
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.3
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -83548,11 +82288,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.64
+      value: 0.84
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.6
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -84172,216 +82912,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
   m_PrefabInstance: {fileID: 1118454812}
   m_PrefabAsset: {fileID: 0}
---- !u!213 &1422935311
-Sprite:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 64
-    height: 60
-  m_Offset: {x: 0, y: -30}
-  m_Border: {x: 0, y: 0, z: 0, w: 0}
-  m_PixelsToUnits: 100
-  m_Pivot: {x: 0.5, y: 0}
-  m_Extrude: 0
-  m_IsPolygon: 0
-  m_AtlasName: 
-  m_PackingTag: 
-  m_RenderDataKey:
-    00000000000000000000000000000000: 0
-  m_AtlasTags: []
-  m_SpriteAtlas: {fileID: 0}
-  m_RD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: ae72e65f202bbea4d80e0ba3c95f3699, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 39
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 13
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 0900010002000c000b0007000a0007000b00090007000a00010009000a00020007000900000007000200060007000000080007000600050004000300000003000400010003000000020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 13
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 264
-      _typelessdata: 0ad723be9a99193f000000003d0a57beb81e053e00000000cdcc4cbeb81e053e000000008fc275be295c0f3e000000000ad7a3bed7a3f03e000000000ad7a3beae47613e000000001f856b3e9a99193f000000000ad7a33e00000000000000000ad7a33eb81e053f00000000cdcc4cbe8fc2f53d00000000ae4761be8fc2f53d000000009a9999be8fc2f53c000000009a9999be0000000000000000000000000000803e0100803f0000303ededd5d3e0000403ededd5d3e0000003eefee6e3e000000008988483f00000000bcbbbb3e00005c3f0100803f0000803f000000000000803fdedd5d3f0000403ecdcc4c3e0000203ecdcc4c3ef0ffff3ccdcc4c3df0ffff3c00000000
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 64
-      height: 60
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 32, z: 100, w: 0}
-    downscaleMultiplier: 1
-  m_AtlasRD:
-    serializedVersion: 3
-    texture: {fileID: 2800000, guid: ae72e65f202bbea4d80e0ba3c95f3699, type: 3}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 39
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 13
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 0900010002000c000b0007000a0007000b00090007000a00010009000a00020007000900000007000200060007000000080007000600050004000300000003000400010003000000020001000000
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 13
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 264
-      _typelessdata: 0ad723be9a99193f000000003d0a57beb81e053e00000000cdcc4cbeb81e053e000000008fc275be295c0f3e000000000ad7a3bed7a3f03e000000000ad7a3beae47613e000000001f856b3e9a99193f000000000ad7a33e00000000000000000ad7a33eb81e053f00000000cdcc4cbe8fc2f53d00000000ae4761be8fc2f53d000000009a9999be8fc2f53c000000009a9999be0000000000000000000000000000803e0100803f0000303ededd5d3e0000403ededd5d3e0000003eefee6e3e000000008988483f00000000bcbbbb3e00005c3f0100803f0000803f000000000000803fdedd5d3f0000403ecdcc4c3e0000203ecdcc4c3ef0ffff3ccdcc4c3df0ffff3c00000000
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 64
-      height: 60
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 32, z: 100, w: 0}
-    downscaleMultiplier: 1
-  m_PhysicsShape: []
-  m_Bones: []
-  m_SpriteID: 
 --- !u!4 &1425322212 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
@@ -84657,11 +83187,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.62000084
+      value: 0.55999756
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 17
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -84670,7 +83200,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 2103e1f770dae8346a5a0edfdd5f9300, type: 2}
+      objectReference: {fileID: 11400000, guid: 9d94a6cae82425e4eb0f35c743993215, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -84682,7 +83212,7 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 764952540}
+      objectReference: {fileID: 21300000, guid: b8c52918a2965ea42a28370013d0e1db, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -84729,15 +83259,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.832
+      value: 0.736
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 1.36
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.68
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -84753,11 +83283,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.04
+      value: 0.92
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.36
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -85125,11 +83655,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.45999908
+      value: 0.519989
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 2
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -85138,7 +83668,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 867915b118579c348a04dd4b9f2fb02b, type: 2}
+      objectReference: {fileID: 11400000, guid: 2dd95864f8f338443819241e4d5e56d2, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -85150,18 +83680,18 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 94647562}
+      objectReference: {fileID: 21300000, guid: 16e8ed83279b8e64986e140614b687b1, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -393.21506
+      value: -390.41
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -291.85266
+      value: -289.12
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.z
@@ -85197,15 +83727,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.576
+      value: 0.672
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 0.56
+      value: 0.44
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.28
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -85221,11 +83751,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.72
+      value: 0.84
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.56
+      value: 0.44
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -85294,11 +83824,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.45999908
+      value: 0.6950073
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 2
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -85307,7 +83837,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 867915b118579c348a04dd4b9f2fb02b, type: 2}
+      objectReference: {fileID: 11400000, guid: ef7e38f51eeb72c4c8a2a2435ce308cc, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -85319,14 +83849,14 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 94647562}
+      objectReference: {fileID: 21300000, guid: 7d599529799fdec419c886fc839e1f8a, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -394.89508
+      value: -392.82
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.y
@@ -85366,15 +83896,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.576
+      value: 0.952
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 0.56
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.28
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -85390,11 +83920,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.72
+      value: 1.19
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.56
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -87659,11 +86189,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5400009
+      value: 0.980011
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 4
+      value: 82
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -87672,7 +86202,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 9c0d93efd0fb12b4c880476569651282, type: 2}
+      objectReference: {fileID: 11400000, guid: 95aebdb0a5cd98d42807a964605f4893, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -87684,7 +86214,7 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1156113686}
+      objectReference: {fileID: 21300000, guid: c8bb4ef131a271f439015e57051f79ec, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -87699,11 +86229,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -392.23508
+      value: -389.05
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -281.59265
+      value: -282.18
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.z
@@ -87739,15 +86269,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.704
+      value: 1.408
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 0.88
+      value: 1.53
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.44
+      value: 0.765
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -87763,11 +86293,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.88
+      value: 1.76
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.88
+      value: 1.53
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -91087,11 +89617,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.42000008
+      value: 0.54000854
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 13
+      value: 57
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -91100,7 +89630,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: ca85b8d326c93de47a97898bd5b3d102, type: 2}
+      objectReference: {fileID: 11400000, guid: 2360acb0b255c3f4e955f23283083256, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -91112,7 +89642,7 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 850172466}
+      objectReference: {fileID: 21300000, guid: 2f637fcebfe18e04fb1119a599322910, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -91123,7 +89653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -290.40265
+      value: -293.13
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.z
@@ -91159,15 +89689,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.512
+      value: 0.704
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 0.56
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.28
+      value: 0.44
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -91183,11 +89713,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.64
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.56
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -92053,11 +90583,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5400009
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 4
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -92066,7 +90596,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 9c0d93efd0fb12b4c880476569651282, type: 2}
+      objectReference: {fileID: 11400000, guid: 7c3347fa872f42044b33d3684b2d43a6, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -92078,7 +90608,7 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1156113686}
+      objectReference: {fileID: 21300000, guid: 6b73eb8a0bd93c24fafedb72fcabeb5f, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -92093,11 +90623,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -399.51508
+      value: -401.63
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -281.69266
+      value: -282.11
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.z
@@ -92133,15 +90663,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.704
+      value: 0.64
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 0.88
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.44
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -92157,11 +90687,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.88
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.88
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -92808,11 +91338,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5799999
+      value: 0.53500366
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 3
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -92821,7 +91351,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 971ae836b4edde0478e11138270eb542, type: 2}
+      objectReference: {fileID: 11400000, guid: 045a2a0f5ad808e4ea6b8b57078e0b04, type: 2}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: AgroDistance
       value: 12
@@ -92837,18 +91367,18 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 542235642}
+      objectReference: {fileID: 21300000, guid: 1985a4f5b42322b499bd37dae02dbbe0, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -365.99506
+      value: -363.75
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -283.92267
+      value: -284.13
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.z
@@ -92884,15 +91414,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.768
+      value: 0.696
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 0.68
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.34
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -92908,11 +91438,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.96
+      value: 0.87
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.68
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -93021,11 +91551,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063178669804860258, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5400009
+      value: 0.38000488
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: idEnemy
-      value: 14
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: isComBat
@@ -93034,7 +91564,7 @@ PrefabInstance:
     - target: {fileID: 5622547191405853257, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: enemy_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 3e969d43177bcb04990ea8eed1f4e5a0, type: 2}
+      objectReference: {fileID: 11400000, guid: 8d3b35152c6d3db4bb8718b4e9878ffa, type: 2}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -93046,7 +91576,7 @@ PrefabInstance:
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 836888999}
+      objectReference: {fileID: 21300000, guid: 0e2d597772adfac4b8808a76fe9b831a, type: 3}
     - target: {fileID: 7681718937897350187, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -93057,7 +91587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -281.78265
+      value: -282.44
       objectReference: {fileID: 0}
     - target: {fileID: 7877395064351125377, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_LocalPosition.z
@@ -93093,15 +91623,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.x
-      value: 0.704
+      value: 0.448
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Size.y
-      value: 0.8
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_Offset.y
-      value: 0.4
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -93117,11 +91647,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.88
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.8
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 8123166000199916929, guid: de8069b152a1d6f4abe8ac98d45aaa65, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
