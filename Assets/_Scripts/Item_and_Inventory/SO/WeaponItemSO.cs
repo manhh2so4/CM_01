@@ -7,8 +7,8 @@ public class WeaponItemSO : EquipableItemSO {
     public WeaponType GetWeaponType(){
         return weaponType;
     } 
-    public void SetWeaponType(int type){
-        this.weaponType = (WeaponType)type;
+    public void SetWeaponType(WeaponType type){
+        this.weaponType = type;
     }
 
 }

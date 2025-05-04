@@ -43,15 +43,26 @@ public class SkillPassiveSheet : Sheet<SkillPassiveSheet.Row>
 }
 [System.Serializable]
 public class SheetSkillContainer : BaseSheetContainer{
-    public SkillSheet Skill { get; set; }
-    public SkillPassiveSheet SkillPassive { get; set; }
-    public override void BakeData(){
-        //BakeActiveSkill(Skill);
-        BakePassiveSkill(SkillPassive);
-    }
-    void BakeActiveSkill(SkillSheet skillSheet){
-        string assetPath = "Assets/Data/Data_skill/Kiem/";
+    // public SkillSheet Kiem { get; set; }
+    // public SkillSheet Kunai { get; set; }
+    // public SkillSheet Dao { get; set; }
+    
+    public SkillSheet Quat { get; set; }
+    public SkillSheet Cung { get; set; }
 
+    //public SkillPassiveSheet SkillPassive { get; set; }
+    public override void BakeData(){
+        //BakeActiveSkill(Kunai, "Kunai");
+        //BakeActiveSkill(Dao, "Dao");
+        //BakeActiveSkill(Kiem, "Kiem");
+        //BakeActiveSkill(Quat, "Quat");
+        BakeActiveSkill(Cung, "Cung");
+
+        //BakePassiveSkill(SkillPassive);
+    }
+    void BakeActiveSkill(SkillSheet skillSheet,string nameSkill){
+        string assetPath = "Assets/Data/Data_skill/"+ nameSkill +"/";
+  
         foreach( var skill in skillSheet ){   
             string namePAth = assetPath + skill.Id + ".asset";
             SkillData_Active_SO skillSO = AssetDatabase.LoadAssetAtPath<SkillData_Active_SO>( namePAth );
@@ -67,7 +78,9 @@ public class SheetSkillContainer : BaseSheetContainer{
             skillSO.Range = skill.Range;
             skillSO.cooldown = new float[skill.MaxLevel];
             skillSO.consumeMana = new int[skill.MaxLevel];
-            skillSO.icon = GetSpritesID.Get()[skill.Icon];
+            if(GetSpritesID.Get().ContainsKey(skill.Icon)){
+                skillSO.icon  = GetSpritesID.Get()[skill.Icon];
+            }
             int countStat = skill[0].Stat.Count;
             skillSO.AddtiveModifiers = new ModifiersUpgrade[countStat];
 

@@ -17,7 +17,9 @@ public class Equipment : MonoBehaviour,ISaveable
     {
         characterStats = PlayerManager.GetCharStats();
         paintChar = PlayerManager.GetCore().GetCoreComponent<PaintChar>();
+        skillTreeManager = PlayerManager.GetSkillTree();
     }
+
 
     public EquipableItemSO GetItemInSlot(EquipType typeEquip){
         if(!equippedItems.ContainsKey(typeEquip)){
@@ -59,7 +61,7 @@ public class Equipment : MonoBehaviour,ISaveable
 				    paintChar.SetWeapon( GetItemInSlot(EquipType.Vukhi).GetImageDraw().spriteInfos);
 				}else paintChar.SetWeapon(null);
 
-                skillTreeManager.UpdateSkillTreeUI( GetItemInSlot(EquipType.Vukhi) );
+                skillTreeManager.UpdateSkillTreeUI( GetItemInSlot(EquipType.Vukhi) as WeaponItemSO );
                 break;
             case EquipType.Ao:
 				if(GetItemInSlot(EquipType.Ao) != null) {

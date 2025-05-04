@@ -18,17 +18,18 @@ public class InventoryItemSO : ScriptableObject
         if (itemLookupCache == null)
         {
             itemLookupCache = new Dictionary<string, InventoryItemSO>();
-                var itemList = Resources.LoadAll<InventoryItemSO>("Inventory/");
-                foreach (var item in itemList)
+            var itemList = Resources.LoadAll<InventoryItemSO>("Inventory/");
+            foreach (var item in itemList)
+            {
+                if (itemLookupCache.ContainsKey(item.itemID))
                 {
-                    if (itemLookupCache.ContainsKey(item.itemID))
-                    {
-                        Debug.LogError(string.Format("Looks like there's a duplicate GameDevTV.UI.InventorySystem ID for objects: {0} and {1}", itemLookupCache[item.itemID], item));
-                        continue;
-                    }
-
-                    itemLookupCache[item.itemID] = item;
+                    Debug.LogError(string.Format("Looks like there's a duplicate GameDevTV.UI.InventorySystem ID for objects: {0} and {1}", itemLookupCache[item.itemID], item));
+                    continue;
                 }
+
+                itemLookupCache[item.itemID] = item;
+            }
+            Debug.Log("itemLookupCache: " + itemLookupCache.Count);
         }
         if (itemID == null || !itemLookupCache.ContainsKey(itemID)) return null;
         return itemLookupCache[itemID];

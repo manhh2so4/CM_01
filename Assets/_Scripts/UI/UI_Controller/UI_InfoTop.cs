@@ -55,10 +55,10 @@ public class UI_InfoTop : MonoBehaviour {
         mpText.text = ManaPlayer.Value.currentValue.ToString();
     }
     void UpdateLevel(){
-        levelText.text = levelSystem.currentLevel.ToString();
+        levelText.text = levelSystem.CurrentLevel.ToString();
     }
     void UpdateProgress(){
-        float number = (float)levelSystem.currentXP / levelSystem.xpToNextLevel;
+        float number = (float)levelSystem.currentXP / levelSystem.XpToNextLevel;
         progressPercent.text = $"{Mathf.Round( number * 1000f) / 10f} % ";
         progressLV.fillAmount = number ;
     }

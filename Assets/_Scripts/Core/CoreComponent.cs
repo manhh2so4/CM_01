@@ -5,7 +5,7 @@ using UnityEngine;
 public class CoreComponent : MonoBehaviour, ILogicUpdate
 {
     protected Core core;
-    [SerializeField] protected Vector3 Top, Bottom , Center ;
+    protected Vector3 Top, Bottom , Center ;
     protected virtual void Awake()
     {
         core = transform.parent.GetComponent<Core>();

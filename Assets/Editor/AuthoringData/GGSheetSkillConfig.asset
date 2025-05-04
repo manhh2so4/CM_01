@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b0d4e92b631ea478df56c0a7a0dd30, type: 3}
   m_Name: GGSheetSkillConfig
   m_EditorClassIdentifier: 
-  GoogleSheetId: 1tjRcLoO7oQ_zQNYIUnszzrHm1lw3yGkakkyfjks_9iw
+  GoogleSheetId: 1mp_OvN765i9bt2vx5uRBaxwMZUcnf8uwCxWdCUIuwuE
   CredentialPath: Assets/Data/KEYgoogle.json
   targetScriptFile: {fileID: 11500000, guid: d4c825238aa2c174d8ba885edc5742dd, type: 3}

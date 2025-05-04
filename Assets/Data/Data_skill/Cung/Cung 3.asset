@@ -12,30 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bff999054a7070498e80d8cb4867207, type: 3}
   m_Name: Cung 3
   m_EditorClassIdentifier: 
-  icon: {fileID: -7393087915447259824, guid: e9c8dda83f5b2cf4bb0f25bd1aa3bc81, type: 3}
-  <ComponentData>k__BackingField:
-  - rid: 607104766750490624
-  - rid: 607104766750490626
-  - rid: 607104766750490627
+  icon: {fileID: 2940215818477824549, guid: e9c8dda83f5b2cf4bb0f25bd1aa3bc81, type: 3}
+  lvMaxSkill: 7
+  skillName: "Chi\xEAu Nikinkinsa"
+  description: "Kunai k\u1EBFt h\u1EE3p b\u0103ng thu\u1EADt t\u1EA1o ra v\xF2ng
+    s\xE1t th\u01B0\u01A1ng t\xE1c \u0111\u1ED9ng l\xEAn c\xE1c m\u1EE5c ti\xEAu
+    c\u1EA1nh \u0111\xF3, t\u1ED1i \u0111a 3 m\u1EE5c ti\xEAu"
+  lvRequirement: 1
+  isActiveSkill: 1
+  AddtiveModifiers:
+  - statType: 0
+    _value: 0a0000000f00000014000000190000001e0000002300000028000000
+  - statType: 1
+    _value: 0a000000140000001e00000028000000320000003c00000046000000
+  - statType: 5
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 6
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 7
+    _value: 00000000000000000000000000000000000000000000000000000000
+  Range: 10
+  consumeMana: 0a0000000f00000014000000190000001e0000002300000028000000
+  cooldown:
+  - 1
+  - 0.9
+  - 0.8
+  - 0.7
+  - 0.6
+  - 0.5
+  - 0.4
+  <ComponentData>k__BackingField: []
   references:
     version: 2
-    RefIds:
-    - rid: 607104766750490624
-      type: {class: TargeterData, ns: , asm: Assembly-CSharp}
-      data:
-        name: TargeterData
-        <radius>k__BackingField: 7
-        <DamageableLayer>k__BackingField:
-          serializedVersion: 2
-          m_Bits: 4096
-    - rid: 607104766750490626
-      type: {class: ProjecttileData, ns: , asm: Assembly-CSharp}
-      data:
-        name: ProjecttileData
-        prefabProjectile: {fileID: -2270211819613203214, guid: 97de1986570dbc9458528ca0859c2a59, type: 3}
-    - rid: 607104766750490627
-      type: {class: PassiveSkillData, ns: , asm: Assembly-CSharp}
-      data:
-        name: PassiveSkillData
-        <idSkill>k__BackingField: 16
-        <cooldown>k__BackingField: 0.4
+    RefIds: []

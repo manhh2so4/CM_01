@@ -13,6 +13,33 @@ MonoBehaviour:
   m_Name: Quat 3
   m_EditorClassIdentifier: 
   icon: {fileID: -6087879221306176699, guid: e9c8dda83f5b2cf4bb0f25bd1aa3bc81, type: 3}
+  lvMaxSkill: 7
+  skillName: "Chi\xEAu Bakkuuchiha"
+  description: "Ch\xE9m li\xEAn t\u1EE5c v\xE0o m\u1EE5c ti\xEAu g\xE2y s\xE1t th\u01B0\u01A1ng
+    l\xEAn m\u1EE5c ti\xEAu \u0111\xF3"
+  lvRequirement: 1
+  isActiveSkill: 1
+  AddtiveModifiers:
+  - statType: 0
+    _value: 0a0000000f00000014000000190000001e0000002300000028000000
+  - statType: 1
+    _value: 0a000000140000001e00000028000000320000003c00000046000000
+  - statType: 5
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 6
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 7
+    _value: 00000000000000000000000000000000000000000000000000000000
+  Range: 10
+  consumeMana: 0a0000000f00000014000000190000001e0000002300000028000000
+  cooldown:
+  - 1
+  - 0.9
+  - 0.8
+  - 0.7
+  - 0.6
+  - 0.5
+  - 0.4
   <ComponentData>k__BackingField:
   - rid: 4502466544620797964
   - rid: 4502466544620797965
@@ -27,7 +54,7 @@ MonoBehaviour:
       data:
         name: PoiseDamageData
         <TimeEff>k__BackingField: 2
-        <Rate>k__BackingField: 50
+        <Rate>k__BackingField: 20
         <type>k__BackingField: 0
         prefabEff: {fileID: 4485347768850219834, guid: 6749158fff20f4e489c9fe69c85c8500, type: 3}
     - rid: 4502466544620797964
@@ -55,3 +82,4 @@ MonoBehaviour:
         name: PassiveSkillData
         <idSkill>k__BackingField: 27
         <cooldown>k__BackingField: 0.5
+        <RangeAttack>k__BackingField: 0

@@ -13,6 +13,34 @@ MonoBehaviour:
   m_Name: Dao 5
   m_EditorClassIdentifier: 
   icon: {fileID: 3799655467202103579, guid: e9c8dda83f5b2cf4bb0f25bd1aa3bc81, type: 3}
+  lvMaxSkill: 7
+  skillName: "Chi\xEAu Raikouto"
+  description: "T\u1EA1o ra v\xF2ng b\u0103ng cu\u1ED9n v\u1EC1 ph\xEDa tr\u01B0\u1EDBc
+    g\xE2y s\xE1t th\u01B0\u01A1ng trong m\u1ED9t ph\u1EA1m vi nh\u1EA5t \u0111\u1ECBnh,
+    t\u1ED1i \u0111a 4 m\u1EE5c ti\xEAu"
+  lvRequirement: 1
+  isActiveSkill: 1
+  AddtiveModifiers:
+  - statType: 0
+    _value: 0a0000000f00000014000000190000001e0000002300000028000000
+  - statType: 1
+    _value: 0a000000140000001e00000028000000320000003c00000046000000
+  - statType: 5
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 6
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 7
+    _value: 00000000000000000000000000000000000000000000000000000000
+  Range: 10
+  consumeMana: 0a0000000f00000014000000190000001e0000002300000028000000
+  cooldown:
+  - 1
+  - 0.9
+  - 0.8
+  - 0.7
+  - 0.6
+  - 0.5
+  - 0.4
   <ComponentData>k__BackingField:
   - rid: 4502466544620797964
   - rid: 4502466544620797965
@@ -55,3 +83,4 @@ MonoBehaviour:
         name: PassiveSkillData
         <idSkill>k__BackingField: 25
         <cooldown>k__BackingField: 0.4
+        <RangeAttack>k__BackingField: 0

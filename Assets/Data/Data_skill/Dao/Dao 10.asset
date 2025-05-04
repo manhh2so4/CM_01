@@ -13,6 +13,32 @@ MonoBehaviour:
   m_Name: Dao 10
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 36e952d160f58974db211b9cd94df902, type: 3}
+  lvMaxSkill: 7
+  skillName: "Chi\xEAu Raijin"
+  description: "B\u0103ng thu\u1EADt H\u1ED5 Khi\u1EBFu S\u01A1n H\xE0"
+  lvRequirement: 1
+  isActiveSkill: 1
+  AddtiveModifiers:
+  - statType: 0
+    _value: 0a0000000f00000014000000190000001e0000002300000028000000
+  - statType: 1
+    _value: 0a000000140000001e00000028000000320000003c00000046000000
+  - statType: 5
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 6
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 7
+    _value: 00000000000000000000000000000000000000000000000000000000
+  Range: 10
+  consumeMana: 0a0000000f00000014000000190000001e0000002300000028000000
+  cooldown:
+  - 1
+  - 0.9
+  - 0.8
+  - 0.7
+  - 0.6
+  - 0.5
+  - 0.4
   <ComponentData>k__BackingField:
   - rid: 4502466544620797964
   - rid: 4502466544620797965
@@ -55,3 +81,4 @@ MonoBehaviour:
         name: PassiveSkillData
         <idSkill>k__BackingField: 65
         <cooldown>k__BackingField: 1
+        <RangeAttack>k__BackingField: 0

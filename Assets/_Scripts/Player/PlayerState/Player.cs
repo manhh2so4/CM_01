@@ -143,15 +143,36 @@ public class Player : Entity,ISaveable
     }
 
     #endregion
+    [System.Serializable]
+    class PlayerSave{
+        public SerializableVector3 position;
+        public int CurrrentHealth;
+        public int CurrentMana;
+        public int CurrentLevel;
+        public int CurrentExp;
+    }
     public object CaptureState()
     {
-        return new SerializableVector3(transform.position);
+        PlayerSave playerSave = new PlayerSave();
+
+        playerSave.position = new SerializableVector3(transform.position);
+        playerSave.CurrrentHealth = CharStats.Health.CurrentValue;
+        playerSave.CurrentMana = CharStats.Mana.CurrentValue;
+        playerSave.CurrentLevel = PlayerManager.GetLevelSystem().CurrentLevel;
+        playerSave.CurrentExp = PlayerManager.GetLevelSystem().currentXP;
+
+        return playerSave;
     }
 
     public void RestoreState(object state)
     {
-        SerializableVector3 position = state as SerializableVector3;
-        transform.position = position.ToVector();
+        PlayerSave playerSave = state as PlayerSave;
+
+        transform.position = playerSave.position.ToVector();
+        CharStats.Health.CurrentValue = playerSave.CurrrentHealth;
+        CharStats.Mana.CurrentValue = playerSave.CurrentMana;
+        PlayerManager.GetLevelSystem().CurrentLevel = playerSave.CurrentLevel;
+        PlayerManager.GetLevelSystem().currentXP = playerSave.CurrentExp;
     }
     
 

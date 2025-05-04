@@ -12,7 +12,6 @@ public class Stat {
         set{
             currentValue = value;   
             if( currentValue > GetValue() ) currentValue = GetValue();
-            
             OnChangeValue?.Invoke();
         }
     }
@@ -40,10 +39,12 @@ public class Stat {
     public void AddModifier(int _modifier)
     {
         modifiers.Add(_modifier);
+        OnChangeValue?.Invoke();
     }
 
     public void RemoveModifier(int _modifier)
     {
         modifiers.Remove(_modifier);
+        OnChangeValue?.Invoke();
     }
 }

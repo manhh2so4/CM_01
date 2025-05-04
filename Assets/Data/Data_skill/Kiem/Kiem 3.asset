@@ -53,7 +53,7 @@ MonoBehaviour:
       data:
         name: PoiseDamageData
         <TimeEff>k__BackingField: 2
-        <Rate>k__BackingField: 50
+        <Rate>k__BackingField: 20
         <type>k__BackingField: 0
         prefabEff: {fileID: -6978634772155302930, guid: 53e530ec0d824014ba9e58baa2cbe6b2, type: 3}
     - rid: 4502466544620797964

@@ -43,19 +43,10 @@ MonoBehaviour:
   - rid: 4502466544620797964
   - rid: 4502466544620797965
   - rid: 4502466564992008194
-  - rid: 4316985181428776960
   - rid: 4796960724447920128
   references:
     version: 2
     RefIds:
-    - rid: 4316985181428776960
-      type: {class: PoiseDamageData, ns: , asm: Assembly-CSharp}
-      data:
-        name: PoiseDamageData
-        <TimeEff>k__BackingField: 2
-        <Rate>k__BackingField: 50
-        <type>k__BackingField: 0
-        prefabEff: {fileID: -6978634772155302930, guid: 53e530ec0d824014ba9e58baa2cbe6b2, type: 3}
     - rid: 4502466544620797964
       type: {class: DamageData, ns: , asm: Assembly-CSharp}
       data:

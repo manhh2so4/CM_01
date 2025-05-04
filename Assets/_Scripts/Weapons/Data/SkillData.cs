@@ -25,5 +25,9 @@ public class SkillData {
             lvSkill++;
         }
     }
+    public void ResetSkill(){
+        lvSkill = 1;
+        IsUnlock = false;
+    }
 }
 

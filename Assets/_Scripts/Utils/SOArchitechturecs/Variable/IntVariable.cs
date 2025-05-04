@@ -12,6 +12,9 @@ namespace SOArchitecture
         order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 4)]
     public class IntVariable : BaseVariable<int, IntEvent>
     {
-
+        protected override bool AreValuesEqual(int a, int b)
+        {
+            return false;
+        }
     } 
 }

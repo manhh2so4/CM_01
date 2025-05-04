@@ -13,6 +13,32 @@ MonoBehaviour:
   m_Name: Kunai 10
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: cf0fae11d9d3c7d499bf52f1055b0b73, type: 3}
+  lvMaxSkill: 7
+  skillName: "Chi\xEAu Shabondama"
+  description: "B\u0103ng thu\u1EADt H\u1ED5 Khi\u1EBFu S\u01A1n H\xE0"
+  lvRequirement: 1
+  isActiveSkill: 1
+  AddtiveModifiers:
+  - statType: 0
+    _value: 0a0000000f00000014000000190000001e0000002300000028000000
+  - statType: 1
+    _value: 0a000000140000001e00000028000000320000003c00000046000000
+  - statType: 5
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 6
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 7
+    _value: 00000000000000000000000000000000000000000000000000000000
+  Range: 10
+  consumeMana: 0a0000000f00000014000000190000001e0000002300000028000000
+  cooldown:
+  - 1
+  - 0.9
+  - 0.8
+  - 0.7
+  - 0.6
+  - 0.5
+  - 0.4
   <ComponentData>k__BackingField:
   - rid: 4502466544620797964
   - rid: 4502466544620797965
@@ -27,9 +53,9 @@ MonoBehaviour:
       data:
         name: PoiseDamageData
         <TimeEff>k__BackingField: 2
-        <Rate>k__BackingField: 50
+        <Rate>k__BackingField: 20
         <type>k__BackingField: 1
-        prefabEff: {fileID: 2804874706322604517, guid: 36eede3f4d1f5544287616e34e4a7dfb, type: 3}
+        prefabEff: {fileID: 4485347768850219834, guid: 2415015788e88ac4ea6d876949f11a6f, type: 3}
     - rid: 4502466544620797964
       type: {class: DamageData, ns: , asm: Assembly-CSharp}
       data:

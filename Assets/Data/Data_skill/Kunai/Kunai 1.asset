@@ -13,23 +13,41 @@ MonoBehaviour:
   m_Name: Kunai 1
   m_EditorClassIdentifier: 
   icon: {fileID: 3105690926291737629, guid: e9c8dda83f5b2cf4bb0f25bd1aa3bc81, type: 3}
+  lvMaxSkill: 7
+  skillName: "Chi\xEAu Yokobatan"
+  description: "Kunai nh\u1EADp m\xF4n - t\u1EA5n c\xF4ng g\xE2y s\xE1t th\u01B0\u01A1ng
+    l\xEAn m\u1ED9t m\u1EE5c ti\xEAu nh\u1EA5t \u0111\u1ECBnh"
+  lvRequirement: 1
+  isActiveSkill: 1
+  AddtiveModifiers:
+  - statType: 0
+    _value: 0a0000000f00000014000000190000001e0000002300000028000000
+  - statType: 1
+    _value: 0a000000140000001e00000028000000320000003c00000046000000
+  - statType: 5
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 6
+    _value: 00000000000000000000000000000000000000000000000000000000
+  - statType: 7
+    _value: 00000000000000000000000000000000000000000000000000000000
+  Range: 10
+  consumeMana: 0a0000000f00000014000000190000001e0000002300000028000000
+  cooldown:
+  - 1
+  - 0.9
+  - 0.8
+  - 0.7
+  - 0.6
+  - 0.5
+  - 0.4
   <ComponentData>k__BackingField:
   - rid: 4502466544620797964
   - rid: 4502466544620797965
   - rid: 4502466564992008194
-  - rid: 4316985181428776960
   - rid: 4796960724447920128
   references:
     version: 2
     RefIds:
-    - rid: 4316985181428776960
-      type: {class: PoiseDamageData, ns: , asm: Assembly-CSharp}
-      data:
-        name: PoiseDamageData
-        <TimeEff>k__BackingField: 2
-        <Rate>k__BackingField: 50
-        <type>k__BackingField: 1
-        prefabEff: {fileID: 2804874706322604517, guid: 36eede3f4d1f5544287616e34e4a7dfb, type: 3}
     - rid: 4502466544620797964
       type: {class: DamageData, ns: , asm: Assembly-CSharp}
       data:
@@ -55,3 +73,4 @@ MonoBehaviour:
         name: PassiveSkillData
         <idSkill>k__BackingField: 11
         <cooldown>k__BackingField: 0.4
+        <RangeAttack>k__BackingField: 0

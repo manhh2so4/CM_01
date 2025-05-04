@@ -1,18 +1,35 @@
 using System;
 using NaughtyAttributes;
 using UnityEngine;
+using SOArchitecture;
 
 public class LevelSystem : CoreComponent {
     [Header("Level Settings")]
-    public int currentLevel = 1;
+    private int currentLevel = 1;
+    public int CurrentLevel {get => currentLevel; 
+                            set {
+                                currentLevel = value;
+                                CalculateStats();
+                                if(ShareLevel != null) ShareLevel.Value = currentLevel;
+                            }}
+                            
     public int currentXP = 0;
-    public int xpToNextLevel = int.MaxValue;
+
     public event Action OnLevelUp;
     public event Action OnXpChange;
     CharacterStats charStats;
-    PaintEffect paintEffect;
     
+    PaintEffect paintEffect;
+    [SerializeField] IntVariable ShareLevel;
     [SerializeField] BaseEffect effLvUp;
+
+    #region Level Player
+    [SerializeField] LevelPlayer_SO levelPlayerSO;
+    int HP => levelPlayerSO.levelPlayer[currentLevel - 1].HP;
+    int ATK => levelPlayerSO.levelPlayer[currentLevel - 1].ATK;
+    int DEF => levelPlayerSO.levelPlayer[currentLevel - 1].DEF;
+    public int XpToNextLevel => levelPlayerSO.levelPlayer[currentLevel - 1].xpToNextLevel;
+    #endregion
     protected override void Awake()
     {
         base.Awake();
@@ -22,34 +39,31 @@ public class LevelSystem : CoreComponent {
     protected override void Start()
     {
         base.Start();
-        xpToNextLevel = StaticValue.C_EXP_REQUIRE[ currentLevel - 1];
         OnXpChange?.Invoke();
         CalculateStats();
+        if(ShareLevel != null) ShareLevel.Value = CurrentLevel;
     }
     public void AddExperience(int xpAmount)
     {
         currentXP += xpAmount;
         PoolsContainer.GetObject( this.GetPrefab<PopupText>(), transform.position + Top).Setup(xpAmount, PopupTextType.Exp );
         
-        while (currentXP >= xpToNextLevel )
+        while (currentXP >= XpToNextLevel )
         {
-            currentXP -= xpToNextLevel;
-            currentLevel++;
+            currentXP -= XpToNextLevel;
+            CurrentLevel++;
             
-            xpToNextLevel = StaticValue.C_EXP_REQUIRE[ currentLevel - 1];
-            
-            CalculateStats();
             OnLevelUp?.Invoke();
             PlayLevelUpEffect();
 
             Common.Log($"Level Up! Now level {currentLevel}");
         }
         OnXpChange?.Invoke();
-
     }
     void CalculateStats(){
-        //charStats.damage.SetDefaultValue( StaticValue.C_LV_DAM_ADD[ currentLevel - 1] );
-        charStats.Health.SetDefaultValue( StaticValue.C_LV_HP_ADD [ currentLevel - 1] );  
+        charStats.damage.SetDefaultValue( ATK );
+        charStats.Health.SetDefaultValue( HP ); 
+        charStats.armor.SetDefaultValue( DEF );
     }
     [Button]
     void Test(){

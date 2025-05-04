@@ -39,8 +39,4 @@ public class InventorySlotUI : MonoBehaviour, IItemHolder, IDragContainer<Invent
         inventory.RemoveFromSlot(index, number);
     }
 
-    // public void OnPointerClick(PointerEventData eventData)
-    // {
-    //     UI_selected.SetSelected(this.transform as RectTransform);
-    // }
 }

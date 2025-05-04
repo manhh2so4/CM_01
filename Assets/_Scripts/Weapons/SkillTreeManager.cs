@@ -5,6 +5,7 @@ using HStrong.Saving;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Diagnostics;
 
 
 public class SkillTreeManager : MonoBehaviour,ISaveable
@@ -12,9 +13,12 @@ public class SkillTreeManager : MonoBehaviour,ISaveable
     public WeaponSkill SkillKiem;
     public WeaponSkill SkillKunai;
     public WeaponSkill SkillDao;
+    public WeaponSkill SkillCung;
+    public WeaponSkill SkillQuat;
+    
     public SkillData[] PassiveSkills;
-    public int PointWeapon;
-    public bool CanUpgradeSkill => PointWeapon > 0;
+    //public int PointWeapon;
+    public bool CanUpgradeSkill =>  currentWeaponSkill.pointWeapon > 0;
 #region UI
     [SerializeField] Transform ActiveSkillsContainer;
     [SerializeField] Transform PassiveSkillsContainer;
@@ -37,6 +41,8 @@ public class SkillTreeManager : MonoBehaviour,ISaveable
     {
         UiSkillTooltip.OnUpgradeSkill += UpgradeSkill;
         currentWeaponSkill = null;
+        LoadSkillActiveTreeUI();
+        LoadSkillPassiveTreeUI();
         
     }
     void OnDisable()
@@ -44,12 +50,32 @@ public class SkillTreeManager : MonoBehaviour,ISaveable
         UiSkillTooltip.OnUpgradeSkill -= UpgradeSkill;
     }
 
-    public void UpdateSkillTreeUI(EquipableItemSO weapon){
+    public void UpdateSkillTreeUI(WeaponItemSO weapon){
         if(weapon != null){
-            currentWeaponSkill = SkillKiem;
+            switch(weapon.GetWeaponType()){
+                case WeaponType.Kunai:
+                    currentWeaponSkill = SkillKunai;
+                    break;
+                case WeaponType.Kiem:
+                    currentWeaponSkill = SkillKiem;
+                    break;
+                case WeaponType.Cung:
+                    currentWeaponSkill = SkillCung;
+                    break;
+                case WeaponType.Dao:
+                    currentWeaponSkill = SkillDao;
+                    break;
+                case WeaponType.Quat:
+                    currentWeaponSkill = SkillQuat;
+                    break;
+                default:
+                    currentWeaponSkill = null;
+                    break;
+            }
         }else{
             currentWeaponSkill = null;
         }
+
         LoadSkillActiveTreeUI();
     }
     void LoadSkillPassiveTreeUI(){      
@@ -114,15 +140,31 @@ public class SkillTreeManager : MonoBehaviour,ISaveable
     public void ToggleSetSkillSlot(){
         UiSkillTooltip.ToggleSetSkillSlot();
     }
+    [Button]
+    public void ResetSkill(){
+        foreach(SkillData skill in currentWeaponSkill.ActiveSkills){
+            skill.ResetSkill();
+        }
+        foreach(SkillData skill in PassiveSkills){
+            skill.ResetSkill();
+        }
+        currentWeaponSkill.pointWeapon = 20;
+        UpdateUITree();
+        LoadSkillActiveTreeUI();
+        LoadSkillPassiveTreeUI();
+    }
 
     void UpdateUITree()
     {
         if(currentWeaponSkill == null) {
             noWeaponText.SetActive(true);
+            pointWeapon.text = "Không có vũ khí";
         }else{
             noWeaponText.SetActive(false);
+            pointWeapon.text = $"Điểm kỹ năng : <color=green><size={45}>{ currentWeaponSkill.pointWeapon }";
         }
-        pointWeapon.text = $"Điểm kỹ năng : <color=green><size={45}>{ PointWeapon }";
+        
+        
     }
 
     void SetSkillTooltip(SkillData skillData){
@@ -131,7 +173,7 @@ public class SkillTreeManager : MonoBehaviour,ISaveable
     }
 
     void UpgradeSkill(){
-        PointWeapon --;
+        currentWeaponSkill.pointWeapon --;
         CurrentSelectSkill.UpLvSkill();
 
         UpdateUITree();
@@ -142,34 +184,40 @@ public class SkillTreeManager : MonoBehaviour,ISaveable
     }
 
 #region Save_Object
-    [System.Serializable]
-    class SkillKiemRecord{
+    [Serializable]
+    class SkillWeaponRecord{
+        public SkillRecord SkillKiem;
+        public SkillRecord SkillKunai;
+        public SkillRecord SkillDao;
+        public SkillRecord SkillCung;
+        public SkillRecord SkillQuat;
+        public int[] levelSkillPassive;
+        public SkillWeaponRecord(){
+            SkillKiem = new SkillRecord();
+            SkillKunai = new SkillRecord();
+            SkillDao = new SkillRecord();
+            SkillCung = new SkillRecord();
+            SkillQuat = new SkillRecord();
+        }
+    }
+
+    [Serializable]
+    class SkillRecord{
         public int pointWeapon;
         public int[] slotsSkill;
         public int[] levelSkillActive;
-        public int[] levelSkillPassive;
-
     }
-    
+
     public object CaptureState()
     {
-        SkillKiemRecord skillKiemRecord = new SkillKiemRecord();
+        SkillWeaponRecord skillKiemRecord = new SkillWeaponRecord();
 
-        skillKiemRecord.pointWeapon = PointWeapon;
-        skillKiemRecord.slotsSkill = new int[3];
-        skillKiemRecord.levelSkillActive = new int[SkillKiem.ActiveSkills.Length];
         skillKiemRecord.levelSkillPassive = new int[PassiveSkills.Length];
-
-        for (int i = 0; i < 3; i++){
-            skillKiemRecord.slotsSkill[i] = SkillKiem.slotsSkill[i];
-        }
-        for(int i = 0; i < SkillKiem.ActiveSkills.Length; i++){
-            if(SkillKiem.ActiveSkills[i].IsUnlock){
-                skillKiemRecord.levelSkillActive[i] = SkillKiem.ActiveSkills[i].lvSkill;
-            }else{
-                skillKiemRecord.levelSkillActive[i] = 0;
-            }
-        }
+        skillKiemRecord.SkillKiem = SaveSkillRecord(SkillKiem);
+        skillKiemRecord.SkillKunai = SaveSkillRecord(SkillKunai);
+        skillKiemRecord.SkillDao = SaveSkillRecord(SkillDao);
+        skillKiemRecord.SkillCung = SaveSkillRecord(SkillCung);
+        skillKiemRecord.SkillQuat = SaveSkillRecord(SkillQuat);
         for(int i = 0; i < PassiveSkills.Length; i++){
             if(PassiveSkills[i].IsUnlock){
                 skillKiemRecord.levelSkillPassive[i] = PassiveSkills[i].lvSkill;
@@ -180,24 +228,36 @@ public class SkillTreeManager : MonoBehaviour,ISaveable
         return skillKiemRecord;
     }
 
-    public void RestoreState(object state)
-    {
-        SkillKiemRecord skillSaves = (SkillKiemRecord)state;
-        PointWeapon = skillSaves.pointWeapon;
+    SkillRecord SaveSkillRecord(WeaponSkill _weaponSkill){
         
-        for(int i = 0; i < 3; i++){
-            SkillKiem.slotsSkill[i] = skillSaves.slotsSkill[i];
+        SkillRecord skillRecord = new SkillRecord();
+        skillRecord.pointWeapon = _weaponSkill.pointWeapon;
+
+        skillRecord.slotsSkill = new int[3];
+        for (int i = 0; i < 3; i++){
+            skillRecord.slotsSkill[i] = _weaponSkill.slotsSkill[i];
         }
 
-        for(int i = 0; i < SkillKiem.ActiveSkills.Length; i++){
-            if(skillSaves.levelSkillActive[i] > 0){
-                SkillKiem.ActiveSkills[i].IsUnlock = true;
-                SkillKiem.ActiveSkills[i].lvSkill = skillSaves.levelSkillActive[i];
+        skillRecord.levelSkillActive = new int[_weaponSkill.ActiveSkills.Length];
+        for(int i = 0; i < _weaponSkill.ActiveSkills.Length; i++){
+            if(_weaponSkill.ActiveSkills[i].IsUnlock){
+                skillRecord.levelSkillActive[i] = _weaponSkill.ActiveSkills[i].lvSkill;
             }else{
-                SkillKiem.ActiveSkills[i].IsUnlock = false;
-                SkillKiem.ActiveSkills[i].lvSkill = 1;
+                skillRecord.levelSkillActive[i] = 0;
             }
         }
+        return skillRecord;
+    }
+
+    public void RestoreState(object state)
+    {
+        SkillWeaponRecord skillSaves = (SkillWeaponRecord)state;
+        
+        LoadSkillRecord(skillSaves.SkillKiem, SkillKiem);
+        LoadSkillRecord(skillSaves.SkillKunai, SkillKunai);
+        LoadSkillRecord(skillSaves.SkillDao, SkillDao);
+        LoadSkillRecord(skillSaves.SkillCung, SkillCung);
+        LoadSkillRecord(skillSaves.SkillQuat, SkillQuat);
 
         for(int i = 0; i < PassiveSkills.Length; i++){
             if(skillSaves.levelSkillPassive[i] > 0){
@@ -208,16 +268,38 @@ public class SkillTreeManager : MonoBehaviour,ISaveable
                 PassiveSkills[i].lvSkill = 1;
             }
         }
+
         UpdateUITree();
         LoadSlotSkill();
         LoadSkillPassiveTreeUI();
+        LoadSkillActiveTreeUI();
+    }
+    void LoadSkillRecord(SkillRecord _skillRecord, WeaponSkill _weaponSkill){
+        _weaponSkill.pointWeapon = _skillRecord.pointWeapon;
+
+        for(int i = 0; i < 3; i++){
+            _weaponSkill.slotsSkill[i] = _skillRecord.slotsSkill[i];
+        }
+        for(int i = 0; i < _weaponSkill.ActiveSkills.Length; i++){
+            if(_skillRecord.levelSkillActive[i] > 0){
+                _weaponSkill.ActiveSkills[i].IsUnlock = true;
+                _weaponSkill.ActiveSkills[i].lvSkill = _skillRecord.levelSkillActive[i];
+            }else{
+                _weaponSkill.ActiveSkills[i].IsUnlock = false;
+                _weaponSkill.ActiveSkills[i].lvSkill = 1;
+            }
+        }
+        
     }
 #endregion
 }
-[System.Serializable]
+
+[Serializable]
 public class WeaponSkill
 {   
     public WeaponType weaponType;
+    public int pointWeapon;
     public List<int> slotsSkill = new List<int>(3){0,-1,-1};
     public SkillData[] ActiveSkills;
 }
+

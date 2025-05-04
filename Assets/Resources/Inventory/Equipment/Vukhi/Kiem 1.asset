@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2313a4248aa4b24a9cf572bf8bf80ef, type: 3}
+  m_Script: {fileID: 11500000, guid: ae490aa6fc648fc4eb6e790eeadce852, type: 3}
   m_Name: Kiem 1
   m_EditorClassIdentifier: 
   itemID: Kiem 1
@@ -19,17 +19,16 @@ MonoBehaviour:
   stackable: 1
   price: 500
   typeEquip: 5
-  requiredLevel: 10
+  requiredLevel: 1
   Level: 0
   AddtiveModifiers:
   - statType: 0
     _value: 0a0000000c0000000e0000001000000012000000
   - statType: 1
-    _value: 0a0000000c0000000e0000001000000012000000
+    _value: 050000000c0000000e0000001000000012000000
   - statType: 2
     _value: 0a0000000c0000000e0000001000000012000000
   - statType: 8
     _value: 0a0000000c0000000e0000001000000012000000
-  - statType: 5
-    _value: 0a0000000c0000000e0000001000000012000000
   image_Draw: {fileID: 11400000, guid: 8768156924d7be44b930b2813fd697eb, type: 2}
+  weaponType: 1

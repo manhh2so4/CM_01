@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 public class PeristentObjectSpawner : MonoBehaviour
@@ -14,5 +15,9 @@ public class PeristentObjectSpawner : MonoBehaviour
     {
         GameObject persistentObject = Instantiate(persistentObjectPrefab);
         DontDestroyOnLoad(persistentObject);
+    }
+    [Button]
+    public void LinkSave(){
+        Debug.Log("LinkSave :" + Application.persistentDataPath);
     }
 }

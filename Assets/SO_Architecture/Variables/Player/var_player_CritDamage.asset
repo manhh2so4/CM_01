@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d4b8e8461fcf754cbdb3cebf68ec901, type: 3}
-  m_Name: var_player_HPplayer
+  m_Script: {fileID: 11500000, guid: 66ee3c063ef4c294ca186f308684ea2d, type: 3}
+  m_Name: var_player_CritDamage
   m_EditorClassIdentifier: 
   _value: 0
   _useDefaultValue: 0

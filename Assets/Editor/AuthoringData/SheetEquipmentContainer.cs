@@ -26,35 +26,54 @@ public class EquipmentSheet : Sheet<EquipmentSheet.Row>
         public List<int> value { get; private set; }
     }
 }
+public class WeaponSheet : Sheet<WeaponSheet.Row>
+{
+    public class Row : SheetRowArray<Elem>
+    {
+        public string displayName { get; private set; }
+        public string description { get; private set; }
+        public int requiredLevel { get; private set; }
+        public int icon { get; private set; }
+        public int price { get; private set; }
+        public EquipType equipType { get; private set; }
+        public WeaponType weaponType { get; private set; }
+        public int Part { get; private set; }
+    }
+    public class Elem : SheetRowElem
+    {
+        public StatType statType { get; private set; }
+        public List<int> value { get; private set; }
+    }
+}
 
 [System.Serializable]
 public class SheetEquipmentContainer : BaseSheetContainer{
-    public EquipmentSheet Vukhi {get; private set;}
-    public EquipmentSheet Quan {get; private set;}
-    public EquipmentSheet Ao {get; private set;}
-    public EquipmentSheet Giay {get; private set;}
-    public EquipmentSheet Gang {get; private set;}
-    public EquipmentSheet Non {get; private set;}
-    public EquipmentSheet DayChuyen {get; private set;}
-    public EquipmentSheet NgocBoi {get; private set;}
-    public EquipmentSheet Bua {get; private set;}
-    public EquipmentSheet Nhan {get; private set;}
+    public WeaponSheet Vukhi {get; private set;}
+    // public EquipmentSheet Quan {get; private set;}
+    // public EquipmentSheet Ao {get; private set;}
+    // public EquipmentSheet Giay {get; private set;}
+    // public EquipmentSheet Gang {get; private set;}
+    // public EquipmentSheet Non {get; private set;}
+    // public EquipmentSheet DayChuyen {get; private set;}
+    // public EquipmentSheet NgocBoi {get; private set;}
+    // public EquipmentSheet Bua {get; private set;}
+    // public EquipmentSheet Nhan {get; private set;}
 
     public override void BakeData(){
 
 //--------------
         LoadData(Vukhi);
 //---------------
-        LoadData(Quan);
-        LoadData(Ao);
-        LoadData(Gang);
-        LoadData(Giay);
-        LoadData(Non);
+        // LoadData(Quan);
+        // LoadData(Ao);
+        // LoadData(Gang);
+        // LoadData(Giay);
+        // LoadData(Non);
 //---------------
-        LoadData(DayChuyen);
-        LoadData(NgocBoi);
-        LoadData(Bua);
-        LoadData(Nhan);
+        // LoadData(DayChuyen);
+        // LoadData(NgocBoi);
+        // LoadData(Bua);
+        // LoadData(Nhan);
     }
     public override void PostLoad(){}
     void LoadData( EquipmentSheet Datas ){
@@ -86,6 +105,36 @@ public class SheetEquipmentContainer : BaseSheetContainer{
             EditorUtility.SetDirty(equipmentSO);
         }
     }
+    void LoadData( WeaponSheet Datas ){
+        string assetPath = "Assets/Resources/Inventory/Equipment/";
+
+        foreach(var data in Datas){
+            Directory.CreateDirectory(assetPath + data.equipType);
+            string namePAth = assetPath + data.equipType+ "/"+ data.Id + ".asset";
+            WeaponItemSO weaponSO = AssetDatabase.LoadAssetAtPath<WeaponItemSO>( namePAth );
+            if(weaponSO == null){
+                weaponSO = ScriptableObject.CreateInstance<WeaponItemSO>();
+                AssetDatabase.CreateAsset(weaponSO, namePAth);
+            }
+
+            Sprite _sprite = GetSpritesID.Get()[data.icon];
+
+            int Count = data.Count;
+
+            ModifiersUpgrade[] AddtiveModifiers = new ModifiersUpgrade[Count];
+
+            for(int i = 0; i < Count; i++){
+                AddtiveModifiers[i] = new ModifiersUpgrade{ statType = data[i].statType, _value = data[i].value.ToArray()};
+            }
+            if(data.Part > 0){
+                weaponSO.SetImageDraw( LoadSpritePart(data.Part, data.equipType, data.Id) );
+            }
+            weaponSO.SetData( data.displayName, data.description, _sprite, data.price, data.requiredLevel, data.equipType, AddtiveModifiers);
+            weaponSO.SetWeaponType(data.weaponType);
+            EditorUtility.SetDirty(weaponSO);
+        }
+    }
+
     Tex_NjPart_SO LoadSpritePart(int idPart, EquipType equipType, string Id){
 
         string assetPath = "Assets/Data/Char_tex/";
